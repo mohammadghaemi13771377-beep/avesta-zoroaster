@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AVESTA-ZOROASTER Local Preview</title>
+    <style>
+      :root {
+        --night: #05080d;
+        --royal: #071521;
+        --gold: #d6a84f;
+        --gold-light: #f2d58a;
+        --warm: #fff8ea;
+        --muted: #b9b9b9;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 50% -10%, rgba(214, 168, 79, 0.18), transparent 34rem),
+          radial-gradient(circle at 85% 18%, rgba(242, 213, 138, 0.12), transparent 26rem),
+          linear-gradient(180deg, #020407 0%, var(--night) 38%, #020305 100%);
+        color: var(--warm);
+        font-family: Tahoma, Arial, sans-serif;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image:
+          radial-gradient(circle at 12% 18%, rgba(255, 248, 234, 0.35) 0 1px, transparent 1.6px),
+          radial-gradient(circle at 70% 8%, rgba(242, 213, 138, 0.3) 0 1px, transparent 1.8px);
+        background-size: 280px 240px, 360px 320px;
+        opacity: 0.42;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        position: fixed;
+        inset-inline: 16px;
+        top: 18px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+        padding: 0 14px;
+        border: 1px solid rgba(214, 168, 79, 0.26);
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      }
+
+      .nav img {
+        width: 42px;
+        height: 42px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--gold-light);
+        letter-spacing: 0.18em;
+      }
+
+      .links {
+        display: flex;
+        gap: 22px;
+        color: rgba(255, 248, 234, 0.84);
+        font-size: 14px;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 37% 32%, rgba(242, 213, 138, 0.92), rgba(214, 168, 79, 0.24) 9rem, transparent 17rem),
+          radial-gradient(circle at 70% 42%, rgba(242, 213, 138, 0.18), transparent 23rem),
+          linear-gradient(110deg, rgba(5, 8, 13, 0.98), rgba(7, 21, 33, 0.78) 46%, rgba(5, 8, 13, 0.96));
+      }
+
+      .horizon {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: 44%;
+        background:
+          radial-gradient(ellipse at 50% 100%, rgba(214, 168, 79, 0.34), transparent 42%),
+          linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.78));
+        clip-path: polygon(0 55%, 13% 45%, 27% 58%, 39% 38%, 52% 52%, 68% 31%, 82% 55%, 100% 38%, 100% 100%, 0 100%);
+      }
+
+      .hero-grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        align-items: center;
+        min-height: 100vh;
+        gap: 32px;
+        padding-top: 90px;
+      }
+
+      .eyebrow {
+        color: var(--gold-light);
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 16px 0 0;
+        max-width: 680px;
+        font-size: clamp(56px, 8vw, 108px);
+        line-height: 1.1;
+        color: transparent;
+        background: linear-gradient(90deg, var(--warm), var(--gold-light) 44%, var(--gold));
+        -webkit-background-clip: text;
+        background-clip: text;
+        text-shadow: 0 28px 80px rgba(214, 168, 79, 0.17);
+      }
+
+      .lead {
+        max-width: 620px;
+        margin-top: 24px;
+        color: rgba(255, 248, 234, 0.82);
+        font-size: 22px;
+        line-height: 2;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .btn {
+        border-radius: 13px;
+        padding: 15px 26px;
+        border: 1px solid rgba(214, 168, 79, 0.28);
+        font-weight: 800;
+      }
+
+      .btn.primary {
+        color: var(--night);
+        background: linear-gradient(180deg, var(--gold-light), var(--gold));
+        box-shadow: 0 0 34px rgba(214, 168, 79, 0.18);
+      }
+
+      .badges {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 52px;
+        max-width: 680px;
+      }
+
+      .badge {
+        border-right: 1px solid rgba(214, 168, 79, 0.18);
+        padding: 0 16px;
+      }
+
+      .badge strong {
+        display: block;
+        margin-top: 12px;
+        color: var(--warm);
+      }
+
+      .badge span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .hero-logo {
+        position: relative;
+        min-height: 560px;
+        display: grid;
+        place-items: center;
+      }
+
+      .hero-logo::before {
+        content: "";
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        border: 1px solid rgba(214, 168, 79, 0.18);
+        background: rgba(0, 0, 0, 0.22);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+      }
+
+      .hero-logo img {
+        position: relative;
+        width: min(680px, 100%);
+        filter: drop-shadow(0 30px 70px rgba(0, 0, 0, 0.75));
+      }
+
+      .lux {
+        border: 1px solid rgba(214, 168, 79, 0.24);
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgba(255, 248, 234, 0.055), transparent 26%),
+          linear-gradient(135deg, rgba(7, 21, 33, 0.78), rgba(5, 8, 13, 0.92));
+        box-shadow: inset 0 1px 0 rgba(255, 248, 234, 0.08), 0 24px 80px rgba(0, 0, 0, 0.36);
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        margin-bottom: 26px;
+      }
+
+      .section-title h2 {
+        margin: 0;
+        color: var(--gold-light);
+        font-size: 36px;
+      }
+
+      .section-title span {
+        width: 90px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      }
+
+      .avesta {
+        margin-top: -10px;
+        padding: 26px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 12px;
+      }
+
+      .card {
+        min-height: 295px;
+        padding: 12px;
+        border: 1px solid rgba(214, 168, 79, 0.18);
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.32);
+      }
+
+      .visual {
+        height: 136px;
+        border-radius: 13px;
+        border: 1px solid rgba(214, 168, 79, 0.16);
+        background:
+          radial-gradient(circle at 52% 42%, rgba(242, 213, 138, 0.46), transparent 4rem),
+          linear-gradient(145deg, #18232a, #030507);
+      }
+
+      .card h3 {
+        margin: 16px 0 6px;
+        color: var(--gold-light);
+      }
+
+      .card p {
+        min-height: 58px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .card a,
+      .portal a {
+        display: inline-block;
+        margin-top: 14px;
+        color: var(--gold);
+        font-weight: 800;
+      }
+
+      .portals {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        padding-block: 24px;
+      }
+
+      .portal {
+        padding: 18px;
+      }
+
+      .portal .visual {
+        height: 170px;
+        margin-top: 18px;
+      }
+
+      footer {
+        margin-top: 32px;
+        border-top: 1px solid rgba(214, 168, 79, 0.12);
+        padding: 44px 0;
+        background: #020305;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr 1fr;
+        gap: 32px;
+      }
+
+      @media (max-width: 980px) {
+        .links {
+          display: none;
+        }
+
+        .hero-grid,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cards,
+        .portals,
+        .badges {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 560px) {
+        .cards,
+        .portals,
+        .badges {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-logo {
+          min-height: 330px;
+        }
+
+        .hero-logo::before {
+          width: 300px;
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <a class="brand" href="/">
+        <img src="/public/images/avesta-zoroaster-logo.png" alt="AVESTA-ZOROASTER" />
+        <span>AVESTA-ZOROASTER</span>
+      </a>
+      <div class="links">
+        <a href="/">خانه</a>
+        <a href="/avesta">اوستا</a>
+        <a href="/zoroaster">زرتشت</a>
+        <a href="/library">کتابخانه</a>
+        <a href="/media">رسانه</a>
+        <a href="/articles">مقاله‌ها</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="horizon"></div>
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">به جهان دیجیتال</div>
+          <h1>اوستا و زرتشت</h1>
+          <p class="lead">کاوش در کهن‌ترین تعالیم یکتاپرستی، خرد و فرهنگ ایران باستان.</p>
+          <div class="actions">
+            <a class="btn primary" href="/avesta">ورود به پورتال اوستا ←</a>
+            <a class="btn" href="/about">درباره پروژه</a>
+          </div>
+          <div class="badges">
+            <div class="badge"><strong>همیشه در دسترس</strong><span>وب و موبایل</span></div>
+            <div class="badge"><strong>جستجوی هوشمند</strong><span>چندمنبعی</span></div>
+            <div class="badge"><strong>تجربه سینمایی</strong><span>طراحی هنری</span></div>
+            <div class="badge"><strong>معتبر و مستند</strong><span>منابع اصیل</span></div>
+          </div>
+        </div>
+        <div class="hero-logo">
+          <img src="/public/images/avesta-zoroaster-logo.png" alt="AVESTA-ZOROASTER" />
+        </div>
+      </div>
+    </section>
+
+    <main class="shell">
+      <section class="lux avesta">
+        <div class="section-title"><span></span><h2>بخش‌های اوستا</h2><span></span></div>
+        <div class="cards">
+          <article class="card"><div class="visual"></div><h3>یسنا</h3><p>نیایش‌ها و آیین‌های بنیادین</p><a href="/avesta/yasna">مطالعه ←</a></article>
+          <article class="card"><div class="visual"></div><h3>گات‌ها</h3><p>سروده‌های آموزنده زرتشت</p><a href="/avesta/gathas">مطالعه ←</a></article>
+          <article class="card"><div class="visual"></div><h3>ویسپرد</h3><p>نیایش‌های آیینی و ستایش</p><a href="/avesta/visperad">مطالعه ←</a></article>
+          <article class="card"><div class="visual"></div><h3>وندیداد</h3><p>قانون و نگهبانی از پاکی</p><a href="/avesta/vendidad">مطالعه ←</a></article>
+          <article class="card"><div class="visual"></div><h3>یشت‌ها</h3><p>سروده‌های حماسی و اسطوره‌ای</p><a href="/avesta/yashts">مطالعه ←</a></article>
+          <article class="card"><div class="visual"></div><h3>خرده اوستا</h3><p>نیایش‌های روزانه و کوتاه</p><a href="/avesta/khordeh-avesta">مطالعه ←</a></article>
+          <article class="card"><div class="visual"></div><h3>هات‌ها</h3><p>نقشه مطالعه و فصل‌ها</p><a href="/avesta/hats">مطالعه ←</a></article>
+        </div>
+      </section>
+
+      <section class="portals">
+        <article class="lux portal"><h2>تایم‌لاین تاریخ</h2><p>سفر در رویدادهای مهم ایران باستان</p><div class="visual"></div><a href="/timeline">مشاهده تایم‌لاین ←</a></article>
+        <article class="lux portal"><h2>کتابخانه</h2><p>کتاب‌ها، نسخه‌ها و منابع مطالعاتی</p><div class="visual"></div><a href="/library">مشاهده منابع ←</a></article>
+        <article class="lux portal"><h2>رسانه</h2><p>تصاویر AI، ویدیوها و پادکست‌ها</p><div class="visual"></div><a href="/media">مشاهده رسانه‌ها ←</a></article>
+        <article class="lux portal"><h2>مقالات</h2><p>مقالات پژوهشی و تحلیلی</p><div class="visual"></div><a href="/articles">مطالعه مقالات ←</a></article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell footer-grid">
+        <div>
+          <h2 style="color: var(--gold-light)">AVESTA-ZOROASTER</h2>
+          <p>پندار نیک | گفتار نیک | کردار نیک</p>
+          <p style="color: var(--muted); line-height: 2">این وبسایت یک پروژه فرهنگی برای جهان دیجیتال اوستا، زرتشت و خرد ایران باستان است.</p>
+        </div>
+        <div><h3>پروژه</h3><p>درباره ما</p><p>ماموریت</p><p>تماس با ما</p></div>
+        <div><h3>منابع</h3><p>کتابخانه</p><p>واژه‌نامه</p><p>رسانه</p></div>
+        <div><h3>دسترسی سریع</h3><p>خانه</p><p>اوستا</p><p>زرتشت</p></div>
+      </div>
+    </footer>
+  </body>
+</html>
