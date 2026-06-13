@@ -56,8 +56,8 @@ export async function POST(request: Request) {
     metadata: {
       mode: body?.mode,
       jobId: result.jobId,
-      imported: result.imported,
-      failed: result.failed,
+      imported: result.summary.total - (result.summary.failed ?? 0),
+      failed: result.summary.failed ?? 0,
     },
   });
 

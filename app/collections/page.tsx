@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { LucideIcon } from "lucide-react";
 import { Bookmark, Compass, Layers3 } from "lucide-react";
 
 import { CinematicHub } from "@/components/cinematic-hub";
@@ -6,20 +7,42 @@ import { CollectionsBoard } from "@/components/collections-board";
 import { contentCollections } from "@/lib/content-collections";
 
 export const metadata: Metadata = {
-  title: "کلکسیون‌های مطالعاتی",
-  description: "مجموعه‌های موضوعی AVESTA-ZOROASTER برای مطالعه خرد، نیایش، ایران باستان و یکتاپرستی.",
+  title: "کلکسیون های مطالعاتی",
+  description: "مجموعه های موضوعی AVESTA-ZOROASTER برای مطالعه خرد، نیایش، ایران باستان و یکتاپرستی.",
 };
+
+const featureCards: Array<{
+  title: string;
+  description: string;
+  Icon: LucideIcon;
+}> = [
+  {
+    title: "مطالعه هدفمند",
+    description: "هر کلکسیون یک مسیر موضوعی با لینک های واقعی سایت دارد.",
+    Icon: Compass,
+  },
+  {
+    title: "ذخیره مجموعه",
+    description: "کاربر می تواند کلکسیون های محبوبش را در پروفایل دنبال کند.",
+    Icon: Bookmark,
+  },
+  {
+    title: "آماده محصول",
+    description: "بعدا این ساختار می تواند به اشتراک ویژه، دوره و مسیر آموزشی تبدیل شود.",
+    Icon: Layers3,
+  },
+];
 
 export default function CollectionsPage() {
   return (
     <CinematicHub
       eyebrow="Curated Collections"
-      title="کلکسیون‌های مطالعاتی اوستا"
-      lead="مسیرهای آماده برای کاربرانی که می‌خواهند به جای جستجوی پراکنده، از یک مجموعه موضوعی وارد جهان اوستا، زرتشت و ایران باستان شوند."
+      title="کلکسیون های مطالعاتی اوستا"
+      lead="مسیرهای آماده برای کاربرانی که می خواهند به جای جستجوی پراکنده، از یک مجموعه موضوعی وارد جهان اوستا، زرتشت و ایران باستان شوند."
       scene="scene-tablets"
       roman="C"
       actions={[
-        { label: "دیدن کلکسیون‌ها", href: "#collections" },
+        { label: "دیدن کلکسیون ها", href: "#collections" },
         { label: "برنامه مطالعه", href: "/study-plan", variant: "secondary" },
       ]}
       stats={[
@@ -29,12 +52,8 @@ export default function CollectionsPage() {
       ]}
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {[
-          ["مطالعه هدفمند", "هر کلکسیون یک مسیر موضوعی با لینک‌های واقعی سایت دارد.", Compass],
-          ["ذخیره مجموعه", "کاربر می‌تواند کلکسیون‌های محبوبش را در پروفایل دنبال کند.", Bookmark],
-          ["آماده محصول", "بعداً این ساختار می‌تواند به اشتراک ویژه، دوره و مسیر آموزشی تبدیل شود.", Layers3],
-        ].map(([title, description, Icon]) => (
-          <article key={String(title)} className="lux-frame p-6">
+        {featureCards.map(({ title, description, Icon }) => (
+          <article key={title} className="lux-frame p-6">
             <Icon className="text-gold-light" size={28} />
             <h2 className="mt-5 text-2xl font-black text-warm">{title}</h2>
             <p className="mt-3 text-sm leading-8 text-muted">{description}</p>

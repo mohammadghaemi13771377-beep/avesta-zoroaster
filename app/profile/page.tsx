@@ -16,8 +16,8 @@ export default function ProfilePage() {
   const settings: Array<[string, string, LucideIcon]> = [
     ["حالت مطالعه", profileSnapshot.readingSettings.mode, Moon],
     ["اندازه فونت", `${profileSnapshot.readingSettings.fontSize}px`, Settings],
-    ["فاصله خطوط", String(profileSnapshot.readingSettings.lineHeight), BookOpen],
-    ["پخش صوت", profileSnapshot.readingSettings.audioAutoplay ? "فعال" : "دستی", Headphones],
+    ["فاصله خطوط", "1.9", BookOpen],
+    ["پخش صوت", profileSnapshot.readingSettings.audio, Headphones],
   ];
 
   return (

@@ -120,7 +120,6 @@ export async function getImportJobs() {
         contentCount: true,
         mediaCount: true,
         failedCount: true,
-        updatedAt: true,
         createdAt: true
       }
     });
