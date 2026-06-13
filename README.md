@@ -1,2 +1,215 @@
-# files-mentioned-by-the-user-chatgpt
-avesta-roaster
+# AVESTA-ZOROASTER
+
+دامنه: `avesta-zoroaster.com`
+
+این پروژه فاز پایه «جهان دیجیتال اوستا و زرتشت» است؛ یک تجربه RTL فارسی با Next.js، TypeScript و Tailwind CSS که قرار است حس موزه سینمایی، دانشنامه، کتابخانه و فضای ایران باستان را هم‌زمان منتقل کند.
+
+## اجرای پروژه
+
+```bash
+npm install
+cp .env.example .env
+npm run db:generate
+npm run dev
+```
+
+بعد از اجرا:
+
+```txt
+http://localhost:3000
+```
+
+پیش‌نمایش سبک بدون نصب کامل dependencyها:
+
+```bash
+node preview-server.mjs
+```
+
+پریویو روی `http://127.0.0.1:4173` اجرا می‌شود و فایل `local-preview.html` را نمایش می‌دهد.
+
+## ساخته‌شده تا این مرحله
+
+- صفحه خانه سینمایی و خلوت
+- آیین ورود `/onboarding` برای انتخاب مسیر شروع بر اساس نیت، زمان و حال‌وهوای کاربر
+- نقشه جهان دیجیتال `/world`
+- پورتال اصلی `/avesta`
+- صفحه‌های بخش‌های اوستا و صفحه جزئی بند/آیه
+- هاب‌های زرتشت، گات‌ها، دین زرتشتی، یکتاپرستی، کوروش، تایم‌لاین، کتابخانه، رسانه، مقاله‌ها و جستجو
+- واژه‌نامه و صفحه جزئی هر واژه
+- مقاله‌ها و صفحه جزئی مقاله با JSON-LD
+- پروفایل مطالعه با ادامه مطالعه، بوکمارک و تنظیمات خواندن
+- نورخانه شخصی برای ادامه مطالعه، اوستای امروز، استمرار، XP و پیشنهاد مسیر روزانه
+- اتصال آیین ورود به نورخانه با کارت «مسیر شروع من» و ادامه مسیر ذخیره‌شده
+- قطب‌نمای خرد برای پیشنهاد قدم بعدی بر اساس رفتار، مأموریت، استمرار و حافظه مطالعه
+- Journey Builder برای ساخت مسیر شخصی مطالعه، نیایش، رسانه و کردار
+- پشتیبانی Journey Builder از query params برای باز کردن مسیر ذخیره‌شده از onboarding و نورخانه
+- ذخیره مسیر ساخته‌شده در Journey Builder و نمایش «مسیر فعال من» در نورخانه
+- پیشرفت مسیر فعال در نورخانه با درصد تکمیل، قدم بعدی و دکمه «انجام شد»
+- Share Studio برای ساخت کارت نقل‌قول طلایی و اشتراک‌گذاری
+- Ritual Room برای مکث، آتش آرام، نیت روزانه و اتصال به دفتر روزانه
+- Achievement Hall برای نشان‌ها، سطح کاربر و وفادارسازی
+- Daily Streak برای زنجیره روشنایی، تقویم عادت روزانه و برگشت کاربر
+- ورود و ثبت‌نام demo با cookie session
+- پنل ادمین برای Go-Live، کنترل کیفیت صفحات، آنالیتیکس محصول، تحویل تیم‌ها، محتوا، رسانه، کنترل تصویرهای AI، رجیستری منابع، پوشش ارجاع، بازبینی منابع، import، SEO، فروشگاه، خبرنامه، Inventory، Production، Brief و Review
+- ماتریس تکمیل اوستا برای رصد متن اصلی، ترجمه، بازنویسی، تحلیل، تصویر، صوت، منبع و SEO هر بخش
+- Batch تولید اوستا برای تبدیل کمبودهای ماتریس تکمیل به تسک‌های اجرایی تیم محتوا، رسانه، پژوهش و SEO
+- دروازه انتشار اوستا برای ترکیب تکمیل محتوا، citation coverage و کیفیت صفحه در تصمیم Publish/Hold/Block
+- موج‌های انتشار اوستا برای برنامه داخلی، بتا و عمومی بر اساس Publication Gate و شرط‌های ورود/خروج
+- Feature Flags اوستا برای کنترل نمایش hidden/internal/beta/public هر بخش بر اساس موج انتشار و Gate
+- گارد دسترسی اوستا در middleware برای کنترل anonymous/reader/editor/admin روی مسیرهای beta/internal/hidden
+- Route Visibility Audit برای هماهنگی Feature Flags با sitemap، navigation و index عمومی
+- Source Pack اوستا برای تحویل منابع لازم، citationها، دارایی‌ها، معیار پذیرش و خروجی CSV/Markdown به تیم پژوهش
+- رجیستری منابع پژوهشی با خروجی JSON، CSV و BibTeX برای اتصال citationهای نهایی
+- نقشه پوشش ارجاع اوستا برای سنجش citationهای تاییدشده، معلق، منبع کم‌شده و ریسک انتشار
+- قالب Import اوستا با خروجی JSON و CSV برای ورود دسته‌ای سیستم محتوای طلایی
+- ماتریس Event Tracking برای payload، مقصد ابزارها، QA rule، privacy note و اتصال PostHog/GA4/first-party events
+- First-party Event Collector با `/api/events`، helper سمت کلاینت و preview ادمین
+- Instrumentation اولیه برای CTAهای خانه، کارت‌های پورتال و بخش‌های اوستا
+- فرمان‌خانه سریع جهانی با میانبر `Ctrl+K` برای دسترسی فوری به مسیرها، ابزارها و بخش‌های اوستا
+- مرکز حریم خصوصی و consent-aware tracking برای آنالیتیکس، شخصی‌سازی، نورنامه و فروشگاه
+- بنر جهانی رضایت کاربر برای فعال‌سازی همه یا حالت ضروری
+- Prisma schema برای محتوای اوستا، مقاله، واژه‌نامه، کتابخانه، رسانه، کاربر، بوکمارک، پیشرفت مطالعه و import job
+- APIهای پایه برای محتوا، جستجو، ادمین، رسانه، پروفایل، auth و i18n
+- مسیرهای چندزبانه `/fa` و `/en`
+- `sitemap.xml` و `robots.txt` داینامیک
+
+## مسیرهای اصلی
+
+- `/`
+- `/fa`
+- `/en`
+- `/onboarding`
+- `/avesta`
+- `/avesta/yasna`
+- `/avesta/gathas`
+- `/avesta/visperad`
+- `/avesta/vendidad`
+- `/avesta/yashts`
+- `/avesta/khordeh-avesta`
+- `/avesta/hats`
+- `/world`
+- `/dashboard`
+- `/compass`
+- `/privacy-center`
+- `/zoroaster`
+- `/gathas`
+- `/zoroastrianism`
+- `/monotheism`
+- `/cyrus`
+- `/dictionary`
+- `/journey-builder`
+- `/share-studio`
+- `/ritual-room`
+- `/achievements`
+- `/streak`
+- `/library`
+- `/media`
+- `/articles`
+- `/search`
+- `/timeline`
+- `/login`
+- `/register`
+- `/profile`
+- `/admin`
+- `/admin/go-live`
+- `/admin/page-quality`
+- `/admin/route-visibility`
+- `/admin/product-analytics`
+- `/admin/event-tracking`
+- `/admin/event-collector`
+- `/admin/team-handoff`
+- `/admin/avesta-completion`
+- `/admin/avesta-production`
+- `/admin/avesta-publication-gates`
+- `/admin/avesta-release-waves`
+- `/admin/avesta-feature-flags`
+- `/admin/avesta-access-control`
+- `/admin/avesta-source-packs`
+- `/admin/avesta-import-template`
+- `/admin/inventory`
+- `/admin/production`
+- `/admin/production/briefs`
+- `/admin/production/review`
+- `/admin/visual-assets`
+- `/admin/source-registry`
+- `/admin/citation-coverage`
+- `/admin/source-review`
+
+## APIهای نمونه
+
+- `/api/search?q=اشا`
+- `/api/onboarding?goal=avesta&time=daily-15&tone=cinematic`
+- `/api/search/indexes`
+- `/api/avesta`
+- `/api/avesta/yasna`
+- `/api/avesta/yasna/ha-1/verse-1`
+- `/api/dashboard`
+- `/api/compass`
+- `/api/journey-builder`
+- `/api/share-studio`
+- `/api/ritual-room`
+- `/api/achievements`
+- `/api/streak`
+- `/api/events`
+- `/api/consent`
+- `/api/media`
+- `/api/media/prompts`
+- `/api/admin/stats`
+- `/api/admin/go-live`
+- `/api/admin/page-quality`
+- `/api/admin/route-visibility`
+- `/api/admin/product-analytics`
+- `/api/admin/event-tracking`
+- `/api/admin/avesta-completion`
+- `/api/admin/avesta-production`
+- `/api/admin/avesta-publication-gates`
+- `/api/admin/avesta-release-waves`
+- `/api/admin/avesta-feature-flags`
+- `/api/admin/avesta-access-control`
+- `/api/admin/avesta-source-packs`
+- `/api/admin/avesta-import-template`
+- `/api/admin/team-handoff`
+- `/api/admin/inventory`
+- `/api/admin/production`
+- `/api/admin/production/briefs`
+- `/api/admin/production/review`
+- `/api/admin/visual-assets`
+- `/api/admin/source-registry`
+- `/api/admin/citation-coverage`
+- `/api/admin/source-review`
+
+## دیتابیس
+
+بعد از نصب dependencyها و تنظیم `DATABASE_URL`:
+
+```bash
+npm run db:generate
+npm run db:migrate
+npm run db:seed
+```
+
+## مستندات مهم
+
+- `DELIVERY.md`
+- `docs/technical-handoff.md`
+- `docs/product-design-handoff.md`
+- `docs/file-manifest.md`
+- `docs/implementation-roadmap.md`
+- `docs/content-intake-guide.md`
+- `docs/bulk-import-guide.md`
+- `docs/media-asset-plan.md`
+- `docs/ai-prompt-library.md`
+- `docs/search-meilisearch-plan.md`
+- `docs/local-preview-and-deploy.md`
+- `docs/final-github-vercel-team-handoff.md`
+- `docs/team-delivery-master.md`
+
+## مسیر بعدی پیشنهادی
+
+1. نصب dependencyها و اجرای build کامل
+2. اتصال PostgreSQL واقعی
+3. اجرای migrate و seed
+4. اتصال Meilisearch
+5. تبدیل فرم‌های ادمین به CRUD کامل production
+6. اتصال upload به storage دائمی
+7. ورود محتوای واقعی اوستا، گات‌ها، مقاله‌ها و رسانه‌ها
