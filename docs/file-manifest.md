@@ -1,0 +1,149 @@
+# فهرست فایل‌های پروژه
+
+این manifest برای تحویل سریع به تیم فنی است.
+
+## Root
+
+- `.env.example`: نمونه متغیرهای محیطی
+- `README.md`: راهنمای اصلی پروژه
+- `DELIVERY.md`: نقطه شروع بسته تحویل
+- `package.json`: dependencyها و scriptها
+- `next.config.mjs`: تنظیمات Next.js
+- `tailwind.config.ts`: تنظیمات Tailwind
+- `tsconfig.json`: تنظیمات TypeScript
+- `middleware.ts`: محافظ مسیرهای profile، admin و gate دسترسی اوستا بر اساس visibility
+- `preview-server.mjs`: سرور سبک برای `local-preview.html`
+- `local-preview.html`: پیش‌نمایش static
+- `avesta-zoroaster-source.zip`: فایل دانلودی کل پروژه
+
+## app
+
+- `app/page.tsx`: صفحه خانه
+- `app/layout.tsx`: layout اصلی
+- `app/globals.css`: استایل global
+- `app/onboarding`: آیین ورود و مسیر شروع کاربر تازه‌وارد
+- `app/journey-builder`: سازنده مسیر با پشتیبانی از query params برای intent، pace، level و mode
+- `app/admin/avesta-completion`: ماتریس تکمیل محتوای اوستا برای تیم محتوا و پژوهش
+- `app/admin/avesta-production`: batchهای تولید اوستا بر اساس کمبودهای ماتریس تکمیل
+- `app/admin/avesta-publication-gates`: دروازه تصمیم انتشار اوستا با وضعیت Publish/Hold/Block
+- `app/admin/avesta-release-waves`: موج‌های انتشار داخلی، بتا و عمومی اوستا
+- `app/admin/avesta-feature-flags`: کنترل نمایش hidden/internal/beta/public برای بخش‌های اوستا
+- `app/admin/avesta-access-control`: ماتریس دسترسی anonymous/reader/editor/admin برای مسیرهای اوستا
+- `app/admin/route-visibility`: Audit مسیرها برای sitemap، navigation و index عمومی
+- `app/admin/avesta-source-packs`: پک منابع، citation، دارایی و معیار انتشار بخش‌های اوستا
+- `app/admin/avesta-import-template`: قالب JSON/CSV ورود دسته‌ای محتوای طلایی اوستا
+- `app/admin/source-registry`: رجیستری رسمی منابع پژوهشی و خروجی citation
+- `app/admin/citation-coverage`: نقشه پوشش citation و ریسک منبع بخش‌های اوستا
+- `app/avesta`: پورتال و صفحات اوستا
+- `app/articles`: مقاله‌ها
+- `app/dictionary`: واژه‌نامه
+- `app/library`: کتابخانه
+- `app/media`: رسانه
+- `app/search`: جستجو
+- `app/timeline`: تایم‌لاین
+- `app/profile`: پروفایل مطالعه
+- `app/admin`: پنل مدیریت
+- `app/api`: API routes
+- `app/sitemap.ts`: sitemap داینامیک
+- `app/robots.ts`: robots داینامیک
+
+## components
+
+- `components/header.tsx`: هدر اصلی
+- `components/command-center.tsx`: فرمان‌خانه سریع جهانی، جستجوی مسیرها و میانبر `Ctrl+K`
+- `components/footer.tsx`: فوتر
+- `components/section-card.tsx`: کارت بخش‌ها
+- `components/search-panel.tsx`: پنل جستجو
+- `components/onboarding-gateway.tsx`: UI انتخاب نیت، ریتم، حال‌وهوا و مسیر شروع
+- `components/resource-explorer.tsx`: مرور منابع
+- `components/reading-controls.tsx`: کنترل حالت مطالعه
+- `components/articles-explorer.tsx`: فیلتر مقاله‌ها
+- `components/personal-dashboard-panel.tsx`: نورخانه شخصی، مسیر شروع ذخیره‌شده، مسیر فعال، progress قدم‌ها و مرکز ورود روزانه کاربر
+- `components/journey-builder-panel.tsx`: سازنده مسیر شخصی با ذخیره مسیر فعال در نورخانه
+- `components/wisdom-compass-panel.tsx`: قطب‌نمای خرد و پیشنهاد قدم بعدی
+- `components/daily-streak-panel.tsx`: پنل زنجیره روشنایی و تقویم عادت روزانه
+- `components/privacy-consent-panel.tsx`: مرکز رضایت کاربر و تنظیمات حریم خصوصی
+- `components/privacy-consent-banner.tsx`: بنر جهانی رضایت کاربر روی کل سایت
+- `components/admin/event-tracking-board.tsx`: ماتریس event tracking، payload، QA و privacy
+- `components/admin/avesta-completion-board.tsx`: بورد تکمیل متن، ترجمه، رسانه، منبع و SEO اوستا
+- `components/admin/avesta-production-batch-board.tsx`: بورد batch تولید اوستا با فیلتر مرحله و فیلد
+- `components/admin/avesta-publication-gate-board.tsx`: بورد دروازه انتشار اوستا با مانع، هشدار و چک‌لیست
+- `components/admin/avesta-release-wave-board.tsx`: بورد موج‌های انتشار اوستا با شرط ورود/خروج و خروجی‌ها
+- `components/admin/avesta-feature-flag-board.tsx`: بورد feature flag و visibility برای لانچ مرحله‌ای اوستا
+- `components/admin/avesta-access-control-board.tsx`: بورد policy دسترسی نقش‌ها به مسیرهای اوستا
+- `components/admin/route-visibility-audit-board.tsx`: بورد audit نمایش route و sitemap بر اساس Feature Flags
+- `components/admin/avesta-source-pack-board.tsx`: بورد Source Pack اوستا با فیلتر وضعیت و ریسک
+- `components/admin/avesta-import-template-board.tsx`: نمایش قالب import اوستا، JSON dry-run و CSV نمونه
+- `components/admin/source-registry-board.tsx`: بورد رجیستری منابع با خروجی CSV و BibTeX
+- `components/admin/citation-coverage-board.tsx`: بورد پوشش ارجاع اوستا با امتیاز، ریسک و اقدام بعدی
+- `components/admin/event-collector-board.tsx`: preview کلکتور first-party رویدادها
+- `components/tracked-link.tsx`: لینک قابل ردیابی برای ارسال event کلیک به `/api/events`
+- `components/admin`: کامپوننت‌های پنل ادمین
+- `components/auth`: فرم‌های ورود و خروج
+
+## lib
+
+- `lib/content.ts`: محتوای ساختاری نمونه
+- `lib/sample-content.ts`: داده‌های نمونه صفحات
+- `lib/avesta-repository.ts`: خواندن اوستا از Prisma یا fallback
+- `lib/media-repository.ts`: خواندن و ذخیره رسانه
+- `lib/admin-content.ts`: قرارداد ذخیره محتوای ادمین
+- `lib/bulk-import.ts`: ورود دسته‌ای محتوا
+- `lib/admin-stats.ts`: آمار داشبورد ادمین
+- `lib/search.ts`: جستجوی نمونه
+- `lib/onboarding.ts`: موتور مسیر شروع، نرمال‌سازی انتخاب‌ها، پیشنهاد onboarding و لینک‌سازی به Journey Builder
+- `lib/active-journey.ts`: قرارداد مسیر فعال، ساخت snapshot، محاسبه progress و لینک‌سازی به Journey Builder
+- `lib/avesta-completion.ts`: مدل ماتریس تکمیل محتوای اوستا و summary کمبودها
+- `lib/avesta-production-batches.ts`: تبدیل کمبودهای اوستا به batchهای تولید دارای مالک، اولویت و معیار پذیرش
+- `lib/avesta-publication-gates.ts`: ترکیب تکمیل اوستا، پوشش citation و کیفیت صفحه برای تصمیم انتشار
+- `lib/avesta-release-waves.ts`: ساخت موج‌های انتشار مرحله‌ای اوستا از روی Publication Gate
+- `lib/avesta-feature-flags.ts`: محاسبه visibility هر بخش از روی Release Wave و Publication Gate
+- `lib/avesta-access-control.ts`: تصمیم دسترسی roleها برای مسیرهای اوستا و policy خروجی ادمین
+- `lib/route-visibility-audit.ts`: اتصال visibility به sitemap، navigation، index و خروجی CSV
+- `lib/avesta-source-packs.ts`: ساخت Source Pack، CSV و Markdown برای منابع پژوهشی بخش‌های اوستا
+- `lib/avesta-import-template.ts`: ساخت قالب JSON/CSV برای ورود دسته‌ای بندهای اوستا
+- `lib/source-registry.ts`: مدل رجیستری منابع رسمی، summary و خروجی CSV/BibTeX
+- `lib/citation-coverage.ts`: محاسبه پوشش citation، منبع کم‌شده، امتیاز و CSV
+- `lib/i18n.ts`: چندزبانه
+- `lib/prisma.ts`: Prisma client
+- `lib/auth.ts`: auth demo
+- `lib/upload-storage.ts`: ذخیره فایل آپلودی
+- `lib/ai-prompts.ts`: پرامپت‌های AI
+- `lib/personal-dashboard.ts`: snapshot نورخانه شخصی، پیشنهادهای روزانه و جمع‌بندی حافظه کاربر
+- `lib/wisdom-compass.ts`: امتیازدهی سیگنال‌ها و موتور rule-based پیشنهاد قدم بعدی
+- `lib/daily-streak.ts`: مدل retention روزانه، تقویم ۱۴ روزه و snapshot استمرار
+- `lib/event-tracking.ts`: قرارداد eventها، مقصد analytics، وضعیت پیاده‌سازی و checklist production
+- `lib/event-collector.ts`: validation، sanitize و ذخیره in-memory رویدادهای first-party
+- `lib/client-events.ts`: helper کلاینتی `trackEvent` برای ارسال رویداد به `/api/events`
+- `lib/privacy-consent.ts`: مدل consent، policy دسته‌های داده و گارد consent-aware tracking
+
+## prisma
+
+- `prisma/schema.prisma`: مدل دیتابیس
+- `prisma/seed.js`: seed اولیه
+
+## public
+
+- `public/images/avesta-zoroaster-logo.png`: لوگوی اصلی
+- `public/images/ai`: جایگاه تصاویر AI
+- `public/audio`: جایگاه صوت
+- `public/library`: جایگاه PDF
+- `public/video`: جایگاه ویدیو
+
+## docs
+
+- `docs/technical-handoff.md`
+- `docs/final-github-vercel-team-handoff.md`
+- `docs/product-design-handoff.md`
+- `docs/local-preview-and-deploy.md`
+- `docs/content-intake-guide.md`
+- `docs/bulk-import-guide.md`
+- `docs/media-asset-plan.md`
+- `docs/ai-prompt-library.md`
+- `docs/search-meilisearch-plan.md`
+- `docs/implementation-roadmap.md`
+- `docs/project-brief.md`
+- `docs/auth-plan.md`
+- `docs/i18n-plan.md`
+- `docs/user-profile-data-model.md`
+- `docs/avesta-data-flow.md`
