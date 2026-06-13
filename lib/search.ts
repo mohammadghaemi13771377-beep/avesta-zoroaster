@@ -399,7 +399,21 @@ export function buildSearchDocuments(): SearchDocument[] {
   ];
 
   const byHrefAndTitle = new Map<string, SearchDocument>();
-  [...verseDocs, ...articleDocs, ...glossaryDocs, ...libraryDocs, ...mediaDocs, ...productDocs, ...calendarDocs, ...campaignDocs, ...newsletterEditionDocs, ...newsletterPreviewDocs, ...hubDocs].forEach((doc) => {
+  const documents = [
+    ...verseDocs,
+    ...articleDocs,
+    ...glossaryDocs,
+    ...libraryDocs,
+    ...mediaDocs,
+    ...productDocs,
+    ...calendarDocs,
+    ...campaignDocs,
+    ...newsletterEditionDocs,
+    ...newsletterPreviewDocs,
+    ...hubDocs,
+  ] as SearchDocument[];
+
+  documents.forEach((doc) => {
     byHrefAndTitle.set(`${doc.href}:${doc.title}`, doc);
   });
 

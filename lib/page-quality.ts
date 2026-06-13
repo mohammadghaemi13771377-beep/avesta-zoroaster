@@ -63,7 +63,7 @@ export function getPageQualityItems(routes: string[] = routeMap): PageQualityIte
     .map((route) => {
       const quality = calculateQuality(route, sourceReviews, visualAssets);
       const score = quality.score;
-      const risk = score >= 82 ? "low" : score >= 64 ? "medium" : "high";
+      const risk: PageQualityRisk = score >= 82 ? "low" : score >= 64 ? "medium" : "high";
 
       return {
         id: `page-quality-${route.replaceAll("/", "-") || "home"}`,

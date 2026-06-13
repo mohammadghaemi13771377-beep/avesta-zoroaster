@@ -45,28 +45,30 @@ const presets = {
 
 export function FocusedContentForm({ resource }: FocusedContentFormProps) {
   const preset = presets[resource];
-  const [title, setTitle] = useState(preset.title);
-  const [slug, setSlug] = useState(preset.slug);
-  const [summary, setSummary] = useState(preset.summary);
+  const [title, setTitle] = useState<string>(preset.title);
+  const [slug, setSlug] = useState<string>(preset.slug);
+  const [summary, setSummary] = useState<string>(preset.summary);
   const [status, setStatus] = useState("پیش‌نویس آماده ارسال است.");
 
-  const [category, setCategory] = useState(resource === "article" ? presets.article.category : "");
-  const [tags, setTags] = useState(resource === "article" ? presets.article.tags : "");
-  const [seoTitle, setSeoTitle] = useState(resource === "article" ? presets.article.seoTitle : "");
-  const [seoDescription, setSeoDescription] = useState(resource === "article" ? presets.article.seoDescription : "");
-  const [content, setContent] = useState(resource === "article" ? presets.article.content : "");
+  const [category, setCategory] = useState<string>(resource === "article" ? presets.article.category : "");
+  const [tags, setTags] = useState<string>(resource === "article" ? presets.article.tags : "");
+  const [seoTitle, setSeoTitle] = useState<string>(resource === "article" ? presets.article.seoTitle : "");
+  const [seoDescription, setSeoDescription] = useState<string>(
+    resource === "article" ? presets.article.seoDescription : ""
+  );
+  const [content, setContent] = useState<string>(resource === "article" ? presets.article.content : "");
 
-  const [meaning, setMeaning] = useState(resource === "glossaryTerm" ? presets.glossaryTerm.meaning : "");
-  const [root, setRoot] = useState(resource === "glossaryTerm" ? presets.glossaryTerm.root : "");
-  const [description, setDescription] = useState(
+  const [meaning, setMeaning] = useState<string>(resource === "glossaryTerm" ? presets.glossaryTerm.meaning : "");
+  const [root, setRoot] = useState<string>(resource === "glossaryTerm" ? presets.glossaryTerm.root : "");
+  const [description, setDescription] = useState<string>(
     resource === "glossaryTerm" ? presets.glossaryTerm.description : ""
   );
 
-  const [author, setAuthor] = useState(resource === "libraryItem" ? presets.libraryItem.author : "");
-  const [fileUrl, setFileUrl] = useState(resource === "libraryItem" ? presets.libraryItem.fileUrl : "");
-  const [language, setLanguage] = useState(resource === "libraryItem" ? presets.libraryItem.language : "fa");
-  const [type, setType] = useState(resource === "libraryItem" ? presets.libraryItem.type : "PDF");
-  const [source, setSource] = useState(resource === "libraryItem" ? presets.libraryItem.source : "");
+  const [author, setAuthor] = useState<string>(resource === "libraryItem" ? presets.libraryItem.author : "");
+  const [fileUrl, setFileUrl] = useState<string>(resource === "libraryItem" ? presets.libraryItem.fileUrl : "");
+  const [language, setLanguage] = useState<string>(resource === "libraryItem" ? presets.libraryItem.language : "fa");
+  const [type, setType] = useState<string>(resource === "libraryItem" ? presets.libraryItem.type : "PDF");
+  const [source, setSource] = useState<string>(resource === "libraryItem" ? presets.libraryItem.source : "");
 
   const payload = useMemo(() => {
     if (resource === "article") {
