@@ -39,6 +39,7 @@ declare module "lucide-react" {
   export const ClipboardList: LucideIcon;
   export const Clock: LucideIcon;
   export const Clock3: LucideIcon;
+  export const Cloud: LucideIcon;
   export const Code2: LucideIcon;
   export const Command: LucideIcon;
   export const Compass: LucideIcon;
@@ -58,8 +59,10 @@ declare module "lucide-react" {
   export const Filter: LucideIcon;
   export const Flame: LucideIcon;
   export const FlaskConical: LucideIcon;
+  export const GalleryHorizontalEnd: LucideIcon;
   export const Gauge: LucideIcon;
   export const Gift: LucideIcon;
+  export const GitBranch: LucideIcon;
   export const Globe2: LucideIcon;
   export const Headphones: LucideIcon;
   export const HeartPulse: LucideIcon;
@@ -84,6 +87,7 @@ declare module "lucide-react" {
   export const MailCheck: LucideIcon;
   export const MailOpen: LucideIcon;
   export const MailWarning: LucideIcon;
+  export const Map: LucideIcon;
   export const MapPin: LucideIcon;
   export const Megaphone: LucideIcon;
   export const Mic2: LucideIcon;

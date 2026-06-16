@@ -19,7 +19,7 @@ export default function DashboardPage() {
       roman="1"
       actions={[
         { label: "دیدن مسیر امروز", href: "#dashboard" },
-        { label: "پروفایل", href: "/profile", variant: "secondary" },
+        { label: "راهنمای روزانه", href: "/daily-light", variant: "secondary" },
       ]}
       stats={getPersonalDashboardStats()}
     >

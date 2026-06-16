@@ -1,4 +1,4 @@
-# Final GitHub, Vercel and Team Handoff
+﻿# Final GitHub, Vercel and Team Handoff
 
 این سند برای زمانی است که پروژه AVESTA-ZOROASTER باید به GitHub، Vercel و همه تیم‌های اجرایی تحویل داده شود.
 
@@ -13,6 +13,7 @@
 - `docs/github-vercel-deploy.md`: اتصال GitHub و Vercel.
 - `docs/file-manifest.md`: نقشه فایل‌های پروژه.
 - `docs/final-github-vercel-team-handoff.md`: همین چک‌لیست نهایی.
+- `/admin/deployment-readiness`: نسخه عملیاتی همین چک‌لیست داخل پنل ادمین.
 
 ## 2. تحویل به GitHub
 
@@ -118,9 +119,12 @@ Smoke test:
 - `/articles`
 - `/library`
 - `/media`
+- `/exhibitions`
 - `/shop`
 - `/admin`
 - `/admin/go-live`
+- `/admin/deployment-readiness`
+- `/admin/exhibitions`
 - `/admin/route-visibility`
 - `/admin/avesta-access-control`
 - `/sitemap.xml`
@@ -131,9 +135,11 @@ Smoke test:
 در نسخه فعلی:
 
 - `middleware.ts` مسیرهای `/profile`، `/admin`، `/api/admin` و مسیرهای کنترل‌شده اوستا را محافظت می‌کند.
+- `/admin/deployment-readiness` وضعیت GitHub، Vercel، envها، database، storage، domain، auth و smoke test را برای تیم فنی نشان می‌دهد.
 - `lib/avesta-access-control.ts` دسترسی `anonymous/reader/editor/admin` را برای بخش‌های `public/beta/internal/hidden` محاسبه می‌کند.
 - `/admin/avesta-access-control` ماتریس دسترسی مسیرهای اوستا را نشان می‌دهد.
 - `/admin/route-visibility` کنترل می‌کند مسیرهای hidden/internal/beta وارد sitemap عمومی نشوند.
+- `/admin/exhibitions` آمادگی نمایشگاه‌های موضوعی، نیاز رسانه، ریسک انتشار و اقدام بعدی را نشان می‌دهد.
 
 کارهای production:
 
@@ -149,6 +155,8 @@ Smoke test:
 مسیرهای کلیدی محصول:
 
 - `/world`
+- `/tour`
+- `/exhibitions`
 - `/dashboard`
 - `/compass`
 - `/journey-builder`
@@ -160,6 +168,7 @@ Smoke test:
 - `/admin/go-live`
 - `/admin/product-analytics`
 - `/admin/event-tracking`
+- `/admin/exhibitions`
 
 مسئولیت‌ها:
 
@@ -182,6 +191,7 @@ Smoke test:
 - بازبینی mobile-first.
 - تکمیل component states.
 - طراحی نسخه final heroها و cardها.
+- طراحی state نمایشگاه‌ها، کارت آثار و نسخه موبایل مسیرهای curated.
 - آماده‌سازی assetهای desktop/mobile.
 - کنترل خوانایی متن‌های فارسی روی backgroundهای تیره.
 
@@ -219,6 +229,7 @@ Smoke test:
 
 - `/ai-studio`
 - `/media`
+- `/exhibitions`
 - `/admin/media`
 - `/admin/visual-assets`
 - `/admin/production/briefs`
@@ -228,6 +239,7 @@ Smoke test:
 
 - تولید تصویر اختصاصی برای هر بخش اوستا.
 - تولید تصویر hero برای صفحات اصلی.
+- تولید hero و thumbnail اختصاصی برای نمایشگاه‌های موضوعی و فصلی.
 - ثبت prompt، negative prompt، mood، نسبت تصویر و مسیر فایل.
 - آماده‌سازی صوت برای بندهای مهم.
 - جلوگیری از watermark، متن اشتباه، لباس مدرن، فضای غیرایرانی و کیفیت پایین.
@@ -290,3 +302,4 @@ Smoke test:
 - اتصال سرویس‌های واقعی.
 - build/test در محیط تیم فنی.
 - تکمیل auth، storage، search، newsletter و payment production.
+

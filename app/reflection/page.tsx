@@ -19,7 +19,7 @@ export default function ReflectionPage() {
       roman="3"
       actions={[
         { label: "ثبت امروز", href: "#reflection" },
-        { label: "اوستای امروز", href: "/", variant: "secondary" },
+        { label: "برنامه تمرین", href: "/practice", variant: "secondary" },
       ]}
       stats={getReflectionStats()}
     >

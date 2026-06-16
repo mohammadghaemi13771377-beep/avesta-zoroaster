@@ -21,7 +21,7 @@ export default function WorldPage() {
       roman="W"
       actions={[
         { label: "ورود به قلمرو اوستا", href: "/avesta" },
-        { label: "دیدن قفل‌های لانچ", href: "/admin#launch-readiness", variant: "secondary" },
+        { label: "نمایشگاه‌ها", href: "/exhibitions", variant: "secondary" },
       ]}
       stats={[
         { value: String(summary.realms), label: "قلمرو اصلی" },

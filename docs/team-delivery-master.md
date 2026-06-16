@@ -89,7 +89,11 @@ http://127.0.0.1:4173
 
 - `/`: خانه سینمایی
 - `/world`: نقشه جهان دیجیتال
+- `/tour`: تور موزه‌ای هدایت‌شده برای تجربه سینمایی جهان اوستا
+- `/exhibitions`: نمایشگاه‌های موضوعی curated با آثار، یادداشت کیوریتور و مسیرهای مرتبط
 - `/dashboard`: نورخانه شخصی و مرکز ورود روزانه کاربر
+- `/daily-light`: راهنمای روزانه روشنایی برای مسیر کوتاه مطالعه، تأمل، تمرین، مأموریت و نورسنج اشا
+- `/wisdom-capsule`: تجربه سه دقیقه‌ای پیام اوستا، واژه روز، تمرین اشا و اشتراک
 - `/compass`: قطب‌نمای خرد و پیشنهاد قدم بعدی
 - `/privacy-center`: مرکز رضایت کاربر و تنظیمات حریم خصوصی
 - `/avesta`: پورتال اوستا
@@ -104,6 +108,7 @@ http://127.0.0.1:4173
 - `/gathas`
 - `/zoroastrianism`
 - `/monotheism`
+- `/monotheism/paths`
 - `/dictionary`
 - `/library`
 - `/library/archive`
@@ -116,6 +121,8 @@ http://127.0.0.1:4173
 - `/journey-builder`
 - `/quests`
 - `/reflection`
+- `/practice`
+- `/asha-balance`
 - `/share-studio`
 - `/ritual-room`
 - `/memory`
@@ -136,12 +143,14 @@ http://127.0.0.1:4173
 
 - `/admin`: داشبورد اصلی
 - `/admin/go-live`: اتاق کنترل بالا آوردن سایت
+- `/admin/deployment-readiness`: آمادگی تحویل GitHub، Vercel، envها، دیتابیس، DNS، storage و smoke test
 - `/admin/page-quality`: ماتریس QA صفحات، SEO، محتوا، رسانه، منبع و موبایل
 - `/admin/route-visibility`: audit نمایش route، sitemap، navigation و index عمومی
 - `/admin/product-analytics`: قیف محصول، conversion و event tracking پیشنهادی
 - `/admin/event-tracking`: ماتریس payload، مقصد ابزارها، QA و privacy برای eventهای production
 - `/admin/event-collector`: پیش‌نمایش کلکتور first-party و رویدادهای local
 - `/admin/team-handoff`: کنسول تحویل به تیم‌ها
+- `/admin/exhibitions`: کنسول آمادگی نمایشگاه‌ها، روایت کیوریتوری، رسانه، ریسک و مسیرهای مرتبط
 - `/admin/inventory`: نقشه تکمیل محتوا و دارایی‌ها
 - `/admin/avesta-completion`: ماتریس تکمیل متن، ترجمه، تحلیل، تصویر، صوت، منبع و SEO اوستا
 - `/admin/avesta-production`: batchهای تولید اوستا بر اساس کمبودهای ماتریس تکمیل
@@ -189,8 +198,13 @@ http://127.0.0.1:4173
 - `/api/library`
 - `/api/media`
 - `/api/media/prompts`
+- `/api/tour`
+- `/api/exhibitions`
+- `/api/monotheism/paths`
 - `/api/world-map`
 - `/api/dashboard`
+- `/api/daily-light`
+- `/api/wisdom-capsule`
 - `/api/compass`
 - `/api/wisdom-guide`
 - `/api/journey-builder`
@@ -198,6 +212,8 @@ http://127.0.0.1:4173
 - `/api/concept-map`
 - `/api/quests`
 - `/api/reflection`
+- `/api/practice`
+- `/api/asha-balance`
 - `/api/share-studio`
 - `/api/ritual-room`
 - `/api/memory`
@@ -222,11 +238,13 @@ http://127.0.0.1:4173
 - `/api/admin/stats`
 - `/api/admin/health`
 - `/api/admin/go-live`
+- `/api/admin/deployment-readiness`
 - `/api/admin/page-quality`
 - `/api/admin/route-visibility`
 - `/api/admin/product-analytics`
 - `/api/admin/event-tracking`
 - `/api/admin/team-handoff`
+- `/api/admin/exhibitions`
 - `/api/admin/content`
 - `/api/admin/upload`
 - `/api/admin/import`
@@ -300,6 +318,7 @@ http://127.0.0.1:4173
 مالکیت تیم فنی:
 
 - نصب dependencyها و اجرای `npm run build`
+- بررسی `/admin/deployment-readiness` برای وضعیت GitHub، Vercel، env، دیتابیس، DNS و smoke test
 - اتصال PostgreSQL
 - اجرای Prisma migrate/seed
 - امن‌سازی auth و cookie/session
@@ -330,9 +349,17 @@ http://127.0.0.1:4173
 مالکیت تیم محصول:
 
 - بررسی journey خانه تا `/world` و `/avesta`
+- بررسی `/tour` به عنوان تجربه first-run موزه‌ای برای کاربران تازه‌وارد
+- بررسی `/exhibitions` به عنوان لایه curated برای تبدیل محتوا و رسانه به مسیرهای قابل کشف
+- بررسی `/admin/exhibitions` برای تصمیم آمادگی انتشار هر نمایشگاه و مالک‌های محتوا/رسانه
+- بررسی `/daily-light` به عنوان مسیر ۱۵ دقیقه‌ای روزانه برای برگشت کاربر
+- بررسی `/wisdom-capsule` به عنوان micro-learning سریع برای روزهای کم‌زمان
 - بررسی مسیر برگشت کاربر از `/dashboard` به `/streak`، `/quests`، `/reflection` و `/memory`
 - بررسی حلقه مسیر فعال از `/journey-builder` به `/dashboard`، تکمیل قدم‌ها و برگشت روزانه کاربر
 - بررسی next-best-action از `/compass` به مطالعه، تأمل، مأموریت، پژوهش و اشتراک
+- بررسی مسیرهای موضوعی `/monotheism/paths` برای تبدیل مفاهیم یکتاپرستی به مطالعه، واژه، مقاله و تمرین روزانه
+- بررسی `/practice` به عنوان حلقه تبدیل مطالعه و یکتاپرستی به رفتار روزانه و retention
+- بررسی `/asha-balance` به عنوان داشبورد سنجش تعادل پندار، گفتار، کردار و پیشنهاد تمرین بعدی
 - تعریف MVP لانچ
 - اولویت‌دهی قلمروها در `/admin/inventory`
 - مدیریت صف تولید در `/admin/production`
@@ -365,6 +392,7 @@ http://127.0.0.1:4173
 کارهای دیزاین:
 
 - بررسی homepage و `/world`
+- بررسی `/exhibitions` برای طراحی کارت‌های آثار، state پیشرفت، hero هر نمایشگاه و نسخه موبایل
 - تکمیل visual system برای cardها، heroها، فرم‌ها و ادمین
 - خروجی responsive موبایل
 - تعریف component states
@@ -413,14 +441,17 @@ http://127.0.0.1:4173
 مسیرها:
 
 - `/media`
+- `/exhibitions`
 - `/ai-studio`
 - `/admin/media`
 - `/admin/production/briefs`
 - `/admin/production/review`
+- `/admin/exhibitions`
 
 کارها:
 
 - تولید تصویر AI اختصاصی برای هر بخش
+- تعریف نمایشگاه‌های فصلی/موضوعی با تصویر hero، thumbnail آثار و روایت کیوریتوری
 - کنترل prompt، نسبت تصویر، مسیر فایل و وضعیت upload در `/admin/visual-assets`
 - پایش ریسک منابع، citationهای تایید نشده و مالک پژوهشی در `/admin/source-review`
 - thumbnail و نسخه desktop/mobile

@@ -87,10 +87,10 @@ export const worldRealms: WorldRealm[] = [
     purpose: "بعد سینمایی سایت؛ جایی که ایران باستان، آتش، آسمان و نمادها به تصویر تبدیل می‌شوند.",
     routes: [
       { label: "رسانه", href: "/media" },
+      { label: "نمایشگاه‌ها", href: "/exhibitions" },
       { label: "استودیوی AI", href: "/ai-studio" },
-      { label: "کتابخانه", href: "/library" },
     ],
-    nextUnlock: "بارگذاری تصویرهای نهایی، فایل‌های صوتی و workflow تایید رسانه.",
+    nextUnlock: "بارگذاری تصویرهای نهایی، فایل‌های صوتی، نمایشگاه‌های فصلی و workflow تایید رسانه.",
   },
   {
     id: "seasonal-growth",

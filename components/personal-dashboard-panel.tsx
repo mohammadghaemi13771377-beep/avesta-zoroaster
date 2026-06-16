@@ -376,9 +376,9 @@ export function PersonalDashboardPanel() {
         </div>
 
         <div className="grid gap-5 md:grid-cols-3">
+          <QuickLink href="/daily-light" title="راهنمای روزانه" icon={Sparkles} />
           <QuickLink href="/compass" title="قطب‌نمای خرد" icon={Brain} />
           <QuickLink href="/streak" title="زنجیره روشنایی" icon={Flame} />
-          <QuickLink href="/achievements" title="تالار نشان‌ها" icon={Award} />
         </div>
       </div>
     </section>

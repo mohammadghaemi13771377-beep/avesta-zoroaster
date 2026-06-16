@@ -69,7 +69,7 @@ export default function MonotheismPage() {
         roman="Y"
         actions={[
           { label: "شروع از گات‌ها", href: "/avesta/gathas/ahunavaiti/verse-1" },
-          { label: "اهورامزدا", href: "/dictionary/ahura-mazda", variant: "secondary" },
+          { label: "مسیرهای یکتاپرستی", href: "/monotheism/paths", variant: "secondary" },
         ]}
         stats={[
           { value: "یکتا", label: "تمرکز بر خرد و روشنایی" },
@@ -90,10 +90,10 @@ export default function MonotheismPage() {
               این صفحه کاربر را از مفهوم به تجربه می‌برد: از نام اهورامزدا و اشا تا خواندن گات‌ها، دیدن تصویر، شنیدن روایت و فهم پیام اخلاقی امروز.
             </p>
             <Link
-              href="/gathas"
+              href="/monotheism/paths"
               className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-black text-night transition hover:bg-gold-light"
             >
-              رفتن به گات‌ها
+              ورود به مسیرهای یکتاپرستی
               <ArrowLeft size={18} />
             </Link>
           </div>

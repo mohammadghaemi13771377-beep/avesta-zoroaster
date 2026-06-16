@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Compass, LockKeyhole, Route, Sparkles } from "lucide-react";
+import { ArrowLeft, Compass, GalleryHorizontalEnd, LockKeyhole, Route, Sparkles } from "lucide-react";
 import type { WorldRealm, WorldRealmStatus } from "@/lib/world-map";
 import { getWorldMapSummary, worldRealmStatusLabels } from "@/lib/world-map";
 
@@ -118,15 +118,15 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
           <h3 className="mt-3 text-xl font-black text-warm">شروع از قلب اوستا</h3>
           <p className="mt-2 text-sm leading-7 text-muted">برای کاربران تازه‌وارد، پورتال اوستا بهترین دروازه ورود است.</p>
         </Link>
-        <Link href="/study-plan" className="lux-frame p-5 transition hover:-translate-y-1 hover:border-gold/45">
+        <Link href="/tour" className="lux-frame p-5 transition hover:-translate-y-1 hover:border-gold/45">
           <Route className="text-gold-light" size={24} />
-          <h3 className="mt-3 text-xl font-black text-warm">مسیر مرحله‌ای</h3>
-          <p className="mt-2 text-sm leading-7 text-muted">برای تبدیل بازدیدکننده به خواننده وفادار، برنامه مطالعه فعال است.</p>
+          <h3 className="mt-3 text-xl font-black text-warm">تور موزه‌ای</h3>
+          <p className="mt-2 text-sm leading-7 text-muted">برای تجربه هدایت‌شده و سینمایی از جهان اوستا.</p>
         </Link>
-        <Link href="/admin#launch-readiness" className="lux-frame p-5 transition hover:-translate-y-1 hover:border-gold/45">
-          <LockKeyhole className="text-gold-light" size={24} />
-          <h3 className="mt-3 text-xl font-black text-warm">قفل‌های لانچ</h3>
-          <p className="mt-2 text-sm leading-7 text-muted">تیم محصول می‌تواند باقی‌مانده مسیر production را از readiness ببیند.</p>
+        <Link href="/exhibitions" className="lux-frame p-5 transition hover:-translate-y-1 hover:border-gold/45">
+          <GalleryHorizontalEnd className="text-gold-light" size={24} />
+          <h3 className="mt-3 text-xl font-black text-warm">نمایشگاه‌های موضوعی</h3>
+          <p className="mt-2 text-sm leading-7 text-muted">برای تبدیل مسیرها و دارایی‌ها به تجربه curated و موزه‌ای.</p>
         </Link>
       </section>
     </div>

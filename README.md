@@ -32,13 +32,19 @@ node preview-server.mjs
 - صفحه خانه سینمایی و خلوت
 - آیین ورود `/onboarding` برای انتخاب مسیر شروع بر اساس نیت، زمان و حال‌وهوای کاربر
 - نقشه جهان دیجیتال `/world`
+- تور موزه‌ای `/tour` برای تجربه هدایت‌شده، سینمایی و مرحله‌ای جهان اوستا
+- نمایشگاه‌های موضوعی `/exhibitions` برای مسیرهای curated شامل آثار، یادداشت کیوریتور و پیشرفت محلی
 - پورتال اصلی `/avesta`
 - صفحه‌های بخش‌های اوستا و صفحه جزئی بند/آیه
-- هاب‌های زرتشت، گات‌ها، دین زرتشتی، یکتاپرستی، کوروش، تایم‌لاین، کتابخانه، رسانه، مقاله‌ها و جستجو
+- هاب‌های زرتشت، گات‌ها، دین زرتشتی، یکتاپرستی، مسیرهای موضوعی یکتاپرستی، کوروش، تایم‌لاین، کتابخانه، رسانه، مقاله‌ها و جستجو
+- استاد تمرین اخلاقی `/practice` برای تبدیل پندار، گفتار و کردار نیک به برنامه هفت‌روزه قابل پیگیری
+- نورسنج اشا `/asha-balance` برای سنجش تعادل پندار، گفتار، کردار، استمرار و مأموریت‌ها
 - واژه‌نامه و صفحه جزئی هر واژه
 - مقاله‌ها و صفحه جزئی مقاله با JSON-LD
 - پروفایل مطالعه با ادامه مطالعه، بوکمارک و تنظیمات خواندن
 - نورخانه شخصی برای ادامه مطالعه، اوستای امروز، استمرار، XP و پیشنهاد مسیر روزانه
+- راهنمای روزانه روشنایی `/daily-light` برای مسیر ۱۵ دقیقه‌ای مطالعه، تأمل، تمرین، مأموریت و نورسنج اشا
+- کپسول خرد `/wisdom-capsule` برای تجربه سه دقیقه‌ای پیام، واژه، تمرین و اشتراک
 - اتصال آیین ورود به نورخانه با کارت «مسیر شروع من» و ادامه مسیر ذخیره‌شده
 - قطب‌نمای خرد برای پیشنهاد قدم بعدی بر اساس رفتار، مأموریت، استمرار و حافظه مطالعه
 - Journey Builder برای ساخت مسیر شخصی مطالعه، نیایش، رسانه و کردار
@@ -51,6 +57,8 @@ node preview-server.mjs
 - Daily Streak برای زنجیره روشنایی، تقویم عادت روزانه و برگشت کاربر
 - ورود و ثبت‌نام demo با cookie session
 - پنل ادمین برای Go-Live، کنترل کیفیت صفحات، آنالیتیکس محصول، تحویل تیم‌ها، محتوا، رسانه، کنترل تصویرهای AI، رجیستری منابع، پوشش ارجاع، بازبینی منابع، import، SEO، فروشگاه، خبرنامه، Inventory، Production، Brief و Review
+- کنسول ادمین نمایشگاه‌ها برای کنترل آمادگی روایت، رسانه، ریسک و مسیرهای مرتبط هر نمایشگاه
+- کنسول آمادگی Deploy برای تحویل GitHub، Vercel، env، دیتابیس، DNS، storage، search و smoke test
 - ماتریس تکمیل اوستا برای رصد متن اصلی، ترجمه، بازنویسی، تحلیل، تصویر، صوت، منبع و SEO هر بخش
 - Batch تولید اوستا برای تبدیل کمبودهای ماتریس تکمیل به تسک‌های اجرایی تیم محتوا، رسانه، پژوهش و SEO
 - دروازه انتشار اوستا برای ترکیب تکمیل محتوا، citation coverage و کیفیت صفحه در تصمیم Publish/Hold/Block
@@ -88,16 +96,23 @@ node preview-server.mjs
 - `/avesta/khordeh-avesta`
 - `/avesta/hats`
 - `/world`
+- `/tour`
+- `/exhibitions`
 - `/dashboard`
+- `/daily-light`
+- `/wisdom-capsule`
 - `/compass`
 - `/privacy-center`
 - `/zoroaster`
 - `/gathas`
 - `/zoroastrianism`
 - `/monotheism`
+- `/monotheism/paths`
 - `/cyrus`
 - `/dictionary`
 - `/journey-builder`
+- `/practice`
+- `/asha-balance`
 - `/share-studio`
 - `/ritual-room`
 - `/achievements`
@@ -112,12 +127,14 @@ node preview-server.mjs
 - `/profile`
 - `/admin`
 - `/admin/go-live`
+- `/admin/deployment-readiness`
 - `/admin/page-quality`
 - `/admin/route-visibility`
 - `/admin/product-analytics`
 - `/admin/event-tracking`
 - `/admin/event-collector`
 - `/admin/team-handoff`
+- `/admin/exhibitions`
 - `/admin/avesta-completion`
 - `/admin/avesta-production`
 - `/admin/avesta-publication-gates`
@@ -143,7 +160,11 @@ node preview-server.mjs
 - `/api/avesta`
 - `/api/avesta/yasna`
 - `/api/avesta/yasna/ha-1/verse-1`
+- `/api/tour`
+- `/api/exhibitions`
 - `/api/dashboard`
+- `/api/daily-light`
+- `/api/wisdom-capsule`
 - `/api/compass`
 - `/api/journey-builder`
 - `/api/share-studio`
@@ -154,8 +175,12 @@ node preview-server.mjs
 - `/api/consent`
 - `/api/media`
 - `/api/media/prompts`
+- `/api/monotheism/paths`
+- `/api/practice`
+- `/api/asha-balance`
 - `/api/admin/stats`
 - `/api/admin/go-live`
+- `/api/admin/deployment-readiness`
 - `/api/admin/page-quality`
 - `/api/admin/route-visibility`
 - `/api/admin/product-analytics`
@@ -169,6 +194,7 @@ node preview-server.mjs
 - `/api/admin/avesta-source-packs`
 - `/api/admin/avesta-import-template`
 - `/api/admin/team-handoff`
+- `/api/admin/exhibitions`
 - `/api/admin/inventory`
 - `/api/admin/production`
 - `/api/admin/production/briefs`

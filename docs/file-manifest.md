@@ -21,20 +21,29 @@
 - `app/page.tsx`: صفحه خانه
 - `app/layout.tsx`: layout اصلی
 - `app/globals.css`: استایل global
+- `app/tour`: تور موزه‌ای هدایت‌شده جهان اوستا
+- `app/exhibitions`: نمایشگاه‌های موضوعی curated با آثار، یادداشت کیوریتور و پیشرفت local
+- `app/daily-light`: راهنمای روزانه روشنایی و مسیر ۱۵ دقیقه‌ای کاربر
+- `app/wisdom-capsule`: کپسول خرد سه دقیقه‌ای با پیام، واژه، تمرین و اشتراک
 - `app/onboarding`: آیین ورود و مسیر شروع کاربر تازه‌وارد
 - `app/journey-builder`: سازنده مسیر با پشتیبانی از query params برای intent، pace، level و mode
 - `app/admin/avesta-completion`: ماتریس تکمیل محتوای اوستا برای تیم محتوا و پژوهش
+- `app/admin/deployment-readiness`: کنسول آمادگی GitHub، Vercel، envها، دیتابیس و deploy production
 - `app/admin/avesta-production`: batchهای تولید اوستا بر اساس کمبودهای ماتریس تکمیل
 - `app/admin/avesta-publication-gates`: دروازه تصمیم انتشار اوستا با وضعیت Publish/Hold/Block
 - `app/admin/avesta-release-waves`: موج‌های انتشار داخلی، بتا و عمومی اوستا
 - `app/admin/avesta-feature-flags`: کنترل نمایش hidden/internal/beta/public برای بخش‌های اوستا
 - `app/admin/avesta-access-control`: ماتریس دسترسی anonymous/reader/editor/admin برای مسیرهای اوستا
 - `app/admin/route-visibility`: Audit مسیرها برای sitemap، navigation و index عمومی
+- `app/admin/exhibitions`: کنسول مدیریت آمادگی نمایشگاه‌ها، رسانه، روایت و ریسک انتشار
 - `app/admin/avesta-source-packs`: پک منابع، citation، دارایی و معیار انتشار بخش‌های اوستا
 - `app/admin/avesta-import-template`: قالب JSON/CSV ورود دسته‌ای محتوای طلایی اوستا
 - `app/admin/source-registry`: رجیستری رسمی منابع پژوهشی و خروجی citation
 - `app/admin/citation-coverage`: نقشه پوشش citation و ریسک منبع بخش‌های اوستا
 - `app/avesta`: پورتال و صفحات اوستا
+- `app/monotheism/paths`: مسیرهای موضوعی یکتاپرستی با تمرین اخلاقی، بند پیشنهادی، واژه و مقاله
+- `app/practice`: استاد تمرین اخلاقی و برنامه هفت‌روزه پندار، گفتار، کردار
+- `app/asha-balance`: نورسنج اشا برای امتیاز تعادل پندار، گفتار، کردار، استمرار و مأموریت
 - `app/articles`: مقاله‌ها
 - `app/dictionary`: واژه‌نامه
 - `app/library`: کتابخانه
@@ -50,6 +59,8 @@
 ## components
 
 - `components/header.tsx`: هدر اصلی
+- `components/museum-tour-panel.tsx`: پنل تور موزه‌ای، ایستگاه‌ها و پیشرفت local
+- `components/exhibitions-gallery.tsx`: گالری نمایشگاه‌های موضوعی، آثار، مسیرهای مرتبط و پیشرفت local
 - `components/command-center.tsx`: فرمان‌خانه سریع جهانی، جستجوی مسیرها و میانبر `Ctrl+K`
 - `components/footer.tsx`: فوتر
 - `components/section-card.tsx`: کارت بخش‌ها
@@ -60,11 +71,18 @@
 - `components/articles-explorer.tsx`: فیلتر مقاله‌ها
 - `components/personal-dashboard-panel.tsx`: نورخانه شخصی، مسیر شروع ذخیره‌شده، مسیر فعال، progress قدم‌ها و مرکز ورود روزانه کاربر
 - `components/journey-builder-panel.tsx`: سازنده مسیر شخصی با ذخیره مسیر فعال در نورخانه
+- `components/monotheism-paths-board.tsx`: بورد تعاملی مسیرهای یکتاپرستی
+- `components/practice-studio-board.tsx`: بورد تمرین هفت‌روزه اخلاقی با ذخیره پیشرفت local
+- `components/asha-balance-panel.tsx`: داشبورد تعادل اشا و پیشنهاد تمرین بعدی
 - `components/wisdom-compass-panel.tsx`: قطب‌نمای خرد و پیشنهاد قدم بعدی
 - `components/daily-streak-panel.tsx`: پنل زنجیره روشنایی و تقویم عادت روزانه
+- `components/daily-light-guide-panel.tsx`: پنل مسیر روزانه مطالعه، تأمل، تمرین، مأموریت و نورسنج اشا
+- `components/wisdom-capsule-panel.tsx`: پنل کپسول خرد و اشتراک پیام روزانه
 - `components/privacy-consent-panel.tsx`: مرکز رضایت کاربر و تنظیمات حریم خصوصی
 - `components/privacy-consent-banner.tsx`: بنر جهانی رضایت کاربر روی کل سایت
 - `components/admin/event-tracking-board.tsx`: ماتریس event tracking، payload، QA و privacy
+- `components/admin/deployment-readiness-board.tsx`: بورد آمادگی deploy و تحویل GitHub/Vercel
+- `components/admin/exhibition-control-board.tsx`: بورد مدیریت نمایشگاه‌ها، readiness، نیازهای رسانه/محتوا/محصول و checklist
 - `components/admin/avesta-completion-board.tsx`: بورد تکمیل متن، ترجمه، رسانه، منبع و SEO اوستا
 - `components/admin/avesta-production-batch-board.tsx`: بورد batch تولید اوستا با فیلتر مرحله و فیلد
 - `components/admin/avesta-publication-gate-board.tsx`: بورد دروازه انتشار اوستا با مانع، هشدار و چک‌لیست
@@ -84,6 +102,9 @@
 ## lib
 
 - `lib/content.ts`: محتوای ساختاری نمونه
+- `lib/museum-tour.ts`: مسیر تور موزه‌ای، ایستگاه‌ها، روایت و curator note
+- `lib/exhibitions.ts`: مدل و داده نمایشگاه‌های موضوعی، آثار، مسیرهای مرتبط و summary
+- `lib/exhibition-control.ts`: وضعیت آمادگی نمایشگاه‌ها برای ادمین، ریسک‌ها، مالک‌ها و اقدام بعدی
 - `lib/sample-content.ts`: داده‌های نمونه صفحات
 - `lib/avesta-repository.ts`: خواندن اوستا از Prisma یا fallback
 - `lib/media-repository.ts`: خواندن و ذخیره رسانه
@@ -99,6 +120,7 @@
 - `lib/avesta-release-waves.ts`: ساخت موج‌های انتشار مرحله‌ای اوستا از روی Publication Gate
 - `lib/avesta-feature-flags.ts`: محاسبه visibility هر بخش از روی Release Wave و Publication Gate
 - `lib/avesta-access-control.ts`: تصمیم دسترسی roleها برای مسیرهای اوستا و policy خروجی ادمین
+- `lib/deployment-readiness.ts`: وضعیت آمادگی GitHub، Vercel، env، دیتابیس، DNS، storage و smoke test
 - `lib/route-visibility-audit.ts`: اتصال visibility به sitemap، navigation، index و خروجی CSV
 - `lib/avesta-source-packs.ts`: ساخت Source Pack، CSV و Markdown برای منابع پژوهشی بخش‌های اوستا
 - `lib/avesta-import-template.ts`: ساخت قالب JSON/CSV برای ورود دسته‌ای بندهای اوستا
@@ -112,10 +134,15 @@
 - `lib/personal-dashboard.ts`: snapshot نورخانه شخصی، پیشنهادهای روزانه و جمع‌بندی حافظه کاربر
 - `lib/wisdom-compass.ts`: امتیازدهی سیگنال‌ها و موتور rule-based پیشنهاد قدم بعدی
 - `lib/daily-streak.ts`: مدل retention روزانه، تقویم ۱۴ روزه و snapshot استمرار
+- `lib/daily-light-guide.ts`: ساخت راهنمای روزانه روشنایی و قدم‌های ۱۵ دقیقه‌ای
+- `lib/wisdom-capsule.ts`: ساخت کپسول خرد سه دقیقه‌ای از اوستای امروز، اشا و Share Studio
 - `lib/event-tracking.ts`: قرارداد eventها، مقصد analytics، وضعیت پیاده‌سازی و checklist production
 - `lib/event-collector.ts`: validation، sanitize و ذخیره in-memory رویدادهای first-party
 - `lib/client-events.ts`: helper کلاینتی `trackEvent` برای ارسال رویداد به `/api/events`
 - `lib/privacy-consent.ts`: مدل consent، policy دسته‌های داده و گارد consent-aware tracking
+- `lib/monotheism-paths.ts`: مسیرهای موضوعی یکتاپرستی و summary مسیرها
+- `lib/practice-studio.ts`: برنامه هفت‌روزه تمرین اخلاقی، XP و summary پیشرفت
+- `lib/asha-balance.ts`: موتور امتیازدهی تعادل اشا از تمرین‌ها، استمرار و مأموریت‌ها
 
 ## prisma
 
