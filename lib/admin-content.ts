@@ -1,6 +1,7 @@
 export type ContentResource =
   | "avestaSection"
   | "avestaChapter"
+  | "avestaChapterGuide"
   | "avestaVerse"
   | "article"
   | "glossaryTerm"
@@ -23,6 +24,13 @@ type AdminContentFields = {
   root?: string;
   description?: string;
   content?: string;
+  question?: string;
+  subtitle?: string;
+  leadQuote?: string;
+  curatorNote?: string;
+  todayPractice?: string;
+  sidePanels?: string;
+  storyPanels?: string;
 };
 
 export type AdminContentPayload = {
@@ -37,6 +45,8 @@ export type AdminContentPayload = {
   chapterSlug?: string;
   order?: number;
   themeColor?: string;
+  accent?: string;
+  tone?: string;
   coverImage?: string;
   audioUrl?: string;
   fileUrl?: string;
@@ -60,6 +70,7 @@ export const adminContentSchema = {
   resources: [
     "avestaSection",
     "avestaChapter",
+    "avestaChapterGuide",
     "avestaVerse",
     "article",
     "glossaryTerm",
@@ -69,6 +80,7 @@ export const adminContentSchema = {
   requiredByResource: {
     avestaSection: ["title", "slug", "summary"],
     avestaChapter: ["title", "slug", "sectionSlug", "order"],
+    avestaChapterGuide: ["title", "slug", "sectionSlug", "chapterSlug", "coverImage", "fields.question", "fields.subtitle"],
     avestaVerse: ["sectionSlug", "chapterSlug", "order", "fields.originalText"],
     article: ["title", "slug", "summary", "fields.content"],
     glossaryTerm: ["title", "slug", "fields.meaning"],
@@ -171,6 +183,10 @@ function getNestedValue(value: Record<string, unknown>, path: string) {
 }
 
 async function getPrisma() {
+  if (!process.env.DATABASE_URL) {
+    return null;
+  }
+
   try {
     const { prisma } = await import("@/lib/prisma");
     return prisma;
@@ -266,6 +282,20 @@ async function persistWithPrisma(prisma: NonNullable<Awaited<ReturnType<typeof g
         }
       });
     }
+
+    case "avestaChapterGuide":
+      return {
+        resource: payload.resource,
+        sectionSlug: payload.sectionSlug,
+        chapterSlug: payload.chapterSlug,
+        title: payload.title,
+        slug: payload.slug,
+        coverImage: payload.coverImage,
+        accent: payload.accent,
+        tone: payload.tone,
+        fields: payload.fields,
+        note: "AvestaChapterGuide is validated here and should be persisted after adding a production Prisma model or CMS collection."
+      };
 
     case "article":
       return prisma.article.upsert({

@@ -82,6 +82,262 @@ export const sampleVerses: SampleVerse[] = [
       },
     ],
   },
+  {
+    sectionSlug: "yashts",
+    chapterSlug: "aban-yasht",
+    verseSlug: "verse-1",
+    chapterTitle: "آبان یشت",
+    verseNumber: "بند نمونه آبان",
+    quote: "آب پاک، جریان زندگی و نشانه احترام انسان به نظم جهان است.",
+    progress: 21,
+    ethicalMessage: "احترام به آب یعنی احترام به زندگی، طبیعت و پاکی ذهن و کردار.",
+    blocks: [
+      {
+        label: "متن اصلی",
+        title: "جایگاه آبان یشت",
+        body: "در نسخه نهایی، بندهای آبان یشت با متن اصلی، آوانویسی و ارجاع دقیق در این بخش قرار می‌گیرند.",
+      },
+      {
+        label: "ترجمه کلاسیک",
+        title: "خوانش پژوهشی آب",
+        body: "ترجمه کلاسیک نشان می‌دهد آب در متن اوستایی فقط ماده طبیعی نیست، بلکه نشانه زندگی و پاکی است.",
+      },
+      {
+        label: "بازنویسی ساده",
+        title: "زبان امروز",
+        body: "آب را آلوده نکن؛ چون آسیب به آب، آسیب به جریان زندگی و نظم طبیعت است.",
+      },
+      {
+        label: "تحلیل مفهومی",
+        title: "پیام آب",
+        body: "آبان یشت می‌تواند کاربر امروز را از مصرف بی‌توجه به رابطه اخلاقی با طبیعت برساند.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "yashts",
+    chapterSlug: "mehr-yasht",
+    verseSlug: "verse-1",
+    chapterTitle: "مهر یشت",
+    verseNumber: "بند نمونه مهر",
+    quote: "مهر، روشنایی پیمان است؛ جایی که گفتار و کردار انسان یکی می‌شوند.",
+    progress: 24,
+    ethicalMessage: "وفای به پیمان، راستگویی و اعتماد، شکل اجتماعی پندار و کردار نیک است.",
+    blocks: [
+      {
+        label: "متن اصلی",
+        title: "جایگاه مهر یشت",
+        body: "متن اصلی مهر یشت بعداً با شماره‌گذاری و لایه‌های ترجمه در همین ساختار وارد می‌شود.",
+      },
+      {
+        label: "ترجمه کلاسیک",
+        title: "پیمان و راستی",
+        body: "ترجمه دقیق باید نشان دهد مهر با مراقبت از عهد، عدالت و راستگویی پیوند دارد.",
+      },
+      {
+        label: "بازنویسی ساده",
+        title: "فهم امروزی",
+        body: "اگر قولی می‌دهی، آن را روشن و صادقانه نگه دار؛ اعتماد از همین جا ساخته می‌شود.",
+      },
+      {
+        label: "تحلیل مفهومی",
+        title: "مهر در جامعه",
+        body: "مهر یشت می‌تواند به اخلاق اجتماعی، اعتماد عمومی و مسئولیت در رابطه‌ها وصل شود.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "vendidad",
+    chapterSlug: "fargard-1",
+    verseSlug: "verse-1",
+    chapterTitle: "فرگرد اول",
+    verseNumber: "بند نمونه سرزمین‌ها",
+    quote: "جهان زیبا آفریده شده، اما نگهبانی از آن با انتخاب انسان ادامه پیدا می‌کند.",
+    progress: 16,
+    ethicalMessage: "انسان با پاکی و انتخاب درست، سهم خود را در حفظ جهان روشن انجام می‌دهد.",
+    blocks: [
+      {
+        label: "متن اصلی",
+        title: "سرزمین‌های نخستین",
+        body: "در نسخه نهایی، متن فرگرد اول و نام سرزمین‌ها با توضیح تاریخی و پژوهشی وارد می‌شود.",
+      },
+      {
+        label: "ترجمه کلاسیک",
+        title: "آفرینش و آسیب",
+        body: "ترجمه کلاسیک باید دوگانه آفرینش نیک و ورود آسیب را با دقت و بی‌اغراق نشان دهد.",
+      },
+      {
+        label: "بازنویسی ساده",
+        title: "روایت قابل فهم",
+        body: "جهان جای زیبایی است، اما اگر انسان بی‌توجه باشد، تاریکی و آلودگی وارد آن می‌شود.",
+      },
+      {
+        label: "تحلیل مفهومی",
+        title: "مسئولیت انسان",
+        body: "پیام فرگرد اول برای امروز، مسئولیت در برابر محیط، سلامت و نظم اخلاقی است.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "vendidad",
+    chapterSlug: "fargard-2",
+    verseSlug: "verse-1",
+    chapterTitle: "فرگرد دوم",
+    verseNumber: "بند نمونه جمشید",
+    quote: "خرد یعنی پیش از بحران، جای امنی برای زندگی و امید بسازی.",
+    progress: 18,
+    ethicalMessage: "آمادگی، مراقبت از زندگی و نگهداری از بهترین‌ها، پیام امروزی روایت جمشید است.",
+    blocks: [
+      {
+        label: "متن اصلی",
+        title: "روایت جمشید",
+        body: "متن فرگرد دوم درباره جم، هشدار بحران و ساختن پناهگاه زندگی در این بخش وارد می‌شود.",
+      },
+      {
+        label: "ترجمه کلاسیک",
+        title: "بحران و نجات",
+        body: "ترجمه باید فضای حماسی روایت را حفظ کند و همزمان از اغراق نمایشی فاصله بگیرد.",
+      },
+      {
+        label: "بازنویسی ساده",
+        title: "قصه امروز",
+        body: "وقتی خطر نزدیک است، بهترین کار ترسیدن نیست؛ آماده شدن و حفظ زندگی است.",
+      },
+      {
+        label: "تحلیل مفهومی",
+        title: "پیام جمشید",
+        body: "فرگرد دوم می‌تواند به آینده‌نگری، مدیریت بحران و مسئولیت نگهبانی از جهان وصل شود.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "khordeh-avesta",
+    chapterSlug: "daily-prayers",
+    verseSlug: "verse-1",
+    chapterTitle: "نیایش‌های روزانه",
+    verseNumber: "نیایش نمونه روز",
+    quote: "یک نیت روشن، آغاز یک روز روشن است.",
+    progress: 28,
+    ethicalMessage: "نیایش روزانه وقتی معنا دارد که به آرامش، یادآوری و رفتار بهتر تبدیل شود.",
+    blocks: [
+      {
+        label: "متن اصلی",
+        title: "نیایش کوتاه",
+        body: "متن نیایش‌های روزانه با آوانویسی و خوانش صوتی در نسخه نهایی وارد می‌شود.",
+      },
+      {
+        label: "ترجمه کلاسیک",
+        title: "دقت آیینی",
+        body: "ترجمه کلاسیک برای حفظ دقت و احترام به متن در کنار بازنویسی ساده نمایش داده می‌شود.",
+      },
+      {
+        label: "بازنویسی ساده",
+        title: "نیت امروز",
+        body: "امروز می‌خواهم اندیشه‌ام روشن، گفتارم آرام و کردارم درست باشد.",
+      },
+      {
+        label: "تحلیل مفهومی",
+        title: "نیایش در زندگی",
+        body: "این بخش نشان می‌دهد چطور یک متن کوتاه می‌تواند ریتم روزانه کاربر را بهتر کند.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "khordeh-avesta",
+    chapterSlug: "atash-niyayesh",
+    verseSlug: "verse-1",
+    chapterTitle: "آتش نیایش",
+    verseNumber: "بند نمونه آتش",
+    quote: "آتش بیرون، یادآور نوری است که باید در دل انسان روشن بماند.",
+    progress: 26,
+    ethicalMessage: "آگاهی درونی، پاکی و تمرکز، پیام امروزی آتش نیایش است.",
+    blocks: [
+      {
+        label: "متن اصلی",
+        title: "نیایش آتش",
+        body: "متن آتش نیایش، آوانویسی، ترجمه و فایل صوتی در این ساختار وارد خواهد شد.",
+      },
+      {
+        label: "ترجمه کلاسیک",
+        title: "نور و پاکی",
+        body: "ترجمه باید جایگاه آتش را به عنوان نشانه آگاهی، پاکی و حضور حقیقت نشان دهد.",
+      },
+      {
+        label: "بازنویسی ساده",
+        title: "نور درونی",
+        body: "نور را در دل خود روشن نگه دار تا در بیرون هم راه درست را ببینی.",
+      },
+      {
+        label: "تحلیل مفهومی",
+        title: "آتش به عنوان یادآور",
+        body: "آتش نیایش می‌تواند کاربر امروز را به مکث، تمرکز و تصمیم روشن دعوت کند.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "visperad",
+    chapterSlug: "visperad-starter",
+    verseSlug: "verse-1",
+    chapterTitle: "درآمد ویسپرد",
+    verseNumber: "بند نمونه آیین جمعی",
+    quote: "وقتی نیایش جمعی می‌شود، هر واژه در نظمی بزرگ‌تر معنا پیدا می‌کند.",
+    progress: 19,
+    ethicalMessage: "آیین جمعی یادآور پیوند، احترام و مسئولیت انسان در برابر جهان نیک است.",
+    blocks: [
+      {
+        label: "متن اصلی",
+        title: "درآمد ویسپرد",
+        body: "متن آغازین ویسپرد در نسخه نهایی با آوانویسی، ترجمه و توضیح آیینی وارد می‌شود.",
+      },
+      {
+        label: "ترجمه کلاسیک",
+        title: "خوانش آیینی",
+        body: "ترجمه باید پیوند ویسپرد با یسنا، ستایش ردان و فضای مراسم را روشن کند.",
+      },
+      {
+        label: "بازنویسی ساده",
+        title: "معنای امروز",
+        body: "در آیین، انسان تنها نیست؛ نیکی وقتی گسترده می‌شود که با دیگران پیوند پیدا کند.",
+      },
+      {
+        label: "تحلیل مفهومی",
+        title: "پیوند و مسئولیت",
+        body: "ویسپرد می‌تواند مفهوم نیایش جمعی، پیوستگی متن‌ها و همبستگی اخلاقی را برای کاربر امروز توضیح دهد.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "hats",
+    chapterSlug: "ha-map",
+    verseSlug: "verse-1",
+    chapterTitle: "نقشه هات‌ها",
+    verseNumber: "بند نمونه نقشه مطالعه",
+    quote: "هر هات یک در است؛ پشت هر در، یک مسیر روشن برای فهم متن قرار دارد.",
+    progress: 22,
+    ethicalMessage: "متن بزرگ با قدم‌های کوچک، نظم، صبر و توجه قابل فهم می‌شود.",
+    blocks: [
+      {
+        label: "متن اصلی",
+        title: "جایگاه هات",
+        body: "در نسخه نهایی، هر هات با شماره، متن اصلی، ترجمه و مسیر مطالعه جداگانه ثبت می‌شود.",
+      },
+      {
+        label: "ترجمه کلاسیک",
+        title: "نظم پژوهشی",
+        body: "ترجمه کلاسیک به کاربر کمک می‌کند متن را با دقت، منبع و ارجاع دنبال کند.",
+      },
+      {
+        label: "بازنویسی ساده",
+        title: "مسیر خواندن",
+        body: "به جای روبه‌رو شدن با متن سنگین، یک بخش کوچک را انتخاب کن و همان را کامل بفهم.",
+      },
+      {
+        label: "تحلیل مفهومی",
+        title: "سیستم محتوای طلایی",
+        body: "هات‌ها ستون اصلی سیستم محتوایی سایت هستند: متن، ترجمه، بازنویسی، تحلیل، پیام اخلاقی، تصویر و صوت.",
+      },
+    ],
+  },
 ];
 
 export const sampleChapters = [
@@ -108,6 +364,110 @@ export const sampleChapters = [
         title: "سرود نمونه",
         slug: "verse-1",
         excerpt: "خوانش نمونه برای سروده‌های گاهانی.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "yashts",
+    title: "آبان یشت",
+    slug: "aban-yasht",
+    description: "روایت آب، آناهیتا، پاکی، جریان زندگی و احترام به طبیعت.",
+    verses: [
+      {
+        title: "بند نمونه آبان",
+        slug: "verse-1",
+        excerpt: "آب پاک، جریان زندگی و نشانه احترام انسان به نظم جهان است.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "yashts",
+    title: "مهر یشت",
+    slug: "mehr-yasht",
+    description: "روایت مهر، پیمان، روشنایی، عدالت و مسئولیت اجتماعی.",
+    verses: [
+      {
+        title: "بند نمونه مهر",
+        slug: "verse-1",
+        excerpt: "مهر، روشنایی پیمان است؛ جایی که گفتار و کردار انسان یکی می‌شوند.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "vendidad",
+    title: "فرگرد اول",
+    slug: "fargard-1",
+    description: "روایت سرزمین‌های آفریده‌شده، ورود آسیب و مسئولیت انسان در نگهبانی از جهان.",
+    verses: [
+      {
+        title: "بند نمونه سرزمین‌ها",
+        slug: "verse-1",
+        excerpt: "جهان زیبا آفریده شده، اما نگهبانی از آن با انتخاب انسان ادامه پیدا می‌کند.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "vendidad",
+    title: "فرگرد دوم",
+    slug: "fargard-2",
+    description: "روایت جمشید، زمستان بزرگ، پناهگاه زندگی و آمادگی در برابر بحران.",
+    verses: [
+      {
+        title: "بند نمونه جمشید",
+        slug: "verse-1",
+        excerpt: "خرد یعنی پیش از بحران، جای امنی برای زندگی و امید بسازی.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "khordeh-avesta",
+    title: "نیایش‌های روزانه",
+    slug: "daily-prayers",
+    description: "نیایش‌های کوتاه برای صبح، میان‌روز و شب؛ آرام، روشن و قابل ادامه.",
+    verses: [
+      {
+        title: "نیایش نمونه روز",
+        slug: "verse-1",
+        excerpt: "یک نیت روشن، آغاز یک روز روشن است.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "khordeh-avesta",
+    title: "آتش نیایش",
+    slug: "atash-niyayesh",
+    description: "نیایش آتش، بیداری، پاکی و یادآوری حقیقت در زندگی روزانه.",
+    verses: [
+      {
+        title: "بند نمونه آتش",
+        slug: "verse-1",
+        excerpt: "آتش بیرون، یادآور نوری است که باید در دل انسان روشن بماند.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "visperad",
+    title: "درآمد ویسپرد",
+    slug: "visperad-starter",
+    description: "ورود به آیین جمعی، ستایش ردان، پیوند نیایش‌ها و نظم گسترده‌تر اوستا.",
+    verses: [
+      {
+        title: "بند نمونه آیین جمعی",
+        slug: "verse-1",
+        excerpt: "وقتی نیایش جمعی می‌شود، هر واژه در نظمی بزرگ‌تر معنا پیدا می‌کند.",
+      },
+    ],
+  },
+  {
+    sectionSlug: "hats",
+    title: "نقشه هات‌ها",
+    slug: "ha-map",
+    description: "مسیر مطالعه مرحله‌ای برای فهم هات‌ها، شماره‌بندی، پیشرفت و سیستم محتوای طلایی.",
+    verses: [
+      {
+        title: "بند نمونه نقشه مطالعه",
+        slug: "verse-1",
+        excerpt: "هر هات یک در است؛ پشت هر در، یک مسیر روشن برای فهم متن قرار دارد.",
       },
     ],
   },
@@ -226,6 +586,7 @@ export const libraryItems = [
     description: "مسیر پیشنهادی برای شروع مطالعه اوستا، گات‌ها و مفاهیم پایه.",
     href: "/library/avesta-reading-guide.pdf",
     accent: "#D6A84F",
+    thumbnail: "/images/ai/library-cover.png",
   },
   {
     title: "Gathas Study Notes",
@@ -236,6 +597,7 @@ export const libraryItems = [
     description: "English notes for future bilingual study pages and references.",
     href: "/articles/what-are-gathas",
     accent: "#F2D58A",
+    thumbnail: "/images/ai/gathas-cover.png",
   },
   {
     title: "واژه‌های کلیدی زرتشتی",
@@ -246,6 +608,7 @@ export const libraryItems = [
     description: "مجموعه مفاهیم اشا، وهومن، اهورامزدا، فروهر و گاتا.",
     href: "/dictionary",
     accent: "#FFF8EA",
+    thumbnail: "/images/ai/dictionary-cover.png",
   },
   {
     title: "نسخه‌های تاریخی و منابع قدیمی",
@@ -256,6 +619,7 @@ export const libraryItems = [
     description: "جایگاه آینده برای نسخه‌های اسکن‌شده، منابع کتابخانه‌ای و ارجاعات پژوهشی.",
     href: "/library/archive",
     accent: "#7EA4C8",
+    thumbnail: "/images/ai/avesta-portal.png",
   },
 ];
 
@@ -269,6 +633,7 @@ export const mediaItems = [
     prompt:
       "Cinematic ancient Persian temple at sunrise, sacred fire altar, Avestan script mist, gold and deep navy palette, museum quality, no modern objects",
     accent: "#D6A84F",
+    thumbnail: "/images/ai/yasna-cover.png",
   },
   {
     title: "سپیدی گات‌ها",
@@ -279,6 +644,7 @@ export const mediaItems = [
     prompt:
       "Luminous spiritual scene inspired by ancient Iranian wisdom, soft white and gold light, peaceful mountain horizon, cinematic digital museum artwork",
     accent: "#FFF8EA",
+    thumbnail: "/images/ai/gathas-cover.png",
   },
   {
     title: "وندیداد رازآلود",
@@ -289,6 +655,7 @@ export const mediaItems = [
     prompt:
       "Dark blue ancient Persian chamber, orange sacred flame, mysterious ritual purity atmosphere, carved stone, cinematic shadows",
     accent: "#7EA4C8",
+    thumbnail: "/images/ai/vendidad-cover.png",
   },
   {
     title: "روایت صوتی گات‌ها",
@@ -298,6 +665,7 @@ export const mediaItems = [
     description: "جایگاه آینده فایل‌های صوتی، پادکست و خوانش بندهای اوستا.",
     prompt: "Audio narration placeholder for Gathas reading and explanation.",
     accent: "#F2D58A",
+    thumbnail: "/images/ai/media-cover.png",
   },
 ];
 
@@ -311,6 +679,7 @@ export const articleItems = [
     readingTime: "۷ دقیقه",
     publishedAt: "2026-05-25",
     coverTone: "طلایی، روشن، مفهومی",
+    coverImage: "/images/ai/monotheism-cover.png",
     seoTitle: "اشا چیست؟ معنی اشا در دین زرتشتی و اوستا",
     seoDescription:
       "معرفی مفهوم اشا در جهان زرتشتی، پیوند آن با راستی، نظم اخلاقی، گات‌ها و زندگی امروز.",
@@ -336,6 +705,7 @@ export const articleItems = [
     readingTime: "۹ دقیقه",
     publishedAt: "2026-05-25",
     coverTone: "سپید، مینوی، آرام",
+    coverImage: "/images/ai/gathas-cover.png",
     seoTitle: "گات‌ها چیست؟ آشنایی با سروده‌های زرتشت",
     seoDescription:
       "معرفی گات‌ها، جایگاه آن‌ها در اوستا، پیام اخلاقی و اهمیتشان برای شناخت زرتشت.",
@@ -361,6 +731,7 @@ export const articleItems = [
     readingTime: "۶ دقیقه",
     publishedAt: "2026-05-25",
     coverTone: "طلایی، هخامنشی، نمادین",
+    coverImage: "/images/ai/zoroaster-cover.png",
     seoTitle: "فروهر چیست؟ معنی و نمادشناسی فروهر",
     seoDescription:
       "بررسی فروهر به عنوان نماد فرهنگی و معنوی در ایران باستان و جهان زرتشتی.",

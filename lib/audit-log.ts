@@ -205,6 +205,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 async function getPrisma() {
+  if (!process.env.DATABASE_URL) {
+    return null;
+  }
+
   try {
     const { prisma } = await import("@/lib/prisma");
     return prisma as unknown as AuditPrismaClient;

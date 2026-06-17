@@ -783,6 +783,10 @@ function toPrismaProductData(payload: NormalizedAdminProductPayload): PrismaProd
 }
 
 async function getPrisma() {
+  if (!process.env.DATABASE_URL) {
+    return null;
+  }
+
   try {
     const { prisma } = await import("@/lib/prisma");
     return prisma as unknown as CommercePrismaClient;

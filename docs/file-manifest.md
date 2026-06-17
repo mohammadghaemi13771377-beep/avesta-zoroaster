@@ -25,6 +25,7 @@
 - `app/exhibitions`: نمایشگاه‌های موضوعی curated با آثار، یادداشت کیوریتور و پیشرفت local
 - `app/daily-light`: راهنمای روزانه روشنایی و مسیر ۱۵ دقیقه‌ای کاربر
 - `app/wisdom-capsule`: کپسول خرد سه دقیقه‌ای با پیام، واژه، تمرین و اشتراک
+- `app/avesta/[section]/[chapter]`: صفحه اختصاصی هر یشت، فرگرد، هات یا نیایش با پوستر، پیام امروزی و لیست بندها
 - `app/onboarding`: آیین ورود و مسیر شروع کاربر تازه‌وارد
 - `app/journey-builder`: سازنده مسیر با پشتیبانی از query params برای intent، pace، level و mode
 - `app/admin/avesta-completion`: ماتریس تکمیل محتوای اوستا برای تیم محتوا و پژوهش
@@ -64,6 +65,8 @@
 - `components/command-center.tsx`: فرمان‌خانه سریع جهانی، جستجوی مسیرها و میانبر `Ctrl+K`
 - `components/footer.tsx`: فوتر
 - `components/section-card.tsx`: کارت بخش‌ها
+- `components/avesta-chapter-atlas.tsx`: اطلس تصویری chapterها در صفحه‌های مادر اوستا
+- `components/avesta-poster-experience.tsx`: لایه پوستر/موزه نورانی برای صفحه‌های داخلی اوستا
 - `components/search-panel.tsx`: پنل جستجو
 - `components/onboarding-gateway.tsx`: UI انتخاب نیت، ریتم، حال‌وهوا و مسیر شروع
 - `components/resource-explorer.tsx`: مرور منابع
@@ -105,6 +108,11 @@
 - `lib/museum-tour.ts`: مسیر تور موزه‌ای، ایستگاه‌ها، روایت و curator note
 - `lib/exhibitions.ts`: مدل و داده نمایشگاه‌های موضوعی، آثار، مسیرهای مرتبط و summary
 - `lib/exhibition-control.ts`: وضعیت آمادگی نمایشگاه‌ها برای ادمین، ریسک‌ها، مالک‌ها و اقدام بعدی
+- `lib/visual-assets.ts`: نقشه مرکزی تصویرهای واقعی hero، cover، رسانه، نمایشگاه و فروشگاه
+- `lib/avesta-visual-guides.ts`: داده الگوهای تصویری بخش‌های اوستا، قاب‌های روایی، پیام امروزی و تمرین‌ها
+- `lib/avesta-chapter-guides.ts`: داده پوسترهای اختصاصی آبان یشت، مهر یشت، فرگردها و نیایش‌های خرده اوستا
+- `lib/admin-content-models.ts`: قرارداد مدل‌های آینده ادمین برای مقاله، بند اوستا، رسانه، نمایشگاه و محصول
+- `lib/admin-content.ts`: قرارداد ذخیره/اعتبارسنجی محتوای ادمین شامل `avestaChapterGuide`
 - `lib/sample-content.ts`: داده‌های نمونه صفحات
 - `lib/avesta-repository.ts`: خواندن اوستا از Prisma یا fallback
 - `lib/media-repository.ts`: خواندن و ذخیره رسانه
@@ -153,6 +161,7 @@
 
 - `public/images/avesta-zoroaster-logo.png`: لوگوی اصلی
 - `public/images/ai`: جایگاه تصاویر AI
+- `public/images/references`: رفرنس‌های تصویری جهت هنری برای صفحه‌های داخلی و homepage
 - `public/audio`: جایگاه صوت
 - `public/library`: جایگاه PDF
 - `public/video`: جایگاه ویدیو
@@ -174,3 +183,34 @@
 - `docs/i18n-plan.md`
 - `docs/user-profile-data-model.md`
 - `docs/avesta-data-flow.md`
+- `docs/admin-content-asset-management.md`
+- `docs/visual-reference-board.md`
+- `docs/github-vercel-update-note.md`
+
+## public/images/ai
+
+- `home-hero.png`: hero اصلی صفحه خانه
+- `avesta-portal.png`: پورتال اوستا و مسیرهای عمومی
+- `gathas-cover.png`: گات‌ها، مقاله‌ها و محتوای مرتبط
+- `zoroaster-cover.png`: زرتشت و حافظه ایران باستان
+- `zoroastrianism-cover.png`: دین زرتشتی
+- `monotheism-cover.png`: یکتاپرستی و اشا
+- `dictionary-cover.png`: واژه‌نامه و جستجو
+- `articles-cover.png`: مقاله‌ها
+- `library-cover.png`: کتابخانه و منابع
+- `media-cover.png`: رسانه
+- `exhibitions-cover.png`: نمایشگاه‌ها
+- `shop-cover.png`: فروشگاه
+- `yasna-cover.png`, `vendidad-cover.png`, `yashts-cover.png`, `khordeh-avesta-cover.png`, `hats-cover.png`: بخش‌های اوستا
+- `product-book.png`, `product-mug.png`, `product-shirt.png`, `product-statue.png`: محصولات نمونه فروشگاه
+
+## public/images/references
+
+- `reference-water-anahita.png`: الگوی آب، آناهیتا و قاب‌های آموزشی یشت‌ها
+- `reference-soul-chinvat.png`: الگوی روح، داوری و پل چینود
+- `reference-vendidad-first.png`, `reference-vendidad-second.png`: الگوی وندیداد، فرگردها، پاکی و نبرد نور و تاریکی
+- `reference-atashkadeh.png`: الگوی آتشکده، نیایش و تالار آیینی
+- `reference-silence-mind.png`: الگوی سکوت ذهن و گات‌ها
+- `reference-hope-despair.png`: الگوی امید، ناامیدی و پیام امروزی
+- `reference-home-ui.png`: الگوی homepage سینمایی
+- `reference-logo.png`: لوگوی مرجع

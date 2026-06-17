@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { DictionaryExplorer } from "@/components/dictionary-explorer";
 import { glossaryTerms } from "@/lib/sample-content";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "واژه‌نامه اوستایی",
@@ -16,6 +17,7 @@ export default function DictionaryPage() {
       title="واژه‌نامه اوستایی و مفاهیم زرتشتی"
       lead="هر واژه در این بخش فقط یک تعریف کوتاه نیست؛ ریشه، کاربرد در متن، مقاله‌های مرتبط و پیوند با بندهای اوستا را به یک مسیر یادگیری تبدیل می‌کند."
       scene="scene-cosmic"
+      heroImage={routeHeroByPath["/dictionary"]}
       roman="W"
       actions={[
         { label: "دیدن واژه‌ها", href: "#glossary-grid" },

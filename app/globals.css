@@ -217,3 +217,142 @@ html[data-reader-mode="light"] .reader-text {
     radial-gradient(circle at 28% 30%, rgba(80, 155, 210, 0.18), transparent 8rem),
     linear-gradient(135deg, rgba(3, 8, 18, 0.2), rgba(0, 0, 0, 0.66));
 }
+
+.poster-world {
+  background:
+    radial-gradient(circle at 50% 6%, color-mix(in srgb, var(--poster-accent, #d6a84f) 28%, transparent), transparent 24rem),
+    radial-gradient(circle at 12% 24%, rgba(255, 248, 234, 0.1), transparent 18rem),
+    radial-gradient(circle at 86% 70%, color-mix(in srgb, var(--poster-accent, #d6a84f) 18%, transparent), transparent 22rem),
+    linear-gradient(180deg, rgba(11, 20, 24, 0.92), rgba(5, 8, 13, 0.96));
+}
+
+.poster-world::before,
+.poster-world::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.poster-world::before {
+  opacity: 0.5;
+  background:
+    linear-gradient(rgba(242, 213, 138, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 213, 138, 0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at 50% 38%, black, transparent 76%);
+}
+
+.poster-world::after {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 248, 234, 0.2), transparent 18rem),
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.26));
+}
+
+.poster-water {
+  --poster-accent: #9ee7f2;
+}
+
+.poster-fire {
+  --poster-accent: #f2b45e;
+}
+
+.poster-judgment {
+  --poster-accent: #7ac7f2;
+}
+
+.poster-creation {
+  --poster-accent: #bfe6a8;
+}
+
+.poster-silence {
+  --poster-accent: #bfeacc;
+}
+
+.poster-ritual {
+  --poster-accent: #f2d58a;
+}
+
+.poster-scroll {
+  --poster-accent: #e8c878;
+}
+
+.poster-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(214, 168, 79, 0.28);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 24% 0%, color-mix(in srgb, var(--poster-accent, #d6a84f) 18%, transparent), transparent 12rem),
+    linear-gradient(180deg, rgba(255, 248, 234, 0.08), transparent 34%),
+    linear-gradient(135deg, rgba(9, 32, 39, 0.86), rgba(5, 8, 13, 0.88));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 234, 0.12),
+    0 22px 80px rgba(0, 0, 0, 0.34);
+}
+
+.poster-panel::after {
+  content: "";
+  position: absolute;
+  inset-inline: 18px;
+  top: 10px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.55), transparent);
+}
+
+.poster-stage {
+  background:
+    radial-gradient(circle at 50% 36%, color-mix(in srgb, var(--poster-accent, #d6a84f) 22%, transparent), transparent 18rem),
+    linear-gradient(145deg, rgba(7, 21, 33, 0.82), rgba(2, 4, 7, 0.94));
+  box-shadow:
+    0 30px 110px rgba(0, 0, 0, 0.44),
+    0 0 80px color-mix(in srgb, var(--poster-accent, #d6a84f) 18%, transparent);
+}
+
+.poster-title-card {
+  border: 1px solid rgba(242, 213, 138, 0.3);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 248, 234, 0.18), transparent 12rem),
+    linear-gradient(180deg, rgba(4, 7, 10, 0.48), rgba(4, 7, 10, 0.78));
+  box-shadow: inset 0 1px 0 rgba(255, 248, 234, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.poster-story-card {
+  background:
+    linear-gradient(180deg, rgba(255, 248, 234, 0.06), transparent 30%),
+    linear-gradient(135deg, rgba(7, 21, 33, 0.74), rgba(3, 6, 10, 0.92));
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+}
+
+.poster-parchment {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(242, 213, 138, 0.38);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.32), transparent 10rem),
+    linear-gradient(135deg, #fff3cc, #dcb66b 46%, #ad7a2f);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.poster-parchment::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(74, 43, 15, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(74, 43, 15, 0.06) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+}
+
+.poster-parchment > * {
+  position: relative;
+  z-index: 1;
+}

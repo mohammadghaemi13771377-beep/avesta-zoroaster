@@ -25,6 +25,7 @@ Content-Type: application/json
 
 - `avestaSection`
 - `avestaChapter`
+- `avestaChapterGuide`
 - `avestaVerse`
 - `article`
 - `glossaryTerm`
@@ -39,7 +40,7 @@ Content-Type: application/json
   "sectionSlug": "yasna",
   "chapterSlug": "ha-1",
   "order": 1,
-  "coverImage": "/images/ai/yasna-verse-1.jpg",
+  "coverImage": "/images/ai/yasna-cover.png",
   "audioUrl": "/audio/yasna-verse-1.mp3",
   "fields": {
     "originalText": "متن اصلی اوستایی",
@@ -66,6 +67,33 @@ Content-Type: application/json
 }
 ```
 
+## نمونه راهنمای تصویری فصل
+
+```json
+{
+  "resource": "avestaChapterGuide",
+  "locale": "FA",
+  "title": "چرا آب در اوستا مقدس بود؟",
+  "slug": "aban-yasht-visual-guide",
+  "sectionSlug": "yashts",
+  "chapterSlug": "aban-yasht",
+  "summary": "راهنمای تصویری آبان یشت برای hero، قاب‌های روایی، پیام امروزی و تمرین‌ها.",
+  "coverImage": "/images/ai/yashts-cover.png",
+  "accent": "#9EE7F2",
+  "tone": "water",
+  "fields": {
+    "question": "آبان یشت چگونه آب را از عنصر طبیعی به نشانه زندگی تبدیل می‌کند؟",
+    "subtitle": "آب در این صفحه به صورت یک روایت تصویری دیده می‌شود: پاکی، جریان جهان و پیام اخلاقی امروز.",
+    "leadQuote": "اگر آب پاک بماند، زندگی جریان دارد.",
+    "curatorNote": "این صفحه بر اساس reference-water-anahita طراحی شده است.",
+    "ethicalMessage": "پاکی طبیعت با پاکی ذهن و کردار انسان جدا نیست.",
+    "todayPractice": "[\"یک رفتار کوچک برای صرفه‌جویی آب انجام بده.\",\"یک دقیقه کنار تصویر آب مکث کن.\",\"یک جمله درباره پاکی ذهن بنویس.\"]",
+    "sidePanels": "[{\"title\":\"نگهبان آب‌ها\",\"body\":\"جایگاه آب در زندگی و آیین.\",\"icon\":\"water\"}]",
+    "storyPanels": "[{\"title\":\"آب در اوستا\",\"body\":\"ماده زندگی و نشانه پاکی.\",\"image\":\"/images/ai/yashts-cover.png\"}]"
+  }
+}
+```
+
 ## نمونه بخش اوستا
 
 ```json
@@ -76,7 +104,7 @@ Content-Type: application/json
   "slug": "yasna",
   "summary": "آیین نیایش و آتش مقدس؛ یکی از مهم‌ترین بخش‌های اوستا.",
   "themeColor": "#D6A84F",
-  "coverImage": "/images/ai/yasna-cover.jpg"
+  "coverImage": "/images/ai/yasna-cover.png"
 }
 ```
 

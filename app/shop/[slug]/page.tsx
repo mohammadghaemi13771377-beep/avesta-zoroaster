@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, PackageCheck, ShoppingBag, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -56,7 +57,17 @@ export default function ProductPage({ params }: ProductPageProps) {
     <main className="px-4 pb-20 pt-32 sm:px-6 lg:px-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-        <section className={`image-scene ${product.imageScene} min-h-[520px] rounded-[24px] border border-gold/18`} />
+        <section className={`image-scene ${product.imageScene} min-h-[520px] rounded-[24px] border border-gold/18`}>
+          <Image
+            src={product.imageSrc}
+            alt={product.title}
+            fill
+            priority
+            sizes="(min-width: 1024px) 48vw, 92vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        </section>
 
         <section className="lux-frame p-7">
           <Link href="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-gold-light">

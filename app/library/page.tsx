@@ -5,6 +5,7 @@ import { Archive, BookOpen, FileText, Languages } from "lucide-react";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { ResourceExplorer } from "@/components/resource-explorer";
 import { libraryItems } from "@/lib/sample-content";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "کتابخانه دیجیتال",
@@ -25,6 +26,7 @@ export default function LibraryPage() {
       title="کتابخانه دیجیتال اوستا و ایران باستان"
       lead="این بخش مخزن زنده کتاب‌ها، نسخه‌ها، PDFها، منابع پژوهشی، مقاله‌های مرجع و آرشیو چندزبانه پروژه است؛ جایی برای مطالعه عمیق‌تر بعد از ورود به جهان اوستا."
       scene="scene-scroll"
+      heroImage={routeHeroByPath["/library"]}
       roman="L"
       actions={[
         { label: "جستجو در منابع", href: "#library-explorer" },

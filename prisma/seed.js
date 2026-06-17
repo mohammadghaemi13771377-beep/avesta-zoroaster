@@ -55,7 +55,7 @@ async function main() {
     title: "یسنا",
     slug: "yasna",
     description: "آیین نیایش و آتش مقدس؛ یکی از مهم‌ترین بخش‌های اوستا.",
-    coverImage: "/images/ai/yasna-cover.jpg",
+    coverImage: "/images/ai/yasna-cover.png",
     themeColor: "#D6A84F",
     order: 1
   });
@@ -71,7 +71,7 @@ async function main() {
     title: "گات‌ها",
     slug: "gathas",
     description: "سروده‌های بنیادین منسوب به زرتشت با پیام خرد، راستی و انتخاب اخلاقی.",
-    coverImage: "/images/ai/gathas-cover.jpg",
+    coverImage: "/images/ai/gathas-cover.png",
     themeColor: "#F2D58A",
     order: 2
   });
@@ -88,7 +88,7 @@ async function main() {
     slug: "ha-1",
     number: 1,
     description: "نمونه فصل برای نمایش ساختار مطالعه یسنا.",
-    coverImage: "/images/ai/yasna-ha-1.jpg",
+    coverImage: "/images/ai/yasna-cover.png",
     order: 1
   });
 
@@ -104,7 +104,7 @@ async function main() {
     simpleRewrite: "بازنویسی ساده برای فهم سریع‌تر مخاطب امروزی.",
     modernInterpretation: "تحلیل مفهومی درباره نیایش، روشنایی و نظم اخلاقی.",
     ethicalMessage: "نیایش تمرین توجه و انتخاب روشنایی در زندگی روزمره است.",
-    imageUrl: "/images/ai/yasna-verse-1.jpg",
+    imageUrl: "/images/ai/yasna-cover.png",
     audioUrl: "/audio/yasna-verse-1.mp3"
   });
 
@@ -122,7 +122,7 @@ async function main() {
     slug: "ahunavaiti",
     number: 1,
     description: "نمونه فصل برای شروع مطالعه گات‌ها.",
-    coverImage: "/images/ai/gathas-ahunavaiti.jpg",
+    coverImage: "/images/ai/gathas-cover.png",
     order: 1
   });
 
@@ -138,7 +138,7 @@ async function main() {
     simpleRewrite: "خرد، راهی است که انسان با آزادی و مسئولیت انتخاب می‌کند.",
     modernInterpretation: "تحلیل مفهومی درباره اشا، وهومن و انتخاب اخلاقی.",
     ethicalMessage: "پیام گات‌ها دعوت به انتخاب آگاهانه، راستی و مسئولیت اخلاقی است.",
-    imageUrl: "/images/ai/gathas-verse-1.jpg",
+    imageUrl: "/images/ai/gathas-cover.png",
     audioUrl: "/audio/gathas-verse-1.mp3"
   });
 
@@ -209,7 +209,7 @@ async function main() {
       author: "AVESTA-ZOROASTER Editorial",
       description: "نمونه آیتم کتابخانه برای PDFها و منابع پژوهشی.",
       fileUrl: "/library/avesta-reading-guide.pdf",
-      coverImage: "/images/library/avesta-guide.jpg",
+      coverImage: "/images/ai/library-cover.png",
       type: "PDF",
       source: "Internal"
     },
@@ -218,7 +218,7 @@ async function main() {
       author: "AVESTA-ZOROASTER Editorial",
       description: "نمونه آیتم کتابخانه برای PDFها و منابع پژوهشی.",
       fileUrl: "/library/avesta-reading-guide.pdf",
-      coverImage: "/images/library/avesta-guide.jpg",
+      coverImage: "/images/ai/library-cover.png",
       language: "fa",
       type: "PDF",
       source: "Internal"
@@ -250,7 +250,7 @@ async function main() {
       type: "AI Image",
       category: "یسنا",
       description: "تصویرسازی سینمایی برای فضای یسنا با آتش آرام و نور طلایی.",
-      thumbnail: "/images/ai/yasna-verse-1.jpg",
+      thumbnail: "/images/ai/yasna-cover.png",
       prompt:
         "Cinematic ancient Persian temple at sunrise, sacred fire altar, Avestan script mist, gold and deep navy palette",
       mood: "طلایی، آیینی، سینمایی",
@@ -266,7 +266,7 @@ async function main() {
       type: "AI Image",
       category: "یسنا",
       description: "تصویرسازی سینمایی برای فضای یسنا با آتش آرام و نور طلایی.",
-      thumbnail: "/images/ai/yasna-verse-1.jpg",
+      thumbnail: "/images/ai/gathas-cover.png",
       prompt:
         "Cinematic ancient Persian temple at sunrise, sacred fire altar, Avestan script mist, gold and deep navy palette",
       mood: "طلایی، آیینی، سینمایی",

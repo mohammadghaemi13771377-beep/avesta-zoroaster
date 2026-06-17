@@ -1,0 +1,128 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, BookOpen, Layers3, Sparkles } from "lucide-react";
+import type { AvestaChapterView } from "@/lib/avesta-repository";
+import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
+import { sectionCoverBySlug } from "@/lib/visual-assets";
+
+type AvestaChapterAtlasProps = {
+  sectionSlug: string;
+  sectionTitle: string;
+  chapters: AvestaChapterView[];
+  langQuery?: string;
+};
+
+export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQuery = "" }: AvestaChapterAtlasProps) {
+  if (!chapters.length) {
+    return (
+      <section className="mt-8 lux-frame rounded-[18px] p-7">
+        <p className="reader-text text-muted">فصل‌های این بخش بعد از ورود محتوای کامل از پنل مدیریت اضافه می‌شوند.</p>
+      </section>
+    );
+  }
+
+  return (
+    <section className="mt-8 lux-frame rounded-[22px] p-5 sm:p-7">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs font-black text-gold-light">
+            <Layers3 className="h-4 w-4" />
+            اطلس تالارهای {sectionTitle}
+          </p>
+          <h2 className="mt-4 text-3xl font-black text-warm sm:text-4xl">مسیرهای اختصاصی مطالعه</h2>
+          <p className="mt-3 max-w-3xl leading-8 text-muted">
+            هر کارت یک تالار مستقل است: تصویر، روایت، بندهای نمونه، پیام امروز و مسیر توسعه از پنل ادمین.
+          </p>
+        </div>
+        <Link
+          href="/admin/avesta"
+          className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-black text-gold-light transition hover:border-gold/45 hover:bg-gold/10"
+        >
+          مدیریت محتوا
+          <ArrowLeft className="h-4 w-4" />
+        </Link>
+      </div>
+
+      <div className="mt-7 grid gap-5 lg:grid-cols-2">
+        {chapters.map((chapter, index) => {
+          const guide = getAvestaChapterGuide(sectionSlug, chapter.slug);
+          const coverImage = guide?.coverImage ?? sectionCoverBySlug[sectionSlug];
+          const accent = guide?.accent ?? "#D6A84F";
+          const firstVerse = chapter.verses[0];
+          const chapterHref = `/avesta/${sectionSlug}/${chapter.slug}${langQuery}`;
+
+          return (
+            <article
+              key={chapter.slug}
+              className="poster-story-card group overflow-hidden rounded-[22px] border border-gold/16 transition hover:-translate-y-1 hover:border-gold/45"
+              style={{ ["--poster-accent" as string]: accent }}
+            >
+              <div className="grid min-h-full gap-0 md:grid-cols-[240px_minmax(0,1fr)]">
+                <Link href={chapterHref} className="image-atmosphere relative min-h-[250px]">
+                  {coverImage ? (
+                    <Image
+                      src={coverImage}
+                      alt={chapter.title}
+                      fill
+                      sizes="(min-width: 1024px) 240px, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  ) : null}
+                  <div className="absolute inset-0 bg-gradient-to-t from-night/88 via-night/18 to-transparent" />
+                  <div className="absolute right-4 top-4 rounded-full border border-gold/25 bg-night/58 px-3 py-1 font-serif text-lg text-gold-light backdrop-blur">
+                    {index + 1}
+                  </div>
+                  <div className="absolute bottom-4 right-4 left-4">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-warm/15 bg-warm/10 px-3 py-1 text-xs font-black text-warm">
+                      {guide ? "پوستر اختصاصی فعال" : "قالب عمومی"}
+                    </span>
+                  </div>
+                </Link>
+
+                <div className="p-5 sm:p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.22em] text-gold-light">CHAPTER ATLAS</p>
+                      <h3 className="mt-2 text-2xl font-black leading-9 text-warm">{chapter.title}</h3>
+                    </div>
+                    <span className="inline-flex items-center gap-1 rounded-full border border-gold/18 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light">
+                      <BookOpen className="h-3.5 w-3.5" />
+                      {chapter.verses.length} بند
+                    </span>
+                  </div>
+
+                  <p className="mt-3 min-h-16 leading-8 text-muted">{guide?.chapterIntro ?? chapter.description}</p>
+
+                  {guide?.leadQuote ? (
+                    <blockquote className="mt-4 rounded-2xl border border-gold/15 bg-gold/10 p-4 text-sm font-bold leading-7 text-warm/86">
+                      «{guide.leadQuote}»
+                    </blockquote>
+                  ) : null}
+
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <Link
+                      href={chapterHref}
+                      className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-black text-night transition hover:bg-gold-light"
+                    >
+                      ورود به صفحه اختصاصی
+                      <ArrowLeft className="h-4 w-4" />
+                    </Link>
+                    {firstVerse ? (
+                      <Link
+                        href={`/avesta/${sectionSlug}/${chapter.slug}/${firstVerse.slug}${langQuery}`}
+                        className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-black/16 px-4 py-2 text-sm font-black text-gold-light transition hover:border-gold/45 hover:bg-gold/10"
+                      >
+                        شروع از بند اول
+                        <Sparkles className="h-4 w-4" />
+                      </Link>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}

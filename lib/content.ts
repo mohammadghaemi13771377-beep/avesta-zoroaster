@@ -38,10 +38,18 @@ export const routeMap = [
   "/avesta/yasna",
   "/avesta/gathas",
   "/avesta/visperad",
+  "/avesta/visperad/visperad-starter",
   "/avesta/vendidad",
+  "/avesta/vendidad/fargard-1",
+  "/avesta/vendidad/fargard-2",
   "/avesta/yashts",
+  "/avesta/yashts/aban-yasht",
+  "/avesta/yashts/mehr-yasht",
   "/avesta/khordeh-avesta",
+  "/avesta/khordeh-avesta/daily-prayers",
+  "/avesta/khordeh-avesta/atash-niyayesh",
   "/avesta/hats",
+  "/avesta/hats/ha-map",
   "/world",
   "/tour",
   "/exhibitions",
@@ -173,6 +181,7 @@ export const avestaSections = [
     href: "/avesta/yasna",
     description: "نیایش‌ها، هوم‌ها و آیین‌های بنیادین؛ جایی که آتش، سرود و روشنایی به هم می‌رسند.",
     atmosphere: "scene-fire",
+    coverImage: "/images/ai/yasna-cover.png",
     roman: "I"
   },
   {
@@ -181,6 +190,7 @@ export const avestaSections = [
     href: "/avesta/gathas",
     description: "سرودهای ژرف و روشن زرتشت؛ آرام، الهی و سرشار از معنا.",
     atmosphere: "scene-sunrise",
+    coverImage: "/images/ai/gathas-cover.png",
     roman: "II"
   },
   {
@@ -189,6 +199,7 @@ export const avestaSections = [
     href: "/avesta/visperad",
     description: "متن آیینی برای تکمیل نیایش‌ها و بزرگداشت همه ردان و نیروهای نیک.",
     atmosphere: "scene-tablets",
+    coverImage: "/images/ai/avesta-portal.png",
     roman: "III"
   },
   {
@@ -197,6 +208,7 @@ export const avestaSections = [
     href: "/avesta/vendidad",
     description: "قانون، پاکی و رازهای تاریک‌تر اوستا در فضایی پرهیبت و رمزآلود.",
     atmosphere: "scene-stone",
+    coverImage: "/images/ai/vendidad-cover.png",
     roman: "IV"
   },
   {
@@ -205,6 +217,7 @@ export const avestaSections = [
     href: "/avesta/yashts",
     description: "سرودهای حماسی برای ایزدان، طبیعت، آسمان، آب، مهر و پیروزی.",
     atmosphere: "scene-mountain",
+    coverImage: "/images/ai/yashts-cover.png",
     roman: "V"
   },
   {
@@ -213,6 +226,7 @@ export const avestaSections = [
     href: "/avesta/khordeh-avesta",
     description: "نیایش‌های روزانه، آرامش شخصی و حضور روشنایی در زندگی معمول.",
     atmosphere: "scene-scroll",
+    coverImage: "/images/ai/khordeh-avesta-cover.png",
     roman: "VI"
   },
   {
@@ -221,6 +235,7 @@ export const avestaSections = [
     href: "/avesta/hats",
     description: "نقشه مطالعه، طومار فصل‌ها و مسیر ورود به متن‌های جزءبه‌جزء.",
     atmosphere: "scene-portrait",
+    coverImage: "/images/ai/hats-cover.png",
     roman: "VII"
   }
 ];

@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 const contentTypes = [
   { label: "بند اوستا", value: "avestaVerse" },
   { label: "فصل / هات", value: "avestaChapter" },
+  { label: "راهنمای تصویری فصل", value: "avestaChapterGuide" },
   { label: "بخش اوستا", value: "avestaSection" },
   { label: "مقاله", value: "article" },
   { label: "واژه‌نامه", value: "glossaryTerm" },
@@ -35,7 +36,9 @@ export function AdminContentForm() {
       order,
       summary,
       seoTitle,
-      coverImage: "/images/ai/yasna-verse-1.jpg",
+      coverImage: "/images/ai/yasna-cover.png",
+      accent: "#F2B45E",
+      tone: "fire",
       audioUrl: "/audio/yasna-verse-1.mp3",
       fileUrl: "/library/avesta-reading-guide.pdf",
       language: "fa",
@@ -50,7 +53,19 @@ export function AdminContentForm() {
         meaning: "معنی واژه",
         root: "Avestan root",
         description: summary,
-        content: "متن کامل مقاله یا محتوای آموزشی در این بخش قرار می‌گیرد."
+        content: "متن کامل مقاله یا محتوای آموزشی در این بخش قرار می‌گیرد.",
+        question: "چگونه این فصل به تجربه تصویری و اخلاقی تبدیل می‌شود؟",
+        subtitle: "زیرعنوان راهنمای تصویری فصل برای hero، کارت‌ها و صفحه بندها.",
+        leadQuote: "نقل‌قول محوری این فصل برای اتصال متن به زندگی امروز.",
+        curatorNote: "یادداشت کیوریتور برای تیم محتوا و دیزاین.",
+        todayPractice: JSON.stringify(["یک متن کوتاه بخوان.", "یک پیام اخلاقی یادداشت کن.", "یک کار نیک انجام بده."]),
+        sidePanels: JSON.stringify([
+          { title: "قاب اول", body: "توضیح کوتاه قاب اول.", icon: "sparkles" },
+          { title: "قاب دوم", body: "توضیح کوتاه قاب دوم.", icon: "sun" }
+        ]),
+        storyPanels: JSON.stringify([
+          { title: "کارت روایت", body: "توضیح کارت روایت.", image: "/images/ai/yasna-cover.png" }
+        ])
       }
     }),
     [chapterSlug, locale, order, resource, sectionSlug, seoTitle, slug, summary, title]

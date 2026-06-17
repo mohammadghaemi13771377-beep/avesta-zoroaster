@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
@@ -28,6 +29,7 @@ import {
 import { getMediaAssetsForVerse } from "@/lib/media-repository";
 import { glossaryTerms, sampleVerses } from "@/lib/sample-content";
 import { getVerseTrustProfile } from "@/lib/source-trust";
+import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
 
 type PageProps = {
   params: {
@@ -109,6 +111,9 @@ export default async function VersePage({ params, searchParams }: PageProps) {
   const relatedAudio = relatedMedia.find((asset) => asset.type === "Audio" || asset.type === "Podcast");
   const audioUrl = verse.audioUrl ?? relatedAudio?.url ?? null;
   const trustProfile = getVerseTrustProfile(section.title, chapter.title);
+  const chapterGuide = getAvestaChapterGuide(section.slug, chapter.slug);
+  const chapterHref = `/avesta/${section.slug}/${chapter.slug}${langQuery}`;
+  const heroImage = chapterGuide?.coverImage ?? section.coverImage ?? null;
 
   return (
     <main className="overflow-hidden pt-24" dir={direction}>
@@ -117,11 +122,11 @@ export default async function VersePage({ params, searchParams }: PageProps) {
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.04fr_0.96fr]">
           <div>
             <Link
-              href={`/avesta/${section.slug}${langQuery}`}
+              href={chapterHref}
               className="mb-8 inline-flex items-center gap-2 rounded-full border border-gold-400/25 bg-obsidian-950/55 px-4 py-2 text-sm text-gold-100 transition hover:border-gold-300/60 hover:text-gold-200"
             >
               <ArrowRight className="h-4 w-4" />
-              بازگشت به تالار {section.title}
+              بازگشت به {chapter.title}
             </Link>
 
             <p className="gold-text text-sm font-semibold uppercase tracking-[0.34em]">
@@ -156,14 +161,27 @@ export default async function VersePage({ params, searchParams }: PageProps) {
 
           <div className="lux-frame p-4">
             <div className={`image-scene ${section.atmosphere} min-h-[430px] overflow-hidden rounded-[1.55rem]`}>
+              {heroImage ? (
+                <Image
+                  src={heroImage}
+                  alt={chapterGuide?.title ?? chapter.title}
+                  fill
+                  sizes="(min-width: 1024px) 560px, 100vw"
+                  className="object-cover opacity-[0.82]"
+                  priority
+                />
+              ) : null}
+              <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/22 to-black/10" />
               <div className="absolute inset-x-8 top-8 flex items-center justify-between text-gold-200/80">
                 <span className="font-serif text-4xl">{section.roman ?? "I"}</span>
                 <Sparkles className="h-6 w-6" />
               </div>
               <div className="absolute bottom-8 right-8 max-w-xs">
                 <p className="gold-text text-sm font-semibold tracking-[0.25em]">READING ROOM</p>
-                <h2 className="mt-3 text-3xl font-black text-warm-50">{section.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-warm-100/72">{section.description}</p>
+                <h2 className="mt-3 text-3xl font-black text-warm-50">{chapterGuide?.chapterTitle ?? chapter.title}</h2>
+                <p className="mt-3 text-sm leading-7 text-warm-100/72">
+                  {chapterGuide?.chapterIntro ?? chapter.description}
+                </p>
               </div>
             </div>
           </div>
@@ -178,6 +196,45 @@ export default async function VersePage({ params, searchParams }: PageProps) {
             </div>
 
             <SourceTrustPanel profile={trustProfile} />
+
+            {chapterGuide ? (
+              <section className="poster-panel p-6 sm:p-8" style={{ ["--poster-accent" as string]: chapterGuide.accent }}>
+                <div className="grid gap-6 lg:grid-cols-[0.72fr_1fr]">
+                  <div className="image-atmosphere relative min-h-[260px] rounded-[20px] border border-gold/15">
+                    <Image
+                      src={chapterGuide.coverImage}
+                      alt={chapterGuide.title}
+                      fill
+                      sizes="(min-width: 1024px) 360px, 100vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-night/88 via-night/18 to-transparent" />
+                    <div className="absolute bottom-4 right-4 left-4">
+                      <p className="text-xs font-black text-gold-light">VISUAL CONTEXT</p>
+                      <h2 className="mt-2 text-2xl font-black text-warm">{chapterGuide.chapterTitle}</h2>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="gold-text text-sm font-semibold tracking-[0.24em]">CHAPTER GUIDE</p>
+                    <h2 className="mt-3 text-3xl font-black text-warm-50">{chapterGuide.title}</h2>
+                    <p className="reader-text mt-5 text-warm-100/82">{chapterGuide.subtitle}</p>
+                    <blockquote className="mt-5 rounded-2xl border border-gold/18 bg-gold/10 p-5 text-lg font-black leading-9 text-gold-100">
+                      «{chapterGuide.leadQuote}»
+                    </blockquote>
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      {chapterGuide.todayPractice.map((practice) => (
+                        <span
+                          key={practice}
+                          className="rounded-full border border-warm-50/10 bg-warm-50/[0.06] px-4 py-2 text-xs font-bold text-warm-100/78"
+                        >
+                          {practice}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ) : null}
 
             <RitualAudioPlayer
               title={`روایت صوتی ${verse.verseNumber}`}
@@ -220,7 +277,18 @@ export default async function VersePage({ params, searchParams }: PageProps) {
 
             <div className="lux-frame overflow-hidden">
               <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
-                <div className={`image-scene ${section.atmosphere} min-h-[310px]`} />
+                <div className={`image-scene ${section.atmosphere} min-h-[310px]`}>
+                  {heroImage ? (
+                    <Image
+                      src={heroImage}
+                      alt={chapterGuide?.title ?? section.title}
+                      fill
+                      sizes="(min-width: 1024px) 420px, 100vw"
+                      className="object-cover opacity-[0.78]"
+                    />
+                  ) : null}
+                  <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/18 to-transparent" />
+                </div>
                 <div className="p-7 sm:p-10">
                   <p className="gold-text text-sm font-semibold tracking-[0.24em]">TODAY MESSAGE</p>
                   <h2 className="mt-3 text-3xl font-black text-warm-50">پیام امروزی این بند</h2>
@@ -250,6 +318,21 @@ export default async function VersePage({ params, searchParams }: PageProps) {
           </article>
 
           <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+            {chapterGuide ? (
+              <Link
+                href={chapterHref}
+                className="poster-parchment block p-5 transition hover:-translate-y-1"
+              >
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-night/60">VISUAL CHAPTER</p>
+                <h2 className="mt-2 text-2xl font-black text-night">{chapterGuide.chapterTitle}</h2>
+                <p className="mt-3 text-sm font-bold leading-7 text-night/78">{chapterGuide.ethicalMessage}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-night">
+                  باز کردن صفحه اختصاصی
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+            ) : null}
+
             <div className="lux-frame p-6">
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold-400/25 bg-gold-400/10 text-gold-200">

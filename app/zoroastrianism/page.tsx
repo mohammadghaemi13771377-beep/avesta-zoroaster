@@ -3,6 +3,7 @@ import { BookOpen, Flame, Landmark, Scale, Sparkles } from "lucide-react";
 
 import { CinematicHub, FeatureLinkGrid } from "@/components/cinematic-hub";
 import { monotheismPillars } from "@/lib/sample-content";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "دین زرتشتی",
@@ -47,6 +48,7 @@ export default function ZoroastrianismPage() {
       title="دین زرتشتی؛ راه خرد، راستی و انتخاب"
       lead="این صفحه نقشه شناخت آموزه‌های زرتشتی است: یکتاپرستی، اهورامزدا، اشا، وهومن، اخلاق، نمادها و پیوند آن‌ها با فرهنگ ایران باستان."
       scene="scene-fire"
+      heroImage={routeHeroByPath["/zoroastrianism"]}
       roman="D"
       actions={[
         { label: "ورود به هاب یکتاپرستی", href: "/monotheism" },

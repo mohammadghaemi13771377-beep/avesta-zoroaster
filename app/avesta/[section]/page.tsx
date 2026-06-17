@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BookMarked, Headphones, Quote, Share2, Sparkles } from "lucide-react";
+import { BookMarked, Headphones, Quote, Share2, Sparkles } from "lucide-react";
+import { AvestaChapterAtlas } from "@/components/avesta-chapter-atlas";
+import { AvestaPosterExperience } from "@/components/avesta-poster-experience";
 import { ReadingControls } from "@/components/reading-controls";
 import { avestaSections } from "@/lib/content";
 import {
@@ -10,6 +12,8 @@ import {
   getSectionChapters,
   getSectionSampleVerse
 } from "@/lib/avesta-repository";
+import { getAvestaVisualGuide } from "@/lib/avesta-visual-guides";
+import { sectionCoverBySlug } from "@/lib/visual-assets";
 
 type PageProps = {
   params: {
@@ -47,6 +51,8 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
   const sampleVerse = await getSectionSampleVerse(params.section, locale);
   const chapters = await getSectionChapters(params.section, locale);
   const langQuery = locale === "en" ? "?lang=en" : "";
+  const visualGuide = getAvestaVisualGuide(section.slug);
+  const sectionCover = section.coverImage ?? sectionCoverBySlug[section.slug];
 
   return (
     <main className="overflow-hidden pt-24" dir={locale === "en" ? "ltr" : "rtl"}>
@@ -83,10 +89,22 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
           </div>
 
           <div className={`image-scene ${section.atmosphere} min-h-[470px] rounded-[22px] border border-gold/20 shadow-2xl shadow-black/50`}>
+            {sectionCover ? (
+              <Image
+                src={sectionCover}
+                alt={section.title}
+                fill
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className="object-cover opacity-[0.88]"
+                priority
+              />
+            ) : null}
             <div className="absolute inset-x-10 bottom-10 z-10 h-px bg-gradient-to-l from-transparent via-gold/60 to-transparent" />
           </div>
         </div>
       </section>
+
+      {visualGuide ? <AvestaPosterExperience guide={visualGuide} langQuery={langQuery} /> : null}
 
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
         <ReadingControls />
@@ -107,34 +125,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
           </article>
         </div>
 
-        <section className="mt-8 lux-frame rounded-[18px] p-7">
-          <p className="text-sm font-bold text-gold-light">فصل‌ها و بندهای نمونه</p>
-          <h2 className="mt-3 text-3xl font-black text-warm">مسیر مطالعه</h2>
-          <div className="mt-6 grid gap-4">
-            {chapters.length ? (
-              chapters.map((chapter) => (
-                <div key={chapter.slug} className="rounded-2xl border border-gold/10 bg-black/24 p-5">
-                  <h3 className="text-2xl font-black text-warm">{chapter.title}</h3>
-                  <p className="mt-2 leading-7 text-muted">{chapter.description}</p>
-                  <div className="mt-4 grid gap-3 md:grid-cols-2">
-                    {chapter.verses.map((verse) => (
-                      <Link
-                        key={verse.slug}
-                        href={`/avesta/${section.slug}/${chapter.slug}/${verse.slug}${langQuery}`}
-                        className="inline-flex items-center justify-between gap-4 rounded-2xl border border-gold/10 bg-night/55 p-4 text-gold-light transition hover:border-gold/40 hover:bg-gold/10"
-                      >
-                        <span className="font-bold">{verse.title}</span>
-                        <ArrowLeft size={18} />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p className="reader-text text-muted">فصل‌های این بخش بعد از ورود محتوای کامل از پنل مدیریت اضافه می‌شوند.</p>
-            )}
-          </div>
-        </section>
+        <AvestaChapterAtlas sectionSlug={section.slug} sectionTitle={section.title} chapters={chapters} langQuery={langQuery} />
 
         <div className="mt-8 grid gap-5">
           {sampleVerse.blocks.map((block) => (

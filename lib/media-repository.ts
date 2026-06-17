@@ -162,7 +162,7 @@ function sampleMediaAssets(): MediaAssetView[] {
       slug,
       href: `/media/${slug}`,
       url: null,
-      thumbnail: null,
+      thumbnail: "thumbnail" in item && typeof item.thumbnail === "string" ? item.thumbnail : null,
       sectionSlug,
       chapterSlug: sectionSlug === "yasna" ? "ha-1" : sectionSlug === "gathas" ? "ahunavaiti" : null,
       verseOrder: sectionSlug === "yasna" || sectionSlug === "gathas" ? 1 : null,
@@ -217,6 +217,10 @@ async function readMediaAssetsFromDatabase(filter?: {
 }
 
 async function getPrisma() {
+  if (!process.env.DATABASE_URL) {
+    return null;
+  }
+
   try {
     const { prisma } = await import("@/lib/prisma");
     return prisma;

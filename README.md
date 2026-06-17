@@ -34,6 +34,12 @@ node preview-server.mjs
 - نقشه جهان دیجیتال `/world`
 - تور موزه‌ای `/tour` برای تجربه هدایت‌شده، سینمایی و مرحله‌ای جهان اوستا
 - نمایشگاه‌های موضوعی `/exhibitions` برای مسیرهای curated شامل آثار، یادداشت کیوریتور و پیشرفت محلی
+- فاز طراحی و محتوا با ۲۱ تصویر واقعی در `public/images/ai` برای hero، cover، رسانه، نمایشگاه و محصولات فروشگاه
+- فاز UI داخلی اوستا با الگوی پوستر/موزه نورانی برای یسنا، گات‌ها، ویسپرد، وندیداد، یشت‌ها، خرده اوستا و هات‌ها
+- صفحه‌های اختصاصی زیرمجموعه‌ها مثل یسنا ۱، اهونود گات، درآمد ویسپرد، آبان یشت، مهر یشت، فرگرد اول، فرگرد دوم، نیایش‌های روزانه، آتش نیایش و نقشه هات‌ها
+- اطلس تصویری chapterها داخل صفحه‌های مادر اوستا برای ورود سریع به تالار اختصاصی و بند اول
+- اتصال صفحه‌های بند/آیه به راهنمای تصویری chapter با hero اختصاصی، پنل زمینه تصویری و تمرین‌های همان تالار
+- Reference board تصویری در `public/images/references` و سند `docs/visual-reference-board.md` برای تیم طراحی
 - پورتال اصلی `/avesta`
 - صفحه‌های بخش‌های اوستا و صفحه جزئی بند/آیه
 - هاب‌های زرتشت، گات‌ها، دین زرتشتی، یکتاپرستی، مسیرهای موضوعی یکتاپرستی، کوروش، تایم‌لاین، کتابخانه، رسانه، مقاله‌ها و جستجو
@@ -58,6 +64,7 @@ node preview-server.mjs
 - ورود و ثبت‌نام demo با cookie session
 - پنل ادمین برای Go-Live، کنترل کیفیت صفحات، آنالیتیکس محصول، تحویل تیم‌ها، محتوا، رسانه، کنترل تصویرهای AI، رجیستری منابع، پوشش ارجاع، بازبینی منابع، import، SEO، فروشگاه، خبرنامه، Inventory، Production، Brief و Review
 - کنسول ادمین نمایشگاه‌ها برای کنترل آمادگی روایت، رسانه، ریسک و مسیرهای مرتبط هر نمایشگاه
+- قرارداد مدل‌های محتوایی ادمین `/api/admin/content-models` برای مقاله، بند اوستا، رسانه، نمایشگاه و محصول
 - کنسول آمادگی Deploy برای تحویل GitHub، Vercel، env، دیتابیس، DNS، storage، search و smoke test
 - ماتریس تکمیل اوستا برای رصد متن اصلی، ترجمه، بازنویسی، تحلیل، تصویر، صوت، منبع و SEO هر بخش
 - Batch تولید اوستا برای تبدیل کمبودهای ماتریس تکمیل به تسک‌های اجرایی تیم محتوا، رسانه، پژوهش و SEO
@@ -91,10 +98,18 @@ node preview-server.mjs
 - `/avesta/yasna`
 - `/avesta/gathas`
 - `/avesta/visperad`
+- `/avesta/visperad/visperad-starter`
 - `/avesta/vendidad`
+- `/avesta/vendidad/fargard-1`
+- `/avesta/vendidad/fargard-2`
 - `/avesta/yashts`
+- `/avesta/yashts/aban-yasht`
+- `/avesta/yashts/mehr-yasht`
 - `/avesta/khordeh-avesta`
+- `/avesta/khordeh-avesta/daily-prayers`
+- `/avesta/khordeh-avesta/atash-niyayesh`
 - `/avesta/hats`
+- `/avesta/hats/ha-map`
 - `/world`
 - `/tour`
 - `/exhibitions`
@@ -159,6 +174,7 @@ node preview-server.mjs
 - `/api/search/indexes`
 - `/api/avesta`
 - `/api/avesta/yasna`
+- `/api/avesta/yashts/aban-yasht`
 - `/api/avesta/yasna/ha-1/verse-1`
 - `/api/tour`
 - `/api/exhibitions`
@@ -219,6 +235,7 @@ npm run db:seed
 - `DELIVERY.md`
 - `docs/technical-handoff.md`
 - `docs/product-design-handoff.md`
+- `docs/visual-reference-board.md`
 - `docs/file-manifest.md`
 - `docs/implementation-roadmap.md`
 - `docs/content-intake-guide.md`

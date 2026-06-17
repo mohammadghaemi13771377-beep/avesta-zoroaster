@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BookOpen, Headphones, Quote, Sparkles } from "lucide-react";
 
 import { CinematicHub, FeatureLinkGrid } from "@/components/cinematic-hub";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "گات‌ها",
@@ -46,6 +47,7 @@ export default function GathasPage() {
       title="گات‌ها، روشن‌ترین تالار خرد اوستا"
       lead="گات‌ها هسته تجربه مطالعاتی سایت هستند؛ بخشی آرام، نورانی و عمیق برای خواندن، شنیدن، فهمیدن و تبدیل پیام زرتشت به زبان امروز."
       scene="scene-sunrise"
+      heroImage={routeHeroByPath["/gathas"]}
       roman="G"
       actions={[
         { label: "ورود به گات‌ها", href: "/avesta/gathas" },

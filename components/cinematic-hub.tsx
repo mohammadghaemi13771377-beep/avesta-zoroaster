@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Sparkles } from "lucide-react";
 
@@ -22,6 +23,7 @@ type CinematicHubProps = {
   roman?: string;
   actions?: HubAction[];
   stats?: HubStat[];
+  heroImage?: string;
   children?: ReactNode;
 };
 
@@ -33,6 +35,7 @@ export function CinematicHub({
   roman = "I",
   actions = [],
   stats = [],
+  heroImage,
   children,
 }: CinematicHubProps) {
   return (
@@ -80,6 +83,17 @@ export function CinematicHub({
 
           <div className="lux-frame p-4">
             <div className={`image-scene ${scene} min-h-[440px] overflow-hidden rounded-[1.55rem]`}>
+              {heroImage ? (
+                <Image
+                  src={heroImage}
+                  alt={title}
+                  fill
+                  sizes="(min-width: 1024px) 44vw, 92vw"
+                  className="object-cover"
+                  priority
+                />
+              ) : null}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/20 to-black/5" />
               <div className="absolute inset-x-8 top-8 flex items-center justify-between text-gold-200/80">
                 <span className="font-serif text-4xl">{roman}</span>
                 <Sparkles className="h-6 w-6" />

@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowLeft, ShoppingBag, SlidersHorizontal, Sparkles } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -75,6 +76,14 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
           {filteredProducts.map((product) => (
             <article key={product.slug} className="lux-frame overflow-hidden rounded-[18px] p-4">
               <Link href={`/shop/${product.slug}`} className={`image-scene ${product.imageScene} block h-56 rounded-[14px] border border-gold/14`}>
+                <Image
+                  src={product.imageSrc}
+                  alt={product.title}
+                  fill
+                  sizes="(min-width: 768px) 44vw, 92vw"
+                  className="object-cover transition duration-500 hover:scale-105"
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <span className="sr-only">{product.title}</span>
               </Link>
               <div className="mt-5 flex flex-wrap gap-2">

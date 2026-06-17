@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, CheckCircle2, Circle, GalleryHorizontalEnd, RefreshCw, Sparkles } from "lucide-react";
 import type { Exhibition } from "@/lib/exhibitions";
 
@@ -104,6 +105,14 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
       <section className="space-y-6">
         <div className="lux-frame overflow-hidden p-5 sm:p-7">
           <div className={`image-scene ${active.scene} min-h-[430px] rounded-[1.55rem] border border-gold-400/15`}>
+            <Image
+              src={active.heroImage}
+              alt={active.title}
+              fill
+              sizes="(min-width: 1280px) 760px, 92vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/12 to-transparent" />
             <div className="absolute inset-x-6 top-6 flex items-center justify-between text-gold-100">
               <span className="rounded-full border border-gold-400/20 bg-black/35 px-4 py-2 text-xs font-black">
                 {active.duration}
@@ -143,7 +152,16 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
 
             return (
               <article key={artifact.id} className="lux-frame overflow-hidden p-4">
-                <div className={`image-scene ${artifact.scene} h-44 rounded-2xl border border-gold-400/15`} />
+                <div className={`image-scene ${artifact.scene} h-44 rounded-2xl border border-gold-400/15`}>
+                  <Image
+                    src={artifact.thumbnail}
+                    alt={artifact.title}
+                    fill
+                    sizes="(min-width: 768px) 28vw, 92vw"
+                    className="object-cover transition duration-500 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/68 via-transparent to-transparent" />
+                </div>
                 <div className="mt-4 flex items-start justify-between gap-3">
                   <div>
                     <p className="text-xs font-black text-gold-100">{artifact.type}</p>

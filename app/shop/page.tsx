@@ -5,6 +5,7 @@ import { BookOpen, Gift, Shirt, ShoppingBag } from "lucide-react";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { ShopStorefront } from "@/components/shop-storefront";
 import { shopProducts } from "@/lib/shop";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "فروشگاه",
@@ -25,6 +26,7 @@ export default function ShopPage() {
       title="فروشگاه اوستا، زرتشت و خرد یکتاپرستی"
       lead="این بخش برای فروش محصولات فرهنگی مرتبط با اوستا، زرتشت، یکتاپرستی و ایران باستان طراحی شده است؛ فعلاً نسخه نمایشی آماده است و بعداً به پرداخت، انبار و سفارش وصل می‌شود."
       scene="scene-cosmic"
+      heroImage={routeHeroByPath["/shop"]}
       roman="S"
       actions={[
         { label: "مشاهده محصولات", href: "#shop-products" },

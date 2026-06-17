@@ -15,11 +15,11 @@
 
 ## نمونه نام‌گذاری
 
-- `home-hero-sunrise.jpg`
-- `yasna-cover.jpg`
-- `gathas-cover.jpg`
-- `vendidad-cover.jpg`
-- `yasna-ha-1-verse-1.jpg`
+- `home-hero.png`
+- `yasna-cover.png`
+- `gathas-cover.png`
+- `vendidad-cover.png`
+- `yasna-cover.png`
 - `yasna-verse-1.mp3`
 - `avesta-reading-guide.pdf`
 
@@ -31,7 +31,7 @@
 4. URL را در فرم «ثبت رسانه» بگذار، مثل:
 
 ```txt
-/images/ai/yasna-cover.jpg
+/images/ai/yasna-cover.png
 ```
 
 5. اگر رسانه مربوط به بند خاصی است، `sectionSlug`، `chapterSlug` و `verseOrder` را پر کن.
@@ -60,7 +60,7 @@ Content-Type: multipart/form-data
 فصل: ha-1
 بند: 1
 عنوان تصویر: آتش مقدس یسنا
-مسیر پیشنهادی: /images/ai/yasna-ha-1-verse-1.jpg
+مسیر پیشنهادی: /images/ai/yasna-cover.png
 متن اصلی:
 ...
 ترجمه کلاسیک:

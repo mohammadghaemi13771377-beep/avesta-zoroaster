@@ -3,6 +3,7 @@ import { ArrowLeft, Flame, Scale, Sparkles, Sun } from "lucide-react";
 import Link from "next/link";
 
 import { CinematicHub } from "@/components/cinematic-hub";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "یکتاپرستی",
@@ -66,6 +67,7 @@ export default function MonotheismPage() {
         title="یکتاپرستی، خرد و روشنایی"
         lead="این صفحه قلب معنایی سایت است: معرفی اهورامزدا، اشا، اختیار انسان و اخلاق زرتشتی به زبان مدرن، سینمایی و قابل لمس."
         scene="scene-fire"
+        heroImage={routeHeroByPath["/monotheism"]}
         roman="Y"
         actions={[
           { label: "شروع از گات‌ها", href: "/avesta/gathas/ahunavaiti/verse-1" },

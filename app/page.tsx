@@ -7,6 +7,7 @@ import { SectionCard } from "@/components/section-card";
 import { TrackedLink } from "@/components/tracked-link";
 import { avestaSections, featuredArticles } from "@/lib/content";
 import { getDailyAvesta } from "@/lib/daily-avesta";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 const featureBadges = [
   ["همیشه در دسترس", "وب و موبایل", Smartphone],
@@ -151,6 +152,15 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden">
       <section className="hero-cosmos relative min-h-screen pt-24">
+        <Image
+          src={routeHeroByPath["/"]}
+          alt="طلوع سینمایی جهان اوستا و زرتشت"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-70"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-night/20 via-night/72 to-night/96" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
 
@@ -227,6 +237,7 @@ export default function HomePage() {
                 description={section.description}
                 href={section.href}
                 atmosphere={section.atmosphere}
+                imageSrc={section.coverImage}
                 roman={section.roman}
                 tracking={{
                   event: "avesta_section_opened",

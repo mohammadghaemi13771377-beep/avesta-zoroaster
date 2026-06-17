@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BookOpen, Flame, Landmark, Sparkles } from "lucide-react";
 
 import { CinematicHub, FeatureLinkGrid } from "@/components/cinematic-hub";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "زرتشت",
@@ -46,6 +47,7 @@ export default function ZoroasterPage() {
       title="زرتشت، آغاز سفر خرد و روشنایی"
       lead="این صفحه دروازه آشنایی با زندگی، پیام و میراث زرتشت است؛ جایی میان تاریخ، اخلاق، گات‌ها و تجربه تصویری ایران باستان."
       scene="scene-prophet"
+      heroImage={routeHeroByPath["/zoroaster"]}
       roman="Z"
       actions={[
         { label: "مطالعه گات‌ها", href: "/gathas" },

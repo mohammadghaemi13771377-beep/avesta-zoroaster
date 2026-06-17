@@ -43,7 +43,7 @@ const starterRows: AvestaImportTemplateRow[] = avestaSections.slice(0, 4).map((s
   quote: "نقل‌قول طلایی قابل اشتراک.",
   citationTitle: "عنوان منبع / نسخه / پژوهش",
   citationNote: "یادداشت منبع، صفحه، مترجم یا سطح اعتماد.",
-  coverImage: `/images/ai/${section.slug}-starter-1.jpg`,
+  coverImage: coverImageForSection(section.slug),
   audioUrl: `/audio/${section.slug}-starter-1.mp3`,
   seoTitle: `${section.title} | AVESTA-ZOROASTER`,
   seoDescription: `مطالعه ${section.title} با متن، ترجمه، بازنویسی ساده، تحلیل و پیام اخلاقی در جهان دیجیتال اوستا.`,
@@ -146,4 +146,18 @@ function escapeCsvCell(value: string) {
   }
 
   return value;
+}
+
+function coverImageForSection(slug: string) {
+  const covers: Record<string, string> = {
+    yasna: "/images/ai/yasna-cover.png",
+    gathas: "/images/ai/gathas-cover.png",
+    visperad: "/images/ai/avesta-portal.png",
+    vendidad: "/images/ai/vendidad-cover.png",
+    yashts: "/images/ai/yashts-cover.png",
+    "khordeh-avesta": "/images/ai/khordeh-avesta-cover.png",
+    hats: "/images/ai/hats-cover.png",
+  };
+
+  return covers[slug] ?? "/images/ai/avesta-portal.png";
 }

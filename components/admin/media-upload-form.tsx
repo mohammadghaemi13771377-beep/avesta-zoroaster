@@ -97,7 +97,7 @@ export function MediaUploadForm() {
           بعد از آپلود، این مسیر را در فرم «ثبت رسانه» بگذار تا به بند یا صفحه مربوط وصل شود.
         </p>
         <div className="mt-5 min-h-14 rounded-2xl border border-gold/10 bg-night/80 p-4 text-left text-sm leading-6 text-gold-light" dir="ltr">
-          {assetUrl || "/images/ai/example.jpg"}
+          {assetUrl || "/images/ai/media-cover.png"}
         </div>
       </div>
     </section>

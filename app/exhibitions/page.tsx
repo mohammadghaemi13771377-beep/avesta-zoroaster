@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { ExhibitionsGallery } from "@/components/exhibitions-gallery";
 import { getExhibitions, getExhibitionStats } from "@/lib/exhibitions";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "نمایشگاه‌های موضوعی اوستا | AVESTA-ZOROASTER",
@@ -18,6 +19,7 @@ export default function ExhibitionsPage() {
       title="نمایشگاه‌های موضوعی جهان اوستا"
       lead="این بخش سایت را از یک فهرست صفحه‌ها به یک موزه زنده تبدیل می‌کند؛ هر نمایشگاه یک مسیر دیدن، خواندن، شنیدن و تمرین‌کردن دارد."
       scene="scene-cosmic"
+      heroImage={routeHeroByPath["/exhibitions"]}
       roman="X"
       actions={[
         { label: "شروع نمایشگاه‌ها", href: "#exhibitions" },

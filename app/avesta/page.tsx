@@ -5,6 +5,7 @@ import { ArrowLeft, BookOpen, Flame, Sparkles } from "lucide-react";
 import { SectionCard } from "@/components/section-card";
 import { TrackedLink } from "@/components/tracked-link";
 import { getAvestaSections, getLocaleFromSearchParams } from "@/lib/avesta-repository";
+import { routeHeroByPath, sectionCoverBySlug } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "پورتال اوستا",
@@ -22,6 +23,15 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
   return (
     <main className="overflow-hidden pt-24" dir={locale === "en" ? "ltr" : "rtl"}>
       <section className="hero-cosmos relative min-h-[760px]">
+        <Image
+          src={routeHeroByPath["/avesta"]}
+          alt="پورتال سینمایی اوستا"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-68"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-night/25 via-night/72 to-night/96" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.86fr_1.14fr] lg:px-8">
@@ -87,6 +97,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
                 description={section.description}
                 href={section.href}
                 atmosphere={section.atmosphere ?? "scene-cosmic"}
+                imageSrc={sectionCoverBySlug[section.slug]}
                 roman={"roman" in section && typeof section.roman === "string" ? section.roman : `${index + 1}`}
                 kicker="بخش اصلی اوستا"
                 tracking={{

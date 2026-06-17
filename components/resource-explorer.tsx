@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowLeft,
@@ -27,6 +28,7 @@ type ResourceItem = {
   language?: string;
   mood?: string | null;
   prompt?: string | null;
+  thumbnail?: string | null;
 };
 
 type ResourceExplorerProps = {
@@ -238,9 +240,19 @@ function ResourceArtwork({
 }) {
   return (
     <div className={`image-atmosphere relative ${tall ? "h-56" : "h-48"} rounded-2xl border border-gold/10`}>
+      {item.thumbnail ? (
+        <Image
+          src={item.thumbnail}
+          alt={item.title}
+          fill
+          sizes={tall ? "360px" : "(min-width: 768px) 44vw, 92vw"}
+          className="object-cover"
+        />
+      ) : null}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/10 to-transparent" />
       <div className="absolute inset-x-8 bottom-7 h-20 rounded-full blur-2xl" style={{ backgroundColor: `${item.accent}38` }} />
       <div className="absolute inset-0 grid place-items-center">
-        <Icon className="text-gold-light" size={42} />
+        {!item.thumbnail ? <Icon className="text-gold-light" size={42} /> : null}
       </div>
       <div className="absolute right-5 top-4 z-10 font-display text-lg font-bold text-gold-light">
         {String(index + 1).padStart(2, "0")}

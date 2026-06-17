@@ -17,7 +17,7 @@ export const contentSlots: ContentSlot[] = [
     title: "تصویر Hero صفحه خانه",
     kind: "image",
     target: "/",
-    suggestedPath: "/images/ai/home-hero-sunrise.jpg",
+    suggestedPath: "/images/ai/home-hero.png",
     status: "empty",
     prompt: getPromptTemplate("home-hero-sunrise")?.prompt,
     note: "تصویر اصلی ورود به جهان دیجیتال اوستا؛ باید سینمایی، عمیق و غیرشلوغ باشد."
@@ -27,7 +27,7 @@ export const contentSlots: ContentSlot[] = [
     title: "کاور یسنا",
     kind: "image",
     target: "/avesta/yasna",
-    suggestedPath: "/images/ai/yasna-cover.jpg",
+    suggestedPath: "/images/ai/yasna-cover.png",
     status: "placeholder",
     prompt: getPromptTemplate("yasna-sacred-fire")?.prompt,
     note: "برای کارت یسنا و هدر صفحه یسنا استفاده می‌شود."
@@ -37,7 +37,7 @@ export const contentSlots: ContentSlot[] = [
     title: "کاور گات‌ها",
     kind: "image",
     target: "/avesta/gathas",
-    suggestedPath: "/images/ai/gathas-cover.jpg",
+    suggestedPath: "/images/ai/gathas-cover.png",
     status: "placeholder",
     prompt: getPromptTemplate("gathas-luminous-wisdom")?.prompt,
     note: "فضا باید روشن، معنوی و آرام باشد."
@@ -47,7 +47,7 @@ export const contentSlots: ContentSlot[] = [
     title: "کاور وندیداد",
     kind: "image",
     target: "/avesta/vendidad",
-    suggestedPath: "/images/ai/vendidad-cover.jpg",
+    suggestedPath: "/images/ai/vendidad-cover.png",
     status: "empty",
     prompt: getPromptTemplate("vendidad-mystery-law")?.prompt,
     note: "فضا رازآلود، تیره و آیینی باشد."

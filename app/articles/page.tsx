@@ -5,6 +5,7 @@ import { BookOpen, FileText, Search, Tags } from "lucide-react";
 import { ArticlesExplorer } from "@/components/articles-explorer";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { articleItems } from "@/lib/sample-content";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "مقالات",
@@ -25,6 +26,7 @@ export default function ArticlesPage() {
       title="مقالات اوستا، زرتشت و خرد ایران باستان"
       lead="مجله دانشی سایت برای سئو، روایت، تحلیل مفاهیم، تاریخ، نمادها و اتصال کاربر به واژه‌نامه، کتابخانه و متن اوستا طراحی شده است."
       scene="scene-tablets"
+      heroImage={routeHeroByPath["/articles"]}
       roman="A"
       actions={[
         { label: "مطالعه مقالات", href: "#articles-explorer" },

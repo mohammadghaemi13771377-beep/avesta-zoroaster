@@ -5,6 +5,7 @@ import { Headphones, ImagePlus, Mic2, Video } from "lucide-react";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { ResourceExplorer } from "@/components/resource-explorer";
 import { getMediaAssets } from "@/lib/media-repository";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "رسانه",
@@ -26,6 +27,7 @@ export default async function MediaPage() {
       title="رسانه، تصویرسازی AI و روایت صوتی"
       lead="این تالار برای تبدیل سایت از متن ساده به تجربه کامل ساخته شده است: تصویر اختصاصی، فایل صوتی، ویدیو، پادکست و پرامپت‌های هنری قابل مدیریت."
       scene="scene-mountain"
+      heroImage={routeHeroByPath["/media"]}
       roman="M"
       actions={[
         { label: "مشاهده رسانه‌ها", href: "#media-explorer" },

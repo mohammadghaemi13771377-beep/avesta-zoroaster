@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import { TrackedLink } from "@/components/tracked-link";
 import type { TrackPayloadValue } from "@/lib/client-events";
 
@@ -9,13 +10,14 @@ type SectionCardProps = {
   atmosphere: string;
   kicker?: string;
   roman?: string;
+  imageSrc?: string;
   tracking?: {
     event: string;
     payload: Record<string, TrackPayloadValue>;
   };
 };
 
-export function SectionCard({ title, description, href, atmosphere, kicker, roman, tracking }: SectionCardProps) {
+export function SectionCard({ title, description, href, atmosphere, kicker, roman, imageSrc, tracking }: SectionCardProps) {
   return (
     <TrackedLink
       href={href}
@@ -30,6 +32,16 @@ export function SectionCard({ title, description, href, atmosphere, kicker, roma
       className="group lux-frame block min-h-[390px] overflow-hidden rounded-[18px] p-3 transition duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-gold"
     >
       <div className={`image-scene ${atmosphere} h-52 rounded-[14px] border border-gold/15`}>
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            sizes="(min-width: 1280px) 14vw, (min-width: 768px) 30vw, 92vw"
+            className="object-cover transition duration-500 group-hover:scale-105"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
         {roman ? (
           <div className="absolute right-4 top-4 z-10 font-display text-lg font-bold text-gold-light">
             {roman}

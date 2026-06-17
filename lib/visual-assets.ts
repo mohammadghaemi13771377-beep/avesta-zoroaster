@@ -1,0 +1,48 @@
+export const visualAssets = {
+  homeHero: "/images/ai/home-hero.png",
+  avesta: "/images/ai/avesta-portal.png",
+  gathas: "/images/ai/gathas-cover.png",
+  zoroaster: "/images/ai/zoroaster-cover.png",
+  zoroastrianism: "/images/ai/zoroastrianism-cover.png",
+  monotheism: "/images/ai/monotheism-cover.png",
+  dictionary: "/images/ai/dictionary-cover.png",
+  articles: "/images/ai/articles-cover.png",
+  library: "/images/ai/library-cover.png",
+  media: "/images/ai/media-cover.png",
+  exhibitions: "/images/ai/exhibitions-cover.png",
+  shop: "/images/ai/shop-cover.png",
+  yasna: "/images/ai/yasna-cover.png",
+  vendidad: "/images/ai/vendidad-cover.png",
+  yashts: "/images/ai/yashts-cover.png",
+  khordehAvesta: "/images/ai/khordeh-avesta-cover.png",
+  hats: "/images/ai/hats-cover.png",
+  productBook: "/images/ai/product-book.png",
+  productMug: "/images/ai/product-mug.png",
+  productShirt: "/images/ai/product-shirt.png",
+  productStatue: "/images/ai/product-statue.png",
+} as const;
+
+export const sectionCoverBySlug: Record<string, string> = {
+  yasna: visualAssets.yasna,
+  gathas: visualAssets.gathas,
+  visperad: visualAssets.avesta,
+  vendidad: visualAssets.vendidad,
+  yashts: visualAssets.yashts,
+  "khordeh-avesta": visualAssets.khordehAvesta,
+  hats: visualAssets.hats,
+};
+
+export const routeHeroByPath: Record<string, string> = {
+  "/": visualAssets.homeHero,
+  "/avesta": visualAssets.avesta,
+  "/gathas": visualAssets.gathas,
+  "/zoroaster": visualAssets.zoroaster,
+  "/zoroastrianism": visualAssets.zoroastrianism,
+  "/monotheism": visualAssets.monotheism,
+  "/dictionary": visualAssets.dictionary,
+  "/articles": visualAssets.articles,
+  "/library": visualAssets.library,
+  "/media": visualAssets.media,
+  "/exhibitions": visualAssets.exhibitions,
+  "/shop": visualAssets.shop,
+};

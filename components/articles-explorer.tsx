@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, BookOpen, Clock, Search, Tag, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { normalizeSearchText } from "@/lib/search";
@@ -13,6 +14,7 @@ type ArticleItem = {
   tags: string[];
   readingTime: string;
   coverTone: string;
+  coverImage?: string;
   relatedTerms?: string[];
   relatedVerses?: string[];
 };
@@ -95,8 +97,18 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
                   }`}
                 >
                   <div className="image-atmosphere relative h-48 rounded-2xl border border-gold/10">
+                    {article.coverImage ? (
+                      <Image
+                        src={article.coverImage}
+                        alt={article.title}
+                        fill
+                        sizes="(min-width: 768px) 44vw, 92vw"
+                        className="object-cover transition duration-500 group-hover:scale-105"
+                      />
+                    ) : null}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/10 to-transparent" />
                     <div className="absolute inset-x-8 bottom-7 h-20 rounded-full bg-gold/20 blur-2xl" />
-                    <div className="absolute inset-0 grid place-items-center px-8 text-center text-sm font-bold leading-7 text-gold-light">
+                    <div className="absolute inset-x-5 bottom-5 z-10 text-right text-sm font-bold leading-7 text-gold-light">
                       {article.coverTone}
                     </div>
                     <div className="absolute right-5 top-4 z-10 font-display text-lg font-bold text-gold-light">
@@ -141,7 +153,17 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
             <div className="lux-frame p-5">
               <div className="image-atmosphere relative h-52 rounded-2xl border border-gold/10">
-                <div className="absolute inset-0 grid place-items-center px-8 text-center text-sm font-bold leading-7 text-gold-light">
+                {activeArticle.coverImage ? (
+                  <Image
+                    src={activeArticle.coverImage}
+                    alt={activeArticle.title}
+                    fill
+                    sizes="360px"
+                    className="object-cover"
+                  />
+                ) : null}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/10 to-transparent" />
+                <div className="absolute inset-x-5 bottom-5 z-10 text-right text-sm font-bold leading-7 text-gold-light">
                   {activeArticle.coverTone}
                 </div>
               </div>

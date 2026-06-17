@@ -5,6 +5,7 @@ import { Database, FileSearch, SlidersHorizontal } from "lucide-react";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { SearchPanel } from "@/components/search-panel";
 import { searchIndexes } from "@/lib/search";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "جستجوی پیشرفته",
@@ -24,6 +25,7 @@ export default function SearchPage() {
       title="جستجوی پیشرفته جهان اوستا"
       lead="این بخش مرکز کشف محتوای سایت است: متن اوستا، ترجمه‌ها، واژه‌نامه، مقاله‌ها، کتابخانه، رسانه و هاب یکتاپرستی."
       scene="scene-cosmic"
+      heroImage={routeHeroByPath["/dictionary"]}
       roman="S"
       stats={[
         { value: `${searchIndexes.length}`, label: "index آماده برای اتصال" },

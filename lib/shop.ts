@@ -11,6 +11,7 @@ export type ShopProduct = {
   price: number;
   currency: "IRR";
   imageScene: string;
+  imageSrc: string;
   badge: string;
   inventoryStatus: "available" | "preorder" | "limited";
   spiritualTheme: string;
@@ -41,6 +42,7 @@ export const shopProducts: ShopProduct[] = [
     price: 1250000,
     currency: "IRR",
     imageScene: "scene-scroll",
+    imageSrc: "/images/ai/product-book.png",
     badge: "پیشنهادی",
     inventoryStatus: "preorder",
     spiritualTheme: "پندار نیک و خرد روزانه",
@@ -59,6 +61,7 @@ export const shopProducts: ShopProduct[] = [
     price: 460000,
     currency: "IRR",
     imageScene: "scene-fire",
+    imageSrc: "/images/ai/product-mug.png",
     badge: "هدیه محبوب",
     inventoryStatus: "available",
     spiritualTheme: "سه‌گانه اخلاقی زرتشتی",
@@ -77,6 +80,7 @@ export const shopProducts: ShopProduct[] = [
     price: 890000,
     currency: "IRR",
     imageScene: "scene-portrait",
+    imageSrc: "/images/ai/product-shirt.png",
     badge: "طراحی ویژه",
     inventoryStatus: "limited",
     spiritualTheme: "فروهر، انتخاب آگاهانه و روشنایی",
@@ -95,6 +99,7 @@ export const shopProducts: ShopProduct[] = [
     price: 280000,
     currency: "IRR",
     imageScene: "scene-tablets",
+    imageSrc: "/images/ai/library-cover.png",
     badge: "سبک و لوکس",
     inventoryStatus: "available",
     spiritualTheme: "اشا؛ راستی و نظم جهان",
@@ -113,6 +118,7 @@ export const shopProducts: ShopProduct[] = [
     price: 2450000,
     currency: "IRR",
     imageScene: "scene-stone",
+    imageSrc: "/images/ai/product-statue.png",
     badge: "کلکسیونی",
     inventoryStatus: "preorder",
     spiritualTheme: "زرتشت، خرد و روشنایی",
@@ -131,6 +137,7 @@ export const shopProducts: ShopProduct[] = [
     price: 620000,
     currency: "IRR",
     imageScene: "scene-cosmic",
+    imageSrc: "/images/ai/shop-cover.png",
     badge: "AI Art",
     inventoryStatus: "available",
     spiritualTheme: "جهان دیجیتال اوستا",

@@ -145,6 +145,10 @@ export async function getImportJob(id: string) {
 }
 
 async function getPrisma() {
+  if (!process.env.DATABASE_URL) {
+    return null;
+  }
+
   try {
     const { prisma } = await import("@/lib/prisma");
     return prisma;
