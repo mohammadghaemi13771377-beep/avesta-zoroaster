@@ -26,10 +26,17 @@
 - `app/daily-light`: راهنمای روزانه روشنایی و مسیر ۱۵ دقیقه‌ای کاربر
 - `app/wisdom-capsule`: کپسول خرد سه دقیقه‌ای با پیام، واژه، تمرین و اشتراک
 - `app/avesta/[section]/[chapter]`: صفحه اختصاصی هر یشت، فرگرد، هات یا نیایش با پوستر، پیام امروزی و لیست بندها
+- `app/avesta/paths`: فهرست عمومی مسیرهای شروع مطالعه
+- `app/avesta/paths/[id]`: صفحه اختصاصی هر مسیر مطالعه با مراحل و CTA
 - `app/onboarding`: آیین ورود و مسیر شروع کاربر تازه‌وارد
 - `app/journey-builder`: سازنده مسیر با پشتیبانی از query params برای intent، pace، level و mode
 - `app/admin/avesta-completion`: ماتریس تکمیل محتوای اوستا برای تیم محتوا و پژوهش
+- `app/admin/avesta-study-paths`: کنترل آمادگی، مالک، کمبودها و چک‌لیست انتشار مسیرهای شروع اوستا
 - `app/admin/deployment-readiness`: کنسول آمادگی GitHub، Vercel، envها، دیتابیس و deploy production
+- `app/admin/content-production-readiness`: کنسول آمادگی ورود محتوای واقعی، upload، امنیت، search و بکاپ
+- `app/admin/content-export`: کنسول خروجی و بکاپ محتوا با snapshot کامل JSON و manifest تصویرها
+- `app/admin/asset-operations`: کنسول عملیات دارایی‌ها برای تصویر، صوت، PDF، ویدئو، storage، CDN و بکاپ
+- `app/admin/publish-pipeline`: اتاق تصمیم انتشار برای publish/schedule/hold/block بر اساس گیت‌های محتوا، رسانه، منبع و SEO
 - `app/admin/avesta-production`: batchهای تولید اوستا بر اساس کمبودهای ماتریس تکمیل
 - `app/admin/avesta-publication-gates`: دروازه تصمیم انتشار اوستا با وضعیت Publish/Hold/Block
 - `app/admin/avesta-release-waves`: موج‌های انتشار داخلی، بتا و عمومی اوستا
@@ -66,7 +73,10 @@
 - `components/footer.tsx`: فوتر
 - `components/section-card.tsx`: کارت بخش‌ها
 - `components/avesta-chapter-atlas.tsx`: اطلس تصویری chapterها در صفحه‌های مادر اوستا
+- `components/avesta-study-paths-panel.tsx`: مسیرهای شروع مطالعه برای تازه‌واردها، گات‌ها، نیایش روزانه، یشت‌ها و وندیداد
+- `components/study-path-progress-panel.tsx`: پیشرفت local قدم‌های هر مسیر مطالعه با تیک، درصد تکمیل و reset
 - `components/avesta-poster-experience.tsx`: لایه پوستر/موزه نورانی برای صفحه‌های داخلی اوستا
+- `components/admin/avesta-study-path-control-board.tsx`: بورد ادمین برای آمادگی و انتشار مسیرهای شروع مطالعه
 - `components/search-panel.tsx`: پنل جستجو
 - `components/onboarding-gateway.tsx`: UI انتخاب نیت، ریتم، حال‌وهوا و مسیر شروع
 - `components/resource-explorer.tsx`: مرور منابع
@@ -85,6 +95,10 @@
 - `components/privacy-consent-banner.tsx`: بنر جهانی رضایت کاربر روی کل سایت
 - `components/admin/event-tracking-board.tsx`: ماتریس event tracking، payload، QA و privacy
 - `components/admin/deployment-readiness-board.tsx`: بورد آمادگی deploy و تحویل GitHub/Vercel
+- `components/admin/content-production-readiness-board.tsx`: بورد آمادگی ادمین برای ورود واقعی محتوا، تصویر، صوت و ویدئو
+- `components/admin/content-export-board.tsx`: بورد خروجی و بکاپ محتوایی برای تیم محتوا، دیزاین، محصول و فنی
+- `components/admin/asset-operations-board.tsx`: بورد مدیریت کانال‌های upload، storage هدف، فرمت‌های مجاز و checklist production media
+- `components/admin/publish-pipeline-board.tsx`: بورد تصمیم انتشار با فیلتر، گیت‌ها، deliverableها و blockerها
 - `components/admin/exhibition-control-board.tsx`: بورد مدیریت نمایشگاه‌ها، readiness، نیازهای رسانه/محتوا/محصول و checklist
 - `components/admin/avesta-completion-board.tsx`: بورد تکمیل متن، ترجمه، رسانه، منبع و SEO اوستا
 - `components/admin/avesta-production-batch-board.tsx`: بورد batch تولید اوستا با فیلتر مرحله و فیلد
@@ -111,6 +125,9 @@
 - `lib/visual-assets.ts`: نقشه مرکزی تصویرهای واقعی hero، cover، رسانه، نمایشگاه و فروشگاه
 - `lib/avesta-visual-guides.ts`: داده الگوهای تصویری بخش‌های اوستا، قاب‌های روایی، پیام امروزی و تمرین‌ها
 - `lib/avesta-chapter-guides.ts`: داده پوسترهای اختصاصی آبان یشت، مهر یشت، فرگردها و نیایش‌های خرده اوستا
+- `lib/avesta-chapter-profiles.ts`: پروفایل محتوایی هر فصل شامل زمینه تاریخی، زمینه آیینی، کلیدواژه‌ها، alt تصویر، فصل‌های مرتبط و بندهای شاخص
+- `lib/avesta-study-paths.ts`: داده مسیرهای شروع مطالعه و API `/api/avesta/study-paths`
+- `lib/avesta-study-path-control.ts`: مدل کنترل ادمین برای readiness، owner، missing items و checklist مسیرهای شروع
 - `lib/admin-content-models.ts`: قرارداد مدل‌های آینده ادمین برای مقاله، بند اوستا، رسانه، نمایشگاه و محصول
 - `lib/admin-content.ts`: قرارداد ذخیره/اعتبارسنجی محتوای ادمین شامل `avestaChapterGuide`
 - `lib/sample-content.ts`: داده‌های نمونه صفحات
@@ -129,6 +146,10 @@
 - `lib/avesta-feature-flags.ts`: محاسبه visibility هر بخش از روی Release Wave و Publication Gate
 - `lib/avesta-access-control.ts`: تصمیم دسترسی roleها برای مسیرهای اوستا و policy خروجی ادمین
 - `lib/deployment-readiness.ts`: وضعیت آمادگی GitHub، Vercel، env، دیتابیس، DNS، storage و smoke test
+- `lib/content-production-readiness.ts`: وضعیت آمادگی CRUD محتوا، upload، auth، search و بکاپ برای production
+- `lib/content-export.ts`: ساخت bundle خروجی کامل محتوا، مسیرهای مطالعه، راهنمای فصل‌ها، manifest تصویرها و readiness
+- `lib/asset-operations.ts`: مدل عملیات دارایی‌ها، کانال‌های upload، summary storage و خروجی API
+- `lib/publish-pipeline.ts`: ترکیب تقویم انتشار و وظایف تحریریه برای تصمیم publish/schedule/hold/block
 - `lib/route-visibility-audit.ts`: اتصال visibility به sitemap، navigation، index و خروجی CSV
 - `lib/avesta-source-packs.ts`: ساخت Source Pack، CSV و Markdown برای منابع پژوهشی بخش‌های اوستا
 - `lib/avesta-import-template.ts`: ساخت قالب JSON/CSV برای ورود دسته‌ای بندهای اوستا

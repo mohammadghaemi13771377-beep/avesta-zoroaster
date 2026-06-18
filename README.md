@@ -37,7 +37,17 @@ node preview-server.mjs
 - فاز طراحی و محتوا با ۲۱ تصویر واقعی در `public/images/ai` برای hero، cover، رسانه، نمایشگاه و محصولات فروشگاه
 - فاز UI داخلی اوستا با الگوی پوستر/موزه نورانی برای یسنا، گات‌ها، ویسپرد، وندیداد، یشت‌ها، خرده اوستا و هات‌ها
 - صفحه‌های اختصاصی زیرمجموعه‌ها مثل یسنا ۱، اهونود گات، درآمد ویسپرد، آبان یشت، مهر یشت، فرگرد اول، فرگرد دوم، نیایش‌های روزانه، آتش نیایش و نقشه هات‌ها
+- پروفایل محتوایی فصل‌ها با زمینه تاریخی، زمینه آیینی، کلیدواژه‌ها، alt تصویر، مسیرهای مرتبط و بندهای شاخص برای تبدیل اوستا به اطلس آموزشی
 - اطلس تصویری chapterها داخل صفحه‌های مادر اوستا برای ورود سریع به تالار اختصاصی و بند اول
+- شاخص‌های تکمیل در پورتال اوستا برای نمایش وضعیت آماده‌سازی محتوا، راهنمای تصویری، پروفایل آموزشی و alt تصویر
+- مسیرهای شروع مطالعه در پورتال اوستا برای تازه‌واردها، گات‌ها، نیایش روزانه، یشت‌ها و وندیداد با API مستقل
+- صفحه‌های اختصاصی مسیرهای مطالعه مثل `/avesta/paths/first-light` برای نمایش نقشه مرحله‌ای هر مسیر
+- پیشرفت local مسیرهای مطالعه با تیک‌زدن قدم‌ها، درصد تکمیل و event tracking
+- کنسول ادمین مسیرهای شروع اوستا برای کنترل آمادگی، مالک، کمبودها و چک‌لیست انتشار هر مسیر
+- کنسول آمادگی ورود محتوای واقعی برای اتصال ادمین به دیتابیس، storage، امنیت، search و بکاپ
+- کنسول خروجی و بکاپ محتوا برای دریافت snapshot کامل JSON از مقاله‌ها، واژه‌نامه، کتابخانه، رسانه، فصل‌های اوستا، مسیرهای مطالعه، manifest تصویرها و آمادگی production
+- کنسول Asset Operations برای مدیریت تصویر، صوت، PDF، ویدئو، مسیرهای local، storage هدف، CDN و بکاپ media
+- اتاق تصمیم انتشار برای ترکیب تقویم محتوا، وظایف تحریریه، رسانه، منابع و SEO و تصمیم‌گیری `publish/schedule/hold/block`
 - اتصال صفحه‌های بند/آیه به راهنمای تصویری chapter با hero اختصاصی، پنل زمینه تصویری و تمرین‌های همان تالار
 - Reference board تصویری در `public/images/references` و سند `docs/visual-reference-board.md` برای تیم طراحی
 - پورتال اصلی `/avesta`
@@ -95,6 +105,8 @@ node preview-server.mjs
 - `/en`
 - `/onboarding`
 - `/avesta`
+- `/avesta/paths`
+- `/avesta/paths/first-light`
 - `/avesta/yasna`
 - `/avesta/gathas`
 - `/avesta/visperad`
@@ -143,6 +155,9 @@ node preview-server.mjs
 - `/admin`
 - `/admin/go-live`
 - `/admin/deployment-readiness`
+- `/admin/content-production-readiness`
+- `/admin/content-export`
+- `/admin/asset-operations`
 - `/admin/page-quality`
 - `/admin/route-visibility`
 - `/admin/product-analytics`
@@ -151,6 +166,7 @@ node preview-server.mjs
 - `/admin/team-handoff`
 - `/admin/exhibitions`
 - `/admin/avesta-completion`
+- `/admin/avesta-study-paths`
 - `/admin/avesta-production`
 - `/admin/avesta-publication-gates`
 - `/admin/avesta-release-waves`
@@ -162,6 +178,7 @@ node preview-server.mjs
 - `/admin/production`
 - `/admin/production/briefs`
 - `/admin/production/review`
+- `/admin/publish-pipeline`
 - `/admin/visual-assets`
 - `/admin/source-registry`
 - `/admin/citation-coverage`
@@ -173,6 +190,7 @@ node preview-server.mjs
 - `/api/onboarding?goal=avesta&time=daily-15&tone=cinematic`
 - `/api/search/indexes`
 - `/api/avesta`
+- `/api/avesta/study-paths`
 - `/api/avesta/yasna`
 - `/api/avesta/yashts/aban-yasht`
 - `/api/avesta/yasna/ha-1/verse-1`
@@ -197,11 +215,15 @@ node preview-server.mjs
 - `/api/admin/stats`
 - `/api/admin/go-live`
 - `/api/admin/deployment-readiness`
+- `/api/admin/content-production-readiness`
+- `/api/admin/content-export`
+- `/api/admin/asset-operations`
 - `/api/admin/page-quality`
 - `/api/admin/route-visibility`
 - `/api/admin/product-analytics`
 - `/api/admin/event-tracking`
 - `/api/admin/avesta-completion`
+- `/api/admin/avesta-study-paths`
 - `/api/admin/avesta-production`
 - `/api/admin/avesta-publication-gates`
 - `/api/admin/avesta-release-waves`
@@ -215,6 +237,7 @@ node preview-server.mjs
 - `/api/admin/production`
 - `/api/admin/production/briefs`
 - `/api/admin/production/review`
+- `/api/admin/publish-pipeline`
 - `/api/admin/visual-assets`
 - `/api/admin/source-registry`
 - `/api/admin/citation-coverage`

@@ -2,9 +2,12 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import type { LucideIcon } from "lucide-react";
 import { ArrowLeft, BookOpen, Flame, Sparkles } from "lucide-react";
+import { AvestaStudyPathsPanel } from "@/components/avesta-study-paths-panel";
 import { SectionCard } from "@/components/section-card";
 import { TrackedLink } from "@/components/tracked-link";
+import { getAvestaCompletionSections, getAvestaCompletionSummary } from "@/lib/avesta-completion";
 import { getAvestaSections, getLocaleFromSearchParams } from "@/lib/avesta-repository";
+import { getAvestaStudyPaths } from "@/lib/avesta-study-paths";
 import { routeHeroByPath, sectionCoverBySlug } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
@@ -19,6 +22,9 @@ type PageProps = {
 export default async function AvestaPortalPage({ searchParams }: PageProps) {
   const locale = getLocaleFromSearchParams(searchParams);
   const sections = await getAvestaSections(locale);
+  const completionSections = getAvestaCompletionSections();
+  const completionSummary = getAvestaCompletionSummary(completionSections);
+  const studyPaths = getAvestaStudyPaths();
 
   return (
     <main className="overflow-hidden pt-24" dir={locale === "en" ? "ltr" : "rtl"}>
@@ -83,6 +89,13 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
       </section>
 
       <section className="relative mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-4 md:grid-cols-4">
+          <PortalStat label="بخش‌های اصلی" value={`${completionSummary.sections}`} />
+          <PortalStat label="آیتم‌های آماده" value={`${completionSummary.ready}`} />
+          <PortalStat label="تکمیل کل جهان" value={`${completionSummary.completion}%`} />
+          <PortalStat label="نیاز فوری" value={completionSummary.weakestField.label} />
+        </div>
+
         <div className="lux-frame rounded-[22px] p-5 sm:p-7">
           <div className="mb-7 flex items-center justify-center gap-4">
             <span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/70" />
@@ -114,6 +127,8 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
         </div>
       </section>
 
+      <AvestaStudyPathsPanel paths={studyPaths} locale={locale} />
+
       <section className="mx-auto grid max-w-7xl gap-5 px-4 py-12 sm:px-6 lg:grid-cols-3 lg:px-8">
         {([
           ["متن اصلی", "هر بند با متن اصلی، آوانویسی و ترجمه کلاسیک آماده می‌شود.", BookOpen],
@@ -128,5 +143,14 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
         ))}
       </section>
     </main>
+  );
+}
+
+function PortalStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-[18px] border border-gold/15 bg-royal/62 p-5 shadow-xl shadow-black/20">
+      <p className="text-xs font-black text-gold-light">{label}</p>
+      <p className="mt-2 break-words text-xl font-black leading-8 text-warm sm:text-2xl">{value}</p>
+    </div>
   );
 }

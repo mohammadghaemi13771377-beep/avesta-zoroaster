@@ -31,6 +31,12 @@ type AdminContentFields = {
   todayPractice?: string;
   sidePanels?: string;
   storyPanels?: string;
+  historicalContext?: string;
+  ritualContext?: string;
+  keyThemes?: string;
+  imageAlt?: string;
+  relatedChapters?: string;
+  verses?: string;
 };
 
 export type AdminContentPayload = {
@@ -80,7 +86,17 @@ export const adminContentSchema = {
   requiredByResource: {
     avestaSection: ["title", "slug", "summary"],
     avestaChapter: ["title", "slug", "sectionSlug", "order"],
-    avestaChapterGuide: ["title", "slug", "sectionSlug", "chapterSlug", "coverImage", "fields.question", "fields.subtitle"],
+    avestaChapterGuide: [
+      "title",
+      "slug",
+      "sectionSlug",
+      "chapterSlug",
+      "coverImage",
+      "fields.question",
+      "fields.subtitle",
+      "fields.historicalContext",
+      "fields.ritualContext"
+    ],
     avestaVerse: ["sectionSlug", "chapterSlug", "order", "fields.originalText"],
     article: ["title", "slug", "summary", "fields.content"],
     glossaryTerm: ["title", "slug", "fields.meaning"],

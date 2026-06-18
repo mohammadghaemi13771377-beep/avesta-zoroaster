@@ -29,6 +29,9 @@ const fieldIcons: Record<AvestaCompletionField, LucideIcon> = {
   audio: Mic2,
   citation: ShieldCheck,
   seo: SearchCheck,
+  chapterGuide: Sparkles,
+  chapterProfile: BookOpen,
+  imageAlt: ImagePlus,
 };
 
 const visibleFields: AvestaCompletionField[] = [
@@ -41,6 +44,9 @@ const visibleFields: AvestaCompletionField[] = [
   "audio",
   "citation",
   "seo",
+  "chapterGuide",
+  "chapterProfile",
+  "imageAlt",
 ];
 
 export function AvestaCompletionBoard({ sections }: AvestaCompletionBoardProps) {

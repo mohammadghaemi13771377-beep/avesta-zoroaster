@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, BookOpen, Headphones, ScrollText, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Headphones, Landmark, Route, ScrollText, Sparkles, Tags } from "lucide-react";
 import { AvestaPosterExperience } from "@/components/avesta-poster-experience";
 import { ReadingControls } from "@/components/reading-controls";
 import { avestaSections } from "@/lib/content";
@@ -13,6 +13,7 @@ import {
   getVerseBySlugs
 } from "@/lib/avesta-repository";
 import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
+import { getAvestaChapterProfile } from "@/lib/avesta-chapter-profiles";
 
 type PageProps = {
   params: {
@@ -34,6 +35,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const section = await getAvestaSection(params.section, locale);
   const chapters = await getSectionChapters(params.section, locale);
   const chapter = chapters.find((item) => item.slug === params.chapter);
+  const profile = getAvestaChapterProfile(params.section, params.chapter);
 
   if (!section || !chapter) {
     return {};
@@ -41,7 +43,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 
   return {
     title: `${chapter.title} | ${section.title}`,
-    description: chapter.description ?? section.description
+    description: profile?.summary ?? chapter.description ?? section.description
   };
 }
 
@@ -57,6 +59,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
 
   const langQuery = locale === "en" ? "?lang=en" : "";
   const guide = getAvestaChapterGuide(section.slug, chapter.slug);
+  const profile = getAvestaChapterProfile(section.slug, chapter.slug);
   const firstVerseSlug = chapter.verses[0]?.slug ?? "verse-1";
   const firstVerse = await getVerseBySlugs(section.slug, chapter.slug, firstVerseSlug, locale);
 
@@ -134,7 +137,8 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
               </div>
             </div>
             <p className="reader-text mt-5 text-muted">
-              {chapter.description ??
+              {profile?.summary ??
+                chapter.description ??
                 "این زیرصفحه برای تبدیل هر یشت، فرگرد یا نیایش به یک تجربه کامل آماده شده است: تصویر، روایت، بندها، صوت، پیام اخلاقی و مسیر مطالعه."}
             </p>
             {guide?.curatorNote ? (
@@ -151,6 +155,42 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
             <p className="mt-4 leading-8 text-night/78">{firstVerse?.ethicalMessage ?? section.description}</p>
           </aside>
         </div>
+
+        {profile ? (
+          <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+            <div className="grid gap-4 md:grid-cols-2">
+              <article className="lux-frame p-6">
+                <div className="flex items-center gap-3 text-gold-light">
+                  <Landmark className="h-5 w-5" />
+                  <h3 className="text-xl font-black text-warm">زمینه تاریخی</h3>
+                </div>
+                <p className="mt-4 leading-8 text-muted">{profile.historicalContext}</p>
+              </article>
+              <article className="lux-frame p-6">
+                <div className="flex items-center gap-3 text-gold-light">
+                  <Route className="h-5 w-5" />
+                  <h3 className="text-xl font-black text-warm">زمینه آیینی و تجربه کاربر</h3>
+                </div>
+                <p className="mt-4 leading-8 text-muted">{profile.ritualContext}</p>
+              </article>
+            </div>
+
+            <aside className="poster-panel p-6">
+              <div className="flex items-center gap-3 text-gold-light">
+                <Tags className="h-5 w-5" />
+                <h3 className="text-xl font-black text-warm">کلیدهای فهم فصل</h3>
+              </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {profile.keyThemes.map((theme) => (
+                  <span key={theme} className="rounded-full border border-gold/20 bg-gold/10 px-3 py-2 text-sm font-bold text-gold-light">
+                    {theme}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-5 text-sm leading-7 text-muted">{profile.imageAlt.fa}</p>
+            </aside>
+          </section>
+        ) : null}
 
         <section className="mt-8 lux-frame p-6 sm:p-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
@@ -193,6 +233,34 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
                 <p className="mt-2 leading-7 text-muted">{practice}</p>
               </article>
             ))}
+          </section>
+        ) : null}
+
+        {profile ? (
+          <section className="mt-8 lux-frame p-6 sm:p-8">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-sm font-black text-gold-light">مسیرهای پیشنهادی</p>
+                <h2 className="mt-2 text-3xl font-black text-warm">بعد از {chapter.title} کجا برویم؟</h2>
+              </div>
+            </div>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {profile.relatedChapters.map((item) => (
+                <Link
+                  key={item.href}
+                  href={`${item.href}${langQuery}`}
+                  className="group rounded-2xl border border-gold/12 bg-night/58 p-5 transition hover:-translate-y-1 hover:border-gold/45 hover:bg-gold/10"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-2xl font-black text-warm">{item.title}</h3>
+                      <p className="mt-3 leading-8 text-muted">{item.reason}</p>
+                    </div>
+                    <ArrowLeft className="mt-2 h-5 w-5 text-gold-light transition group-hover:-translate-x-1" />
+                  </div>
+                </Link>
+              ))}
+            </div>
           </section>
         ) : null}
       </section>

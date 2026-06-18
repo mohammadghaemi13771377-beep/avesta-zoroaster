@@ -63,7 +63,7 @@ API قرارداد مدل‌های محتوایی:
 
 ## راهنمای تصویری فصل‌ها
 
-صفحه‌های جدید chapter و verse از داده‌های `lib/avesta-chapter-guides.ts` استفاده می‌کنند. در production این داده بهتر است به یک collection مستقل منتقل شود:
+صفحه‌های جدید chapter و verse از داده‌های `lib/avesta-chapter-guides.ts` و `lib/avesta-chapter-profiles.ts` استفاده می‌کنند. در production این داده بهتر است به یک collection مستقل منتقل شود:
 
 - `sectionSlug`
 - `chapterSlug`
@@ -78,6 +78,12 @@ API قرارداد مدل‌های محتوایی:
 - `storyPanels`
 - `todayPractice`
 - `curatorNote`
+- `historicalContext`
+- `ritualContext`
+- `keyThemes`
+- `imageAlt`
+- `relatedChapters`
+- `verses`
 
 این مدل در `/api/admin/content-models` با id زیر معرفی شده است:
 

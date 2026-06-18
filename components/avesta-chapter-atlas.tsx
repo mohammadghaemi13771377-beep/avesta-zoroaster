@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, BookOpen, Layers3, Sparkles } from "lucide-react";
 import type { AvestaChapterView } from "@/lib/avesta-repository";
 import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
+import { getAvestaChapterProfile } from "@/lib/avesta-chapter-profiles";
 import { sectionCoverBySlug } from "@/lib/visual-assets";
 
 type AvestaChapterAtlasProps = {
@@ -46,6 +47,7 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
       <div className="mt-7 grid gap-5 lg:grid-cols-2">
         {chapters.map((chapter, index) => {
           const guide = getAvestaChapterGuide(sectionSlug, chapter.slug);
+          const profile = getAvestaChapterProfile(sectionSlug, chapter.slug);
           const coverImage = guide?.coverImage ?? sectionCoverBySlug[sectionSlug];
           const accent = guide?.accent ?? "#D6A84F";
           const firstVerse = chapter.verses[0];
@@ -74,7 +76,7 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
                   </div>
                   <div className="absolute bottom-4 right-4 left-4">
                     <span className="inline-flex items-center gap-2 rounded-full border border-warm/15 bg-warm/10 px-3 py-1 text-xs font-black text-warm">
-                      {guide ? "پوستر اختصاصی فعال" : "قالب عمومی"}
+                      {guide && profile ? "پوستر + پروفایل فعال" : guide ? "پوستر اختصاصی فعال" : "قالب عمومی"}
                     </span>
                   </div>
                 </Link>
@@ -92,6 +94,19 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
                   </div>
 
                   <p className="mt-3 min-h-16 leading-8 text-muted">{guide?.chapterIntro ?? chapter.description}</p>
+
+                  {profile?.keyThemes.length ? (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {profile.keyThemes.slice(0, 4).map((theme) => (
+                        <span
+                          key={theme}
+                          className="rounded-full border border-gold/15 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light"
+                        >
+                          {theme}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
 
                   {guide?.leadQuote ? (
                     <blockquote className="mt-4 rounded-2xl border border-gold/15 bg-gold/10 p-4 text-sm font-bold leading-7 text-warm/86">

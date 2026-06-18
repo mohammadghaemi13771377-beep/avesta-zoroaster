@@ -6,6 +6,7 @@ import {
   getVerseBySlugs
 } from "@/lib/avesta-repository";
 import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
+import { getAvestaChapterProfile } from "@/lib/avesta-chapter-profiles";
 
 type RouteContext = {
   params: {
@@ -30,12 +31,14 @@ export async function GET(request: Request, { params }: RouteContext) {
   const firstVerseSlug = chapter.verses[0]?.slug ?? "verse-1";
   const sampleVerse = await getVerseBySlugs(params.section, params.chapter, firstVerseSlug, locale);
   const visualGuide = getAvestaChapterGuide(params.section, params.chapter) ?? null;
+  const profile = getAvestaChapterProfile(params.section, params.chapter) ?? null;
 
   return NextResponse.json({
     locale,
     section,
     chapter,
     visualGuide,
+    profile,
     sampleVerse
   });
 }

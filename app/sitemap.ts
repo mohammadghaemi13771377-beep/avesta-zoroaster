@@ -4,6 +4,7 @@ import { locales, withLocale } from "@/lib/i18n";
 import { articleItems, glossaryTerms, mediaItems, sampleVerses } from "@/lib/sample-content";
 import { sacredCalendarEvents } from "@/lib/sacred-calendar";
 import { absoluteUrl, sitemapChangeFrequency, sitemapPriority } from "@/lib/seo";
+import { getAvestaStudyPaths } from "@/lib/avesta-study-paths";
 import { getPublicSitemapRoutes } from "@/lib/route-visibility-audit";
 import { shopProducts } from "@/lib/shop";
 
@@ -15,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...mediaItems.map((item, index) => `/media/${slugify(item.title) || `media-${index + 1}`}`),
     ...sacredCalendarEvents.map((event) => `/calendar/${event.id}`),
     ...shopProducts.map((product) => `/shop/${product.slug}`),
+    "/avesta/paths",
+    ...getAvestaStudyPaths().map((path) => path.detailHref),
     ...sampleVerses.map(
       (verse) => `/avesta/${verse.sectionSlug}/${verse.chapterSlug ?? "chapter"}/${verse.verseSlug ?? "verse"}`
     )

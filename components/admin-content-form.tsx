@@ -58,6 +58,19 @@ export function AdminContentForm() {
         subtitle: "زیرعنوان راهنمای تصویری فصل برای hero، کارت‌ها و صفحه بندها.",
         leadQuote: "نقل‌قول محوری این فصل برای اتصال متن به زندگی امروز.",
         curatorNote: "یادداشت کیوریتور برای تیم محتوا و دیزاین.",
+        historicalContext: "زمینه تاریخی فصل؛ این متن به کاربر می‌گوید فصل در سنت و تاریخ اوستا چه جایگاهی دارد.",
+        ritualContext: "زمینه آیینی و تجربه کاربری؛ توضیح اینکه صفحه چگونه متن را به مطالعه، تصویر، نیایش یا تمرین روزانه وصل می‌کند.",
+        keyThemes: JSON.stringify(["آتش", "نیایش", "پاکی", "پندار نیک"]),
+        imageAlt: JSON.stringify({
+          fa: "آتشکده‌ای روشن با آتش مقدس و قاب‌های طلایی برای تجربه یسنا",
+          en: "A luminous fire temple with sacred fire and golden frames for the Yasna experience"
+        }),
+        relatedChapters: JSON.stringify([
+          { title: "آتش نیایش", href: "/avesta/khordeh-avesta/atash-niyayesh", reason: "برای ادامه تجربه نور و نیایش روزانه" }
+        ]),
+        verses: JSON.stringify([
+          { title: "بند آغازین", href: "/avesta/yasna/ha-1/verse-1", summary: "شروع مطالعه با متن، ترجمه و پیام اخلاقی." }
+        ]),
         todayPractice: JSON.stringify(["یک متن کوتاه بخوان.", "یک پیام اخلاقی یادداشت کن.", "یک کار نیک انجام بده."]),
         sidePanels: JSON.stringify([
           { title: "قاب اول", body: "توضیح کوتاه قاب اول.", icon: "sparkles" },

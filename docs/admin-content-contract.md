@@ -87,6 +87,12 @@ Content-Type: application/json
     "leadQuote": "اگر آب پاک بماند، زندگی جریان دارد.",
     "curatorNote": "این صفحه بر اساس reference-water-anahita طراحی شده است.",
     "ethicalMessage": "پاکی طبیعت با پاکی ذهن و کردار انسان جدا نیست.",
+    "historicalContext": "آبان یشت با آب‌ها، پاکی، نیروهای زندگی‌بخش و تصویر آناهیتا پیوند دارد.",
+    "ritualContext": "قاب‌های آب، پاکی و مراقبت از طبیعت باید متن را به رفتار روزانه وصل کنند.",
+    "keyThemes": "[\"آب\",\"آناهیتا\",\"پاکی\",\"طبیعت\",\"زندگی\"]",
+    "imageAlt": "{\"fa\":\"چشم‌انداز رود و کوهستان با نور طلایی و حس آبان یشت\",\"en\":\"A river and mountain landscape with golden light evoking Aban Yasht\"}",
+    "relatedChapters": "[{\"title\":\"مهر یشت\",\"href\":\"/avesta/yashts/mehr-yasht\",\"reason\":\"برای دیدن چهره پیمان و روشنایی در یشت‌ها\"}]",
+    "verses": "[{\"title\":\"ستایش آب‌ها\",\"href\":\"/avesta/yashts/aban-yasht/verse-1\",\"summary\":\"درگاه خواندن درباره پاکی آب و پیام اخلاقی آن.\"}]",
     "todayPractice": "[\"یک رفتار کوچک برای صرفه‌جویی آب انجام بده.\",\"یک دقیقه کنار تصویر آب مکث کن.\",\"یک جمله درباره پاکی ذهن بنویس.\"]",
     "sidePanels": "[{\"title\":\"نگهبان آب‌ها\",\"body\":\"جایگاه آب در زندگی و آیین.\",\"icon\":\"water\"}]",
     "storyPanels": "[{\"title\":\"آب در اوستا\",\"body\":\"ماده زندگی و نشانه پاکی.\",\"image\":\"/images/ai/yashts-cover.png\"}]"

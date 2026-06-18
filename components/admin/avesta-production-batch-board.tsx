@@ -31,6 +31,9 @@ const fieldIcons: Record<AvestaCompletionField, LucideIcon> = {
   audio: Mic2,
   citation: ShieldCheck,
   seo: SearchCheck,
+  chapterGuide: Sparkles,
+  chapterProfile: BookOpen,
+  imageAlt: ImagePlus,
 };
 
 const priorityClass: Record<AvestaProductionBatch["priority"], string> = {

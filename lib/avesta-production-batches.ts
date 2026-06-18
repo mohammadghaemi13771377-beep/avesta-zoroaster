@@ -43,6 +43,9 @@ const dueDateByField: Record<AvestaCompletionField, string> = {
   audio: "2026-06-26",
   citation: "2026-06-23",
   seo: "2026-06-25",
+  chapterGuide: "2026-06-24",
+  chapterProfile: "2026-06-24",
+  imageAlt: "2026-06-25",
 };
 
 const ownerByField: Record<AvestaCompletionField, string> = {
@@ -56,6 +59,9 @@ const ownerByField: Record<AvestaCompletionField, string> = {
   audio: "Audio",
   citation: "Research",
   seo: "SEO",
+  chapterGuide: "Product + Design",
+  chapterProfile: "Editorial + Research",
+  imageAlt: "SEO + Accessibility",
 };
 
 const stageByField: Record<AvestaCompletionField, AvestaProductionBatchStage> = {
@@ -69,6 +75,9 @@ const stageByField: Record<AvestaCompletionField, AvestaProductionBatchStage> = 
   audio: "media-review",
   citation: "research-review",
   seo: "seo-pass",
+  chapterGuide: "media-review",
+  chapterProfile: "research-review",
+  imageAlt: "seo-pass",
 };
 
 export function getAvestaProductionBatches(sections: AvestaCompletionSection[] = getAvestaCompletionSections()): AvestaProductionBatch[] {
@@ -133,7 +142,9 @@ function getPriority(section: AvestaCompletionSection, field: AvestaCompletionFi
 }
 
 function getHref(section: AvestaCompletionSection, field: AvestaCompletionField) {
-  if (field === "aiImage" || field === "audio") return "/admin/media";
+  if (field === "aiImage" || field === "audio" || field === "chapterGuide") return "/admin/media";
+  if (field === "chapterProfile") return "/admin/avesta";
+  if (field === "imageAlt") return "/admin/visual-assets";
   if (field === "citation") return "/admin/source-review";
   if (field === "seo") return "/admin/seo";
   return section.href;
@@ -154,6 +165,18 @@ function buildObjective(section: AvestaCompletionSection, field: AvestaCompletio
 
   if (field === "seo") {
     return `تکمیل metadata، internal links و schema برای ${section.title}.`;
+  }
+
+  if (field === "chapterGuide") {
+    return `تکمیل راهنمای تصویری فصل‌های ${section.title}: پرسش محوری، قاب‌های روایی، CTA، تمرین روزانه و mood ثابت.`;
+  }
+
+  if (field === "chapterProfile") {
+    return `تکمیل پروفایل آموزشی فصل‌های ${section.title}: زمینه تاریخی، زمینه آیینی، کلیدواژه‌ها و مسیرهای مرتبط.`;
+  }
+
+  if (field === "imageAlt") {
+    return `نوشتن alt فارسی/انگلیسی و توضیح SEO برای تصویرهای فصل‌های ${section.title}.`;
   }
 
   return `تکمیل ${missingCount} آیتم ${avestaCompletionFieldLabels[field]} برای ${section.title} طبق سیستم محتوای طلایی.`;
@@ -186,6 +209,30 @@ function buildAcceptanceCriteria(field: AvestaCompletionField) {
     return [
       "عنوان، نویسنده، زبان، نوع منبع و سطح اعتماد ثبت شود.",
       "هر منبع به بخش/بند مرتبط وصل شود.",
+      ...shared,
+    ];
+  }
+
+  if (field === "chapterGuide") {
+    return [
+      "هر فصل پرسش محوری، subtitle، leadQuote، sidePanels، storyPanels و todayPractice داشته باشد.",
+      "تصویر و tone با mood همان بخش هماهنگ باشد.",
+      ...shared,
+    ];
+  }
+
+  if (field === "chapterProfile") {
+    return [
+      "هر فصل زمینه تاریخی، زمینه آیینی، keyThemes و relatedChapters داشته باشد.",
+      "متن‌ها پژوهشی، قابل فهم و بدون placeholder باشند.",
+      ...shared,
+    ];
+  }
+
+  if (field === "imageAlt") {
+    return [
+      "برای هر تصویر alt فارسی و انگلیسی دقیق و غیرتزئینی ثبت شود.",
+      "متن جایگزین با SEO، accessibility و موضوع صفحه هماهنگ باشد.",
       ...shared,
     ];
   }

@@ -10,7 +10,10 @@ export type AvestaCompletionField =
   | "aiImage"
   | "audio"
   | "citation"
-  | "seo";
+  | "seo"
+  | "chapterGuide"
+  | "chapterProfile"
+  | "imageAlt";
 
 export type AvestaCompletionSection = {
   slug: string;
@@ -36,6 +39,9 @@ export const avestaCompletionFieldLabels: Record<AvestaCompletionField, string> 
   audio: "صوت",
   citation: "منبع",
   seo: "SEO",
+  chapterGuide: "راهنمای تصویری فصل",
+  chapterProfile: "پروفایل آموزشی فصل",
+  imageAlt: "Alt/SEO تصویر",
 };
 
 const plannedBySlug: Record<string, { verses: number; owner: string; priority: AvestaCompletionSection["priority"]; nextAction: string }> = {
@@ -95,6 +101,9 @@ const readyRatios: Record<string, Partial<Record<AvestaCompletionField, number>>
     audio: 0.04,
     citation: 0.18,
     seo: 0.35,
+    chapterGuide: 0.22,
+    chapterProfile: 0.2,
+    imageAlt: 0.18,
   },
   gathas: {
     originalText: 0.42,
@@ -107,6 +116,9 @@ const readyRatios: Record<string, Partial<Record<AvestaCompletionField, number>>
     audio: 0.12,
     citation: 0.35,
     seo: 0.46,
+    chapterGuide: 0.36,
+    chapterProfile: 0.34,
+    imageAlt: 0.32,
   },
   visperad: {
     originalText: 0.08,
@@ -119,6 +131,9 @@ const readyRatios: Record<string, Partial<Record<AvestaCompletionField, number>>
     audio: 0,
     citation: 0.1,
     seo: 0.22,
+    chapterGuide: 0.12,
+    chapterProfile: 0.1,
+    imageAlt: 0.1,
   },
   vendidad: {
     originalText: 0.18,
@@ -131,6 +146,9 @@ const readyRatios: Record<string, Partial<Record<AvestaCompletionField, number>>
     audio: 0,
     citation: 0.2,
     seo: 0.3,
+    chapterGuide: 0.32,
+    chapterProfile: 0.28,
+    imageAlt: 0.26,
   },
   yashts: {
     originalText: 0.22,
@@ -143,6 +161,9 @@ const readyRatios: Record<string, Partial<Record<AvestaCompletionField, number>>
     audio: 0.04,
     citation: 0.18,
     seo: 0.34,
+    chapterGuide: 0.38,
+    chapterProfile: 0.34,
+    imageAlt: 0.32,
   },
   "khordeh-avesta": {
     originalText: 0.24,
@@ -155,6 +176,9 @@ const readyRatios: Record<string, Partial<Record<AvestaCompletionField, number>>
     audio: 0.1,
     citation: 0.16,
     seo: 0.38,
+    chapterGuide: 0.32,
+    chapterProfile: 0.28,
+    imageAlt: 0.28,
   },
   hats: {
     originalText: 0.14,
@@ -167,6 +191,9 @@ const readyRatios: Record<string, Partial<Record<AvestaCompletionField, number>>
     audio: 0,
     citation: 0.1,
     seo: 0.24,
+    chapterGuide: 0.12,
+    chapterProfile: 0.1,
+    imageAlt: 0.1,
   },
 };
 
