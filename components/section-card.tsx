@@ -41,7 +41,7 @@ export function SectionCard({ title, description, href, atmosphere, kicker, roma
             className="object-cover transition duration-500 group-hover:scale-105"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020608]/62 via-[#071521]/8 to-transparent" />
         {roman ? (
           <div className="absolute right-4 top-4 z-10 font-display text-lg font-bold text-gold-light">
             {roman}

@@ -66,10 +66,10 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
           </p>
         </div>
         <Link
-          href="/admin/avesta"
+          href="/avesta"
           className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-black text-gold-light transition hover:border-gold/45 hover:bg-gold/10"
         >
-          مدیریت محتوا
+          نقشه همه بخش‌ها
           <ArrowLeft className="h-4 w-4" />
         </Link>
       </div>

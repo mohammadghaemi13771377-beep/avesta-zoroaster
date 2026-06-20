@@ -3,12 +3,13 @@ import Link from "next/link";
 import { ChevronDown, LogIn, Search, UserRound } from "lucide-react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNavigation } from "@/components/mobile-navigation";
+import { AmbientLightToggle } from "@/components/ambient-light-toggle";
 import { avestaSections, exploreNavItems, navItems } from "@/lib/content";
 
 export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between rounded-[14px] border border-gold/24 bg-black/42 px-3 shadow-2xl shadow-black/35 backdrop-blur-2xl">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between rounded-[14px] border border-gold/28 bg-[#071521]/78 px-3 shadow-2xl shadow-black/25 backdrop-blur-2xl">
         <Link href="/" className="flex min-w-0 items-center gap-3">
           <Image
             src="/images/avesta-zoroaster-logo.png"
@@ -35,7 +36,7 @@ export function Header() {
                   {item.label}
                   <ChevronDown size={15} />
                 </Link>
-                <div className="invisible absolute right-0 top-11 w-60 translate-y-2 rounded-2xl border border-gold/18 bg-[#05080d]/95 p-2 opacity-0 shadow-2xl shadow-black/50 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="invisible absolute right-0 top-11 w-60 translate-y-2 rounded-2xl border border-gold/22 bg-[#071521]/95 p-2 opacity-0 shadow-2xl shadow-black/35 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {avestaSections.map((section) => (
                     <Link
                       key={section.slug}
@@ -68,7 +69,7 @@ export function Header() {
               کاوش
               <ChevronDown size={15} />
             </button>
-            <div className="invisible absolute left-0 top-11 grid w-[520px] translate-y-2 grid-cols-2 gap-1 rounded-2xl border border-gold/18 bg-[#05080d]/95 p-3 opacity-0 shadow-2xl shadow-black/50 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+            <div className="invisible absolute left-0 top-11 grid w-[520px] translate-y-2 grid-cols-2 gap-1 rounded-2xl border border-gold/22 bg-[#071521]/95 p-3 opacity-0 shadow-2xl shadow-black/35 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
               {exploreNavItems.map((item) => (
                 <Link key={item.href} href={item.href} className="rounded-xl px-4 py-3 transition hover:bg-gold/10">
                   <span className="block text-sm font-black text-warm/90">{item.label}</span>
@@ -95,6 +96,7 @@ export function Header() {
           >
             <Search size={17} />
           </Link>
+          <AmbientLightToggle />
           <LanguageSwitcher />
           <Link
             href="/login"

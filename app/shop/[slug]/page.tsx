@@ -102,10 +102,10 @@ export default function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
 
-          <button className="mt-7 inline-flex w-full items-center justify-center gap-3 rounded-full bg-gold px-7 py-4 font-black text-night transition hover:bg-gold-light">
-            افزودن به سبد در نسخه آینده
+          <Link href={`/shop/checkout?items=${product.slug}:1`} className="mt-7 inline-flex w-full items-center justify-center gap-3 rounded-full bg-gold px-7 py-4 font-black text-night transition hover:bg-gold-light">
+            ادامه با این محصول
             <ShoppingBag size={19} />
-          </button>
+          </Link>
         </section>
       </div>
     </main>

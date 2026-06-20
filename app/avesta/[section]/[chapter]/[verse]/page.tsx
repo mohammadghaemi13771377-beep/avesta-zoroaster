@@ -19,6 +19,7 @@ import { ReadingControls } from "@/components/reading-controls";
 import { QuoteShareCard } from "@/components/quote-share-card";
 import { RitualAudioPlayer } from "@/components/ritual-audio-player";
 import { SourceTrustPanel } from "@/components/source-trust-panel";
+import { VerseQuickActions } from "@/components/verse-quick-actions";
 import { WisdomPath } from "@/components/wisdom-path";
 import {
   getAvestaSection,
@@ -157,20 +158,7 @@ export default async function VersePage({ params, searchParams }: PageProps) {
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-9 text-warm-100/82">{verse.ethicalMessage}</p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-l from-gold-300 to-gold-600 px-5 py-3 text-sm font-bold text-obsidian-950 shadow-gold transition hover:-translate-y-0.5">
-                <BookMarked className="h-4 w-4" />
-                ذخیره بند
-              </button>
-              <button className="inline-flex items-center gap-2 rounded-full border border-gold-400/25 bg-black/20 px-5 py-3 text-sm font-bold text-gold-100 transition hover:border-gold-300/60">
-                <Share2 className="h-4 w-4" />
-                اشتراک‌گذاری
-              </button>
-              <button className="inline-flex items-center gap-2 rounded-full border border-warm-50/10 bg-warm-50/5 px-5 py-3 text-sm font-bold text-warm-100 transition hover:border-gold-300/40">
-                <Headphones className="h-4 w-4" />
-                شنیدن روایت
-              </button>
-            </div>
+            <VerseQuickActions />
 
             <div className="mt-10 grid gap-3 sm:grid-cols-3">
               {readerFeatures.map((feature) => (
@@ -256,12 +244,14 @@ export default async function VersePage({ params, searchParams }: PageProps) {
               </section>
             ) : null}
 
-            <RitualAudioPlayer
-              title={`روایت صوتی ${verse.verseNumber}`}
-              subtitle={`${section.title} / ${chapter.title} - آماده برای خوانش اوستایی، ترجمه و توضیح کوتاه.`}
-              audioUrl={audioUrl}
-              quote={verse.quote || verse.ethicalMessage}
-            />
+            <div id="ritual-audio" className="scroll-mt-28">
+              <RitualAudioPlayer
+                title={`روایت صوتی ${verse.verseNumber}`}
+                subtitle={`${section.title} / ${chapter.title} - آماده برای خوانش اوستایی، ترجمه و توضیح کوتاه.`}
+                audioUrl={audioUrl}
+                quote={verse.quote || verse.ethicalMessage}
+              />
+            </div>
 
             <div className="lux-frame p-6 sm:p-10">
               <div className="mb-8 flex items-center gap-3">

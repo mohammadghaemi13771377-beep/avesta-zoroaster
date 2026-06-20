@@ -5,7 +5,7 @@
 ## Suggested Commit
 
 ```txt
-feat: polish navigation, search and Avesta reading paths
+feat: refine luminous UX and storefront
 ```
 
 ## Summary
@@ -26,6 +26,12 @@ feat: polish navigation, search and Avesta reading paths
 - Added Avesta study-intent filtering, chapter atlas search/theme filters and direct reading CTAs.
 - Added library language filtering, article tag/sort filtering and section-aware global search, including product search.
 - Kept the existing SEO, hreflang, schema, sitemap, robots, research methodology, contact, llms.txt, Avesta visual guides, admin delivery and asset operations work intact.
+- Added ambient-light preference, a quieter five-item public header and collapsible mobile navigation.
+- Reworked the 404 page into a branded recovery experience with real imagery and useful destinations.
+- Connected homepage feature cards to local AI covers in `public/images/ai`.
+- Made verse-level save, share and audio-jump controls functional.
+- Made exhibitions deep-linkable by hash and replaced raw related-route URLs with labels.
+- Improved the admin media upload flow with file-type restrictions, upload state, local image preview and one-click URL copy.
 
 ## Files To Review
 

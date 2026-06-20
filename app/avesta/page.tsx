@@ -37,7 +37,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
           sizes="100vw"
           className="object-cover opacity-68"
         />
-        <div className="absolute inset-0 bg-gradient-to-l from-night/25 via-night/72 to-night/96" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#06131c]/20 via-[#071521]/55 to-[#05080d]/82" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.86fr_1.14fr] lg:px-8">

@@ -12,6 +12,21 @@ type ExhibitionsGalleryProps = {
 
 const storageKey = "avesta-exhibition-progress-v1";
 
+const routeLabels: Record<string, string> = {
+  "/monotheism": "یکتاپرستی و خرد",
+  "/monotheism/paths": "مسیرهای یکتاپرستی",
+  "/practice": "تمرین‌های روزانه",
+  "/daily-light": "روشنایی روزانه",
+  "/reflection": "تالار تأمل",
+  "/media": "رسانه‌ها",
+  "/world": "جهان ایران باستان",
+  "/library": "کتابخانه",
+  "/articles": "مقاله‌ها",
+  "/wisdom-capsule": "کپسول خرد",
+  "/tour": "تور موزه‌ای",
+  "/collections": "مجموعه‌های منتخب"
+};
+
 function readProgress() {
   try {
     const parsed = JSON.parse(window.localStorage.getItem(storageKey) ?? "{}");
@@ -27,7 +42,10 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
 
   useEffect(() => {
     setProgress(readProgress());
-  }, []);
+    const slug = window.location.hash.replace("#", "");
+    const matched = exhibitions.find((item) => item.slug === slug);
+    if (matched) setActiveId(matched.id);
+  }, [exhibitions]);
 
   const active = exhibitions.find((exhibition) => exhibition.id === activeId) ?? exhibitions[0];
   const completedArtifacts = active ? progress[active.id] ?? [] : [];
@@ -53,6 +71,11 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
     window.localStorage.removeItem(storageKey);
   }
 
+  function selectExhibition(exhibition: Exhibition) {
+    setActiveId(exhibition.id);
+    window.history.replaceState(null, "", `#${exhibition.slug}`);
+  }
+
   if (!active) return null;
 
   return (
@@ -75,7 +98,8 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
               <button
                 key={exhibition.id}
                 type="button"
-                onClick={() => setActiveId(exhibition.id)}
+                onClick={() => selectExhibition(exhibition)}
+                aria-pressed={selected}
                 className={
                   selected
                     ? "rounded-2xl border border-gold-300/45 bg-gold-300/15 p-4 text-right shadow-gold"
@@ -103,7 +127,7 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
       </aside>
 
       <section className="space-y-6">
-        <div className="lux-frame overflow-hidden p-5 sm:p-7">
+        <div id={active.slug} className="lux-frame scroll-mt-28 overflow-hidden p-5 sm:p-7">
           <div className={`image-scene ${active.scene} min-h-[430px] rounded-[1.55rem] border border-gold-400/15`}>
             <Image
               src={active.heroImage}
@@ -191,7 +215,7 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
           <div className="mt-4 flex flex-wrap gap-3">
             {active.relatedRoutes.map((route) => (
               <Link key={route} href={route} className="rounded-full border border-gold-400/20 px-4 py-2 text-sm font-bold text-warm-100/78 transition hover:bg-gold-300/10 hover:text-gold-100">
-                {route}
+                {routeLabels[route] ?? "مسیر مرتبط"}
               </Link>
             ))}
           </div>

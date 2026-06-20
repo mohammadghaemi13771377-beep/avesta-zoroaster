@@ -93,7 +93,7 @@ export function CinematicHub({
                   priority
                 />
               ) : null}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/20 to-black/5" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#020608]/58 via-[#071521]/12 to-transparent" />
               <div className="absolute inset-x-8 top-8 flex items-center justify-between text-gold-200/80">
                 <span className="font-serif text-4xl">{roman}</span>
                 <Sparkles className="h-6 w-6" />

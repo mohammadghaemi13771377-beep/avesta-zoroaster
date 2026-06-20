@@ -139,7 +139,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
             <h2 className="text-3xl font-black text-warm">{section.title} چیست؟</h2>
             <p className="reader-text mt-5 text-muted">
               این صفحه مسیر مطالعه بخش را مثل یک اتاق موزه نشان می‌دهد: معرفی، فصل‌ها، بندهای نمونه، لایه‌های
-              ترجمه و پیام اخلاقی برای امروز.
+              ترجمه، زمینه تاریخی و پیام اخلاقی برای امروز.
             </p>
           </article>
 

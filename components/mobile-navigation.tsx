@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, ChevronLeft, Menu, Search, X } from "lucide-react";
+import { BookOpen, ChevronDown, ChevronLeft, Menu, Search, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { avestaSections, exploreNavItems, navItems } from "@/lib/content";
 
 export function MobileNavigation() {
   const [open, setOpen] = useState(false);
+  const [avestaOpen, setAvestaOpen] = useState(false);
+  const [exploreOpen, setExploreOpen] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -16,7 +18,13 @@ export function MobileNavigation() {
     };
 
     window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [open]);
 
   return (
@@ -42,17 +50,37 @@ export function MobileNavigation() {
               </nav>
 
               <section className="mt-6 border-t border-gold/12 pt-5">
-                <p className="flex items-center gap-2 text-xs font-black tracking-[0.16em] text-gold-light"><BookOpen size={15} />بخش‌های اوستا</p>
-                <div className="mt-3 grid gap-1">
-                  {avestaSections.map((section) => <Link key={section.slug} href={section.href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-2.5 text-sm font-bold text-warm/85 transition hover:bg-gold/10 hover:text-gold-light">{section.title}</Link>)}
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setAvestaOpen((value) => !value)}
+                  aria-expanded={avestaOpen}
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-right text-xs font-black tracking-[0.16em] text-gold-light transition hover:bg-gold/10"
+                >
+                  <span className="flex items-center gap-2"><BookOpen size={15} />بخش‌های اوستا</span>
+                  <ChevronDown className={`transition ${avestaOpen ? "rotate-180" : ""}`} size={16} />
+                </button>
+                {avestaOpen ? (
+                  <div className="mt-2 grid gap-1 rounded-2xl border border-gold/12 bg-night/35 p-2">
+                    {avestaSections.map((section) => <Link key={section.slug} href={section.href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-2.5 text-sm font-bold text-warm/85 transition hover:bg-gold/10 hover:text-gold-light">{section.title}</Link>)}
+                  </div>
+                ) : null}
               </section>
 
               <section className="mt-6 border-t border-gold/12 pt-5">
-                <p className="text-xs font-black tracking-[0.16em] text-gold-light">کاوش بیشتر</p>
-                <div className="mt-3 grid gap-1">
-                  {exploreNavItems.map((item) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-3 transition hover:bg-gold/10"><span className="block text-sm font-black text-warm/90">{item.label}</span><span className="mt-1 block text-xs text-muted">{item.description}</span></Link>)}
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setExploreOpen((value) => !value)}
+                  aria-expanded={exploreOpen}
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-right text-xs font-black tracking-[0.16em] text-gold-light transition hover:bg-gold/10"
+                >
+                  <span>کاوش بیشتر</span>
+                  <ChevronDown className={`transition ${exploreOpen ? "rotate-180" : ""}`} size={16} />
+                </button>
+                {exploreOpen ? (
+                  <div className="mt-2 grid gap-1 rounded-2xl border border-gold/12 bg-night/35 p-2">
+                    {exploreNavItems.map((item) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-3 transition hover:bg-gold/10"><span className="block text-sm font-black text-warm/90">{item.label}</span><span className="mt-1 block text-xs text-muted">{item.description}</span></Link>)}
+                  </div>
+                ) : null}
               </section>
             </div>
           </aside>

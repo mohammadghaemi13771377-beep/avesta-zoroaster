@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Compass, Sparkles } from "lucide-react";
 import { SectionCard } from "@/components/section-card";
 import type { AvestaSectionView } from "@/lib/avesta-repository";
@@ -22,6 +23,7 @@ const slugsByIntent: Record<Exclude<StudyIntent, "all">, string[]> = {
 };
 
 export function AvestaSectionExplorer({ sections }: { sections: AvestaSectionView[] }) {
+  const router = useRouter();
   const [intent, setIntent] = useState<StudyIntent>("all");
   const visibleSections = useMemo(
     () => intent === "all" ? sections : sections.filter((section) => slugsByIntent[intent].includes(section.slug)),
@@ -45,6 +47,22 @@ export function AvestaSectionExplorer({ sections }: { sections: AvestaSectionVie
             {intentLabels[item]}
           </button>
         ))}
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-gold/12 bg-[#0d2631]/55 p-3">
+        <p className="px-2 text-sm font-black text-gold-light">ورود مستقیم به یک بخش</p>
+        <select
+          defaultValue=""
+          onChange={(event) => {
+            if (event.target.value) router.push(`/avesta/${event.target.value}`);
+          }}
+          className="h-11 min-w-[210px] rounded-xl border border-gold/20 bg-night/65 px-4 text-sm font-bold text-warm outline-none focus:border-gold"
+          aria-label="انتخاب مستقیم بخش اوستا"
+        >
+          <option value="">انتخاب بخش</option>
+          {sections.map((section) => <option key={section.slug} value={section.slug}>{section.title}</option>)}
+        </select>
+        <p className="text-xs leading-6 text-muted">مثلاً وندیداد را انتخاب کن تا مستقیم فقط همان تالار باز شود.</p>
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

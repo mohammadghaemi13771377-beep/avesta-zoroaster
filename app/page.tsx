@@ -17,10 +17,10 @@ const featureBadges = [
 ];
 
 const portalCards = [
-  { title: "زرتشت", text: "آغاز آشنایی با زندگی، اندیشه و میراث پیام‌آور خرد.", href: "/zoroaster", scene: "scene-prophet", footer: "شناخت زرتشت" },
-  { title: "گات‌ها", text: "ورود به کهن‌ترین سروده‌ها؛ با ترجمه، توضیح و مسیر مطالعه.", href: "/gathas", scene: "scene-sunrise", footer: "مطالعه گات‌ها" },
-  { title: "مقاله‌ها", text: "خوانش‌های پژوهشی و قابل‌فهم از مفاهیم، تاریخ و فرهنگ ایران باستان.", href: "/articles", scene: "scene-tablets", footer: "ورود به مقاله‌ها" },
-  { title: "کتابخانه", text: "منابع، نسخه‌ها و راهنمای اعتماد برای یک مطالعه عمیق‌تر.", href: "/library", scene: "scene-scroll", footer: "مشاهده کتابخانه" },
+  { title: "زرتشت", text: "آغاز آشنایی با زندگی، اندیشه و میراث پیام‌آور خرد.", href: "/zoroaster", image: "/images/ai/zoroaster-cover.png", footer: "شناخت زرتشت" },
+  { title: "گات‌ها", text: "ورود به کهن‌ترین سروده‌ها؛ با ترجمه، توضیح و مسیر مطالعه.", href: "/gathas", image: "/images/ai/gathas-cover.png", footer: "مطالعه گات‌ها" },
+  { title: "مقاله‌ها", text: "خوانش‌های پژوهشی و قابل‌فهم از مفاهیم، تاریخ و فرهنگ ایران باستان.", href: "/articles", image: "/images/ai/articles-cover.png", footer: "ورود به مقاله‌ها" },
+  { title: "کتابخانه", text: "منابع، نسخه‌ها و راهنمای اعتماد برای یک مطالعه عمیق‌تر.", href: "/library", image: "/images/ai/library-cover.png", footer: "مشاهده کتابخانه" },
 ];
 
 const studyShelves = [
@@ -36,7 +36,7 @@ export default function HomePage() {
     <main className="overflow-hidden">
       <section className="hero-cosmos relative min-h-screen pt-24">
         <Image src={routeHeroByPath["/"]} alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="object-cover opacity-70" />
-        <div className="absolute inset-0 bg-gradient-to-l from-night/20 via-night/72 to-night/96" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#06131c]/18 via-[#071521]/52 to-[#05080d]/80" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
 
@@ -72,7 +72,7 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
-        {portalCards.map((card) => <TrackedLink key={card.title} href={card.href} event="hero_cta_click" payload={{ cta_id: `home-portal-${card.href.replaceAll("/", "-")}`, label: card.title, locale: "fa", source_route: "/" }} className="lux-frame group block overflow-hidden rounded-[18px] p-4 transition hover:-translate-y-1 hover:border-gold/55"><h3 className="text-2xl font-black text-warm">{card.title}</h3><p className="mt-2 text-sm leading-7 text-muted">{card.text}</p><div className={`image-scene ${card.scene} mt-5 h-44 rounded-[14px] border border-gold/14`} /><span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">{card.footer}<ArrowLeft size={15} className="transition group-hover:-translate-x-1" /></span></TrackedLink>)}
+          {portalCards.map((card) => <TrackedLink key={card.title} href={card.href} event="hero_cta_click" payload={{ cta_id: `home-portal-${card.href.replaceAll("/", "-")}`, label: card.title, locale: "fa", source_route: "/" }} className="lux-frame group block overflow-hidden rounded-[18px] p-4 transition hover:-translate-y-1 hover:border-gold/55"><h3 className="text-2xl font-black text-warm">{card.title}</h3><p className="mt-2 text-sm leading-7 text-muted">{card.text}</p><div className="image-scene relative mt-5 h-44 overflow-hidden rounded-[14px] border border-gold/14"><Image src={card.image} alt={`کاور ${card.title}`} fill sizes="(max-width: 1024px) 100vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent" /></div><span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">{card.footer}<ArrowLeft size={15} className="transition group-hover:-translate-x-1" /></span></TrackedLink>)}
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="grid gap-5 lg:grid-cols-3">{studyShelves.map((shelf) => { const Icon = shelf.icon; return <Link key={shelf.href} href={shelf.href} className="lux-frame group p-6 transition hover:-translate-y-1 hover:border-gold/55"><Icon className="text-gold-light" size={24} /><h2 className="mt-5 text-2xl font-black text-warm">{shelf.title}</h2><p className="mt-3 leading-8 text-muted">{shelf.text}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-gold-light">ورود <ArrowLeft size={15} /></span></Link>; })}</div></section>

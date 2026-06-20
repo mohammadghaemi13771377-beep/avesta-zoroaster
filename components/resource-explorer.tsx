@@ -5,7 +5,6 @@ import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowLeft,
-  BookMarked,
   Download,
   Filter,
   Image as ImageIcon,
@@ -84,7 +83,8 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
       ? "جستجو در منابع، زبان، نویسنده و موضوع"
       : "جستجو در تصویر، صوت، mood و prompt";
   const panelTitle = mode === "library" ? "منبع فعال" : "رسانه فعال";
-  const adminHref = mode === "library" ? "/admin/library" : "/admin/media";
+  const companionHref = mode === "library" ? "/trust-center" : "/ai-studio";
+  const companionLabel = mode === "library" ? "روش و منابع" : "استودیوی AI";
   const filterGrid = mode === "library" ? "lg:grid-cols-[minmax(0,1fr)_170px_170px_170px]" : "lg:grid-cols-[minmax(0,1fr)_220px_220px]";
 
   return (
@@ -153,7 +153,7 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                 {filteredItems.length} نتیجه
               </span>
               <div className="flex items-center gap-3">
-                <span>فیلترها برای اتصال به دیتابیس و Meilisearch آماده‌اند.</span>
+                <span>نتیجه‌ها بر اساس نوع، موضوع و کلیدواژه مرتب می‌شوند.</span>
                 {(query || type !== allLabel || category !== allLabel || language !== allLabel) ? (
                   <button type="button" onClick={resetFilters} className="rounded-full border border-gold/20 px-3 py-1 text-xs font-bold text-gold-light transition hover:bg-gold/10">پاک‌سازی</button>
                 ) : null}
@@ -232,11 +232,11 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                   </Link>
                 ) : null}
                 <Link
-                  href={adminHref}
+                  href={companionHref}
                   className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-5 py-3 text-sm font-bold text-gold-light transition hover:bg-gold/10"
                 >
-                  مدیریت
-                  <BookMarked size={16} />
+                  {companionLabel}
+                  <Sparkles size={16} />
                 </Link>
                 {mode === "library" ? (
                   <Link

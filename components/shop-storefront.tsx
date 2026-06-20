@@ -1,11 +1,12 @@
 "use client";
 
-import { ArrowLeft, ShoppingBag, SlidersHorizontal, Sparkles } from "lucide-react";
+import { ArrowLeft, Minus, Plus, Search, ShoppingBag, SlidersHorizontal, Sparkles, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { formatPrice, productCategories, type ProductCategory, type ShopProduct } from "@/lib/shop";
+import { normalizeSearchText } from "@/lib/search";
 
 type CartItem = {
   slug: string;
@@ -14,18 +15,44 @@ type CartItem = {
   quantity: number;
 };
 
+const cartStorageKey = "avesta-shop-cart-v1";
+const inventoryLabels = { available: "موجود", preorder: "پیش‌فروش", limited: "تعداد محدود" } as const;
+
 export function ShopStorefront({ products }: { products: ShopProduct[] }) {
   const [category, setCategory] = useState<"all" | ProductCategory>("all");
+  const [query, setQuery] = useState("");
+  const [availability, setAvailability] = useState<"all" | ShopProduct["inventoryStatus"]>("all");
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [hydrated, setHydrated] = useState(false);
   const filteredProducts = useMemo(
-    () => (category === "all" ? products : products.filter((product) => product.category === category)),
-    [category, products]
+    () => products.filter((product) => {
+      const matchesCategory = category === "all" || product.category === category;
+      const matchesAvailability = availability === "all" || product.inventoryStatus === availability;
+      const haystack = normalizeSearchText(`${product.title} ${product.excerpt} ${product.categoryLabel} ${product.spiritualTheme} ${product.seoKeywords.join(" ")}`);
+      return matchesCategory && matchesAvailability && (!query.trim() || haystack.includes(normalizeSearchText(query)));
+    }),
+    [availability, category, products, query]
   );
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const checkoutHref =
     cart.length > 0
       ? `/shop/checkout?items=${encodeURIComponent(cart.map((item) => `${item.slug}:${item.quantity}`).join(","))}`
       : "/shop/checkout";
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? "[]");
+      if (Array.isArray(saved)) setCart(saved.filter((item) => item && typeof item.slug === "string").slice(0, 20));
+    } catch {
+      window.localStorage.removeItem(cartStorageKey);
+    } finally {
+      setHydrated(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (hydrated) window.localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+  }, [cart, hydrated]);
 
   function addToCart(product: ShopProduct) {
     setCart((current) => {
@@ -39,6 +66,16 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
 
       return [...current, { slug: product.slug, title: product.title, price: product.price, quantity: 1 }];
     });
+  }
+
+  function setQuantity(slug: string, quantity: number) {
+    setCart((current) => quantity <= 0 ? current.filter((item) => item.slug !== slug) : current.map((item) => item.slug === slug ? { ...item, quantity } : item));
+  }
+
+  function resetFilters() {
+    setCategory("all");
+    setAvailability("all");
+    setQuery("");
   }
 
   return (
@@ -70,6 +107,19 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
               </button>
             ))}
           </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-[minmax(0,1fr)_180px]">
+            <label className="relative block">
+              <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={18} />
+              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="جستجو در کتاب، هدیه، پوشاک و هنر" className="h-12 w-full rounded-xl border border-gold/20 bg-night/60 pr-11 pl-4 text-sm text-warm outline-none placeholder:text-muted focus:border-gold" />
+            </label>
+            <select value={availability} onChange={(event) => setAvailability(event.target.value as "all" | ShopProduct["inventoryStatus"])} className="h-12 rounded-xl border border-gold/20 bg-night/60 px-4 text-sm text-warm outline-none focus:border-gold" aria-label="فیلتر وضعیت موجودی">
+              <option value="all">همه وضعیت‌ها</option>
+              <option value="available">موجود</option>
+              <option value="preorder">پیش‌فروش</option>
+              <option value="limited">تعداد محدود</option>
+            </select>
+          </div>
+          {(query || category !== "all" || availability !== "all") ? <button type="button" onClick={resetFilters} className="mt-4 rounded-full border border-gold/20 px-4 py-2 text-xs font-bold text-gold-light transition hover:bg-gold/10">پاک‌سازی فیلترها</button> : null}
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
@@ -92,6 +142,9 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
                 </span>
                 <span className="rounded-full border border-warm/10 bg-warm/5 px-3 py-1 text-xs font-bold text-muted">
                   {product.badge}
+                </span>
+                <span className="rounded-full border border-sky-200/15 bg-sky-200/5 px-3 py-1 text-xs font-bold text-sky-100">
+                  {inventoryLabels[product.inventoryStatus]}
                 </span>
               </div>
               <Link href={`/shop/${product.slug}`}>
@@ -128,10 +181,8 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
           {cart.length ? (
             cart.map((item) => (
               <div key={item.slug} className="rounded-2xl border border-gold/10 bg-night/55 p-4">
-                <p className="font-black text-warm">{item.title}</p>
-                <p className="mt-2 text-sm text-muted">
-                  {item.quantity} عدد / {formatPrice(item.price * item.quantity)}
-                </p>
+                <div className="flex items-start justify-between gap-3"><p className="font-black leading-7 text-warm">{item.title}</p><button type="button" onClick={() => setQuantity(item.slug, 0)} className="text-muted transition hover:text-gold-light" aria-label={`حذف ${item.title}`}><Trash2 size={16} /></button></div>
+                <div className="mt-3 flex items-center justify-between gap-3"><div className="inline-flex items-center rounded-full border border-gold/15"><button type="button" onClick={() => setQuantity(item.slug, item.quantity - 1)} className="grid h-8 w-8 place-items-center text-gold-light"><Minus size={14} /></button><span className="min-w-8 text-center text-sm font-black text-warm">{item.quantity}</span><button type="button" onClick={() => setQuantity(item.slug, item.quantity + 1)} className="grid h-8 w-8 place-items-center text-gold-light"><Plus size={14} /></button></div><p className="text-sm text-muted">{formatPrice(item.price * item.quantity)}</p></div>
               </div>
             ))
           ) : (
@@ -153,7 +204,7 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
         </Link>
         <div className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/30 px-5 py-3 text-sm font-bold text-gold-light">
           <Sparkles size={17} />
-          پرداخت واقعی در فاز بعد
+          سبد روی همین دستگاه ذخیره می‌شود
         </div>
       </aside>
     </div>

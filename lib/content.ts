@@ -2,7 +2,7 @@ export const navItems = [
   { label: "خانه", href: "/" },
   { label: "اوستا", href: "/avesta" },
   { label: "زرتشت", href: "/zoroaster" },
-  { label: "گات‌ها", href: "/gathas" },
+  { label: "فروشگاه", href: "/shop" },
   { label: "کتابخانه", href: "/library" },
 ];
 

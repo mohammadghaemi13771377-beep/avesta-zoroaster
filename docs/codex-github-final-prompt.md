@@ -19,38 +19,35 @@
 
 قواعد اعمال:
 1. محتوای zip را روی repository فعلی merge کن.
-2. node_modules، .next، .env و secretهای واقعی را commit نکن.
-3. public/images، public/audio، public/library، public/video و همه docs را نگه دار.
-4. تغییرهای فعلی کاربر را revert نکن؛ با آن‌ها merge کن.
-5. اگر conflict داری، اول ساختار app، components، lib، prisma و public را حفظ کن و conflict را patch کن.
+2. تغییرهای موجود کاربر را revert نکن؛ فقط با آن‌ها merge کن.
+3. `node_modules`، `.next`، `.env` و secretهای واقعی را commit نکن.
+4. همه فایل‌های `public/images`، `public/audio`، `public/library`، `public/video` و `docs` را نگه دار.
+5. اگر conflict داری، ساختار `app`، `components`، `lib`، `prisma` و `public` را حفظ کن و conflict را با patch محدود حل کن.
 
-خلاصه آخرین تغییرها:
-- هدر عمومی خلوت و کتابی شد: خانه، اوستا، زرتشت، گات‌ها، کتابخانه و منوی کاوش.
-- منوی موبایل جدید برای مسیرهای اصلی، بخش‌های اوستا و کاوش بیشتر اضافه شد.
-- صفحه خانه به gateway خلوت تبدیل شد؛ CTAهای اصلی به route مستقل می‌روند.
-- /avesta فیلتر «نیت مطالعه» برای آغاز آشنایی، نیایش و مطالعه عمیق دارد.
-- فهرست فصل‌های هر بخش اوستا جستجو و فیلتر مفهومی دارد.
-- دکمه‌های hero بخش‌های اوستا حالا به شروع مطالعه، جستجوی همان بخش و منابع پژوهشی وصل‌اند.
-- کتابخانه فیلتر نوع، موضوع، زبان و پاک‌سازی فیلتر دارد.
-- مقاله‌ها فیلتر موضوع، برچسب، ترتیب مطالعه و پاک‌سازی دارند.
-- /search فیلتر نوع، دسته، بخش و فروشگاه دارد و deep-linkهای section-aware کار می‌کنند.
-- Research Source Intake، Localization Hub و Global Growth Audit در ادمین آماده‌اند.
-- assetهای local و fallbackهای محتوا حفظ شده‌اند تا بدون database production هم build نشکند.
+خلاصه این release:
+- هدر عمومی خلوت و کتابی است: خانه، اوستا، زرتشت، فروشگاه، کتابخانه و منوی کاوش.
+- منوی موبایل جمع‌شونده است تا کاربر بخش‌های اوستا را بدون شلوغی باز کند.
+- حالت نور محیطی برای تجربه روشن‌ترِ سینمایی اضافه شده است.
+- صفحه 404 یک تجربه برنددار با تصویر واقعی و مسیر بازگشت به خانه، اوستا، جستجو و کتابخانه دارد.
+- کارت‌های کلیدی صفحه خانه به assetهای واقعی `public/images/ai` وصل شده‌اند.
+- صفحه‌های بند اوستا بوکمارک پایدار، share واقعی و پرش نرم به روایت صوتی دارند.
+- نمایشگاه‌ها deep-link دارند؛ نمونه: `/exhibitions#light-and-asha`.
+- جستجو، کتابخانه، مقاله‌ها و اطلس فصل‌های اوستا فیلتر و ورود مستقیم به مسیر مستقل دارند.
+- فرم `/admin/media` برای آپلود تصویر، صوت، PDF و ویدئو دارای محدودسازی نوع فایل، وضعیت ارسال، پیش‌نمایش تصویر و کپی URL است.
+- fallbackهای local/sample باقی مانده‌اند تا بدون database production هم سایت build-safe بماند.
 
 فایل‌های کلیدی این release:
 - components/header.tsx
 - components/mobile-navigation.tsx
-- components/avesta-section-explorer.tsx
-- components/avesta-chapter-atlas.tsx
+- components/ambient-light-toggle.tsx
+- components/verse-quick-actions.tsx
+- components/exhibitions-gallery.tsx
 - components/resource-explorer.tsx
-- components/articles-explorer.tsx
-- components/search-panel.tsx
+- components/admin/media-upload-form.tsx
+- app/not-found.tsx
 - app/page.tsx
-- app/avesta/page.tsx
-- app/avesta/[section]/page.tsx
-- app/search/page.tsx
-- lib/content.ts
-- lib/source-intake-hub.ts
+- app/avesta/[section]/[chapter]/[verse]/page.tsx
+- public/images/ai/
 
 قبل از commit اجرا کن:
 npm install
@@ -60,16 +57,10 @@ npm run build
 
 نتیجه تاییدشده در بسته Codex:
 - TypeScript بدون خطا
-- Next.js build موفق
-- 294/294 صفحه استاتیک تولید شده
-
-اگر build خطا داد:
-- routeهای جدید، public assetها یا fallbackهای local را حذف نکن.
-- secret واقعی را وارد git نکن.
-- خطا را با patch محدود حل کن و دوباره build بگیر.
+- Next.js build موفق با 294/294 صفحه استاتیک
 
 Suggested commit:
-feat: polish navigation, search and Avesta reading paths
+feat: refine luminous UX and storefront
 
 بعد از push:
 1. Vercel production deployment را اجرا یا بررسی کن.
@@ -78,23 +69,16 @@ feat: polish navigation, search and Avesta reading paths
    /
    /avesta
    /avesta/yasna
-   /avesta/gathas
    /avesta/vendidad
-   /gathas
-   /zoroaster
+   /avesta/yashts
    /articles
    /library
-   /search
-   /search?type=verse&section=yasna
-   /dictionary
    /media
-   /exhibitions
+   /exhibitions#light-and-asha
    /shop
    /admin
+   /admin/media
    /admin/deployment-readiness
-   /admin/global-growth-audit
-   /admin/localization
-   /admin/source-intake
    /sitemap.xml
    /robots.txt
 
@@ -104,7 +88,7 @@ feat: polish navigation, search and Avesta reading paths
 - Vercel preview URL
 - Vercel production URL
 - build status
-- هر env یا integration که هنوز برای production لازم است
+- هر env یا integration باقی‌مانده برای production
 ```
 
-نکته: `avesta-zoroaster-full-code.txt` برای مرور متنی کد است و فایل‌های binary را شامل نمی‌شود؛ برای deploy واقعی از `avesta-zoroaster-source.zip` استفاده شود.
+نکته: `avesta-zoroaster-full-code.txt` فقط برای مرور متنی کد است و فایل‌های binary را شامل نمی‌شود؛ برای deploy واقعی از `avesta-zoroaster-source.zip` استفاده شود.
