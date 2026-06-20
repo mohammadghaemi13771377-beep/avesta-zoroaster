@@ -21,28 +21,43 @@ const typeOptions: Array<{ label: string; value: SearchType }> = [
   { label: "واژه‌نامه", value: "glossary" },
   { label: "کتابخانه", value: "library" },
   { label: "رسانه", value: "media" },
+  { label: "فروشگاه", value: "product" },
   { label: "هاب‌ها", value: "hub" },
 ];
 
-export function SearchPanel() {
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState<SearchType>("all");
+type SearchPanelProps = {
+  initialQuery?: string;
+  initialType?: SearchType;
+  initialSection?: string;
+};
+
+export function SearchPanel({ initialQuery = "", initialType = "all", initialSection = "all" }: SearchPanelProps) {
+  const [query, setQuery] = useState(initialQuery);
+  const [type, setType] = useState<SearchType>(initialType);
   const [category, setCategory] = useState("all");
+  const [section, setSection] = useState(initialSection);
   const [recent, setRecent] = useState<string[]>([]);
   const [savedSearches, setSavedSearches] = useState<string[]>([]);
   const [saveStatus, setSaveStatus] = useState("جستجوهای مهم را برای پژوهش بعدی ذخیره کن.");
 
   const categories = useMemo(() => getSearchCategories(), []);
-  const results = useMemo(() => searchDocuments(query, type, category), [category, query, type]);
+  const sections = useMemo(() => ["all", ...Array.from(new Set(searchDocuments("", "all", "all").map((item) => item.section).filter(Boolean)))], []);
+  const results = useMemo(() => searchDocuments(query, type, category).filter((item) => section === "all" || item.section === section), [category, query, section, type]);
   const topResults = results.slice(0, 12);
   const resultTypes = useMemo(() => {
     return typeOptions
       .filter((option) => option.value !== "all")
       .map((option) => ({
         ...option,
-        count: searchDocuments(query, option.value, category).length,
+        count: searchDocuments(query, option.value, category).filter((item) => section === "all" || item.section === section).length,
       }));
-  }, [category, query]);
+  }, [category, query, section]);
+
+  useEffect(() => {
+    setQuery(initialQuery);
+    setType(initialType);
+    setSection(initialSection);
+  }, [initialQuery, initialSection, initialType]);
 
   useEffect(() => {
     try {
@@ -95,7 +110,7 @@ export function SearchPanel() {
 
   return (
     <div className="lux-frame p-5">
-      <div className="grid gap-4 lg:grid-cols-[1fr_220px_220px]">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_180px_180px_180px]">
         <label className="relative block">
           <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={20} />
           <input
@@ -142,6 +157,14 @@ export function SearchPanel() {
             </option>
           ))}
         </select>
+        <select
+          value={section}
+          onChange={(event) => setSection(event.target.value)}
+          className="h-14 rounded-full border border-gold/20 bg-night/70 px-5 text-warm outline-none focus:border-gold"
+          aria-label="فیلتر بخش"
+        >
+          {sections.map((item) => <option key={item} value={item}>{item === "all" ? "همه بخش‌ها" : item}</option>)}
+        </select>
       </div>
 
       <div className="mt-5 flex flex-wrap gap-2">
@@ -157,6 +180,13 @@ export function SearchPanel() {
           </button>
         ))}
       </div>
+
+      {section !== "all" ? (
+        <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-sm font-bold text-gold-light">
+          بخش فعال: {section}
+          <button type="button" onClick={() => setSection("all")} className="grid h-5 w-5 place-items-center rounded-full text-gold-light transition hover:bg-gold/15" aria-label="حذف فیلتر بخش"><X size={14} /></button>
+        </div>
+      ) : null}
 
       <div className="mt-4 rounded-2xl border border-gold/10 bg-night/45 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">

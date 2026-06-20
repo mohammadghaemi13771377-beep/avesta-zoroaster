@@ -42,10 +42,15 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
   const [query, setQuery] = useState("");
   const [type, setType] = useState(allLabel);
   const [category, setCategory] = useState(allLabel);
+  const [language, setLanguage] = useState(allLabel);
   const [activeTitle, setActiveTitle] = useState(items[0]?.title ?? "");
 
   const types = useMemo(() => [allLabel, ...Array.from(new Set(items.map((item) => item.type)))], [items]);
   const categories = useMemo(() => [allLabel, ...Array.from(new Set(items.map((item) => item.category)))], [items]);
+  const languages = useMemo(
+    () => [allLabel, ...Array.from(new Set(items.map((item) => item.language).filter((item): item is string => Boolean(item))))],
+    [items],
+  );
 
   const filteredItems = useMemo(() => {
     const value = normalizeSearchText(query);
@@ -53,6 +58,7 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
     return items.filter((item) => {
       const matchesType = type === allLabel || item.type === type;
       const matchesCategory = category === allLabel || item.category === category;
+      const matchesLanguage = language === allLabel || item.language === language;
       const haystack = normalizeSearchText(
         `${item.title} ${item.type} ${item.category} ${item.description} ${item.author ?? ""} ${item.language ?? ""} ${
           item.mood ?? ""
@@ -60,9 +66,16 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
       );
       const matchesQuery = !value || haystack.includes(value);
 
-      return matchesType && matchesCategory && matchesQuery;
+      return matchesType && matchesCategory && matchesLanguage && matchesQuery;
     });
-  }, [category, items, query, type]);
+  }, [category, items, language, query, type]);
+
+  function resetFilters() {
+    setQuery("");
+    setType(allLabel);
+    setCategory(allLabel);
+    setLanguage(allLabel);
+  }
 
   const activeItem = filteredItems.find((item) => item.title === activeTitle) ?? filteredItems[0] ?? items[0];
   const Icon = mode === "library" ? Library : ImageIcon;
@@ -72,13 +85,14 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
       : "جستجو در تصویر، صوت، mood و prompt";
   const panelTitle = mode === "library" ? "منبع فعال" : "رسانه فعال";
   const adminHref = mode === "library" ? "/admin/library" : "/admin/media";
+  const filterGrid = mode === "library" ? "lg:grid-cols-[minmax(0,1fr)_170px_170px_170px]" : "lg:grid-cols-[minmax(0,1fr)_220px_220px]";
 
   return (
     <section className="mt-12">
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div>
           <div className="lux-frame p-5">
-            <div className="grid gap-4 lg:grid-cols-[1fr_220px_220px]">
+            <div className={`grid gap-4 ${filterGrid}`}>
               <label className="relative block">
                 <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={20} />
                 <input
@@ -121,6 +135,16 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                   <option key={item}>{item}</option>
                 ))}
               </select>
+              {mode === "library" ? (
+                <select
+                  value={language}
+                  onChange={(event) => setLanguage(event.target.value)}
+                  className="h-14 rounded-full border border-gold/20 bg-night/70 px-5 text-warm outline-none focus:border-gold"
+                  aria-label="فیلتر زبان"
+                >
+                  {languages.map((item) => <option key={item}>{item}</option>)}
+                </select>
+              ) : null}
             </div>
 
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-muted">
@@ -128,7 +152,12 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                 <Sparkles size={15} />
                 {filteredItems.length} نتیجه
               </span>
-              <span>فیلترها برای اتصال به دیتابیس و Meilisearch آماده‌اند.</span>
+              <div className="flex items-center gap-3">
+                <span>فیلترها برای اتصال به دیتابیس و Meilisearch آماده‌اند.</span>
+                {(query || type !== allLabel || category !== allLabel || language !== allLabel) ? (
+                  <button type="button" onClick={resetFilters} className="rounded-full border border-gold/20 px-3 py-1 text-xs font-bold text-gold-light transition hover:bg-gold/10">پاک‌سازی</button>
+                ) : null}
+              </div>
             </div>
           </div>
 

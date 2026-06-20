@@ -11,7 +11,7 @@ AVESTA-ZOROASTER قرار است یک وبلاگ یا سایت مذهبی سنت
 - اسکلت محصول، تجربه کاربر، مسیرها، پنل ادمین، APIهای اصلی و مدل دیتابیس آماده شده‌اند.
 - داده‌های فعلی sample/local هستند و برای production باید به PostgreSQL، CMS/storage، Meilisearch، email provider و payment واقعی وصل شوند.
 - بخش‌های عملیاتی جدید برای مدیریت تکمیل پروژه اضافه شده‌اند: World Map، Inventory، Production Queue، Brief Studio و Review Gate.
-- build کامل در محیط Codex اجرا نشده چون `npm` روی PATH نبود؛ تیم فنی باید build را در محیط خودش اجرا کند.
+- در محیط Codex، `npx tsc --noEmit` و build کامل Next.js با موفقیت اجرا شد و `294/294` صفحه تولید شد. تیم فنی باید همین checks را پس از اتصال سرویس‌های production دوباره اجرا کند.
 
 ## 2. فایل‌های تحویل
 

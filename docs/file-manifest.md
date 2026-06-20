@@ -25,6 +25,11 @@
 - `app/exhibitions`: نمایشگاه‌های موضوعی curated با آثار، یادداشت کیوریتور و پیشرفت local
 - `app/daily-light`: راهنمای روزانه روشنایی و مسیر ۱۵ دقیقه‌ای کاربر
 - `app/wisdom-capsule`: کپسول خرد سه دقیقه‌ای با پیام، واژه، تمرین و اشتراک
+- `app/research-methodology`: صفحه روش پژوهش، سیاست منابع، بازبینی و disclaimer آموزشی
+- `app/contact`: صفحه تماس و همکاری پژوهشی/هنری
+- `app/llms.txt/route.ts`: خروجی متنی برای مستندسازی سایت برای crawlerهای AI
+- `app/not-found.tsx`: صفحه 404 سینمایی با مسیرهای بازگشت به خانه، اوستا و جستجو
+- `app/admin/layout.tsx`: metadata noindex برای همه مسیرهای ادمین
 - `app/avesta/[section]/[chapter]`: صفحه اختصاصی هر یشت، فرگرد، هات یا نیایش با پوستر، پیام امروزی و لیست بندها
 - `app/avesta/paths`: فهرست عمومی مسیرهای شروع مطالعه
 - `app/avesta/paths/[id]`: صفحه اختصاصی هر مسیر مطالعه با مراحل و CTA
@@ -150,6 +155,7 @@
 - `lib/content-export.ts`: ساخت bundle خروجی کامل محتوا، مسیرهای مطالعه، راهنمای فصل‌ها، manifest تصویرها و readiness
 - `lib/asset-operations.ts`: مدل عملیات دارایی‌ها، کانال‌های upload، summary storage و خروجی API
 - `lib/publish-pipeline.ts`: ترکیب تقویم انتشار و وظایف تحریریه برای تصمیم publish/schedule/hold/block
+- `lib/seo.ts`: تنظیمات دامنه، metadata helper، hreflang، schema WebSite/Organization/Breadcrumb/CollectionPage/CreativeWork
 - `lib/route-visibility-audit.ts`: اتصال visibility به sitemap، navigation، index و خروجی CSV
 - `lib/avesta-source-packs.ts`: ساخت Source Pack، CSV و Markdown برای منابع پژوهشی بخش‌های اوستا
 - `lib/avesta-import-template.ts`: ساخت قالب JSON/CSV برای ورود دسته‌ای بندهای اوستا
@@ -235,3 +241,42 @@
 - `reference-hope-despair.png`: الگوی امید، ناامیدی و پیام امروزی
 - `reference-home-ui.png`: الگوی homepage سینمایی
 - `reference-logo.png`: لوگوی مرجع
+
+## Latest Global Growth Files
+
+- `lib/global-growth-audit.ts`: مدل امتیازدهی رشد جهانی برای SEO، multilingual، schema، trust، performance، content، assets و admin/CMS.
+- `components/admin/global-growth-audit-board.tsx`: بورد مدیریتی رشد جهانی با امتیاز، وضعیت، چک‌ها، routeهای مرتبط و next action.
+- `app/admin/global-growth-audit/page.tsx`: صفحه ادمین noindex برای مشاهده Global Growth Audit.
+- `app/api/admin/global-growth-audit/route.ts`: خروجی JSON بدون cache برای مصرف QA، GitHub/Vercel یا مانیتورینگ داخلی.
+- `components/admin/admin-shell.tsx`: لینک «رشد جهانی» در سایدبار ادمین.
+- `lib/content.ts`: اضافه شدن route جدید به route map پروژه.
+
+## Latest Localization Files
+
+- `lib/localization-hub.ts`: مدل آمادگی ترجمه، وضعیت فارسی/انگلیسی، بازبینی انسانی، مقاله‌ها، واژه‌نامه و chapter guideهای اوستا.
+- `components/admin/localization-hub-board.tsx`: بورد ادمین برای Localization Hub با امتیاز، status، owner، checks و next action.
+- `app/admin/localization/page.tsx`: صفحه ادمین noindex برای مدیریت آمادگی ترجمه.
+- `app/api/admin/localization/route.ts`: خروجی JSON بدون cache برای مصرف QA، SEO، GitHub/Vercel یا automation.
+- `lib/global-growth-audit.ts`: اتصال بخش multilingual به Localization Hub.
+- `components/admin/admin-shell.tsx`: لینک «چندزبانه» در سایدبار ادمین.
+- `lib/content.ts`: اضافه شدن `/admin/localization` به route map پروژه.
+
+## Latest Research Source Intake Files
+
+- `lib/source-intake-hub.ts`: تجمیع Source Pack، رجیستری منابع، پوشش citation و بازبینی پژوهشی در یک مدل آمادگی ورود محتوا.
+- `components/admin/source-intake-hub-board.tsx`: بورد ادمین برای مشاهده readiness، مانع‌ها، citationها، منابع و دارایی‌های لازم هر بخش.
+- `app/admin/source-intake/page.tsx`: صفحه ادمین noindex برای مدیریت آمادگی پژوهشی محتوا.
+- `app/api/admin/source-intake/route.ts`: API محافظت‌شده برای مصرف CMS، QA یا automation آینده.
+- `lib/global-growth-audit.ts`: اتصال امتیاز اعتماد پژوهشی به Source Intake Hub.
+- `components/admin/admin-shell.tsx`: لینک «ورود منابع» در سایدبار ادمین.
+- `lib/content.ts`: اضافه شدن `/admin/source-intake` به route map پروژه.
+
+## Latest Release Handoff Files
+
+- `docs/release-handoff-2026-06-20.md`: وضعیت نهایی release، راه‌اندازی، deploy، smoke test و مسئولیت‌های تیم‌ها.
+- `docs/codex-github-final-prompt.md`: متن کامل آماده برای چت GitHub/Vercel.
+- `docs/codex-github-chat-message.md`: نسخه کوتاه پیام deploy.
+- `components/mobile-navigation.tsx`: منوی موبایل route-first.
+- `components/avesta-section-explorer.tsx`: فیلتر نیت مطالعه پورتال اوستا.
+- `components/avesta-chapter-atlas.tsx`: جستجو و فیلتر مفهومی فصل‌ها.
+- `components/search-panel.tsx`: فیلتر بخش، فروشگاه و deep-link جستجو.

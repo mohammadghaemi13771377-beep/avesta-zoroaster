@@ -3,7 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PrivacyConsentBanner } from "@/components/privacy-consent-banner";
-import { absoluteUrl, seoKeywords, siteConfig } from "@/lib/seo";
+import { absoluteUrl, languageAlternates, organizationJsonLd, seoKeywords, siteConfig, websiteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -16,10 +16,7 @@ export const metadata: Metadata = {
   keywords: seoKeywords,
   alternates: {
     canonical: absoluteUrl("/"),
-    languages: {
-      fa: absoluteUrl("/fa"),
-      en: absoluteUrl("/en")
-    }
+    languages: languageAlternates
   },
   openGraph: {
     title: siteConfig.name,
@@ -44,6 +41,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fa" dir="rtl">
       <body className="font-sans antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(()=>{try{const p=location.pathname;const en=p==='/en'||p.startsWith('/en/');document.documentElement.lang=en?'en':'fa';document.documentElement.dir=en?'ltr':'rtl';}catch(e){}})();"
+          }}
+        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
         <Header />
         {children}
         <Footer />

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, BookOpen, Clock, Search, Tag, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Clock, Filter, Search, Tag, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { normalizeSearchText } from "@/lib/search";
 
@@ -13,6 +13,7 @@ type ArticleItem = {
   category: string;
   tags: string[];
   readingTime: string;
+  publishedAt?: string;
   coverTone: string;
   coverImage?: string;
   relatedTerms?: string[];
@@ -24,26 +25,43 @@ const allLabel = "همه";
 export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState(allLabel);
+  const [tag, setTag] = useState(allLabel);
+  const [sort, setSort] = useState("newest");
   const [activeSlug, setActiveSlug] = useState(articles[0]?.slug ?? "");
 
   const categories = useMemo(
     () => [allLabel, ...Array.from(new Set(articles.map((article) => article.category)))],
     [articles]
   );
+  const tags = useMemo(() => [allLabel, ...Array.from(new Set(articles.flatMap((article) => article.tags))).slice(0, 9)], [articles]);
 
   const filteredArticles = useMemo(() => {
     const value = normalizeSearchText(query);
 
-    return articles.filter((article) => {
+    const matches = articles.filter((article) => {
       const matchesCategory = category === allLabel || article.category === category;
+      const matchesTag = tag === allLabel || article.tags.includes(tag);
       const haystack = normalizeSearchText(
         `${article.title} ${article.excerpt} ${article.category} ${article.tags.join(" ")} ${article.coverTone}`
       );
       const matchesQuery = !value || haystack.includes(value);
 
-      return matchesCategory && matchesQuery;
+      return matchesCategory && matchesTag && matchesQuery;
     });
-  }, [articles, category, query]);
+
+    return [...matches].sort((a, b) => {
+      if (sort === "title") return a.title.localeCompare(b.title, "fa");
+      if (sort === "shortest") return readingMinutes(a.readingTime) - readingMinutes(b.readingTime);
+      return (b.publishedAt ?? "").localeCompare(a.publishedAt ?? "");
+    });
+  }, [articles, category, query, sort, tag]);
+
+  function resetFilters() {
+    setQuery("");
+    setCategory(allLabel);
+    setTag(allLabel);
+    setSort("newest");
+  }
 
   const activeArticle = filteredArticles.find((article) => article.slug === activeSlug) ?? filteredArticles[0] ?? articles[0];
 
@@ -52,7 +70,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div>
           <div className="lux-frame p-5">
-            <div className="grid gap-4 lg:grid-cols-[1fr_240px]">
+            <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_180px_180px]">
               <label className="relative block">
                 <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={20} />
                 <input
@@ -81,6 +99,20 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
                   <option key={item}>{item}</option>
                 ))}
               </select>
+              <label className="relative block">
+                <Filter className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={17} />
+                <select value={sort} onChange={(event) => setSort(event.target.value)} className="h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-11 pl-5 text-warm outline-none focus:border-gold" aria-label="ترتیب مقاله‌ها">
+                  <option value="newest">تازه‌ترین</option>
+                  <option value="shortest">کوتاه‌ترین مطالعه</option>
+                  <option value="title">عنوان</option>
+                </select>
+              </label>
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap gap-2">
+                {tags.map((item) => <button key={item} type="button" onClick={() => setTag(item)} className={`rounded-full border px-3 py-1.5 text-xs font-bold transition ${tag === item ? "border-gold/45 bg-gold/15 text-gold-light" : "border-warm/10 text-muted hover:border-gold/25 hover:text-gold-light"}`}>{item}</button>)}
+              </div>
+              {(query || category !== allLabel || tag !== allLabel || sort !== "newest") ? <button type="button" onClick={resetFilters} className="rounded-full border border-gold/20 px-3 py-1.5 text-xs font-bold text-gold-light transition hover:bg-gold/10">پاک‌سازی</button> : null}
             </div>
             <p className="mt-4 text-sm text-muted">{filteredArticles.length} مقاله برای این فیلتر آماده است.</p>
           </div>
@@ -199,4 +231,9 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
       </div>
     </section>
   );
+}
+
+function readingMinutes(value: string) {
+  const latinDigits = value.replace(/[۰-۹]/g, (digit) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(digit)));
+  return Number.parseInt(latinDigits, 10) || 999;
 }

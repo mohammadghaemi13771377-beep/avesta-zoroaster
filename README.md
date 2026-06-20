@@ -48,6 +48,12 @@ node preview-server.mjs
 - کنسول خروجی و بکاپ محتوا برای دریافت snapshot کامل JSON از مقاله‌ها، واژه‌نامه، کتابخانه، رسانه، فصل‌های اوستا، مسیرهای مطالعه، manifest تصویرها و آمادگی production
 - کنسول Asset Operations برای مدیریت تصویر، صوت، PDF، ویدئو، مسیرهای local، storage هدف، CDN و بکاپ media
 - اتاق تصمیم انتشار برای ترکیب تقویم محتوا، وظایف تحریریه، رسانه، منابع و SEO و تصمیم‌گیری `publish/schedule/hold/block`
+- فاز SEO جهانی: canonical، OpenGraph، Twitter Card، hreflang، schema مرکزی WebSite/Organization، breadcrumb و CreativeWork برای صفحات اوستا
+- sitemap عمومی گسترده‌تر با پوشش مقاله‌های pillar، chapterها، verseها، نسخه‌های زبانی و حذف مسیرهای admin/API از index عمومی
+- noindex برای ادمین و مسیرهای کم‌ارزش مثل login/profile/checkout در robots و metadata
+- صفحه‌های عمومی `/research-methodology` و `/contact` برای اعتماد پژوهشی، disclaimer آموزشی و همکاری با پژوهشگران/هنرمندان
+- مقاله‌های pillar دو‌زبانه درباره Avesta، Zoroaster، Yasna، Vendidad و جشن‌های زرتشتی/ایرانی
+- فایل `/llms.txt` برای مستندسازی سایت برای crawlerهای AI و مسیرهای محتوایی مهم
 - اتصال صفحه‌های بند/آیه به راهنمای تصویری chapter با hero اختصاصی، پنل زمینه تصویری و تمرین‌های همان تالار
 - Reference board تصویری در `public/images/references` و سند `docs/visual-reference-board.md` برای تیم طراحی
 - پورتال اصلی `/avesta`
@@ -130,6 +136,8 @@ node preview-server.mjs
 - `/wisdom-capsule`
 - `/compass`
 - `/privacy-center`
+- `/research-methodology`
+- `/contact`
 - `/zoroaster`
 - `/gathas`
 - `/zoroastrianism`
@@ -152,6 +160,7 @@ node preview-server.mjs
 - `/login`
 - `/register`
 - `/profile`
+- `/llms.txt`
 - `/admin`
 - `/admin/go-live`
 - `/admin/deployment-readiness`
@@ -279,3 +288,44 @@ npm run db:seed
 5. تبدیل فرم‌های ادمین به CRUD کامل production
 6. اتصال upload به storage دائمی
 7. ورود محتوای واقعی اوستا، گات‌ها، مقاله‌ها و رسانه‌ها
+
+## آخرین آپدیت: Global Growth Audit
+
+- مسیر `/admin/global-growth-audit` اضافه شد تا SEO، چندزبانه، schema، اعتماد پژوهشی، performance، محتوا، asset pipeline و آمادگی CMS در یک بورد مدیریتی دیده شود.
+- API مسیر `/api/admin/global-growth-audit` اضافه شد تا تیم فنی یا چت GitHub/Vercel بتواند وضعیت رشد جهانی سایت را به‌صورت JSON بخواند.
+- مدل مرکزی `lib/global-growth-audit.ts` اضافه شد و از داده‌های کیفیت صفحات، deploy readiness، تولید محتوا، دارایی‌ها و trust center امتیاز می‌سازد.
+- لینک «رشد جهانی» به سایدبار ادمین اضافه شد.
+- پیام commit پیشنهادی این فاز: `feat: add global growth audit dashboard`
+
+## آخرین آپدیت: Localization Hub
+
+- مسیر `/admin/localization` اضافه شد تا وضعیت ترجمه فارسی/انگلیسی، بازبینی انسانی، اصطلاحات زرتشتی، routeهای چندزبانه و اولویت تولید متن انگلیسی قابل مدیریت باشد.
+- API مسیر `/api/admin/localization` اضافه شد تا تیم فنی، SEO و GitHub/Vercel بتوانند وضعیت ترجمه را به‌صورت JSON دریافت کنند.
+- مدل `lib/localization-hub.ts` اضافه شد و routeهای چندزبانه، chapter guideهای اوستا، مقاله‌های pillar و واژه‌نامه را امتیازدهی می‌کند.
+- Global Growth Audit حالا بخش multilingual را از Localization Hub تغذیه می‌کند.
+- آخرین build موفق: `294/294` صفحه.
+- پیام commit پیشنهادی این فاز: `feat: add research source intake hub`
+
+## آخرین آپدیت: Research Source Intake Hub
+
+- مسیر `/admin/source-intake` اضافه شد تا تیم پژوهش برای هر بخش اوستا، منبع لازم، citation تاییدشده، دارایی‌های رسانه‌ای، مانع‌ها و اقدام بعدی را در یک بورد ببیند.
+- API مسیر `/api/admin/source-intake` با کنترل دسترسی admin اضافه شد تا در آینده به CMS، workflow یا automation متصل شود.
+- مدل `lib/source-intake-hub.ts` داده‌های Source Pack، رجیستری منابع، پوشش ارجاع و بازبینی منابع را یکپارچه می‌کند.
+- بخش اعتماد پژوهشی در Global Growth Audit اکنون امتیاز Source Intake را نیز در نظر می‌گیرد.
+- آخرین build موفق: `294/294` صفحه.
+- پیام commit پیشنهادی این فاز: `feat: add research source intake hub`
+
+## آخرین آپدیت: Focused Navigation and Library-Style Home
+
+- هدر عمومی به پنج مسیر اصلی «خانه، اوستا، زرتشت، گات‌ها و کتابخانه» محدود شد.
+- مسیرهای فرعی در منوی «کاوش» با توضیح کوتاه و لینک مستقل قرار گرفتند تا هدر شلوغ نشود.
+- صفحه خانه از کارت‌ها و CTAهای تکراری پاک‌سازی شد و اکنون فقط پورتال اوستا، ورودی‌های منتخب، قفسه‌های مطالعه، خبرنامه و مقاله‌های منتخب را نمایش می‌دهد.
+- تمام ورودی‌های صفحه خانه به routeهای مستقل متصل هستند و کاربر را به بخش‌های جداگانه منتقل می‌کنند.
+- پیام commit پیشنهادی این فاز: `feat: simplify global navigation and home gateway`
+
+## آخرین Release Handoff: 2026-06-20
+
+- ناوبری desktop و mobile، پورتال اوستا، فصل‌های اوستا، کتابخانه، مقاله‌ها و جستجوی سراسری برای تجربه route-first و کتابی تکمیل شدند.
+- جستجوی deep-link برای بخش‌های اوستا فعال است؛ نمونه: `/search?type=verse&section=yasna`.
+- راهنمای دقیق deploy و تحویل تیم‌ها در `docs/release-handoff-2026-06-20.md` و پیام آماده GitHub/Vercel در `docs/codex-github-final-prompt.md` قرار دارد.
+- آخرین بررسی: `npx tsc --noEmit` و `npm run build` با `294/294` صفحه موفق.

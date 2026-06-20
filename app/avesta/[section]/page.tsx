@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BookMarked, Headphones, Quote, Share2, Sparkles } from "lucide-react";
+import { ArrowLeft, BookOpen, Quote, Search, Sparkles } from "lucide-react";
 import { AvestaChapterAtlas } from "@/components/avesta-chapter-atlas";
 import { AvestaPosterExperience } from "@/components/avesta-poster-experience";
 import { ReadingControls } from "@/components/reading-controls";
+import { TrackedLink } from "@/components/tracked-link";
 import { avestaSections } from "@/lib/content";
 import {
   getAvestaSection,
@@ -14,6 +16,7 @@ import {
 } from "@/lib/avesta-repository";
 import { getAvestaVisualGuide } from "@/lib/avesta-visual-guides";
 import { sectionCoverBySlug } from "@/lib/visual-assets";
+import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo";
 
 type PageProps = {
   params: {
@@ -51,11 +54,28 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
   const sampleVerse = await getSectionSampleVerse(params.section, locale);
   const chapters = await getSectionChapters(params.section, locale);
   const langQuery = locale === "en" ? "?lang=en" : "";
+  const firstChapter = chapters[0];
   const visualGuide = getAvestaVisualGuide(section.slug);
   const sectionCover = section.coverImage ?? sectionCoverBySlug[section.slug];
+  const pageHref = `/avesta/${section.slug}`;
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: "خانه", href: "/" },
+      { name: "اوستا", href: "/avesta" },
+      { name: section.title, href: pageHref }
+    ]),
+    collectionPageJsonLd({
+      name: `${section.title} در اوستا`,
+      description: section.description,
+      url: pageHref
+    })
+  ];
 
   return (
     <main className="overflow-hidden pt-24" dir={locale === "en" ? "ltr" : "rtl"}>
+      {jsonLd.map((item, index) => (
+        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
+      ))}
       <section className="hero-cosmos relative min-h-[720px]">
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
@@ -73,18 +93,23 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
             <p className="mt-3 text-xs text-muted">پیشرفت نمونه مطالعه: {sampleVerse.progress}%</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <button className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 font-bold text-night">
-                <BookMarked size={18} />
-                ذخیره مطالعه
-              </button>
-              <button className="inline-flex items-center gap-2 rounded-xl border border-gold/25 px-5 py-3 font-bold text-gold-light">
-                <Share2 size={18} />
-                اشتراک‌گذاری
-              </button>
-              <button className="inline-flex items-center gap-2 rounded-xl border border-gold/25 px-5 py-3 font-bold text-gold-light">
-                <Headphones size={18} />
-                پخش صوت
-              </button>
+              <TrackedLink
+                href={firstChapter ? `/avesta/${section.slug}/${firstChapter.slug}${langQuery}` : "/avesta/paths"}
+                event="avesta_section_opened"
+                payload={{ section_slug: section.slug, card_position: "section-hero", source_route: pageHref }}
+                className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 font-bold text-night transition hover:bg-gold-light"
+              >
+                شروع مطالعه
+                <ArrowLeft size={18} />
+              </TrackedLink>
+              <Link href={`/search?type=verse&section=${section.slug}`} className="inline-flex items-center gap-2 rounded-xl border border-gold/25 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10">
+                <Search size={18} />
+                جستجو در {section.title}
+              </Link>
+              <Link href="/library" className="inline-flex items-center gap-2 rounded-xl border border-gold/25 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10">
+                <BookOpen size={18} />
+                منابع پژوهشی
+              </Link>
             </div>
           </div>
 
@@ -107,7 +132,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
       {visualGuide ? <AvestaPosterExperience guide={visualGuide} langQuery={langQuery} /> : null}
 
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
-        <ReadingControls />
+        <div id="reader-controls"><ReadingControls /></div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="lux-frame rounded-[18px] p-7">

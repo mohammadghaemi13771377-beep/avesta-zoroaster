@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 import type { LucideIcon } from "lucide-react";
 import { ArrowLeft, BookOpen, Flame, Sparkles } from "lucide-react";
 import { AvestaStudyPathsPanel } from "@/components/avesta-study-paths-panel";
-import { SectionCard } from "@/components/section-card";
+import { AvestaSectionExplorer } from "@/components/avesta-section-explorer";
 import { TrackedLink } from "@/components/tracked-link";
 import { getAvestaCompletionSections, getAvestaCompletionSummary } from "@/lib/avesta-completion";
 import { getAvestaSections, getLocaleFromSearchParams } from "@/lib/avesta-repository";
 import { getAvestaStudyPaths } from "@/lib/avesta-study-paths";
-import { routeHeroByPath, sectionCoverBySlug } from "@/lib/visual-assets";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "پورتال اوستا",
@@ -96,35 +96,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
           <PortalStat label="نیاز فوری" value={completionSummary.weakestField.label} />
         </div>
 
-        <div className="lux-frame rounded-[22px] p-5 sm:p-7">
-          <div className="mb-7 flex items-center justify-center gap-4">
-            <span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/70" />
-            <h2 className="gold-text text-center text-3xl font-black">نقشه جهان اوستا</h2>
-            <span className="h-px w-20 bg-gradient-to-r from-transparent to-gold/70" />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {sections.map((section, index) => (
-              <SectionCard
-                key={section.slug}
-                title={section.title}
-                description={section.description}
-                href={section.href}
-                atmosphere={section.atmosphere ?? "scene-cosmic"}
-                imageSrc={sectionCoverBySlug[section.slug]}
-                roman={"roman" in section && typeof section.roman === "string" ? section.roman : `${index + 1}`}
-                kicker="بخش اصلی اوستا"
-                tracking={{
-                  event: "avesta_section_opened",
-                  payload: {
-                    section_slug: section.slug,
-                    card_position: index + 1,
-                    source_route: "/avesta",
-                  },
-                }}
-              />
-            ))}
-          </div>
-        </div>
+        <AvestaSectionExplorer sections={sections} />
       </section>
 
       <AvestaStudyPathsPanel paths={studyPaths} locale={locale} />

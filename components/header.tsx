@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, LogIn, Search, Sun, UserRound } from "lucide-react";
-import { CommandCenter } from "@/components/command-center";
+import { ChevronDown, LogIn, Search, UserRound } from "lucide-react";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { avestaSections, navItems } from "@/lib/content";
+import { MobileNavigation } from "@/components/mobile-navigation";
+import { avestaSections, exploreNavItems, navItems } from "@/lib/content";
 
 export function Header() {
   return (
@@ -63,10 +63,24 @@ export function Header() {
               </Link>
             )
           )}
+          <div className="group relative">
+            <button type="button" className="flex items-center gap-1 rounded-xl px-4 py-2 transition hover:bg-gold/12 hover:text-gold-light">
+              کاوش
+              <ChevronDown size={15} />
+            </button>
+            <div className="invisible absolute left-0 top-11 grid w-[520px] translate-y-2 grid-cols-2 gap-1 rounded-2xl border border-gold/18 bg-[#05080d]/95 p-3 opacity-0 shadow-2xl shadow-black/50 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+              {exploreNavItems.map((item) => (
+                <Link key={item.href} href={item.href} className="rounded-xl px-4 py-3 transition hover:bg-gold/10">
+                  <span className="block text-sm font-black text-warm/90">{item.label}</span>
+                  <span className="mt-1 block text-xs text-muted">{item.description}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
         </nav>
 
         <div className="flex items-center gap-2">
-          <CommandCenter />
+          <div className="md:hidden"><MobileNavigation /></div>
           <Link
             href="/login"
             className="hidden items-center gap-2 rounded-xl border border-gold/16 px-3 py-2 text-xs text-warm/85 transition hover:bg-gold/10 hover:text-gold-light md:inline-flex"
@@ -82,10 +96,6 @@ export function Header() {
             <Search size={17} />
           </Link>
           <LanguageSwitcher />
-          <div className="hidden items-center gap-2 rounded-xl border border-gold/18 px-3 py-2 text-xs text-gold-light md:flex">
-            <Sun size={15} />
-            شب
-          </div>
           <Link
             href="/login"
             className="grid h-9 w-9 place-items-center rounded-xl bg-gold text-night transition hover:bg-gold-light md:hidden"

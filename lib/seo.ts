@@ -7,6 +7,13 @@ export const siteConfig = {
     "مرجع مدرن آموزه‌های زرتشت، گات‌ها، اوستا، ایران باستان و پیام خرد، روشنایی و یکتاپرستی.",
   slogan: "پندار نیک | گفتار نیک | کردار نیک",
   locale: "fa_IR",
+  alternateLocale: "en_US",
+};
+
+export const languageAlternates = {
+  fa: absoluteUrl("/fa"),
+  en: absoluteUrl("/en"),
+  "x-default": absoluteUrl("/")
 };
 
 export const seoKeywords = [
@@ -28,6 +35,130 @@ export const seoKeywords = [
 export function absoluteUrl(path = "/") {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
   return `${siteConfig.url}${normalizedPath}`;
+}
+
+export function createPageMetadata({
+  title,
+  description,
+  path,
+  image = "/images/ai/home-hero.png",
+  type = "website",
+  noIndex = false
+}: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  type?: "website" | "article";
+  noIndex?: boolean;
+}) {
+  const url = absoluteUrl(path);
+  const imageUrl = absoluteUrl(image);
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: languageAlternates
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: siteConfig.name,
+      images: [{ url: imageUrl, width: 1600, height: 900, alt: title }],
+      locale: siteConfig.locale,
+      alternateLocale: [siteConfig.alternateLocale],
+      type
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl]
+    },
+    robots: noIndex ? { index: false, follow: false } : { index: true, follow: true }
+  };
+}
+
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    alternateName: ["Avesta Zoroaster", "اوستا زرتشت"],
+    url: siteConfig.url,
+    inLanguage: ["fa-IR", "en-US"],
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${siteConfig.url}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  };
+}
+
+export function organizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: absoluteUrl("/images/avesta-zoroaster-logo.png"),
+    sameAs: [],
+    description: siteConfig.description
+  };
+}
+
+export function breadcrumbJsonLd(items: Array<{ name: string; href: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.href)
+    }))
+  };
+}
+
+export function collectionPageJsonLd({ name, description, url }: { name: string; description: string; url: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name,
+    description,
+    url: absoluteUrl(url),
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url
+    }
+  };
+}
+
+export function creativeWorkJsonLd({
+  name,
+  description,
+  url,
+  image
+}: {
+  name: string;
+  description: string;
+  url: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name,
+    description,
+    url: absoluteUrl(url),
+    image: image ? absoluteUrl(image) : undefined,
+    inLanguage: ["fa-IR", "en-US"],
+    about: ["Avesta", "Zoroaster", "Zoroastrianism", "Ancient Iran"]
+  };
 }
 
 export function sitemapPriority(route: string) {

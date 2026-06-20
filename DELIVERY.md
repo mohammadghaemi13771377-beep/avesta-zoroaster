@@ -61,6 +61,9 @@ AVESTA-ZOROASTER یک سایت مقاله‌ای ساده یا مذهبی سنت
 - کنسول `/admin/content-export` و API `/api/admin/content-export` برای خروجی کامل JSON، بکاپ محتوایی، manifest تصویرها و تحویل snapshot به تیم محتوا، دیزاین، محصول و فنی
 - کنسول `/admin/asset-operations` و API `/api/admin/asset-operations` برای کنترل مسیر تصویر، صوت، PDF، ویدئو، storage، CDN و بکاپ دارایی‌ها
 - کنسول `/admin/publish-pipeline` و API `/api/admin/publish-pipeline` برای تصمیم publish/schedule/hold/block بر اساس تقویم انتشار، وظایف تحریریه، رسانه، منبع و SEO
+- فاز ارتقای جهانی SEO و اعتماد: metadata/canonical/OpenGraph/Twitter، hreflang، schema مرکزی، breadcrumb، CreativeWork، sitemap گسترده‌تر، noindex ادمین، 404 حرفه‌ای و `llms.txt`
+- صفحات عمومی `/research-methodology` و `/contact` برای روش پژوهش، disclaimer آموزشی، همکاری پژوهشی/هنری و اعتماد مخاطب جهانی
+- مقاله‌های pillar دو‌زبانه برای Avesta، Zoroaster، Yasna، Vendidad و Zoroastrian/Iranian festivals
 - اتصال صفحه‌های بند/آیه به chapter guide برای نمایش hero تصویری، زمینه روایی، تمرین‌های همان تالار و لینک بازگشت به صفحه اختصاصی
 - Reference board تصویری داخل `public/images/references` و سند `docs/visual-reference-board.md` برای ادامه مسیر دیزاین
 - صفحات عمومی اصلی: زرتشت، گات‌ها، یکتاپرستی، مسیرهای موضوعی یکتاپرستی، استاد تمرین اخلاقی، دین زرتشتی، کوروش، تایم‌لاین، کتابخانه، رسانه، مقاله‌ها و جستجو
@@ -120,6 +123,7 @@ AVESTA-ZOROASTER یک سایت مقاله‌ای ساده یا مذهبی سنت
 - `docs/bulk-import-guide.md`: ورود دسته‌ای محتوا
 - `docs/file-manifest.md`: فهرست ساختار فایل‌ها
 - `docs/github-vercel-update-note.md`: متن آماده commit، review و deploy برای GitHub/Vercel
+- `docs/codex-github-final-prompt.md`: پیام آماده برای Codex GitHub/Vercel جهت push و deploy
 
 ## اجرای سریع
 
@@ -148,4 +152,62 @@ npm run db:seed
 
 ## نکته تحویل
 
-برای اجرای کامل، تیم باید Node.js و npm نصب داشته باشد. در محیط فعلی Codex با runtime داخلی Node، `tsc --noEmit` و build کامل Next.js اجرا شد و `280/280` صفحه با موفقیت ساخته شد.
+برای اجرای کامل، تیم باید Node.js و npm نصب داشته باشد. در محیط فعلی Codex با runtime داخلی Node، `tsc --noEmit` و build کامل Next.js اجرا شد و `294/294` صفحه با موفقیت ساخته شد.
+
+## آخرین افزوده تحویلی
+
+در این فاز بورد `/admin/global-growth-audit` و API متناظر `/api/admin/global-growth-audit` اضافه شد. این بخش برای تیم محصول، SEO، فنی، محتوا و DevOps نشان می‌دهد که سایت از نظر رشد جهانی در چه وضعیتی است: SEO، چندزبانه، schema، اعتماد پژوهشی، performance، دارایی‌ها، معماری محتوا و آمادگی CMS.
+
+فایل‌های کلیدی این فاز:
+
+- `lib/global-growth-audit.ts`
+- `components/admin/global-growth-audit-board.tsx`
+- `app/admin/global-growth-audit/page.tsx`
+- `app/api/admin/global-growth-audit/route.ts`
+
+بعد از این تغییر، بسته zip و فایل full-code باید دوباره ساخته شوند و build جدید Vercel باید اجرا شود.
+
+## افزوده جدید: Localization Hub
+
+در این فاز مسیر `/admin/localization` و API متناظر `/api/admin/localization` اضافه شد. این بخش وضعیت ترجمه فارسی/انگلیسی، بازبینی انسانی، آماده‌سازی اصطلاحات زرتشتی، routeهای چندزبانه، مقاله‌های pillar، chapter guideهای اوستا و واژه‌نامه را برای رشد جهانی سایت پایش می‌کند.
+
+فایل‌های کلیدی این فاز:
+
+- `lib/localization-hub.ts`
+- `components/admin/localization-hub-board.tsx`
+- `app/admin/localization/page.tsx`
+- `app/api/admin/localization/route.ts`
+
+بخش multilingual در Global Growth Audit هم اکنون از همین Localization Hub تغذیه می‌شود.
+
+## افزوده جدید: Research Source Intake Hub
+
+در این فاز مسیر `/admin/source-intake` و API متناظر `/api/admin/source-intake` اضافه شد. این بخش پیش از ورود محتوای واقعی، برای هر بخش اوستا نشان می‌دهد کدام منبع اصلی، ترجمه، citation، دارایی رسانه‌ای و بازبینی پژوهشی آماده است و چه مانعی باید رفع شود.
+
+فایل‌های کلیدی این فاز:
+
+- `lib/source-intake-hub.ts`
+- `components/admin/source-intake-hub-board.tsx`
+- `app/admin/source-intake/page.tsx`
+- `app/api/admin/source-intake/route.ts`
+
+بخش Research Trust در `lib/global-growth-audit.ts` نیز از این هاب استفاده می‌کند. این سازوکار در حال حاضر با fallback محلی build-safe است و برای اتصال بعدی به CMS، storage و پایگاه داده طراحی شده است.
+
+## افزوده جدید: Focused Navigation
+
+هدر عمومی برای تجربه کتابی و متمرکز بازطراحی شد. پنج مسیر اصلی در سطح اول دیده می‌شوند و مسیرهای فرعی در منوی «کاوش» قرار دارند. صفحه خانه نیز به یک gateway خلوت تبدیل شده و هر CTA کاربر را به صفحه مستقل همان تجربه می‌برد.
+
+فایل‌های کلیدی این فاز:
+
+- `components/header.tsx`
+- `lib/content.ts`
+- `app/page.tsx`
+
+## Release Handoff: 2026-06-20
+
+نسخه نهایی تحویل این مرحله، مسیرهای مطالعه، فیلترهای کتابخانه و مقاله، deep-link جستجوی بخش‌های اوستا، منوی موبایل و CTAهای واقعی بخش‌های اوستا را شامل می‌شود.
+
+- راهنمای release: `docs/release-handoff-2026-06-20.md`
+- پیام آماده GitHub/Vercel: `docs/codex-github-final-prompt.md`
+- آخرین build موفق: `294/294` صفحه
+- commit پیشنهادی: `feat: polish navigation, search and Avesta reading paths`

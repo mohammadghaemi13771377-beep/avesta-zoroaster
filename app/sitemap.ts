@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { routeMap } from "@/lib/content";
 import { locales, withLocale } from "@/lib/i18n";
-import { articleItems, glossaryTerms, mediaItems, sampleVerses } from "@/lib/sample-content";
+import { articleItems, glossaryTerms, mediaItems, sampleChapters, sampleVerses } from "@/lib/sample-content";
 import { sacredCalendarEvents } from "@/lib/sacred-calendar";
 import { absoluteUrl, sitemapChangeFrequency, sitemapPriority } from "@/lib/seo";
 import { getAvestaStudyPaths } from "@/lib/avesta-study-paths";
@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...mediaItems.map((item, index) => `/media/${slugify(item.title) || `media-${index + 1}`}`),
     ...sacredCalendarEvents.map((event) => `/calendar/${event.id}`),
     ...shopProducts.map((product) => `/shop/${product.slug}`),
+    ...sampleChapters.map((chapter) => `/avesta/${chapter.sectionSlug}/${chapter.slug}`),
     "/avesta/paths",
     ...getAvestaStudyPaths().map((path) => path.detailHref),
     ...sampleVerses.map(
@@ -23,8 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     )
   ];
   const routes = getPublicSitemapRoutes(Array.from(new Set([...localizedHomeRoutes, ...routeMap, ...detailRoutes])));
+  const indexableRoutes = routes.filter((route) => !route.startsWith("/admin") && !route.startsWith("/api"));
 
-  return routes.map((route) => {
+  return indexableRoutes.map((route) => {
     const isHome = route === "/" || route === "/fa" || route === "/en";
 
     return {
@@ -32,14 +34,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: sitemapChangeFrequency(route),
       priority: sitemapPriority(route),
-      alternates: isHome
-        ? {
-            languages: {
+      alternates: {
+        languages: isHome
+          ? {
               fa: absoluteUrl("/fa"),
-              en: absoluteUrl("/en")
+              en: absoluteUrl("/en"),
+              "x-default": absoluteUrl("/")
             }
-          }
-        : undefined
+          : {
+              fa: absoluteUrl(route),
+              "x-default": absoluteUrl(route)
+            }
+      }
     };
   });
 }

@@ -30,6 +30,7 @@ import { getMediaAssetsForVerse } from "@/lib/media-repository";
 import { glossaryTerms, sampleVerses } from "@/lib/sample-content";
 import { getVerseTrustProfile } from "@/lib/source-trust";
 import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
+import { breadcrumbJsonLd, creativeWorkJsonLd } from "@/lib/seo";
 
 type PageProps = {
   params: {
@@ -114,9 +115,28 @@ export default async function VersePage({ params, searchParams }: PageProps) {
   const chapterGuide = getAvestaChapterGuide(section.slug, chapter.slug);
   const chapterHref = `/avesta/${section.slug}/${chapter.slug}${langQuery}`;
   const heroImage = chapterGuide?.coverImage ?? section.coverImage ?? null;
+  const pageHref = `/avesta/${section.slug}/${chapter.slug}/${params.verse}`;
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: "خانه", href: "/" },
+      { name: "اوستا", href: "/avesta" },
+      { name: section.title, href: `/avesta/${section.slug}` },
+      { name: chapter.title, href: `/avesta/${section.slug}/${chapter.slug}` },
+      { name: verse.verseNumber, href: pageHref }
+    ]),
+    creativeWorkJsonLd({
+      name: `${verse.verseNumber} | ${chapter.title}`,
+      description: verse.ethicalMessage,
+      url: pageHref,
+      image: heroImage ?? undefined
+    })
+  ];
 
   return (
     <main className="overflow-hidden pt-24" dir={direction}>
+      {jsonLd.map((item, index) => (
+        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
+      ))}
       <section className="hero-cosmos relative min-h-[660px] px-4 pb-16 pt-10 sm:px-6 lg:px-8">
         <div className="hero-horizon" />
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.04fr_0.96fr]">

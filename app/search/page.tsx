@@ -4,7 +4,7 @@ import { Database, FileSearch, SlidersHorizontal } from "lucide-react";
 
 import { CinematicHub } from "@/components/cinematic-hub";
 import { SearchPanel } from "@/components/search-panel";
-import { searchIndexes } from "@/lib/search";
+import { searchIndexes, type SearchType } from "@/lib/search";
 import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
@@ -12,7 +12,17 @@ export const metadata: Metadata = {
   description: "جستجو در متن اوستا، ترجمه، واژه‌نامه، مقاله‌ها، رسانه‌ها و منابع AVESTA-ZOROASTER.",
 };
 
-export default function SearchPage() {
+type PageProps = {
+  searchParams?: Record<string, string | string[] | undefined>;
+};
+
+const searchTypes: SearchType[] = ["all", "verse", "article", "glossary", "library", "media", "product", "hub"];
+
+export default function SearchPage({ searchParams }: PageProps) {
+  const query = getParam(searchParams?.q);
+  const requestedType = getParam(searchParams?.type);
+  const section = getParam(searchParams?.section);
+  const type = requestedType && searchTypes.includes(requestedType as SearchType) ? (requestedType as SearchType) : "all";
   const stats: Array<[string, string, LucideIcon]> = [
     ["چند index", `${searchIndexes.length} index آماده`, Database],
     ["فیلتر محتوا", "اوستا، مقاله، واژه‌نامه، کتابخانه، رسانه و هاب‌ها", SlidersHorizontal],
@@ -42,7 +52,11 @@ export default function SearchPage() {
           </article>
         ))}
       </div>
-      <SearchPanel />
+      <SearchPanel initialQuery={query} initialType={type} initialSection={section || "all"} />
     </CinematicHub>
   );
+}
+
+function getParam(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] ?? "" : value ?? "";
 }

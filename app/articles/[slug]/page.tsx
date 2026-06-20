@@ -7,6 +7,7 @@ import { ReadingControls } from "@/components/reading-controls";
 import { SourceTrustPanel } from "@/components/source-trust-panel";
 import { articleItems } from "@/lib/sample-content";
 import { getArticleTrustProfile } from "@/lib/source-trust";
+import { absoluteUrl, breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 type PageProps = {
   params: {
@@ -26,15 +27,21 @@ export function generateMetadata({ params }: PageProps): Metadata {
   }
 
   return {
-    title: article.seoTitle,
-    description: article.seoDescription,
+    ...createPageMetadata({
+      title: article.seoTitle,
+      description: article.seoDescription,
+      path: `/articles/${article.slug}`,
+      image: article.coverImage,
+      type: "article"
+    }),
     keywords: article.tags,
     openGraph: {
       title: article.seoTitle,
       description: article.seoDescription,
       type: "article",
       publishedTime: article.publishedAt,
-      url: `https://avesta-zoroaster.com/articles/${article.slug}`,
+      url: absoluteUrl(`/articles/${article.slug}`),
+      images: [{ url: absoluteUrl(article.coverImage), width: 1600, height: 900, alt: article.title }]
     },
   };
 }
@@ -48,27 +55,41 @@ export default function ArticleDetailPage({ params }: PageProps) {
 
   const trustProfile = getArticleTrustProfile(article.category, article.tags);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.excerpt,
-    datePublished: article.publishedAt,
-    author: {
-      "@type": "Organization",
-      name: "AVESTA-ZOROASTER",
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: "خانه", href: "/" },
+      { name: "مقالات", href: "/articles" },
+      { name: article.title, href: `/articles/${article.slug}` }
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.excerpt,
+      image: absoluteUrl(article.coverImage),
+      datePublished: article.publishedAt,
+      author: {
+        "@type": "Organization",
+        name: "AVESTA-ZOROASTER",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "AVESTA-ZOROASTER",
+        logo: {
+          "@type": "ImageObject",
+          url: absoluteUrl("/images/avesta-zoroaster-logo.png")
+        }
+      },
+      mainEntityOfPage: absoluteUrl(`/articles/${article.slug}`),
+      keywords: article.tags.join(", "),
     },
-    publisher: {
-      "@type": "Organization",
-      name: "AVESTA-ZOROASTER",
-    },
-    mainEntityOfPage: `https://avesta-zoroaster.com/articles/${article.slug}`,
-    keywords: article.tags.join(", "),
-  };
+  ];
 
   return (
     <main className="overflow-hidden pt-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {jsonLd.map((item, index) => (
+        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
+      ))}
 
       <section className="hero-cosmos relative px-4 pb-16 pt-12 sm:px-6 lg:px-8">
         <div className="hero-horizon" />

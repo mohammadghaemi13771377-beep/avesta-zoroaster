@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, BookOpen, Layers3, Sparkles } from "lucide-react";
+import { ArrowLeft, BookOpen, Filter, Layers3, Search, Sparkles, X } from "lucide-react";
+import { useMemo, useState } from "react";
 import type { AvestaChapterView } from "@/lib/avesta-repository";
 import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
 import { getAvestaChapterProfile } from "@/lib/avesta-chapter-profiles";
+import { normalizeSearchText } from "@/lib/search";
 import { sectionCoverBySlug } from "@/lib/visual-assets";
 
 type AvestaChapterAtlasProps = {
@@ -14,6 +18,32 @@ type AvestaChapterAtlasProps = {
 };
 
 export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQuery = "" }: AvestaChapterAtlasProps) {
+  const [query, setQuery] = useState("");
+  const [theme, setTheme] = useState("همه");
+
+  const chapterEntries = useMemo(
+    () => chapters.map((chapter, index) => ({
+      chapter,
+      index,
+      guide: getAvestaChapterGuide(sectionSlug, chapter.slug),
+      profile: getAvestaChapterProfile(sectionSlug, chapter.slug),
+    })),
+    [chapters, sectionSlug],
+  );
+  const themes = useMemo(
+    () => ["همه", ...Array.from(new Set(chapterEntries.flatMap((item) => item.profile?.keyThemes ?? []))).slice(0, 8)],
+    [chapterEntries],
+  );
+  const filteredChapters = useMemo(() => {
+    const normalized = normalizeSearchText(query);
+
+    return chapterEntries.filter(({ chapter, guide, profile }) => {
+      const matchesTheme = theme === "همه" || profile?.keyThemes.includes(theme);
+      const haystack = normalizeSearchText(`${chapter.title} ${chapter.description ?? ""} ${guide?.chapterIntro ?? ""} ${(profile?.keyThemes ?? []).join(" ")}`);
+      return matchesTheme && (!normalized || haystack.includes(normalized));
+    });
+  }, [chapterEntries, query, theme]);
+
   if (!chapters.length) {
     return (
       <section className="mt-8 lux-frame rounded-[18px] p-7">
@@ -45,9 +75,23 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
       </div>
 
       <div className="mt-7 grid gap-5 lg:grid-cols-2">
-        {chapters.map((chapter, index) => {
-          const guide = getAvestaChapterGuide(sectionSlug, chapter.slug);
-          const profile = getAvestaChapterProfile(sectionSlug, chapter.slug);
+        <div className="lg:col-span-2">
+          <div className="grid gap-3 rounded-2xl border border-gold/12 bg-night/45 p-4 md:grid-cols-[minmax(0,1fr)_220px]">
+            <label className="relative block">
+              <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={18} />
+              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`جستجو در تالارهای ${sectionTitle}`} className="h-12 w-full rounded-xl border border-gold/18 bg-night/70 pr-11 pl-11 text-sm text-warm outline-none placeholder:text-muted focus:border-gold" />
+              {query ? <button type="button" onClick={() => setQuery("")} className="absolute left-2 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-lg text-muted hover:text-gold-light" aria-label="پاک کردن جستجو"><X size={15} /></button> : null}
+            </label>
+            <label className="relative block">
+              <Filter className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={16} />
+              <select value={theme} onChange={(event) => setTheme(event.target.value)} className="h-12 w-full rounded-xl border border-gold/18 bg-night/70 pr-11 pl-4 text-sm text-warm outline-none focus:border-gold" aria-label="فیلتر کلیدهای فهم">
+                {themes.map((item) => <option key={item}>{item}</option>)}
+              </select>
+            </label>
+          </div>
+          <p className="mt-3 text-sm text-muted">{filteredChapters.length} تالار در این فهرست پیدا شد.</p>
+        </div>
+        {filteredChapters.length ? filteredChapters.map(({ chapter, index, guide, profile }) => {
           const coverImage = guide?.coverImage ?? sectionCoverBySlug[sectionSlug];
           const accent = guide?.accent ?? "#D6A84F";
           const firstVerse = chapter.verses[0];
@@ -136,7 +180,7 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
               </div>
             </article>
           );
-        })}
+        }) : <div className="lux-frame p-8 text-center lg:col-span-2"><Search className="mx-auto text-gold-light" size={30} /><h3 className="mt-4 text-2xl font-black text-warm">تالاری پیدا نشد</h3><p className="mt-3 text-muted">کلیدواژه یا فیلتر مفهومی را تغییر دهید.</p></div>}
       </div>
     </section>
   );

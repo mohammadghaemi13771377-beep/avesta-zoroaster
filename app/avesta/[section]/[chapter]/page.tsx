@@ -14,6 +14,7 @@ import {
 } from "@/lib/avesta-repository";
 import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
 import { getAvestaChapterProfile } from "@/lib/avesta-chapter-profiles";
+import { breadcrumbJsonLd, creativeWorkJsonLd } from "@/lib/seo";
 
 type PageProps = {
   params: {
@@ -62,9 +63,27 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
   const profile = getAvestaChapterProfile(section.slug, chapter.slug);
   const firstVerseSlug = chapter.verses[0]?.slug ?? "verse-1";
   const firstVerse = await getVerseBySlugs(section.slug, chapter.slug, firstVerseSlug, locale);
+  const pageHref = `/avesta/${section.slug}/${chapter.slug}`;
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: "خانه", href: "/" },
+      { name: "اوستا", href: "/avesta" },
+      { name: section.title, href: `/avesta/${section.slug}` },
+      { name: chapter.title, href: pageHref }
+    ]),
+    creativeWorkJsonLd({
+      name: `${chapter.title} | ${section.title}`,
+      description: profile?.summary ?? chapter.description ?? section.description,
+      url: pageHref,
+      image: guide?.coverImage ?? section.coverImage
+    })
+  ];
 
   return (
     <main className="overflow-hidden pt-24" dir={locale === "en" ? "ltr" : "rtl"}>
+      {jsonLd.map((item, index) => (
+        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
+      ))}
       <section className="hero-cosmos relative px-4 pb-12 pt-10 sm:px-6 lg:px-8">
         <div className="hero-horizon" />
         <div className="relative z-10 mx-auto max-w-7xl">
