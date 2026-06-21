@@ -40,7 +40,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
         <div className="absolute inset-0 bg-gradient-to-l from-[#06131c]/20 via-[#071521]/55 to-[#05080d]/82" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.86fr_1.14fr] lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:pl-8 lg:pr-[48%] lg:py-32">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-bold text-gold-light">
               <Sparkles size={16} />
@@ -74,7 +74,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
             </div>
           </div>
 
-          <div className="relative min-h-[470px]">
+          <div className="hidden relative min-h-[470px]">
             <div className="absolute inset-0 rounded-full bg-gold/10 blur-3xl" />
             <Image
               src="/images/avesta-zoroaster-logo.png"

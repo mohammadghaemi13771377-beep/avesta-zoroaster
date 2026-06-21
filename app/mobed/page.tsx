@@ -17,7 +17,7 @@ export default function MobedPage() {
       title="موبد هوشمند؛ راهنمای شما در جهان اوستا"
       lead="پرسش خود را بنویس و از راهنمایی آموزشی، منبع سایت و مسیر مطالعه بعدی استفاده کن. این تجربه با گاردریل پژوهشی طراحی شده و برای اتصال آینده به جستجوی معنایی و RAG آماده است."
       scene="scene-prophet"
-      heroImage="/images/ai/monotheism-cover.png"
+      heroImage="/images/ai/mobed-hero.png"
       roman="AI"
       actions={[{ label: "شروع گفت‌وگو", href: "#mobed-guide" }, { label: "روش پژوهش", href: "/research-methodology", variant: "secondary" }]}
       stats={[{ value: "منبع‌دار", label: "پاسخ همراه مسیر مطالعه" }, { value: "محترمانه", label: "گاردریل پژوهشی و فرهنگی" }, { value: "آماده", label: "اتصال آینده به RAG" }]}

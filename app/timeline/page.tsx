@@ -5,6 +5,7 @@ import { Clock, Landmark, Route } from "lucide-react";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { TimelineExplorer } from "@/components/timeline-explorer";
 import { timelineEvents } from "@/lib/sample-content";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "تایم‌لاین",
@@ -24,7 +25,7 @@ export default function TimelinePage() {
       title="مسیر زرتشت، گات‌ها و حفظ اوستا"
       lead="این تایم‌لاین پایه تجربه تاریخی سایت است؛ جایی که روایت زرتشت، شکل‌گیری گات‌ها، ایران باستان، حفظ متن و میراث زنده امروز به شکل یک مسیر تعاملی دیده می‌شود."
       scene="scene-stone"
-      heroImage="/images/ai/exhibitions-cover.png"
+      heroImage={routeHeroByPath["/timeline"]}
       roman="T"
       actions={[
         { label: "مطالعه رویدادها", href: "#timeline-events" },

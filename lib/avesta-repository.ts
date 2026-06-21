@@ -70,7 +70,7 @@ export async function getAvestaSections(locale: Locale = "fa"): Promise<AvestaSe
 
   return avestaSections.map((section, index) => ({
     ...section,
-    coverImage: null,
+    coverImage: section.coverImage,
     themeColor: null,
     order: index + 1
   }));

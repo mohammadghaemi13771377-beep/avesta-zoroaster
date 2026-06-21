@@ -23,9 +23,9 @@ const featureBadges = [
 
 const portalCards = [
   { title: "زرتشت", text: "آغاز آشنایی با زندگی، اندیشه و میراث پیام‌آور خرد.", href: "/zoroaster", image: "/images/ai/zoroaster-cover.png", footer: "شناخت زرتشت" },
-  { title: "گات‌ها", text: "ورود به کهن‌ترین سروده‌ها؛ با ترجمه، توضیح و مسیر مطالعه.", href: "/gathas", image: "/images/ai/gathas-cover.png", footer: "مطالعه گات‌ها" },
+  { title: "گات‌ها", text: "ورود به کهن‌ترین سروده‌ها؛ با ترجمه، توضیح و مسیر مطالعه.", href: "/gathas", image: "/images/ai/gathas-hero.png", footer: "مطالعه گات‌ها" },
   { title: "مقاله‌ها", text: "خوانش‌های پژوهشی و قابل‌فهم از مفاهیم، تاریخ و فرهنگ ایران باستان.", href: "/articles", image: "/images/ai/articles-cover.png", footer: "ورود به مقاله‌ها" },
-  { title: "کتابخانه", text: "منابع، نسخه‌ها و راهنمای اعتماد برای یک مطالعه عمیق‌تر.", href: "/library", image: "/images/ai/library-cover.png", footer: "مشاهده کتابخانه" },
+  { title: "کتابخانه", text: "منابع، نسخه‌ها و راهنمای اعتماد برای یک مطالعه عمیق‌تر.", href: "/library", image: "/images/ai/library-hero.png", footer: "مشاهده کتابخانه" },
 ];
 
 const studyShelves = [
@@ -48,13 +48,14 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd(homeFaqs)) }} />
-      <section className="hero-cosmos relative min-h-screen pt-24">
-        <Image src={routeHeroByPath["/"]} alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="object-cover opacity-70" />
-        <div className="absolute inset-0 bg-gradient-to-l from-[#06131c]/18 via-[#071521]/52 to-[#05080d]/80" />
+      <section className="hero-cosmos home-hero relative min-h-screen pt-24">
+        <Image src={routeHeroByPath["/"]} alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="hidden object-cover md:block" />
+        <Image src="/images/ai/home-hero-mobile.png" alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="object-[66%_center] md:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#05080d]/82 via-[#071521]/42 to-[#071521]/10 md:bg-gradient-to-r md:from-[#05080d]/92 md:via-[#071521]/62 md:to-[#071521]/8" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
 
-        <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-center gap-10 px-4 pb-16 pt-8 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
+        <div className="relative z-10 mx-auto min-h-[calc(100vh-6rem)] max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:pl-8 lg:pr-[48%] lg:pt-32">
           <div>
             <p className="text-xl font-bold text-gold-light">به جهان دیجیتال</p>
             <h1 className="gold-text mt-4 max-w-3xl text-6xl font-black leading-[1.12] sm:text-7xl lg:text-8xl">اوستا و زرتشت</h1>
@@ -67,7 +68,7 @@ export default function HomePage() {
               {featureBadges.map(([title, subtitle, Icon]) => <div key={title} className="border-r border-gold/16 px-4 first:border-r-0 md:first:border-r"><Icon className="text-gold-light" size={27} /><p className="mt-4 text-sm font-black text-warm">{title}</p><p className="mt-1 text-xs leading-6 text-muted">{subtitle}</p></div>)}
             </div>
           </div>
-          <div className="relative min-h-[440px] sm:min-h-[560px]">
+          <div className="relative hidden min-h-[440px] sm:min-h-[560px]">
             <div className="absolute inset-0 rounded-full bg-gold/10 blur-3xl" />
             <div className="absolute left-1/2 top-1/2 h-[min(74vw,520px)] w-[min(74vw,520px)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/18 bg-black/20 shadow-2xl shadow-black/60" />
             <Image src="/images/avesta-zoroaster-logo.png" alt="AVESTA-ZOROASTER" width={760} height={760} priority className="relative z-10 mx-auto h-auto w-full max-w-[720px] object-contain drop-shadow-[0_28px_72px_rgba(0,0,0,0.65)]" />
@@ -81,11 +82,15 @@ export default function HomePage() {
 
       <ScrollReveal delay={80}><MobedHomeCallout /></ScrollReveal>
 
-      <ScrollReveal delay={90}><section className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <ScrollReveal delay={90}><section className="portal-museum relative mx-auto max-w-7xl overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
+        <Image src="/images/ai/avesta-portal.png" alt="تالار هفت دروازه جهان اوستا" fill sizes="(min-width: 1280px) 1280px, 100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-night/58 via-night/72 to-night/94" />
+        <div className="relative z-10">
         <div className="mb-7 flex items-center justify-center gap-4"><span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/70" /><h2 className="gold-text text-center text-3xl font-black">پرتال اوستا</h2><span className="h-px w-20 bg-gradient-to-r from-transparent to-gold/70" /></div>
         <p className="mx-auto mb-7 max-w-2xl text-center leading-8 text-muted">برای ورود عمیق‌تر، یک بخش را انتخاب کنید. هر مسیر صفحه و روایت مستقل خود را دارد.</p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
           {avestaSections.map((section) => <SectionCard key={section.slug} title={section.title} description={section.description} href={section.href} atmosphere={section.atmosphere} imageSrc={section.coverImage} roman={section.roman} tracking={{ event: "avesta_section_opened", payload: { section_slug: section.slug, card_position: section.roman, source_route: "/" } }} />)}
+        </div>
         </div>
       </section></ScrollReveal>
 

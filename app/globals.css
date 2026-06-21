@@ -96,11 +96,15 @@ html[data-ambient="bright"] {
 
 html[data-ambient="bright"] body {
   color: #2f230f;
-  background:
+  background-image:
+    linear-gradient(rgba(255, 252, 244, 0.88), rgba(255, 248, 234, 0.9)),
+    url("/images/ai/light-theme-texture.png"),
     radial-gradient(circle at 50% -10%, rgba(242, 193, 92, 0.3), transparent 35rem),
     radial-gradient(circle at 90% 18%, rgba(255, 236, 187, 0.5), transparent 29rem),
     radial-gradient(circle at 10% 55%, rgba(239, 215, 158, 0.28), transparent 28rem),
     linear-gradient(180deg, #fffdf8 0%, #fff8ea 48%, #f6ebd3 100%);
+  background-size: auto, cover, auto, auto, auto, auto;
+  background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
 }
 
 html[data-ambient="bright"] body::before {
@@ -131,6 +135,18 @@ html[data-ambient="bright"] .hero-horizon {
     radial-gradient(ellipse at 50% 100%, rgba(154, 100, 30, 0.25), transparent 42%),
     linear-gradient(174deg, transparent 0 38%, rgba(154, 100, 30, 0.12) 39%, transparent 43%),
     linear-gradient(180deg, transparent, rgba(229, 205, 152, 0.48));
+}
+
+html[data-ambient="bright"] .hub-hero-overlay {
+  background: linear-gradient(to left, rgba(255, 252, 242, 0.94), rgba(255, 248, 225, 0.62), rgba(255, 248, 225, 0.14));
+}
+
+html[data-ambient="bright"] .hub-hero-side-shade {
+  background: linear-gradient(90deg, rgba(255, 252, 242, 0.04), rgba(255, 248, 225, 0.14) 38%, rgba(255, 252, 242, 0.72) 100%);
+}
+
+html[data-ambient="bright"] .hub-hero-bottom-shade {
+  background: linear-gradient(to top, rgba(255, 252, 242, 0.96), rgba(255, 252, 242, 0.52), transparent);
 }
 
 html[data-ambient="bright"] .lux-frame,
@@ -245,6 +261,31 @@ html[data-reader-mode="light"] .reader-text {
     linear-gradient(174deg, transparent 0 38%, rgba(214, 168, 79, 0.14) 39%, transparent 43%),
     linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.78));
   clip-path: polygon(0 55%, 13% 45%, 27% 58%, 39% 38%, 52% 52%, 68% 31%, 82% 55%, 100% 38%, 100% 100%, 0 100%);
+}
+
+.home-hero {
+  isolation: isolate;
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: min(28vw, 20rem);
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(5, 8, 13, 0.94));
+}
+
+.portal-museum {
+  border: 1px solid rgba(214, 168, 79, 0.28);
+  border-radius: 20px;
+  box-shadow: 0 32px 110px rgba(0, 0, 0, 0.35);
+}
+
+html[data-ambient="bright"] .portal-museum {
+  border-color: rgba(154, 100, 30, 0.34);
+  box-shadow: 0 24px 70px rgba(119, 78, 18, 0.16);
 }
 
 .image-scene {

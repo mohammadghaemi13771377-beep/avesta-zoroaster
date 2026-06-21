@@ -40,10 +40,23 @@ export function CinematicHub({
 }: CinematicHubProps) {
   return (
     <main className="overflow-hidden pt-24">
-      <section className="hero-cosmos relative min-h-[680px] px-4 pb-16 pt-12 sm:px-6 lg:px-8">
+      <section className={`hero-cosmos ${scene} relative isolate min-h-[680px] overflow-hidden`}>
+        {heroImage ? (
+          <Image
+            src={heroImage}
+            alt={title}
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+            priority
+          />
+        ) : null}
+        <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/68 to-[#071521]/16" />
+        <div className="hub-hero-side-shade absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(5,8,13,0.02),rgba(5,8,13,0.16)_38%,rgba(5,8,13,0.74)_100%)]" />
         <div className="hero-horizon" />
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+        <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-night via-night/55 to-transparent" />
+        <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8">
+          <div className="w-full">
             <p className="gold-text text-sm font-semibold uppercase tracking-[0.34em]">{eyebrow}</p>
             <h1 className="mt-5 max-w-4xl text-5xl font-black leading-tight text-warm-50 sm:text-7xl">
               {title}
@@ -70,9 +83,9 @@ export function CinematicHub({
             ) : null}
 
             {stats.length > 0 ? (
-              <div className="mt-12 grid gap-3 sm:grid-cols-3">
+              <div className="mt-12 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-gold/24 bg-gold/20 sm:grid-cols-3">
                 {stats.map((stat) => (
-                  <div key={stat.label} className="rounded-3xl border border-gold-400/14 bg-black/22 p-4">
+                  <div key={stat.label} className="bg-[#05080d]/58 p-4 backdrop-blur-sm">
                     <p className="text-2xl font-black text-gold-100">{stat.value}</p>
                     <p className="mt-2 text-sm leading-6 text-warm-100/62">{stat.label}</p>
                   </div>
@@ -80,30 +93,10 @@ export function CinematicHub({
               </div>
             ) : null}
           </div>
-
-          <div className="lux-frame p-4">
-            <div className={`image-scene ${scene} min-h-[440px] overflow-hidden rounded-[1.55rem]`}>
-              {heroImage ? (
-                <Image
-                  src={heroImage}
-                  alt={title}
-                  fill
-                  sizes="(min-width: 1024px) 44vw, 92vw"
-                  className="object-cover"
-                  priority
-                />
-              ) : null}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020608]/58 via-[#071521]/12 to-transparent" />
-              <div className="absolute inset-x-8 top-8 flex items-center justify-between text-gold-200/80">
-                <span className="font-serif text-4xl">{roman}</span>
-                <Sparkles className="h-6 w-6" />
-              </div>
-              <div className="absolute bottom-8 right-8 max-w-xs">
-                <p className="gold-text text-xs font-semibold tracking-[0.25em]">AVESTA-ZOROASTER</p>
-                <h2 className="mt-3 text-3xl font-black text-warm-50">{eyebrow}</h2>
-              </div>
-            </div>
+          <div className="pointer-events-none absolute bottom-8 left-6 grid h-12 w-12 place-items-center rounded-full border border-gold/30 bg-black/25 font-serif text-xl text-gold-200 backdrop-blur-md sm:left-8">
+            {roman}
           </div>
+          <Sparkles className="pointer-events-none absolute bottom-11 left-24 h-5 w-5 text-gold-200/85 sm:left-28" />
         </div>
       </section>
 
