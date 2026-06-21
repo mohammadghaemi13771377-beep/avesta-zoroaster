@@ -24,6 +24,7 @@ export default function TimelinePage() {
       title="مسیر زرتشت، گات‌ها و حفظ اوستا"
       lead="این تایم‌لاین پایه تجربه تاریخی سایت است؛ جایی که روایت زرتشت، شکل‌گیری گات‌ها، ایران باستان، حفظ متن و میراث زنده امروز به شکل یک مسیر تعاملی دیده می‌شود."
       scene="scene-stone"
+      heroImage="/images/ai/exhibitions-cover.png"
       roman="T"
       actions={[
         { label: "مطالعه رویدادها", href: "#timeline-events" },

@@ -120,16 +120,22 @@ type FeatureLink = {
   href?: string;
   icon: LucideIcon;
   scene?: string;
+  imageSrc?: string;
 };
 
 export function FeatureLinkGrid({ items }: { items: FeatureLink[] }) {
   return (
     <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-      {items.map(({ title, description, href, icon: Icon, scene }) => {
+      {items.map(({ title, description, href, icon: Icon, scene, imageSrc }) => {
         const content = (
           <>
             <div className={scene ? `image-scene ${scene} h-40 rounded-2xl border border-gold-400/15` : ""}>
-              {!scene ? <Icon className="text-gold-200" size={30} /> : null}
+              {imageSrc ? (
+                <>
+                  <Image src={imageSrc} alt={`کاور ${title}`} fill sizes="(min-width: 1280px) 24vw, (min-width: 768px) 46vw, 92vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                  <span className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
+                </>
+              ) : !scene ? <Icon className="text-gold-200" size={30} /> : null}
             </div>
             {scene ? <Icon className="mt-5 text-gold-200" size={28} /> : null}
             <h2 className="mt-5 text-2xl font-black text-warm-50">{title}</h2>

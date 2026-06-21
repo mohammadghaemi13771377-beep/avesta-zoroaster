@@ -1,9 +1,10 @@
 "use client";
 
-import { Bookmark, Check, Headphones, Share2 } from "lucide-react";
+import { Bookmark, Check, Headphones, ListPlus, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const bookmarksKey = "avesta-reader-bookmarks-v1";
+const queueKey = "avesta-reading-queue-v1";
 
 type BookmarkItem = {
   href?: string;
@@ -22,11 +23,16 @@ function readBookmarks(): BookmarkItem[] {
 
 export function VerseQuickActions() {
   const [bookmarked, setBookmarked] = useState(false);
+  const [queued, setQueued] = useState(false);
   const [shareStatus, setShareStatus] = useState<"idle" | "copied">("idle");
 
   useEffect(() => {
     const currentHref = window.location.pathname;
     setBookmarked(readBookmarks().some((item) => item.href === currentHref));
+    try {
+      const queue = JSON.parse(window.localStorage.getItem(queueKey) ?? "[]");
+      setQueued(Array.isArray(queue) && queue.some((item: BookmarkItem) => item.href === currentHref));
+    } catch { setQueued(false); }
   }, []);
 
   function toggleBookmark() {
@@ -46,6 +52,16 @@ export function VerseQuickActions() {
 
     window.localStorage.setItem(bookmarksKey, JSON.stringify(next.slice(0, 50)));
     setBookmarked(!exists);
+  }
+
+  function toggleQueue() {
+    const currentHref = window.location.pathname;
+    let queue: BookmarkItem[] = [];
+    try { const parsed = JSON.parse(window.localStorage.getItem(queueKey) ?? "[]"); queue = Array.isArray(parsed) ? parsed : []; } catch { queue = []; }
+    const exists = queue.some((item) => item.href === currentHref);
+    const next = exists ? queue.filter((item) => item.href !== currentHref) : [...queue, { href: currentHref, title: document.title.replace(" | AVESTA-ZOROASTER", ""), savedAt: new Date().toISOString() }];
+    window.localStorage.setItem(queueKey, JSON.stringify(next.slice(0, 30)));
+    setQueued(!exists);
   }
 
   async function sharePage() {
@@ -79,6 +95,10 @@ export function VerseQuickActions() {
       >
         {bookmarked ? <Check className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
         {bookmarked ? "ذخیره شد" : "ذخیره بند"}
+      </button>
+      <button type="button" onClick={toggleQueue} aria-pressed={queued} className="inline-flex items-center gap-2 rounded-full border border-gold-400/25 bg-black/20 px-5 py-3 text-sm font-bold text-gold-100 transition hover:border-gold-300/60">
+        {queued ? <Check className="h-4 w-4" /> : <ListPlus className="h-4 w-4" />}
+        {queued ? "در صف مطالعه" : "افزودن به صف"}
       </button>
       <button
         type="button"

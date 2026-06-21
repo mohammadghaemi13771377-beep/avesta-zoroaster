@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Minus, Plus, Search, ShoppingBag, SlidersHorizontal, Sparkles, Trash2 } from "lucide-react";
+import { ArrowLeft, Heart, Minus, Plus, Search, ShoppingBag, SlidersHorizontal, Sparkles, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -16,6 +16,7 @@ type CartItem = {
 };
 
 const cartStorageKey = "avesta-shop-cart-v1";
+const wishlistStorageKey = "avesta-shop-wishlist-v1";
 const inventoryLabels = { available: "موجود", preorder: "پیش‌فروش", limited: "تعداد محدود" } as const;
 
 export function ShopStorefront({ products }: { products: ShopProduct[] }) {
@@ -23,6 +24,7 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
   const [query, setQuery] = useState("");
   const [availability, setAvailability] = useState<"all" | ShopProduct["inventoryStatus"]>("all");
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [wishlist, setWishlist] = useState<string[]>([]);
   const [hydrated, setHydrated] = useState(false);
   const filteredProducts = useMemo(
     () => products.filter((product) => {
@@ -43,6 +45,8 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
     try {
       const saved = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? "[]");
       if (Array.isArray(saved)) setCart(saved.filter((item) => item && typeof item.slug === "string").slice(0, 20));
+      const savedWishlist = JSON.parse(window.localStorage.getItem(wishlistStorageKey) ?? "[]");
+      if (Array.isArray(savedWishlist)) setWishlist(savedWishlist.filter((item) => typeof item === "string").slice(0, 30));
     } catch {
       window.localStorage.removeItem(cartStorageKey);
     } finally {
@@ -53,6 +57,10 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
   useEffect(() => {
     if (hydrated) window.localStorage.setItem(cartStorageKey, JSON.stringify(cart));
   }, [cart, hydrated]);
+
+  useEffect(() => {
+    if (hydrated) window.localStorage.setItem(wishlistStorageKey, JSON.stringify(wishlist));
+  }, [wishlist, hydrated]);
 
   function addToCart(product: ShopProduct) {
     setCart((current) => {
@@ -70,6 +78,10 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
 
   function setQuantity(slug: string, quantity: number) {
     setCart((current) => quantity <= 0 ? current.filter((item) => item.slug !== slug) : current.map((item) => item.slug === slug ? { ...item, quantity } : item));
+  }
+
+  function toggleWishlist(slug: string) {
+    setWishlist((current) => current.includes(slug) ? current.filter((item) => item !== slug) : [...current, slug]);
   }
 
   function resetFilters() {
@@ -155,6 +167,9 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
               <p className="mt-3 min-h-[56px] text-sm leading-7 text-muted">{product.excerpt}</p>
               <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
                 <span className="text-lg font-black text-gold-light">{formatPrice(product.price)}</span>
+                <button type="button" onClick={() => toggleWishlist(product.slug)} aria-pressed={wishlist.includes(product.slug)} aria-label={wishlist.includes(product.slug) ? "حذف از علاقه‌مندی‌ها" : "افزودن به علاقه‌مندی‌ها"} className={`mr-auto grid h-11 w-11 place-items-center rounded-full border transition ${wishlist.includes(product.slug) ? "border-gold bg-gold/15 text-gold-light" : "border-gold/20 text-gold-light hover:bg-gold/10"}`}>
+                  <Heart size={17} fill={wishlist.includes(product.slug) ? "currentColor" : "none"} />
+                </button>
                 <button
                   type="button"
                   onClick={() => addToCart(product)}
@@ -172,10 +187,10 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
       <aside className="lux-frame h-fit p-5 xl:sticky xl:top-28">
         <div className="flex items-center gap-2 text-gold-light">
           <ShoppingBag size={21} />
-          <h2 className="text-2xl font-black">سبد خرید آینده</h2>
+          <h2 className="text-2xl font-black">سبد خرید شما</h2>
         </div>
         <p className="mt-3 text-sm leading-7 text-muted">
-          این سبد فعلاً local است؛ بعداً به سفارش، پرداخت، ارسال و پنل فروش وصل می‌شود.
+          انتخاب‌های شما روی همین دستگاه نگه داشته می‌شوند تا هنگام دیدن محصولات، سبدتان از بین نرود.
         </p>
         <div className="mt-5 grid gap-3">
           {cart.length ? (
@@ -192,19 +207,30 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
           )}
         </div>
         <div className="mt-5 rounded-3xl border border-gold/20 bg-gold/10 p-5">
-          <p className="text-xs font-bold text-muted">جمع آزمایشی</p>
+          <p className="text-xs font-bold text-muted">جمع سبد</p>
           <p className="mt-1 text-2xl font-black text-gold-light">{formatPrice(total)}</p>
         </div>
-        <Link
-          href={checkoutHref}
-          className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 font-black text-night transition hover:bg-gold-light"
-        >
-          ادامه به checkout
-          <ArrowLeft size={17} />
-        </Link>
+        {cart.length ? (
+          <Link
+            href={checkoutHref}
+            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 font-black text-night transition hover:bg-gold-light"
+          >
+            ادامه سفارش
+            <ArrowLeft size={17} />
+          </Link>
+        ) : (
+          <span className="mt-4 inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-gold/35 px-5 py-3 font-black text-night/70">
+            ابتدا یک محصول انتخاب کنید
+            <ArrowLeft size={17} />
+          </span>
+        )}
         <div className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/30 px-5 py-3 text-sm font-bold text-gold-light">
           <Sparkles size={17} />
-          سبد روی همین دستگاه ذخیره می‌شود
+          سبد شما روی همین دستگاه نگه داشته می‌شود
+        </div>
+        <div className="mt-5 border-t border-gold/12 pt-5">
+          <div className="flex items-center gap-2 text-gold-light"><Heart size={18} /><h3 className="font-black">علاقه‌مندی‌ها</h3><span className="mr-auto text-xs text-muted">{wishlist.length}</span></div>
+          {wishlist.length ? <div className="mt-3 grid gap-2">{products.filter((product) => wishlist.includes(product.slug)).map((product) => <div key={product.slug} className="flex items-center justify-between gap-3 rounded-xl border border-gold/10 bg-night/45 p-3"><Link href={`/shop/${product.slug}`} className="min-w-0 flex-1 truncate text-sm font-black text-warm hover:text-gold-light">{product.title}</Link><button type="button" onClick={() => toggleWishlist(product.slug)} className="text-muted hover:text-gold-light" aria-label={`حذف ${product.title}`}><Trash2 size={15} /></button></div>)}</div> : <p className="mt-3 text-xs leading-6 text-muted">محصول‌های دلخواهت را با آیکن قلب نگه دار.</p>}
         </div>
       </aside>
     </div>

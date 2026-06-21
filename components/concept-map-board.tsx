@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft, Filter, Network, Search, Sparkles } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ConceptLink, ConceptNode, ConceptNodeType } from "@/lib/concept-map";
 import { conceptLinkLabels, conceptTypeLabels } from "@/lib/concept-map";
 import { normalizeSearchText } from "@/lib/search";
@@ -18,6 +18,16 @@ export function ConceptMapBoard({ nodes, links }: ConceptMapBoardProps) {
   const [query, setQuery] = useState("");
   const [type, setType] = useState<string>(allLabel);
   const [activeId, setActiveId] = useState(nodes[0]?.id ?? "");
+
+  useEffect(() => {
+    const nodeId = window.location.hash.replace("#", "");
+    if (nodes.some((node) => node.id === nodeId)) setActiveId(nodeId);
+  }, [nodes]);
+
+  function selectNode(nodeId: string) {
+    setActiveId(nodeId);
+    window.history.replaceState(null, "", `#${nodeId}`);
+  }
 
   const visibleNodes = useMemo(() => {
     const normalized = normalizeSearchText(query);
@@ -91,7 +101,7 @@ export function ConceptMapBoard({ nodes, links }: ConceptMapBoardProps) {
                   <button
                     key={node.id}
                     type="button"
-                    onClick={() => setActiveId(node.id)}
+                    onClick={() => selectNode(node.id)}
                     className={
                       activeNode?.id === node.id
                         ? "rounded-3xl border border-gold/55 bg-gold/15 p-5 text-right shadow-gold transition"
@@ -157,7 +167,7 @@ export function ConceptMapBoard({ nodes, links }: ConceptMapBoardProps) {
                     <button
                       key={`${link.from}-${link.to}-${link.label}`}
                       type="button"
-                      onClick={() => other && setActiveId(other.id)}
+                      onClick={() => other && selectNode(other.id)}
                       className="rounded-2xl border border-gold/10 bg-night/50 p-4 text-right transition hover:border-gold/35 hover:bg-gold/10"
                     >
                       <p className="text-xs font-bold text-gold-light">{conceptLinkLabels[link.type]}</p>

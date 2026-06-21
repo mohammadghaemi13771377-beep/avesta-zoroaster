@@ -1,20 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Compass, GalleryHorizontalEnd, LockKeyhole, Route, Sparkles } from "lucide-react";
-import type { WorldRealm, WorldRealmStatus } from "@/lib/world-map";
-import { getWorldMapSummary, worldRealmStatusLabels } from "@/lib/world-map";
+import { ArrowLeft, Compass, GalleryHorizontalEnd, Route, Sparkles } from "lucide-react";
+import type { WorldRealm } from "@/lib/world-map";
+import { getWorldMapSummary } from "@/lib/world-map";
 
 type WorldMapBoardProps = {
   realms: WorldRealm[];
 };
 
-const statusClass: Record<WorldRealmStatus, string> = {
-  live: "border-emerald-300/25 bg-emerald-300/10 text-emerald-100",
-  expanding: "border-gold/20 bg-gold/10 text-gold-light",
-  foundation: "border-sky-300/20 bg-sky-300/10 text-sky-100",
+const realmImages: Record<string, string> = {
+  "avesta-core": "/images/ai/avesta-portal.png",
+  "wisdom-experience": "/images/ai/gathas-cover.png",
+  "knowledge-graph": "/images/ai/dictionary-cover.png",
+  "media-museum": "/images/ai/media-cover.png",
+  "seasonal-growth": "/images/ai/zoroaster-cover.png",
+  "commerce-future": "/images/ai/shop-cover.png"
 };
 
 export function WorldMapBoard({ realms }: WorldMapBoardProps) {
-  const summary = getWorldMapSummary(realms);
+  const publicRealms = realms.filter((realm) => realm.id !== "admin-ops");
+  const summary = getWorldMapSummary(publicRealms);
 
   return (
     <div className="grid gap-6">
@@ -24,16 +29,16 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
             <p className="gold-text text-xs font-semibold tracking-[0.24em]">WORLD MAP</p>
             <h2 className="mt-3 text-3xl font-black text-warm">نقشه جهان دیجیتال AVESTA-ZOROASTER</h2>
             <p className="mt-3 max-w-3xl leading-8 text-muted">
-              این نقشه نشان می‌دهد جهان سایت از چه قلمروهایی ساخته شده، هر قلمرو چه مسیری دارد و برای تبدیل شدن
-              به محصول کامل چه قفل‌هایی باید باز شوند.
+              از متن و نیایش تا دانش، تصویر، مناسبت و فروشگاه فرهنگی؛ هر قلمرو یک تجربه مستقل دارد و راهی تازه
+              برای ادامه سفر باز می‌کند.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
             <Metric label="قلمرو" value={String(summary.realms)} />
-            <Metric label="زنده" value={String(summary.live)} />
-            <Metric label="گسترش" value={String(summary.expanding)} />
-            <Metric label="زیرساخت" value={String(summary.foundation)} />
-            <Metric label="میانگین" value={`${summary.averageCompletion}%`} />
+            <Metric label="مسیر اصلی" value="۳" />
+            <Metric label="تجربه ویژه" value="۳" />
+            <Metric label="ورود سریع" value="۶" />
+            <Metric label="اکتشاف" value="باز" />
           </div>
         </div>
 
@@ -41,27 +46,33 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="grid h-12 w-12 place-items-center rounded-full border border-gold/25 text-gold-light">
-                <LockKeyhole size={20} />
+                <Sparkles size={20} />
               </div>
               <div>
-                <p className="text-xs font-bold text-muted">قفل بعدی جهان</p>
+                <p className="text-xs font-bold text-muted">پیشنهاد برای شروع</p>
                 <h3 className="mt-1 text-xl font-black text-warm">{summary.nextRealm.title}</h3>
               </div>
             </div>
-            <p className="max-w-2xl text-sm font-bold leading-7 text-gold-light">{summary.nextRealm.nextUnlock}</p>
+            <p className="max-w-2xl text-sm font-bold leading-7 text-gold-light">{summary.nextRealm.purpose}</p>
           </div>
         </div>
       </section>
 
       <section className="grid gap-5 lg:grid-cols-2">
-        {realms.map((realm) => (
+        {publicRealms.map((realm) => (
           <article key={realm.id} className="lux-frame overflow-hidden p-5">
             <div className={`image-scene ${realm.scene} h-56 rounded-3xl border border-gold/10`}>
+              <Image
+                src={realmImages[realm.id] ?? "/images/ai/avesta-portal.png"}
+                alt={`قلمرو ${realm.title}`}
+                fill
+                sizes="(min-width: 1024px) 44vw, 92vw"
+                className="object-cover opacity-85"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-night/88 via-night/18 to-transparent" />
               <div className="absolute inset-x-5 top-5 flex items-center justify-between">
                 <span className="font-serif text-4xl text-gold-light">{realm.roman}</span>
-                <span className={`rounded-full border px-3 py-1 text-xs font-black ${statusClass[realm.status]}`}>
-                  {worldRealmStatusLabels[realm.status]}
-                </span>
+                <span className="rounded-full border border-gold/25 bg-night/55 px-3 py-1 text-xs font-black text-gold-light backdrop-blur">قلمرو جهان اوستا</span>
               </div>
               <div className="absolute bottom-5 right-5 max-w-sm">
                 <p className="text-xs font-bold text-gold-light">{realm.subtitle}</p>
@@ -71,18 +82,8 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
 
             <p className="mt-5 text-sm leading-8 text-muted">{realm.purpose}</p>
 
-            <div className="mt-5">
-              <div className="flex items-center justify-between text-xs font-black">
-                <span className="text-muted">درجه تکامل</span>
-                <span className="text-gold-light">{realm.completion}%</span>
-              </div>
-              <div className="mt-2 h-2 overflow-hidden rounded-full bg-warm/10">
-                <div className="h-full rounded-full bg-gold" style={{ width: `${realm.completion}%` }} />
-              </div>
-            </div>
-
             <div className="mt-5 grid gap-2 md:grid-cols-3">
-              {realm.routes.map((route) => (
+              {realm.routes.filter((route) => !route.href.startsWith("/admin")).map((route) => (
                 <Link
                   key={route.href}
                   href={route.href}
@@ -91,14 +92,6 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
                   {route.label}
                 </Link>
               ))}
-            </div>
-
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-gold/10 bg-night/45 p-4">
-              <div className="flex items-center gap-2 text-gold-light">
-                <Sparkles size={17} />
-                <span className="text-sm font-black">Unlock</span>
-              </div>
-              <p className="max-w-xl text-sm font-bold leading-7 text-muted">{realm.nextUnlock}</p>
             </div>
 
             <Link

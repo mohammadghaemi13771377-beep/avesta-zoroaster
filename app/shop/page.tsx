@@ -9,7 +9,7 @@ import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "فروشگاه",
-  description: "فروشگاه آینده AVESTA-ZOROASTER برای کتاب، ماگ، پیراهن، اکسسوری، مجسمه و محصولات فرهنگی.",
+  description: "فروشگاه فرهنگی AVESTA-ZOROASTER برای کتاب، ماگ، پیراهن، اکسسوری، مجسمه و محصولات الهام‌گرفته از ایران باستان.",
 };
 
 export default function ShopPage() {
@@ -24,18 +24,18 @@ export default function ShopPage() {
     <CinematicHub
       eyebrow="Cultural Store"
       title="فروشگاه اوستا، زرتشت و خرد یکتاپرستی"
-      lead="این بخش برای فروش محصولات فرهنگی مرتبط با اوستا، زرتشت، یکتاپرستی و ایران باستان طراحی شده است؛ فعلاً نسخه نمایشی آماده است و بعداً به پرداخت، انبار و سفارش وصل می‌شود."
+      lead="مجموعه‌ای فرهنگی از کتاب، پوشاک، هدیه و آثار الهام‌گرفته از اوستا، زرتشت، یکتاپرستی و ایران باستان؛ با مسیر انتخاب محصول و ثبت سفارش در محیط آزمایشی."
       scene="scene-cosmic"
       heroImage={routeHeroByPath["/shop"]}
       roman="S"
       actions={[
         { label: "مشاهده محصولات", href: "#shop-products" },
-        { label: "آماده اتصال به پرداخت", href: "/admin", variant: "secondary" },
+        { label: "سبد و سفارش", href: "/shop/checkout", variant: "secondary" },
       ]}
       stats={[
-        { value: "6", label: "محصول نمونه" },
-        { value: "Cart", label: "سبد خرید local" },
-        { value: "SEO", label: "صفحه محصول آماده ایندکس" },
+        { value: "6", label: "محصول منتخب" },
+        { value: "Cart", label: "سبد خرید پایدار" },
+        { value: "Collection", label: "مجموعه فرهنگی" },
       ]}
     >
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">

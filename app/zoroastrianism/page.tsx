@@ -17,6 +17,7 @@ const paths = [
     href: "/monotheism",
     icon: Flame,
     scene: "scene-fire",
+    imageSrc: "/images/ai/monotheism-cover.png",
   },
   {
     title: "گات‌ها",
@@ -24,6 +25,7 @@ const paths = [
     href: "/gathas",
     icon: BookOpen,
     scene: "scene-sunrise",
+    imageSrc: "/images/ai/gathas-cover.png",
   },
   {
     title: "واژه‌نامه",
@@ -31,6 +33,7 @@ const paths = [
     href: "/dictionary",
     icon: Sparkles,
     scene: "scene-cosmic",
+    imageSrc: "/images/ai/dictionary-cover.png",
   },
   {
     title: "تایم‌لاین",
@@ -38,6 +41,7 @@ const paths = [
     href: "/timeline",
     icon: Landmark,
     scene: "scene-stone",
+    imageSrc: "/images/ai/zoroaster-cover.png",
   },
 ];
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSearchCategories, searchDocuments, searchIndexes, suggestedQueries, type SearchType } from "@/lib/search";
+import { getSearchCategories, getSemanticSearchHints, searchDocuments, searchIndexes, suggestedQueries, type SearchType } from "@/lib/search";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -19,6 +19,7 @@ export async function GET(request: Request) {
     category,
     source: "local-sample-index",
     nextSource: "Meilisearch multi-index search",
+    semanticHints: getSemanticSearchHints(query),
     count: results.length,
     typeSummary,
     nextAction: results[0]

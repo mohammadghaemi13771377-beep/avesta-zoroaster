@@ -20,6 +20,7 @@ import { QuoteShareCard } from "@/components/quote-share-card";
 import { RitualAudioPlayer } from "@/components/ritual-audio-player";
 import { SourceTrustPanel } from "@/components/source-trust-panel";
 import { VerseQuickActions } from "@/components/verse-quick-actions";
+import { InlineGlossaryText } from "@/components/inline-glossary-text";
 import { WisdomPath } from "@/components/wisdom-path";
 import {
   getAvestaSection,
@@ -282,6 +283,7 @@ export default async function VersePage({ params, searchParams }: PageProps) {
                 title={block.title}
                 body={block.body}
                 tone={index === 0 ? "gold" : "default"}
+                terms={glossaryTerms}
               />
             ))}
 
@@ -464,17 +466,19 @@ function VerseBlock({
   title,
   body,
   tone = "default",
+  terms,
 }: {
   eyebrow: string;
   title: string;
   body: string;
   tone?: "default" | "gold";
+  terms: Array<{ term: string; slug: string; meaning: string }>;
 }) {
   return (
     <section className={`lux-frame p-6 sm:p-10 ${tone === "gold" ? "border-gold-300/28 bg-gold-300/[0.045]" : ""}`}>
       <p className="gold-text text-sm font-semibold tracking-[0.24em]">{eyebrow}</p>
       <h2 className="mt-3 text-3xl font-black text-warm-50">{title}</h2>
-      <p className="reader-text mt-6 text-xl text-warm-100/84">{body}</p>
+      <InlineGlossaryText text={body} terms={terms} className="reader-text mt-6 text-xl text-warm-100/84" />
     </section>
   );
 }

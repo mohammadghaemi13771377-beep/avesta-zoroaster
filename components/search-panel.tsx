@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Bookmark, Check, Clock3, Database, Filter, Search, Sparkles, Trash2, X } from "lucide-react";
+import { ArrowLeft, Bookmark, Check, Clock3, Filter, Search, Sparkles, Trash2, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import {
   getSearchCategories,
+  getSemanticSearchHints,
   searchDocuments,
   searchTypeLabels,
   suggestedQueries,
@@ -52,6 +53,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
         count: searchDocuments(query, option.value, category).filter((item) => section === "all" || item.section === section).length,
       }));
   }, [category, query, section]);
+  const semanticHints = useMemo(() => getSemanticSearchHints(query), [query]);
 
   useEffect(() => {
     setQuery(initialQuery);
@@ -181,6 +183,15 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
         ))}
       </div>
 
+      {semanticHints.length ? (
+        <div className="mt-4 rounded-2xl border border-gold/18 bg-gold/10 p-4">
+          <p className="inline-flex items-center gap-2 text-sm font-black text-gold-light"><Sparkles size={16} />جستجوی مفهومی فعال است</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {semanticHints.flatMap((hint) => hint.related.slice(0, 5).map((item) => <span key={`${hint.term}-${item}`} className="rounded-full border border-gold/16 bg-night/45 px-3 py-1.5 text-xs font-bold text-warm">{hint.term} ← {item}</span>))}
+          </div>
+        </div>
+      ) : null}
+
       {section !== "all" ? (
         <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-sm font-bold text-gold-light">
           بخش فعال: {section}
@@ -264,11 +275,11 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
 
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-muted">
-          {results.length} نتیجه پیدا شد. API آماده: <span dir="ltr">/api/search?q=&type=&category=</span>
+          {results.length} نتیجه پیدا شد. نتیجه‌ها بر اساس متن، موضوع و پیوندهای مفهومی مرتب شده‌اند.
         </p>
         <p className="inline-flex items-center gap-2 rounded-full border border-gold/15 bg-gold/10 px-4 py-2 text-xs font-bold text-gold-light">
-          <Database size={14} />
-          آماده اتصال به Meilisearch
+          <Sparkles size={14} />
+          جستجوی چندمنبعی
         </p>
       </div>
 
@@ -294,9 +305,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
                     {item.section}
                   </span>
                 ) : null}
-                <span className="rounded-full border border-gold/10 px-3 py-1 text-xs text-gold-light">
-                  امتیاز {item.score}
-                </span>
+                {item.semanticMatches.length ? <span className="rounded-full border border-gold/15 bg-gold/10 px-3 py-1 text-xs text-gold-light">مرتبط با: {item.semanticMatches.join("، ")}</span> : null}
               </div>
               <div className="mt-3 flex items-start justify-between gap-4">
                 <div>

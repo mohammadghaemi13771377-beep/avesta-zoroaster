@@ -5,6 +5,7 @@ import { ArrowLeft, Bookmark, BookOpen, Headphones, Moon, Settings, UserRound } 
 
 import { LogoutButton } from "@/components/auth/logout-button";
 import { ReaderMemory } from "@/components/profile/reader-memory";
+import { ProfileReadingSummary } from "@/components/profile/profile-reading-summary";
 import { profileSnapshot } from "@/lib/sample-content";
 
 export const metadata: Metadata = {
@@ -51,7 +52,8 @@ export default function ProfilePage() {
           </div>
 
           <div className="space-y-5">
-            <section className="lux-frame p-7">
+            <ProfileReadingSummary fallback={profileSnapshot.continueReading} />
+            <section className="hidden" aria-hidden="true">
               <div className="flex items-center gap-2 text-gold-light">
                 <BookOpen size={20} />
                 <p className="text-sm font-bold">ادامه مطالعه</p>
@@ -74,7 +76,7 @@ export default function ProfilePage() {
               </Link>
             </section>
 
-            <section className="lux-frame p-7">
+            <section className="hidden" aria-hidden="true">
               <div className="flex items-center gap-2 text-gold-light">
                 <Bookmark size={20} />
                 <p className="text-sm font-bold">بوکمارک‌ها</p>

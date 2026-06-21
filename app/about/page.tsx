@@ -15,6 +15,7 @@ const missionCards = [
     href: "/avesta",
     icon: Eye,
     scene: "scene-cosmic",
+    imageSrc: "/images/ai/avesta-portal.png",
   },
   {
     title: "دانشنامه زنده",
@@ -22,6 +23,7 @@ const missionCards = [
     href: "/search",
     icon: BookOpen,
     scene: "scene-tablets",
+    imageSrc: "/images/ai/dictionary-cover.png",
   },
   {
     title: "روایت سینمایی",
@@ -29,6 +31,7 @@ const missionCards = [
     href: "/media",
     icon: Sparkles,
     scene: "scene-mountain",
+    imageSrc: "/images/ai/media-cover.png",
   },
   {
     title: "مسیر محصول",
@@ -36,6 +39,7 @@ const missionCards = [
     href: "/profile",
     icon: Compass,
     scene: "scene-fire",
+    imageSrc: "/images/ai/home-hero.png",
   },
 ];
 

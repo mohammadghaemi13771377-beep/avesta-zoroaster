@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PrivacyConsentBanner } from "@/components/privacy-consent-banner";
+import { MobileBottomNavigation } from "@/components/mobile-bottom-navigation";
 import { absoluteUrl, languageAlternates, organizationJsonLd, seoKeywords, siteConfig, websiteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -44,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(()=>{try{const p=location.pathname;const en=p==='/en'||p.startsWith('/en/');document.documentElement.lang=en?'en':'fa';document.documentElement.dir=en?'ltr':'rtl';}catch(e){}})();"
+              "(()=>{try{const p=location.pathname;const en=p==='/en'||p.startsWith('/en/');document.documentElement.lang=en?'en':'fa';document.documentElement.dir=en?'ltr':'rtl';document.documentElement.dataset.ambient=localStorage.getItem('avesta-ambient-light-v1')==='bright'?'bright':'balanced';}catch(e){}})();"
           }}
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         {children}
         <Footer />
+        <MobileBottomNavigation />
         <PrivacyConsentBanner />
       </body>
     </html>

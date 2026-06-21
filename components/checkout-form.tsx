@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { CreditCard, Loader2, PackageCheck, Send } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { formatPrice, type ShopProduct } from "@/lib/shop";
 import { adminShopSchema, getShippingMethod, type ShippingMethodId } from "@/lib/admin-shop";
@@ -12,26 +12,49 @@ type CheckoutCartItem = {
   quantity: number;
 };
 
+const cartStorageKey = "avesta-shop-cart-v1";
+
+function readStoredCart(): CheckoutCartItem[] {
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(cartStorageKey) ?? "[]");
+    return Array.isArray(parsed)
+      ? parsed
+          .filter((item) => item && typeof item.slug === "string")
+          .map((item) => ({ slug: item.slug as string, quantity: Math.max(1, Number(item.quantity) || 1) }))
+          .slice(0, 20)
+      : [];
+  } catch {
+    return [];
+  }
+}
+
 export function CheckoutForm({ products, initialItems }: { products: ShopProduct[]; initialItems: CheckoutCartItem[] }) {
-  const [email, setEmail] = useState("buyer@example.com");
-  const [displayName, setDisplayName] = useState("خریدار نمونه");
-  const [phone, setPhone] = useState("09120000000");
-  const [shippingAddress, setShippingAddress] = useState("تهران، آدرس نمونه برای تست سفارش");
+  const [email, setEmail] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [shippingAddress, setShippingAddress] = useState("");
   const [shippingMethod, setShippingMethod] = useState<ShippingMethodId>("standard");
-  const [couponCode, setCouponCode] = useState("ASHA10");
-  const [notes, setNotes] = useState("پرداخت واقعی در فاز بعد به این سفارش وصل می‌شود.");
+  const [couponCode, setCouponCode] = useState("");
+  const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("checkout نمایشی آماده ثبت سفارش است.");
+  const [status, setStatus] = useState("اطلاعات سفارش را وارد کن تا درخواست در محیط آزمایشی ثبت شود.");
   const [paymentUrl, setPaymentUrl] = useState("");
+  const [storedItems, setStoredItems] = useState<CheckoutCartItem[]>([]);
+  const checkoutItems = initialItems.length ? initialItems : storedItems;
+
+  useEffect(() => {
+    if (!initialItems.length) setStoredItems(readStoredCart());
+  }, [initialItems.length]);
+
   const cartItems = useMemo(
     () =>
-      initialItems
+      checkoutItems
         .map((item) => {
           const product = products.find((entry) => entry.slug === item.slug);
           return product ? { ...item, product, total: product.price * item.quantity } : null;
         })
         .filter(Boolean) as Array<CheckoutCartItem & { product: ShopProduct; total: number }>,
-    [initialItems, products]
+    [checkoutItems, products]
   );
   const total = cartItems.reduce((sum, item) => sum + item.total, 0);
   const selectedShipping = getShippingMethod(shippingMethod);
@@ -104,17 +127,17 @@ export function CheckoutForm({ products, initialItems }: { products: ShopProduct
       <section className="lux-frame p-6">
         <div className="flex items-center gap-2 text-gold-light">
           <CreditCard size={22} />
-          <h1 className="text-3xl font-black">Checkout فروشگاه</h1>
+          <h1 className="text-3xl font-black">ثبت سفارش</h1>
         </div>
         <p className="mt-3 leading-8 text-muted">
-          این checkout فعلاً سفارش demo می‌سازد و برای اتصال آینده به پرداخت، انبار و ارسال آماده است.
+          سفارش شما در محیط آزمایشی ثبت می‌شود. اطلاعات پرداخت واقعی و ارسال نهایی فقط پس از اتصال درگاه فعال خواهند شد.
         </p>
         <div className="mt-6 grid gap-4">
           <div className="grid gap-4 md:grid-cols-2">
-            <Field label="نام" value={displayName} onChange={setDisplayName} />
-            <Field label="ایمیل" value={email} onChange={setEmail} ltr />
+            <Field label="نام و نام خانوادگی" value={displayName} onChange={setDisplayName} placeholder="نام دریافت‌کننده" />
+            <Field label="ایمیل" value={email} onChange={setEmail} ltr placeholder="name@example.com" />
           </div>
-          <Field label="شماره تماس" value={phone} onChange={setPhone} ltr />
+          <Field label="شماره تماس" value={phone} onChange={setPhone} ltr placeholder="0912 000 0000" />
           <label className="grid gap-2">
             <span className="text-sm font-bold text-warm">روش ارسال</span>
             <select
@@ -129,23 +152,23 @@ export function CheckoutForm({ products, initialItems }: { products: ShopProduct
               ))}
             </select>
           </label>
-          <TextArea label="آدرس ارسال" value={shippingAddress} onChange={setShippingAddress} rows={4} />
-          <Field label="کد تخفیف" value={couponCode} onChange={setCouponCode} ltr />
-          <TextArea label="یادداشت سفارش" value={notes} onChange={setNotes} rows={3} />
+          <TextArea label="آدرس ارسال" value={shippingAddress} onChange={setShippingAddress} rows={4} placeholder="شهر، نشانی و کد پستی" />
+          <Field label="کد تخفیف" value={couponCode} onChange={setCouponCode} ltr placeholder="اختیاری" />
+          <TextArea label="یادداشت سفارش" value={notes} onChange={setNotes} rows={3} placeholder="اختیاری" />
           <button
             type="submit"
             disabled={loading || cartItems.length === 0}
             className="inline-flex w-fit items-center gap-2 rounded-full bg-gold px-6 py-4 font-black text-night transition hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? <Loader2 className="animate-spin" size={18} /> : <Send size={18} />}
-            ثبت سفارش demo
+            ثبت درخواست سفارش
           </button>
           {paymentUrl ? (
             <Link
               href={paymentUrl}
               className="inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 px-6 py-4 font-black text-gold-light transition hover:bg-gold/10"
             >
-              ورود به درگاه demo
+              ادامه در پرداخت آزمایشی
               <CreditCard size={18} />
             </Link>
           ) : null}
@@ -191,11 +214,13 @@ function Field({
   value,
   onChange,
   ltr = false,
+  placeholder,
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
   ltr?: boolean;
+  placeholder?: string;
 }) {
   return (
     <label className="grid gap-2">
@@ -203,8 +228,9 @@ function Field({
       <input
         dir={ltr ? "ltr" : "rtl"}
         value={value}
+        placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
-        className={`h-12 rounded-2xl border border-gold/20 bg-royal px-4 text-warm outline-none focus:border-gold ${
+        className={`h-12 rounded-2xl border border-gold/20 bg-royal px-4 text-warm outline-none placeholder:text-muted focus:border-gold ${
           ltr ? "text-left" : ""
         }`}
       />
@@ -217,20 +243,23 @@ function TextArea({
   value,
   onChange,
   rows,
+  placeholder,
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
   rows: number;
+  placeholder?: string;
 }) {
   return (
     <label className="grid gap-2">
       <span className="text-sm font-bold text-warm">{label}</span>
       <textarea
         value={value}
+        placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
         rows={rows}
-        className="rounded-2xl border border-gold/20 bg-royal p-4 text-warm outline-none focus:border-gold"
+        className="rounded-2xl border border-gold/20 bg-royal p-4 text-warm outline-none placeholder:text-muted focus:border-gold"
       />
     </label>
   );

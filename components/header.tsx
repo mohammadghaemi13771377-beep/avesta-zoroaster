@@ -4,6 +4,9 @@ import { ChevronDown, LogIn, Search, UserRound } from "lucide-react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNavigation } from "@/components/mobile-navigation";
 import { AmbientLightToggle } from "@/components/ambient-light-toggle";
+import { CommandCenter } from "@/components/command-center";
+import { HeaderNavLink } from "@/components/header-nav-link";
+import { ReadingNotifications } from "@/components/reading-notifications";
 import { avestaSections, exploreNavItems, navItems } from "@/lib/content";
 
 export function Header() {
@@ -29,39 +32,41 @@ export function Header() {
           {navItems.map((item) =>
             item.href === "/avesta" ? (
               <div className="group relative" key={item.href}>
-                <Link
+                <HeaderNavLink
                   href={item.href}
                   className="flex items-center gap-1 rounded-xl px-4 py-2 transition hover:bg-gold/12 hover:text-gold-light"
                 >
                   {item.label}
                   <ChevronDown size={15} />
-                </Link>
+                </HeaderNavLink>
                 <div className="invisible absolute right-0 top-11 w-60 translate-y-2 rounded-2xl border border-gold/22 bg-[#071521]/95 p-2 opacity-0 shadow-2xl shadow-black/35 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {avestaSections.map((section) => (
-                    <Link
+                    <HeaderNavLink
                       key={section.slug}
                       href={section.href}
                       className="block rounded-xl px-4 py-3 text-sm text-warm/82 transition hover:bg-gold/10 hover:text-gold-light"
+                      activeClassName="bg-gold/10 text-gold-light"
                     >
                       {section.title}
-                    </Link>
+                    </HeaderNavLink>
                   ))}
-                  <Link
+                  <HeaderNavLink
                     href="/dictionary"
                     className="block rounded-xl px-4 py-3 text-sm text-warm/82 transition hover:bg-gold/10 hover:text-gold-light"
+                    activeClassName="bg-gold/10 text-gold-light"
                   >
                     واژه‌نامه
-                  </Link>
+                  </HeaderNavLink>
                 </div>
               </div>
             ) : (
-              <Link
+              <HeaderNavLink
                 href={item.href}
                 key={item.href}
                 className="rounded-xl px-4 py-2 transition hover:bg-gold/12 hover:text-gold-light"
               >
                 {item.label}
-              </Link>
+              </HeaderNavLink>
             )
           )}
           <div className="group relative">
@@ -96,6 +101,8 @@ export function Header() {
           >
             <Search size={17} />
           </Link>
+          <div className="hidden xl:block"><CommandCenter compact /></div>
+          <ReadingNotifications />
           <AmbientLightToggle />
           <LanguageSwitcher />
           <Link

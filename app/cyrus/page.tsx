@@ -15,6 +15,7 @@ const cyrusCards = [
     href: "/timeline",
     icon: Landmark,
     scene: "scene-stone",
+    imageSrc: "/images/ai/exhibitions-cover.png",
   },
   {
     title: "منابع پژوهشی",
@@ -22,13 +23,15 @@ const cyrusCards = [
     href: "/library",
     icon: Library,
     scene: "scene-scroll",
+    imageSrc: "/images/ai/library-cover.png",
   },
   {
     title: "مقاله‌های تاریخی",
-    description: "این مسیر در فاز محتوا با مقاله‌های تحلیلی، سئو و لینک داخلی کامل می‌شود.",
+    description: "مقاله‌های تحلیلی و منابع منتخب، روایت تاریخی را به مسیر مطالعه‌ای قابل‌فهم و پیوسته تبدیل می‌کنند.",
     href: "/articles",
     icon: ScrollText,
     scene: "scene-tablets",
+    imageSrc: "/images/ai/articles-cover.png",
   },
   {
     title: "هویت شاهانه",
@@ -36,6 +39,7 @@ const cyrusCards = [
     href: "/media",
     icon: Crown,
     scene: "scene-sunrise",
+    imageSrc: "/images/ai/zoroastrianism-cover.png",
   },
 ];
 
@@ -54,7 +58,7 @@ export default function CyrusPage() {
       stats={[
         { value: "History", label: "روایت تاریخی و فرهنگی" },
         { value: "Sources", label: "قابل اتصال به کتابخانه" },
-        { value: "AI", label: "آماده تصویرسازی اختصاصی" },
+        { value: "تصویر", label: "روایت بصری و موزه‌ای" },
       ]}
     >
       <FeatureLinkGrid items={cyrusCards} />

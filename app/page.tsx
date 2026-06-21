@@ -2,12 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, BookOpen, Globe2, Search, ShieldCheck, Sparkles } from "lucide-react";
 import { DailyAvestaCard } from "@/components/daily-avesta-card";
+import { FaqSection } from "@/components/faq-section";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { MobedHomeCallout } from "@/components/mobed-home-callout";
+import { ReaderMemoryShelf } from "@/components/reader-memory-shelf";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { SectionCard } from "@/components/section-card";
 import { TrackedLink } from "@/components/tracked-link";
 import { avestaSections, featuredArticles } from "@/lib/content";
 import { getDailyAvesta } from "@/lib/daily-avesta";
 import { routeHeroByPath } from "@/lib/visual-assets";
+import { faqPageJsonLd } from "@/lib/seo";
 
 const featureBadges = [
   ["مطالعه آرام", "متن، ترجمه و معنا", BookOpen],
@@ -29,11 +34,20 @@ const studyShelves = [
   { title: "رسانه و نمایشگاه", text: "تصویر، صدا و آثار دیجیتال را جدا از متن، با تمرکز تماشا کنید.", href: "/media", icon: Sparkles },
 ];
 
+const homeFaqs = [
+  { question: "اوستا چیست؟", answer: "اوستا نام مجموعه‌ای از متن‌های دینی و آیینی زرتشتی است. در این سایت، بخش‌های آن با معرفی، مسیر مطالعه، واژه‌نامه، ترجمه و پیوندهای پژوهشی عرضه می‌شوند." },
+  { question: "گات‌ها چه جایگاهی دارند؟", answer: "گات‌ها سرودهایی هستند که در سنت زرتشتی به زرتشت نسبت داده می‌شوند و برای فهم خرد، راستی، اختیار و مسئولیت انسان اهمیت ویژه دارند." },
+  { question: "از کجا مطالعه را شروع کنم؟", answer: "اگر تازه‌وارد هستی از پورتال اوستا یا آیین ورود شروع کن. آنجا می‌توانی بر اساس زمان، علاقه و حال‌وهوای خود یک مسیر مطالعه انتخاب کنی." },
+  { question: "آیا مطالب سایت منبع دارند؟", answer: "سایت برای هر لایه محتوا مسیر منبع، بازبینی و روش پژوهش در نظر می‌گیرد. برای مطالعه تخصصی، صفحه منابع و یادداشت‌های هر محتوا را هم بررسی کن." },
+  { question: "موبد هوشمند چه کاری انجام می‌دهد؟", answer: "موبد هوشمند پاسخ‌های آموزشی و محتاطانه درباره واژه‌ها و بخش‌های اوستا ارائه می‌دهد، منبع سایت را نشان می‌دهد و مسیر مطالعه بعدی پیشنهاد می‌کند." },
+];
+
 export default function HomePage() {
   const dailyAvesta = getDailyAvesta();
 
   return (
     <main className="overflow-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd(homeFaqs)) }} />
       <section className="hero-cosmos relative min-h-screen pt-24">
         <Image src={routeHeroByPath["/"]} alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="object-cover opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-l from-[#06131c]/18 via-[#071521]/52 to-[#05080d]/80" />
@@ -61,21 +75,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      <DailyAvestaCard item={dailyAvesta} />
+      <ScrollReveal><DailyAvestaCard item={dailyAvesta} /></ScrollReveal>
 
-      <section className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <ScrollReveal delay={60}><ReaderMemoryShelf /></ScrollReveal>
+
+      <ScrollReveal delay={80}><MobedHomeCallout /></ScrollReveal>
+
+      <ScrollReveal delay={90}><section className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-7 flex items-center justify-center gap-4"><span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/70" /><h2 className="gold-text text-center text-3xl font-black">پرتال اوستا</h2><span className="h-px w-20 bg-gradient-to-r from-transparent to-gold/70" /></div>
         <p className="mx-auto mb-7 max-w-2xl text-center leading-8 text-muted">برای ورود عمیق‌تر، یک بخش را انتخاب کنید. هر مسیر صفحه و روایت مستقل خود را دارد.</p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
           {avestaSections.map((section) => <SectionCard key={section.slug} title={section.title} description={section.description} href={section.href} atmosphere={section.atmosphere} imageSrc={section.coverImage} roman={section.roman} tracking={{ event: "avesta_section_opened", payload: { section_slug: section.slug, card_position: section.roman, source_route: "/" } }} />)}
         </div>
-      </section>
+      </section></ScrollReveal>
 
-      <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <ScrollReveal delay={90}><section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
           {portalCards.map((card) => <TrackedLink key={card.title} href={card.href} event="hero_cta_click" payload={{ cta_id: `home-portal-${card.href.replaceAll("/", "-")}`, label: card.title, locale: "fa", source_route: "/" }} className="lux-frame group block overflow-hidden rounded-[18px] p-4 transition hover:-translate-y-1 hover:border-gold/55"><h3 className="text-2xl font-black text-warm">{card.title}</h3><p className="mt-2 text-sm leading-7 text-muted">{card.text}</p><div className="image-scene relative mt-5 h-44 overflow-hidden rounded-[14px] border border-gold/14"><Image src={card.image} alt={`کاور ${card.title}`} fill sizes="(max-width: 1024px) 100vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent" /></div><span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">{card.footer}<ArrowLeft size={15} className="transition group-hover:-translate-x-1" /></span></TrackedLink>)}
-      </section>
+      </section></ScrollReveal>
 
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="grid gap-5 lg:grid-cols-3">{studyShelves.map((shelf) => { const Icon = shelf.icon; return <Link key={shelf.href} href={shelf.href} className="lux-frame group p-6 transition hover:-translate-y-1 hover:border-gold/55"><Icon className="text-gold-light" size={24} /><h2 className="mt-5 text-2xl font-black text-warm">{shelf.title}</h2><p className="mt-3 leading-8 text-muted">{shelf.text}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-gold-light">ورود <ArrowLeft size={15} /></span></Link>; })}</div></section>
+
+      <ScrollReveal delay={80}><FaqSection items={homeFaqs} /></ScrollReveal>
 
       <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8"><NewsletterSignup compact /><div className="lux-frame relative overflow-hidden rounded-[18px] p-7"><div className="absolute -bottom-20 right-8 h-44 w-44 rounded-full bg-gold/12 blur-3xl" /><h2 className="text-3xl font-black text-warm">در جریان بمانید</h2><p className="mt-3 leading-8 text-muted">برای دریافت تازه‌ها، مقاله‌ها و رویدادها ایمیل خود را وارد کنید.</p></div></section>
 

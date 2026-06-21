@@ -219,3 +219,13 @@ npm run db:seed
 - صفحه بندهای اوستا اکنون ذخیره، اشتراک‌گذاری و پرش به صوت دارد.
 - نمایشگاه‌ها دارای deep-link hash هستند و صفحه‌های عمومی دیگر اصطلاحات داخلی ادمین را نشان نمی‌دهند.
 - فرم upload در `/admin/media` پیش‌نمایش تصویر، محدودسازی نوع فایل، وضعیت ارسال و کپی URL دارد.
+
+## Release package: 2026-06-21
+
+This handoff package was refreshed after the luminous reading, Mobed guide, personal memory, reading queue, notifications, library shelf and storefront wishlist work.
+
+- Current build validation: `npx tsc --noEmit` and `npm run build` successful.
+- Current static output: 296 pages.
+- Full release notes: `docs/release-handoff-2026-06-21.md`.
+- Copy/paste deployment prompt for the connected GitHub/Vercel Codex chat: `docs/codex-github-deploy-prompt-2026-06-21.md`.
+- Use `avesta-zoroaster-source.zip` for deployment; the `avesta-zoroaster-full-code.txt` file is for text review only and excludes binary assets.

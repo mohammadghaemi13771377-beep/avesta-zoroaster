@@ -68,7 +68,7 @@ export function ReadingControls() {
   const [progress, setProgress] = useState(0);
   const [bookmarked, setBookmarked] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [audioReady, setAudioReady] = useState(false);
+  const [readerMessage, setReaderMessage] = useState("تنظیمات مطالعه روی همین دستگاه ذخیره می‌شود تا هنگام بازگشت به متن، تجربه خواندن شخصی خودت را ادامه بدهی.");
   const [canShare, setCanShare] = useState(false);
   const [note, setNote] = useState("");
   const [noteStatus, setNoteStatus] = useState("یادداشت شخصی برای همین بند");
@@ -160,6 +160,17 @@ export function ReadingControls() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function openAudio() {
+    const audio = document.getElementById("ritual-audio");
+    if (audio) {
+      audio.scrollIntoView({ behavior: "smooth", block: "center" });
+      setReaderMessage("به روایت صوتی همین صفحه رفتی؛ می‌توانی پخش، سرعت و زمان روایت را همان‌جا کنترل کنی.");
+      return;
+    }
+
+    setReaderMessage("برای این صفحه هنوز روایت صوتی منتشر نشده است. هنگام آماده‌شدن صوت، همین دکمه تو را مستقیم به آن می‌برد.");
+  }
+
   function saveNote() {
     const currentPath = window.location.pathname;
     const notes = readNotes();
@@ -238,7 +249,7 @@ export function ReadingControls() {
           <IconButton label="اشتراک‌گذاری" onClick={shareCurrentPage}>
             {copied ? <Check size={17} /> : canShare ? <Share2 size={17} /> : <Copy size={17} />}
           </IconButton>
-          <IconButton label="پخش صوت" onClick={() => setAudioReady((value) => !value)}>
+          <IconButton label="رفتن به روایت صوتی" onClick={openAudio}>
             <Volume2 size={17} />
           </IconButton>
           <IconButton label="رفتن به ابتدای صفحه" onClick={scrollToTop}>
@@ -247,11 +258,7 @@ export function ReadingControls() {
         </div>
       </div>
 
-      <p className="reader-text mt-4">
-        {audioReady
-          ? "جایگاه روایت صوتی فعال شد. در نسخه دیتابیس، این کنترل به فایل صوتی همان بند وصل می‌شود."
-          : "تنظیمات مطالعه روی همین دستگاه ذخیره می‌شود و برای متن‌های اوستا، مقاله‌ها و مسیر ادامه مطالعه آماده اتصال به پروفایل کاربر است."}
-      </p>
+      <p className="reader-text mt-4">{readerMessage}</p>
 
       <div className="mt-4 rounded-2xl border border-gold/15 bg-black/10 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">

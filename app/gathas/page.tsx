@@ -16,6 +16,7 @@ const gathaPaths = [
     href: "/avesta/gathas",
     icon: BookOpen,
     scene: "scene-scroll",
+    imageSrc: "/images/ai/gathas-cover.png",
   },
   {
     title: "خوانش صوتی",
@@ -23,6 +24,7 @@ const gathaPaths = [
     href: "/media",
     icon: Headphones,
     scene: "scene-mountain",
+    imageSrc: "/images/ai/media-cover.png",
   },
   {
     title: "نقل‌قول‌های طلایی",
@@ -30,6 +32,7 @@ const gathaPaths = [
     href: "/articles",
     icon: Quote,
     scene: "scene-sunrise",
+    imageSrc: "/images/ai/articles-cover.png",
   },
   {
     title: "پیام امروزی",
@@ -37,6 +40,7 @@ const gathaPaths = [
     href: "/dictionary",
     icon: Sparkles,
     scene: "scene-cosmic",
+    imageSrc: "/images/ai/dictionary-cover.png",
   },
 ];
 

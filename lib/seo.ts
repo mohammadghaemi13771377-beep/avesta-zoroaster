@@ -161,6 +161,21 @@ export function creativeWorkJsonLd({
   };
 }
 
+export function faqPageJsonLd(items: Array<{ question: string; answer: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  };
+}
+
 export function sitemapPriority(route: string) {
   if (route === "/" || route === "/fa" || route === "/en") {
     return 1;

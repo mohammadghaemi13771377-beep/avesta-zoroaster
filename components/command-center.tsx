@@ -9,6 +9,7 @@ import {
   Compass,
   Flame,
   Library,
+  MessageCircle,
   Search,
   ShieldCheck,
   Sparkles,
@@ -17,6 +18,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import { avestaSections } from "@/lib/content";
 import { trackEvent } from "@/lib/client-events";
+import { normalizeSearchText } from "@/lib/search";
 
 const quickActions = [
   { title: "آیین ورود", subtitle: "انتخاب مسیر شروع برای کاربر تازه‌وارد", href: "/onboarding", group: "شروع", icon: Sparkles },
@@ -29,6 +31,7 @@ const quickActions = [
   { title: "کتابخانه دیجیتال", subtitle: "منابع و نسخه‌ها", href: "/library", group: "منابع", icon: Library },
   { title: "مرکز اعتماد", subtitle: "منابع، استناد و شفافیت", href: "/trust-center", group: "اعتماد", icon: ShieldCheck },
   { title: "جستجوی پیشرفته", subtitle: "اوستا، مقاله، واژه‌نامه و رسانه", href: "/search", group: "ابزار", icon: Search },
+  { title: "موبد هوشمند", subtitle: "پرسش منبع‌دار و مسیر مطالعه", href: "/mobed", group: "هوشمند", icon: MessageCircle },
 ];
 
 const commandItems = [
@@ -42,16 +45,16 @@ const commandItems = [
   })),
 ];
 
-export function CommandCenter() {
+export function CommandCenter({ compact = false }: { compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
-    const clean = query.trim().toLowerCase();
+    const clean = normalizeSearchText(query);
     if (!clean) return commandItems;
 
     return commandItems.filter((item) => {
-      return `${item.title} ${item.subtitle} ${item.group} ${item.href}`.toLowerCase().includes(clean);
+      return normalizeSearchText(`${item.title} ${item.subtitle} ${item.group} ${item.href}`).includes(clean);
     });
   }, [query]);
 
@@ -75,6 +78,16 @@ export function CommandCenter() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
   function openPanel() {
     setOpen(true);
     void trackEvent({
@@ -94,24 +107,38 @@ export function CommandCenter() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={openPanel}
-        className="hidden h-9 items-center gap-2 rounded-xl border border-gold/18 px-3 text-xs font-bold text-gold-light transition hover:bg-gold/10 md:inline-flex"
-        aria-label="باز کردن فرمان‌خانه سریع"
-      >
-        <Command size={15} />
-        <span>فرمان</span>
-      </button>
+      {compact ? (
+        <button
+          type="button"
+          onClick={openPanel}
+          className="grid h-9 w-9 place-items-center rounded-xl border border-gold/18 text-gold-light transition hover:bg-gold/10"
+          aria-label="باز کردن فرمان‌خانه سریع"
+          title="فرمان‌خانه سریع"
+        >
+          <Command size={17} />
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={openPanel}
+          className="hidden h-9 items-center gap-2 rounded-xl border border-gold/18 px-3 text-xs font-bold text-gold-light transition hover:bg-gold/10 md:inline-flex"
+          aria-label="باز کردن فرمان‌خانه سریع"
+        >
+          <Command size={15} />
+          <span>فرمان</span>
+        </button>
+      )}
 
-      <button
-        type="button"
-        onClick={openPanel}
-        className="grid h-9 w-9 place-items-center rounded-xl border border-gold/18 text-gold-light transition hover:bg-gold/10 md:hidden"
-        aria-label="فرمان‌خانه سریع"
-      >
-        <Command size={17} />
-      </button>
+      {!compact ? (
+        <button
+          type="button"
+          onClick={openPanel}
+          className="grid h-9 w-9 place-items-center rounded-xl border border-gold/18 text-gold-light transition hover:bg-gold/10 md:hidden"
+          aria-label="فرمان‌خانه سریع"
+        >
+          <Command size={17} />
+        </button>
+      ) : null}
 
       {open ? (
         <div className="fixed inset-0 z-[80] bg-black/70 px-4 py-20 backdrop-blur-xl" role="dialog" aria-modal="true">

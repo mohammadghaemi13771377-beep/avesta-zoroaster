@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, BookOpen, CalendarDays, Library, MapPin, Search, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
 
@@ -18,30 +19,35 @@ const eventDetails = [
   {
     href: "/zoroaster",
     scene: "scene-prophet",
+    imageSrc: "/images/ai/zoroaster-cover.png",
     cta: "مطالعه زرتشت",
     keywords: ["اشا", "انتخاب اخلاقی", "پیام خرد"],
   },
   {
     href: "/gathas",
     scene: "scene-sunrise",
+    imageSrc: "/images/ai/gathas-cover.png",
     cta: "ورود به گات‌ها",
     keywords: ["گات‌ها", "سروده‌ها", "روشنایی"],
   },
   {
     href: "/cyrus",
     scene: "scene-stone",
+    imageSrc: "/images/ai/exhibitions-cover.png",
     cta: "دیدن ایران باستان",
     keywords: ["هخامنشیان", "کتیبه", "معماری"],
   },
   {
     href: "/library",
     scene: "scene-tablets",
+    imageSrc: "/images/ai/library-cover.png",
     cta: "منابع کتابخانه",
     keywords: ["ساسانیان", "گردآوری", "نسخه‌ها"],
   },
   {
     href: "/media",
     scene: "scene-cosmic",
+    imageSrc: "/images/ai/media-cover.png",
     cta: "رسانه و روایت",
     keywords: ["میراث زنده", "پادکست", "تصویر AI"],
   },
@@ -100,7 +106,10 @@ export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
             <Sparkles size={18} />
             <h2 className="font-black">رویداد فعال</h2>
           </div>
-          <div className={`image-scene ${selected?.scene ?? "scene-stone"} mt-4 h-48 rounded-2xl border border-gold/15`} />
+          <div className={`image-scene ${selected?.scene ?? "scene-stone"} relative mt-4 h-48 overflow-hidden rounded-2xl border border-gold/15`}>
+            {selected?.imageSrc ? <Image src={selected.imageSrc} alt={`تصویر ${selected.title}`} fill sizes="360px" className="object-cover opacity-80" /> : null}
+            <div className="absolute inset-0 bg-gradient-to-t from-night/72 via-transparent to-transparent" />
+          </div>
           <p className="mt-4 text-sm font-bold" style={{ color: selected?.accent }}>
             {selected?.era}
           </p>
@@ -143,7 +152,10 @@ export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
                 </button>
 
                 <div className="grid gap-5 xl:grid-cols-[190px_minmax(0,1fr)]">
-                  <div className={`image-scene ${event.scene} min-h-44 rounded-2xl border border-gold/15`} />
+                  <div className={`image-scene ${event.scene} relative min-h-44 overflow-hidden rounded-2xl border border-gold/15`}>
+                    {event.imageSrc ? <Image src={event.imageSrc} alt={`تصویر ${event.title}`} fill sizes="190px" className="object-cover opacity-82" /> : null}
+                    <div className="absolute inset-0 bg-gradient-to-t from-night/72 via-transparent to-transparent" />
+                  </div>
                   <div>
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                       <div>

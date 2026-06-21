@@ -32,7 +32,21 @@ export type SearchDocument = {
 export type SearchResult = SearchDocument & {
   score: number;
   matchedFields: string[];
+  semanticMatches: string[];
   snippet: string;
+};
+
+const semanticAliases: Record<string, string[]> = {
+  "آتش": ["یسنا", "نیایش", "پاکی", "روشنایی", "آتشکده"],
+  "اشا": ["راستی", "نظم", "اخلاق", "وهومن", "پندار نیک"],
+  "اهورامزدا": ["یکتاپرستی", "دانایی", "روشنایی", "گات ها"],
+  "زرتشت": ["گات ها", "خرد", "راستی", "ایران باستان"],
+  "گات ها": ["زرتشت", "اشا", "وهومن", "سرود", "اختیار"],
+  "یشت ها": ["اسطوره", "ستایش", "آبان", "مهر"],
+  "یسنا": ["نیایش", "آتش", "آیین", "سرود"],
+  "وندیداد": ["پاکی", "قانون", "فرگرد", "آیین"],
+  "یکتاپرستی": ["اهورامزدا", "خرد", "اخلاق", "گات ها"],
+  "فروهر": ["هویت", "نماد", "ایران باستان", "انتخاب"],
 };
 
 export const searchTypeLabels: Record<SearchType, string> = {
@@ -438,6 +452,15 @@ export function searchDocuments(query: string, type: SearchType = "all", categor
     .sort((a, b) => b.score - a.score || b.priority - a.priority);
 }
 
+export function getSemanticSearchHints(query: string) {
+  const normalized = normalizeSearchText(query);
+  const matches = Object.entries(semanticAliases)
+    .filter(([term]) => normalized.includes(term))
+    .map(([term, related]) => ({ term, related }));
+
+  return matches;
+}
+
 function scoreDocument(
   doc: SearchDocument,
   tokens: string[],
@@ -452,12 +475,13 @@ function scoreDocument(
   }
 
   if (!tokens.length) {
-    return {
-      ...doc,
-      score: doc.priority,
-      matchedFields: [],
-      snippet: makeSnippet(doc.excerpt),
-    };
+      return {
+        ...doc,
+        score: doc.priority,
+        matchedFields: [],
+        semanticMatches: [],
+        snippet: makeSnippet(doc.excerpt),
+      };
   }
 
   const fields = [
@@ -470,6 +494,7 @@ function scoreDocument(
 
   let score = doc.priority;
   const matchedFields = new Set<string>();
+  const semanticMatches = new Set<string>();
 
   for (const token of tokens) {
     let tokenMatched = false;
@@ -483,6 +508,15 @@ function scoreDocument(
         if (normalizedValue === token) {
           score += 30;
         }
+      } else {
+        const aliases = semanticAliases[token] ?? [];
+        const alias = aliases.find((item) => normalizedValue.includes(item));
+        if (alias) {
+          tokenMatched = true;
+          matchedFields.add(field);
+          semanticMatches.add(alias);
+          score += Math.round(weight * 0.58);
+        }
       }
     }
 
@@ -495,6 +529,7 @@ function scoreDocument(
     ...doc,
     score,
     matchedFields: Array.from(matchedFields),
+    semanticMatches: Array.from(semanticMatches),
     snippet: makeSnippet(doc.excerpt, tokens),
   };
 }

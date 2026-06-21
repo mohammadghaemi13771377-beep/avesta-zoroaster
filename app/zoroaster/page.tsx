@@ -16,6 +16,7 @@ const journeyCards = [
     href: "/articles/zoroaster-life-message",
     icon: Sparkles,
     scene: "scene-prophet",
+    imageSrc: "/images/ai/zoroaster-cover.png",
   },
   {
     title: "گات‌ها",
@@ -23,6 +24,7 @@ const journeyCards = [
     href: "/gathas",
     icon: BookOpen,
     scene: "scene-sunrise",
+    imageSrc: "/images/ai/gathas-cover.png",
   },
   {
     title: "آتش و راستی",
@@ -30,6 +32,7 @@ const journeyCards = [
     href: "/zoroastrianism",
     icon: Flame,
     scene: "scene-fire",
+    imageSrc: "/images/ai/zoroastrianism-cover.png",
   },
   {
     title: "ایران باستان",
@@ -37,6 +40,7 @@ const journeyCards = [
     href: "/timeline",
     icon: Landmark,
     scene: "scene-stone",
+    imageSrc: "/images/ai/exhibitions-cover.png",
   },
 ];
 
@@ -55,7 +59,7 @@ export default function ZoroasterPage() {
       ]}
       stats={[
         { value: "۳", label: "اصل اخلاقی: پندار، گفتار، کردار" },
-        { value: "۵", label: "بخش گات‌ها برای توسعه محتوایی" },
+        { value: "۵", label: "سرود اصلی گات‌ها" },
         { value: "∞", label: "مسیر مطالعه و تفسیر امروزی" },
       ]}
     >

@@ -23,7 +23,7 @@ export function AmbientLightToggle() {
     });
   }
 
-  const label = bright ? "بازگشت به نور متعادل" : "فعال کردن نور بیشتر";
+  const label = bright ? "فعال کردن تم تیره" : "فعال کردن تم روشن سفید و طلایی";
 
   return (
     <button type="button" onClick={toggleAmbientLight} className="grid h-9 w-9 place-items-center rounded-xl border border-gold/18 text-gold-light transition hover:bg-gold/10" aria-label={label} title={label}>

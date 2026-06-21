@@ -3,7 +3,8 @@ import { CinematicHub } from "@/components/cinematic-hub";
 import { WorldMapBoard } from "@/components/world-map-board";
 import { getWorldMapSummary, worldRealms } from "@/lib/world-map";
 
-const summary = getWorldMapSummary();
+const publicRealms = worldRealms.filter((realm) => realm.id !== "admin-ops");
+const summary = getWorldMapSummary(publicRealms);
 
 export const metadata: Metadata = {
   title: "نقشه جهان دیجیتال اوستا | AVESTA-ZOROASTER",
@@ -16,7 +17,7 @@ export default function WorldPage() {
     <CinematicHub
       eyebrow="Digital World"
       title="نقشه جهان AVESTA-ZOROASTER"
-      lead="اینجا کاربر و تیم محصول می‌بینند سایت فقط مجموعه‌ای از صفحه‌ها نیست؛ یک جهان چندقلمرویی است که از متن اوستا تا مطالعه، رسانه، کمپین، فروشگاه و عملیات ادمین امتداد دارد."
+      lead="اینجا سایت فقط مجموعه‌ای از صفحه‌ها نیست؛ یک جهان چندقلمرویی است که از متن اوستا تا مطالعه، رسانه، مناسبت‌ها و فروشگاه فرهنگی امتداد دارد."
       scene="scene-cosmic"
       roman="W"
       actions={[
@@ -29,7 +30,7 @@ export default function WorldPage() {
         { value: `${summary.averageCompletion}%`, label: "میانگین تکامل جهان" },
       ]}
     >
-      <WorldMapBoard realms={worldRealms} />
+      <WorldMapBoard realms={publicRealms} />
     </CinematicHub>
   );
 }

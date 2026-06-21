@@ -5,6 +5,8 @@ import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowLeft,
+  Bookmark,
+  Check,
   Download,
   Filter,
   Image as ImageIcon,
@@ -13,7 +15,7 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { normalizeSearchText } from "@/lib/search";
 
 type ResourceItem = {
@@ -36,6 +38,7 @@ type ResourceExplorerProps = {
 };
 
 const allLabel = "همه";
+const libraryShelfKey = "avesta-library-shelf-v1";
 
 export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
   const [query, setQuery] = useState("");
@@ -43,6 +46,16 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
   const [category, setCategory] = useState(allLabel);
   const [language, setLanguage] = useState(allLabel);
   const [activeTitle, setActiveTitle] = useState(items[0]?.title ?? "");
+  const [savedTitles, setSavedTitles] = useState<string[]>([]);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem(libraryShelfKey) ?? "[]");
+      setSavedTitles(Array.isArray(saved) ? saved.filter((item): item is string => typeof item === "string") : []);
+    } catch {
+      setSavedTitles([]);
+    }
+  }, []);
 
   const types = useMemo(() => [allLabel, ...Array.from(new Set(items.map((item) => item.type)))], [items]);
   const categories = useMemo(() => [allLabel, ...Array.from(new Set(items.map((item) => item.category)))], [items]);
@@ -74,6 +87,12 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
     setType(allLabel);
     setCategory(allLabel);
     setLanguage(allLabel);
+  }
+
+  function toggleSaved(title: string) {
+    const next = savedTitles.includes(title) ? savedTitles.filter((item) => item !== title) : [...savedTitles, title];
+    window.localStorage.setItem(libraryShelfKey, JSON.stringify(next.slice(0, 50)));
+    setSavedTitles(next);
   }
 
   const activeItem = filteredItems.find((item) => item.title === activeTitle) ?? filteredItems[0] ?? items[0];
@@ -153,6 +172,7 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                 {filteredItems.length} نتیجه
               </span>
               <div className="flex items-center gap-3">
+                {mode === "library" && savedTitles.length ? <span className="text-xs font-bold text-gold-light">{savedTitles.length} منبع در قفسهٔ من</span> : null}
                 <span>نتیجه‌ها بر اساس نوع، موضوع و کلیدواژه مرتب می‌شوند.</span>
                 {(query || type !== allLabel || category !== allLabel || language !== allLabel) ? (
                   <button type="button" onClick={resetFilters} className="rounded-full border border-gold/20 px-3 py-1 text-xs font-bold text-gold-light transition hover:bg-gold/10">پاک‌سازی</button>
@@ -182,6 +202,8 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                       {item.category}
                     </span>
                   </div>
+
+                  {mode === "library" && savedTitles.includes(item.title) ? <span className="mt-4 inline-flex items-center gap-1 text-xs font-black text-gold-light"><Check size={14} /> روی قفسهٔ من</span> : null}
 
                   <h2 className="mt-4 text-2xl font-black leading-9 text-warm">{item.title}</h2>
                   {item.author ? <p className="mt-2 text-sm text-gold-light">{item.author}</p> : null}
@@ -230,6 +252,12 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                     مشاهده
                     <ArrowLeft size={16} />
                   </Link>
+                ) : null}
+                {mode === "library" ? (
+                  <button type="button" onClick={() => toggleSaved(activeItem.title)} className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-5 py-3 text-sm font-bold text-gold-light transition hover:bg-gold/10">
+                    {savedTitles.includes(activeItem.title) ? <Check size={16} /> : <Bookmark size={16} />}
+                    {savedTitles.includes(activeItem.title) ? "ذخیره شده" : "افزودن به قفسه"}
+                  </button>
                 ) : null}
                 <Link
                   href={companionHref}

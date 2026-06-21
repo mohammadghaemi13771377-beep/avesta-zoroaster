@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { ReadingRoomLab } from "@/components/reading-room-lab";
+import { ReadingQueuePanel } from "@/components/reading-queue-panel";
 import { getReadingRoomPresets, getReadingRoomStats } from "@/lib/reading-room";
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function ReadingRoomPage() {
     >
       <div id="reading-room" className="scroll-mt-28">
         <ReadingRoomLab presets={getReadingRoomPresets()} />
+        <ReadingQueuePanel />
       </div>
     </CinematicHub>
   );
