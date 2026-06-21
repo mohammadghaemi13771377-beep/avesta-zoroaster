@@ -239,7 +239,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "قاب‌های مراسم، ردان، هم‌خوانی و پیوند متن‌ها باید کاربر را از مطالعه فردی به تجربه جمعی هدایت کنند.",
     keyThemes: ["مراسم", "ردان", "هم‌خوانی", "پیوند", "آیین جمعی"],
-    image: "/images/ai/avesta-portal.png",
+    image: "/images/ai/avesta-portal.jpg",
     imageAlt: {
       fa: "تالار سنگی آیینی با نور طلایی برای درآمد ویسپرد",
       en: "A ritual stone hall with golden light for Visperad"

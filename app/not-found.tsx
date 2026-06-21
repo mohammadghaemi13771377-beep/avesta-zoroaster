@@ -65,7 +65,7 @@ export default function NotFound() {
           <div className="absolute -inset-6 rounded-full bg-gold/15 blur-3xl" />
           <div className="lux-frame relative aspect-[4/3] overflow-hidden rounded-[1.75rem] p-3">
             <Image
-              src="/images/ai/avesta-portal.png"
+              src="/images/ai/avesta-portal.jpg"
               alt="نمایی نمادین از جهان دیجیتال اوستا"
               fill
               priority

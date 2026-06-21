@@ -619,7 +619,7 @@ export const libraryItems = [
     description: "جایگاه آینده برای نسخه‌های اسکن‌شده، منابع کتابخانه‌ای و ارجاعات پژوهشی.",
     href: "/library/archive",
     accent: "#7EA4C8",
-    thumbnail: "/images/ai/avesta-portal.png",
+    thumbnail: "/images/ai/avesta-portal.jpg",
   },
 ];
 
@@ -757,7 +757,7 @@ export const articleItems = [
     readingTime: "۱۰ دقیقه",
     publishedAt: "2026-06-18",
     coverTone: "موزه‌ای، نسخه خطی، طلایی",
-    coverImage: "/images/ai/avesta-portal.png",
+    coverImage: "/images/ai/avesta-portal.jpg",
     seoTitle: "What is the Avesta? راهنمای جامع اوستا",
     seoDescription: "A bilingual introduction to the Avesta, its structure, cultural role, ritual context and modern study path.",
     relatedTerms: ["gatha", "asha", "ahura-mazda"],

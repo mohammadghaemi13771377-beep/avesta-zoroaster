@@ -15,7 +15,7 @@ const missionCards = [
     href: "/avesta",
     icon: Eye,
     scene: "scene-cosmic",
-    imageSrc: "/images/ai/avesta-portal.png",
+    imageSrc: "/images/ai/avesta-portal.jpg",
   },
   {
     title: "دانشنامه زنده",

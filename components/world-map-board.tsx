@@ -9,7 +9,7 @@ type WorldMapBoardProps = {
 };
 
 const realmImages: Record<string, string> = {
-  "avesta-core": "/images/ai/avesta-portal.png",
+  "avesta-core": "/images/ai/avesta-portal.jpg",
   "wisdom-experience": "/images/ai/gathas-cover.png",
   "knowledge-graph": "/images/ai/dictionary-cover.png",
   "media-museum": "/images/ai/media-cover.png",
@@ -63,7 +63,7 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
           <article key={realm.id} className="lux-frame overflow-hidden p-5">
             <div className={`image-scene ${realm.scene} h-56 rounded-3xl border border-gold/10`}>
               <Image
-                src={realmImages[realm.id] ?? "/images/ai/avesta-portal.png"}
+                src={realmImages[realm.id] ?? "/images/ai/avesta-portal.jpg"}
                 alt={`قلمرو ${realm.title}`}
                 fill
                 sizes="(min-width: 1024px) 44vw, 92vw"

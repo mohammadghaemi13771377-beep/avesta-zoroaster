@@ -23,9 +23,9 @@ const featureBadges = [
 
 const portalCards = [
   { title: "زرتشت", text: "آغاز آشنایی با زندگی، اندیشه و میراث پیام‌آور خرد.", href: "/zoroaster", image: "/images/ai/zoroaster-cover.png", footer: "شناخت زرتشت" },
-  { title: "گات‌ها", text: "ورود به کهن‌ترین سروده‌ها؛ با ترجمه، توضیح و مسیر مطالعه.", href: "/gathas", image: "/images/ai/gathas-hero.png", footer: "مطالعه گات‌ها" },
+  { title: "گات‌ها", text: "ورود به کهن‌ترین سروده‌ها؛ با ترجمه، توضیح و مسیر مطالعه.", href: "/gathas", image: "/images/ai/gathas-hero.jpg", footer: "مطالعه گات‌ها" },
   { title: "مقاله‌ها", text: "خوانش‌های پژوهشی و قابل‌فهم از مفاهیم، تاریخ و فرهنگ ایران باستان.", href: "/articles", image: "/images/ai/articles-cover.png", footer: "ورود به مقاله‌ها" },
-  { title: "کتابخانه", text: "منابع، نسخه‌ها و راهنمای اعتماد برای یک مطالعه عمیق‌تر.", href: "/library", image: "/images/ai/library-hero.png", footer: "مشاهده کتابخانه" },
+  { title: "کتابخانه", text: "منابع، نسخه‌ها و راهنمای اعتماد برای یک مطالعه عمیق‌تر.", href: "/library", image: "/images/ai/library-hero.jpg", footer: "مشاهده کتابخانه" },
 ];
 
 const studyShelves = [
@@ -50,7 +50,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd(homeFaqs)) }} />
       <section className="hero-cosmos home-hero relative min-h-screen pt-24">
         <Image src={routeHeroByPath["/"]} alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="hidden object-cover md:block" />
-        <Image src="/images/ai/home-hero-mobile.png" alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="object-[66%_center] md:hidden" />
+        <Image src="/images/ai/home-hero-mobile.jpg" alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="object-[66%_center] md:hidden" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#05080d]/82 via-[#071521]/42 to-[#071521]/10 md:bg-gradient-to-r md:from-[#05080d]/92 md:via-[#071521]/62 md:to-[#071521]/8" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
@@ -83,7 +83,7 @@ export default function HomePage() {
       <ScrollReveal delay={80}><MobedHomeCallout /></ScrollReveal>
 
       <ScrollReveal delay={90}><section className="portal-museum relative mx-auto max-w-7xl overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
-        <Image src="/images/ai/avesta-portal.png" alt="تالار هفت دروازه جهان اوستا" fill sizes="(min-width: 1280px) 1280px, 100vw" className="object-cover" />
+        <Image src="/images/ai/avesta-portal.jpg" alt="تالار هفت دروازه جهان اوستا" fill sizes="(min-width: 1280px) 1280px, 100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-night/58 via-night/72 to-night/94" />
         <div className="relative z-10">
         <div className="mb-7 flex items-center justify-center gap-4"><span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/70" /><h2 className="gold-text text-center text-3xl font-black">پرتال اوستا</h2><span className="h-px w-20 bg-gradient-to-r from-transparent to-gold/70" /></div>

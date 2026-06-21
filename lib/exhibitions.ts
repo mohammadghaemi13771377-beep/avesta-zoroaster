@@ -104,7 +104,7 @@ export const exhibitions: Exhibition[] = [
         type: "audio",
         href: "/ritual-room",
         scene: "scene-stone",
-        thumbnail: "/images/ai/avesta-portal.png",
+        thumbnail: "/images/ai/avesta-portal.jpg",
         description: "فضای آرام برای نیت، تنفس، شنیدن و نوشتن تأمل روزانه.",
       },
     ],

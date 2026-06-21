@@ -176,7 +176,7 @@ export const avestaSections = [
     href: "/avesta/yasna",
     description: "نیایش‌ها، هوم‌ها و آیین‌های بنیادین؛ جایی که آتش، سرود و روشنایی به هم می‌رسند.",
     atmosphere: "scene-fire",
-    coverImage: "/images/ai/yasna-hero.png",
+    coverImage: "/images/ai/yasna-hero.jpg",
     roman: "I"
   },
   {
@@ -185,7 +185,7 @@ export const avestaSections = [
     href: "/avesta/gathas",
     description: "سرودهای ژرف و روشن زرتشت؛ آرام، الهی و سرشار از معنا.",
     atmosphere: "scene-sunrise",
-    coverImage: "/images/ai/gathas-hero.png",
+    coverImage: "/images/ai/gathas-hero.jpg",
     roman: "II"
   },
   {
@@ -194,7 +194,7 @@ export const avestaSections = [
     href: "/avesta/visperad",
     description: "متن آیینی برای تکمیل نیایش‌ها و بزرگداشت همه ردان و نیروهای نیک.",
     atmosphere: "scene-tablets",
-    coverImage: "/images/ai/avesta-portal.png",
+    coverImage: "/images/ai/avesta-portal.jpg",
     roman: "III"
   },
   {
@@ -203,7 +203,7 @@ export const avestaSections = [
     href: "/avesta/vendidad",
     description: "قانون، پاکی و رازهای تاریک‌تر اوستا در فضایی پرهیبت و رمزآلود.",
     atmosphere: "scene-stone",
-    coverImage: "/images/ai/vendidad-hero.png",
+    coverImage: "/images/ai/vendidad-hero.jpg",
     roman: "IV"
   },
   {
@@ -212,7 +212,7 @@ export const avestaSections = [
     href: "/avesta/yashts",
     description: "سرودهای حماسی برای ایزدان، طبیعت، آسمان، آب، مهر و پیروزی.",
     atmosphere: "scene-mountain",
-    coverImage: "/images/ai/yashts-hero.png",
+    coverImage: "/images/ai/yashts-hero.jpg",
     roman: "V"
   },
   {
@@ -221,7 +221,7 @@ export const avestaSections = [
     href: "/avesta/khordeh-avesta",
     description: "نیایش‌های روزانه، آرامش شخصی و حضور روشنایی در زندگی معمول.",
     atmosphere: "scene-scroll",
-    coverImage: "/images/ai/khordeh-avesta-hero.png",
+    coverImage: "/images/ai/khordeh-avesta-hero.jpg",
     roman: "VI"
   },
   {

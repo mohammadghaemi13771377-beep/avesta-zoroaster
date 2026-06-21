@@ -152,12 +152,12 @@ function coverImageForSection(slug: string) {
   const covers: Record<string, string> = {
     yasna: "/images/ai/yasna-cover.png",
     gathas: "/images/ai/gathas-cover.png",
-    visperad: "/images/ai/avesta-portal.png",
+    visperad: "/images/ai/avesta-portal.jpg",
     vendidad: "/images/ai/vendidad-cover.png",
     yashts: "/images/ai/yashts-cover.png",
     "khordeh-avesta": "/images/ai/khordeh-avesta-cover.png",
     hats: "/images/ai/hats-cover.png",
   };
 
-  return covers[slug] ?? "/images/ai/avesta-portal.png";
+  return covers[slug] ?? "/images/ai/avesta-portal.jpg";
 }
