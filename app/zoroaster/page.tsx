@@ -16,7 +16,7 @@ const journeyCards = [
     href: "/articles/zoroaster-life-message",
     icon: Sparkles,
     scene: "scene-prophet",
-    imageSrc: "/images/ai/zoroaster-cover.png",
+    imageSrc: "/images/ai/zoroaster-hero.jpg",
   },
   {
     title: "گات‌ها",
@@ -24,7 +24,7 @@ const journeyCards = [
     href: "/gathas",
     icon: BookOpen,
     scene: "scene-sunrise",
-    imageSrc: "/images/ai/gathas-cover.png",
+    imageSrc: "/images/ai/gathas-hero.jpg",
   },
   {
     title: "آتش و راستی",
@@ -32,7 +32,7 @@ const journeyCards = [
     href: "/zoroastrianism",
     icon: Flame,
     scene: "scene-fire",
-    imageSrc: "/images/ai/zoroastrianism-cover.png",
+    imageSrc: "/images/ai/zoroastrianism-hero.jpg",
   },
   {
     title: "ایران باستان",
@@ -40,7 +40,7 @@ const journeyCards = [
     href: "/timeline",
     icon: Landmark,
     scene: "scene-stone",
-    imageSrc: "/images/ai/exhibitions-cover.png",
+    imageSrc: "/images/ai/exhibitions-hero.jpg",
   },
 ];
 

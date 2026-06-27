@@ -230,7 +230,7 @@ export const avestaSections = [
     href: "/avesta/hats",
     description: "نقشه مطالعه، طومار فصل‌ها و مسیر ورود به متن‌های جزءبه‌جزء.",
     atmosphere: "scene-portrait",
-    coverImage: "/images/ai/hats-cover.png",
+    coverImage: "/images/ai/hats-hero.jpg",
     roman: "VII"
   }
 ];

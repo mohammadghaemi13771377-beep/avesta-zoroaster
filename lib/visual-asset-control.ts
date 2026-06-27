@@ -1,5 +1,6 @@
 import { aiPromptTemplates, type AiPromptTemplate } from "@/lib/ai-prompts";
 import { getProductionBriefs } from "@/lib/production-briefs";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export type VisualAssetStatus = "prompt-ready" | "needs-generation" | "needs-upload" | "review-ready";
 
@@ -23,6 +24,13 @@ export type VisualAssetItem = {
   usage: string;
   checklist: string[];
   nextAction: string;
+};
+
+export type LiveHeroAsset = {
+  route: string;
+  src: string;
+  title: string;
+  format: string;
 };
 
 export const visualAssetStatusLabels: Record<VisualAssetStatus, string> = {
@@ -102,6 +110,15 @@ export function getVisualAssetSummary(items: VisualAssetItem[] = getVisualAssetI
     reviewReady: items.filter((item) => item.status === "review-ready").length,
     ratios: Array.from(new Set(items.map((item) => item.ratio))),
   };
+}
+
+export function getLiveHeroAssets(): LiveHeroAsset[] {
+  return Object.entries(routeHeroByPath).map(([route, src]) => ({
+    route,
+    src,
+    title: route === "/" ? "Hero صفحه خانه" : `Hero ${route}`,
+    format: src.split(".").at(-1)?.toUpperCase() ?? "ASSET",
+  }));
 }
 
 function getStatus(template: AiPromptTemplate, imageBriefPaths: Set<string | undefined>, index: number): VisualAssetStatus {

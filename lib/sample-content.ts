@@ -586,7 +586,7 @@ export const libraryItems = [
     description: "مسیر پیشنهادی برای شروع مطالعه اوستا، گات‌ها و مفاهیم پایه.",
     href: "/library/avesta-reading-guide.pdf",
     accent: "#D6A84F",
-    thumbnail: "/images/ai/library-cover.png",
+    thumbnail: "/images/ai/library-hero.jpg",
   },
   {
     title: "Gathas Study Notes",
@@ -597,7 +597,7 @@ export const libraryItems = [
     description: "English notes for future bilingual study pages and references.",
     href: "/articles/what-are-gathas",
     accent: "#F2D58A",
-    thumbnail: "/images/ai/gathas-cover.png",
+    thumbnail: "/images/ai/gathas-hero.jpg",
   },
   {
     title: "واژه‌های کلیدی زرتشتی",
@@ -608,7 +608,7 @@ export const libraryItems = [
     description: "مجموعه مفاهیم اشا، وهومن، اهورامزدا، فروهر و گاتا.",
     href: "/dictionary",
     accent: "#FFF8EA",
-    thumbnail: "/images/ai/dictionary-cover.png",
+    thumbnail: "/images/ai/dictionary-hero.jpg",
   },
   {
     title: "نسخه‌های تاریخی و منابع قدیمی",
@@ -633,7 +633,7 @@ export const mediaItems = [
     prompt:
       "Cinematic ancient Persian temple at sunrise, sacred fire altar, Avestan script mist, gold and deep navy palette, museum quality, no modern objects",
     accent: "#D6A84F",
-    thumbnail: "/images/ai/yasna-cover.png",
+    thumbnail: "/images/ai/yasna-hero.jpg",
   },
   {
     title: "سپیدی گات‌ها",
@@ -644,7 +644,7 @@ export const mediaItems = [
     prompt:
       "Luminous spiritual scene inspired by ancient Iranian wisdom, soft white and gold light, peaceful mountain horizon, cinematic digital museum artwork",
     accent: "#FFF8EA",
-    thumbnail: "/images/ai/gathas-cover.png",
+    thumbnail: "/images/ai/gathas-hero.jpg",
   },
   {
     title: "وندیداد رازآلود",
@@ -655,7 +655,7 @@ export const mediaItems = [
     prompt:
       "Dark blue ancient Persian chamber, orange sacred flame, mysterious ritual purity atmosphere, carved stone, cinematic shadows",
     accent: "#7EA4C8",
-    thumbnail: "/images/ai/vendidad-cover.png",
+    thumbnail: "/images/ai/vendidad-hero.jpg",
   },
   {
     title: "روایت صوتی گات‌ها",
@@ -665,7 +665,7 @@ export const mediaItems = [
     description: "جایگاه آینده فایل‌های صوتی، پادکست و خوانش بندهای اوستا.",
     prompt: "Audio narration placeholder for Gathas reading and explanation.",
     accent: "#F2D58A",
-    thumbnail: "/images/ai/media-cover.png",
+    thumbnail: "/images/ai/media-hero.jpg",
   },
 ];
 
@@ -679,7 +679,7 @@ export const articleItems = [
     readingTime: "۷ دقیقه",
     publishedAt: "2026-05-25",
     coverTone: "طلایی، روشن، مفهومی",
-    coverImage: "/images/ai/monotheism-cover.png",
+    coverImage: "/images/ai/monotheism-hero.jpg",
     seoTitle: "اشا چیست؟ معنی اشا در دین زرتشتی و اوستا",
     seoDescription:
       "معرفی مفهوم اشا در جهان زرتشتی، پیوند آن با راستی، نظم اخلاقی، گات‌ها و زندگی امروز.",
@@ -705,7 +705,7 @@ export const articleItems = [
     readingTime: "۹ دقیقه",
     publishedAt: "2026-05-25",
     coverTone: "سپید، مینوی، آرام",
-    coverImage: "/images/ai/gathas-cover.png",
+    coverImage: "/images/ai/gathas-hero.jpg",
     seoTitle: "گات‌ها چیست؟ آشنایی با سروده‌های زرتشت",
     seoDescription:
       "معرفی گات‌ها، جایگاه آن‌ها در اوستا، پیام اخلاقی و اهمیتشان برای شناخت زرتشت.",
@@ -731,7 +731,7 @@ export const articleItems = [
     readingTime: "۶ دقیقه",
     publishedAt: "2026-05-25",
     coverTone: "طلایی، هخامنشی، نمادین",
-    coverImage: "/images/ai/zoroaster-cover.png",
+    coverImage: "/images/ai/zoroaster-hero.jpg",
     seoTitle: "فروهر چیست؟ معنی و نمادشناسی فروهر",
     seoDescription:
       "بررسی فروهر به عنوان نماد فرهنگی و معنوی در ایران باستان و جهان زرتشتی.",
@@ -782,7 +782,7 @@ export const articleItems = [
     readingTime: "۹ دقیقه",
     publishedAt: "2026-06-18",
     coverTone: "نورانی، آرام، تاریخی",
-    coverImage: "/images/ai/zoroaster-cover.png",
+    coverImage: "/images/ai/zoroaster-hero.jpg",
     seoTitle: "Who was Zoroaster? زرتشت کیست؟",
     seoDescription: "An accessible guide to Zoroaster, the Gathas, moral choice, Asha and the spiritual legacy of ancient Iran.",
     relatedTerms: ["asha", "vohuman", "gatha"],
@@ -807,7 +807,7 @@ export const articleItems = [
     readingTime: "۸ دقیقه",
     publishedAt: "2026-06-18",
     coverTone: "آتشکده، طلایی، آیینی",
-    coverImage: "/images/ai/yasna-cover.png",
+    coverImage: "/images/ai/yasna-hero.jpg",
     seoTitle: "Yasna Guide | راهنمای یسنا در اوستا",
     seoDescription: "A reader-friendly guide to Yasna, ritual structure, sacred fire, hats and layered study of Avesta texts.",
     relatedTerms: ["asha", "ahura-mazda"],
@@ -832,7 +832,7 @@ export const articleItems = [
     readingTime: "۹ دقیقه",
     publishedAt: "2026-06-18",
     coverTone: "آبی تیره، آتش، رازآلود",
-    coverImage: "/images/ai/vendidad-cover.png",
+    coverImage: "/images/ai/vendidad-hero.jpg",
     seoTitle: "Vendidad Guide | راهنمای وندیداد",
     seoDescription: "A careful guide to Vendidad, purity, law, mythic geography and responsible contextual reading.",
     relatedTerms: ["asha", "ahura-mazda"],
@@ -857,7 +857,7 @@ export const articleItems = [
     readingTime: "۷ دقیقه",
     publishedAt: "2026-06-18",
     coverTone: "فصلی، روشن، فرهنگی",
-    coverImage: "/images/ai/exhibitions-cover.png",
+    coverImage: "/images/ai/exhibitions-hero.jpg",
     seoTitle: "Zoroastrian Festivals | جشن‌های زرتشتی و ایرانی",
     seoDescription: "A bilingual cultural guide to Zoroastrian and Iranian festivals, seasonal meaning, ritual memory and modern learning paths.",
     relatedTerms: ["asha", "faravahar"],

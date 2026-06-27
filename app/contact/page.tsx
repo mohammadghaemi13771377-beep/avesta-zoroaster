@@ -9,7 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "راه ارتباطی برای پژوهشگران، مترجمان، هنرمندان، طراحان AI و همکاران فرهنگی پروژه AVESTA-ZOROASTER.",
   path: "/contact",
-  image: "/images/ai/zoroaster-cover.png"
+  image: "/images/ai/zoroaster-hero.jpg"
 });
 
 const collaborationPaths = [
@@ -42,7 +42,7 @@ export default function ContactPage() {
       title="تماس، همکاری و مشارکت"
       lead="این پروژه برای رشد جهانی به پژوهشگران، مترجمان، هنرمندان، طراحان و دوستداران فرهنگ ایران نیاز دارد. مسیر همکاری باید شفاف، محترمانه و قابل پیگیری باشد."
       scene="scene-prophet"
-      heroImage="/images/ai/zoroaster-cover.png"
+      heroImage="/images/ai/zoroaster-hero.jpg"
       roman="C"
       actions={[
         { label: "مرکز اعتماد", href: "/trust-center" },

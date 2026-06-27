@@ -9,7 +9,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "روش پژوهش، سیاست ارجاع، بازبینی محتوایی و disclaimer آموزشی AVESTA-ZOROASTER برای اوستا، زرتشت و ایران باستان.",
   path: "/research-methodology",
-  image: "/images/ai/library-cover.png"
+  image: "/images/ai/library-hero.jpg"
 });
 
 const principles = [
@@ -47,7 +47,7 @@ export default function ResearchMethodologyPage() {
       title="روش پژوهش، منابع و بازبینی"
       lead="AVESTA-ZOROASTER قرار است زیبا باشد، اما زیبایی بدون شفافیت پژوهشی کافی نیست. این صفحه توضیح می‌دهد محتوا چطور نوشته، منبع‌دهی، بازبینی و منتشر می‌شود."
       scene="scene-scroll"
-      heroImage="/images/ai/library-cover.png"
+      heroImage="/images/ai/library-hero.jpg"
       roman="R"
       actions={[
         { label: "مرکز ارجاع", href: "/citations" },

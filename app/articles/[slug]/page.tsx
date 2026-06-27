@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, BookOpen, Clock, Search, Tag } from "lucide-react";
@@ -91,9 +92,13 @@ export default function ArticleDetailPage({ params }: PageProps) {
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
 
-      <section className="hero-cosmos relative px-4 pb-16 pt-12 sm:px-6 lg:px-8">
+      <section className="hero-cosmos relative isolate overflow-hidden">
+        <Image src={article.coverImage} alt={article.title} fill priority sizes="100vw" className="object-cover object-center" />
+        <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/70 to-[#071521]/18" />
+        <div className="hub-hero-side-shade absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(5,8,13,0.03),rgba(5,8,13,0.18)_38%,rgba(5,8,13,0.72)_100%)]" />
         <div className="hero-horizon" />
-        <div className="relative z-10 mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_380px]">
+        <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night via-night/55 to-transparent" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8 lg:py-28">
           <div>
             <Link
               href="/articles"
@@ -123,7 +128,7 @@ export default function ArticleDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          <div className="lux-frame p-4">
+          <div className="hidden lux-frame p-4">
             <div className="image-atmosphere grid min-h-[340px] place-items-center rounded-[1.4rem] p-8 text-center">
               <div>
                 <p className="text-sm font-bold text-gold-light">AI Cover Direction</p>
@@ -139,9 +144,9 @@ export default function ArticleDetailPage({ params }: PageProps) {
           <ReadingControls />
           <SourceTrustPanel profile={trustProfile} />
           {article.sections.map((section) => (
-            <section key={section.heading} className="lux-frame p-7">
-              <h2 className="text-3xl font-black text-warm">{section.heading}</h2>
-              <p className="reader-text mt-4 text-muted">{section.body}</p>
+            <section key={section.heading} className="reading-paper p-7 sm:p-9">
+              <h2 className="text-3xl font-black leading-[1.45] text-warm">{section.heading}</h2>
+              <p className="reading-prose mt-5 text-muted">{section.body}</p>
             </section>
           ))}
         </article>

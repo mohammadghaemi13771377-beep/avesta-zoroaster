@@ -10,7 +10,7 @@ export function MobedHomeCallout() {
       <div className="lux-frame overflow-hidden rounded-[22px]">
         <div className="grid gap-0 lg:grid-cols-[0.78fr_1.22fr]">
           <div className="image-atmosphere relative min-h-[260px] overflow-hidden">
-            <Image src="/images/ai/monotheism-cover.png" alt="موبد هوشمند و راهنمای مطالعه اوستا" fill sizes="(min-width: 1024px) 36vw, 100vw" className="object-cover" />
+            <Image src="/images/ai/monotheism-hero.jpg" alt="موبد هوشمند و راهنمای مطالعه اوستا" fill sizes="(min-width: 1024px) 36vw, 100vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-night/82 via-night/10 to-transparent" />
             <div className="absolute inset-x-6 bottom-6"><p className="text-xs font-black tracking-[0.2em] text-gold-light">MOBED GUIDE</p><p className="mt-2 text-xl font-black text-warm">پرسش، منبع و مسیر بعدی</p></div>
           </div>

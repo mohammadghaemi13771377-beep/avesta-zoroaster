@@ -36,7 +36,7 @@ export function AdminContentForm() {
       order,
       summary,
       seoTitle,
-      coverImage: "/images/ai/yasna-cover.png",
+      coverImage: "/images/ai/yasna-hero.jpg",
       accent: "#F2B45E",
       tone: "fire",
       audioUrl: "/audio/yasna-verse-1.mp3",
@@ -77,7 +77,7 @@ export function AdminContentForm() {
           { title: "قاب دوم", body: "توضیح کوتاه قاب دوم.", icon: "sun" }
         ]),
         storyPanels: JSON.stringify([
-          { title: "کارت روایت", body: "توضیح کارت روایت.", image: "/images/ai/yasna-cover.png" }
+          { title: "کارت روایت", body: "توضیح کارت روایت.", image: "/images/ai/yasna-hero.jpg" }
         ])
       }
     }),

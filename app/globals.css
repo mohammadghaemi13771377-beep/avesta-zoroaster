@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/vazirmatn/Vazirmatn-Variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   --font-vazirmatn: Vazirmatn, IRANSansX, Tahoma, Arial, sans-serif;
@@ -20,6 +28,9 @@ html {
 
 body {
   min-height: 100vh;
+  font-family: var(--font-vazirmatn);
+  font-feature-settings: "ss01" 1;
+  text-rendering: optimizeLegibility;
   transition: background 280ms ease, color 280ms ease;
   background:
     radial-gradient(circle at 50% -10%, rgba(242, 213, 138, 0.26), transparent 34rem),
@@ -88,6 +99,89 @@ a {
   box-shadow:
     inset 0 1px 0 rgba(255, 248, 234, 0.14),
     0 24px 80px rgba(0, 0, 0, 0.26);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease,
+    transform 220ms ease;
+}
+
+@media (hover: hover) {
+  .lux-frame:hover {
+    border-color: rgba(242, 213, 138, 0.44);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 248, 234, 0.18),
+      0 26px 86px rgba(0, 0, 0, 0.3),
+      0 0 34px rgba(214, 168, 79, 0.08);
+  }
+
+  a .lux-frame:hover,
+  .lux-frame:is(a, button):hover {
+    transform: translateY(-2px);
+  }
+}
+
+.site-header-shell {
+  position: relative;
+  overflow: visible;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(242, 213, 138, 0.16), transparent 16rem),
+    linear-gradient(180deg, rgba(10, 34, 45, 0.82), rgba(5, 13, 20, 0.78));
+}
+
+.site-header-shell::before {
+  content: "";
+  position: absolute;
+  inset-inline: 16px;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.8), transparent);
+}
+
+.site-header-shell::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 42px rgba(214, 168, 79, 0.12), 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+.header-nav-pill {
+  position: relative;
+  isolation: isolate;
+}
+
+.header-nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: 4px 6px;
+  z-index: -1;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(242, 213, 138, 0.14), rgba(214, 168, 79, 0.06));
+  opacity: 0;
+  transition: opacity 180ms ease, transform 180ms ease;
+  transform: translateY(2px);
+}
+
+.header-nav-pill:hover,
+.header-nav-pill[aria-current="page"] {
+  color: #f2d58a;
+}
+
+.header-nav-pill:hover::before,
+.header-nav-pill[aria-current="page"]::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-dropdown {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(242, 213, 138, 0.16), transparent 16rem),
+    linear-gradient(180deg, rgba(8, 28, 38, 0.98), rgba(5, 12, 18, 0.96));
+  backdrop-filter: blur(22px);
 }
 
 html[data-ambient="bright"] {
@@ -158,6 +252,16 @@ html[data-ambient="bright"] .poster-story-card {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 20px 60px rgba(119, 78, 18, 0.12);
 }
 
+@media (hover: hover) {
+  html[data-ambient="bright"] .lux-frame:hover {
+    border-color: rgba(154, 100, 30, 0.42);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.96),
+      0 22px 66px rgba(119, 78, 18, 0.16),
+      0 0 32px rgba(214, 168, 79, 0.1);
+  }
+}
+
 html[data-ambient="bright"] .poster-parchment {
   box-shadow: 0 18px 48px rgba(119, 78, 18, 0.14);
 }
@@ -193,6 +297,23 @@ html[data-ambient="bright"] header > div {
   box-shadow: 0 14px 38px rgba(119, 78, 18, 0.12) !important;
 }
 
+html[data-ambient="bright"] .site-header-shell {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(214, 168, 79, 0.18), transparent 16rem),
+    linear-gradient(180deg, rgba(255, 253, 247, 0.92), rgba(255, 248, 234, 0.86)) !important;
+}
+
+html[data-ambient="bright"] .header-dropdown {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(214, 168, 79, 0.14), transparent 16rem),
+    linear-gradient(180deg, rgba(255, 253, 247, 0.98), rgba(255, 248, 234, 0.96));
+}
+
+html[data-ambient="bright"] .header-nav-pill:hover,
+html[data-ambient="bright"] .header-nav-pill[aria-current="page"] {
+  color: #9a641e;
+}
+
 html[data-ambient="bright"] nav[aria-label="ناوبری سریع موبایل"] {
   background: rgba(255, 253, 247, 0.94) !important;
   border-color: rgba(154, 100, 30, 0.28) !important;
@@ -216,6 +337,11 @@ html[data-ambient="bright"] ::selection {
   background: rgba(214, 168, 79, 0.34);
 }
 
+html[data-ambient="bright"] nav[aria-label="ناوبری سریع موبایل"] {
+  background: rgba(255, 253, 247, 0.94) !important;
+  border-color: rgba(154, 100, 30, 0.28) !important;
+}
+
 button:focus-visible,
 a:focus-visible,
 select:focus-visible,
@@ -225,13 +351,61 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
 .reader-text {
   font-size: var(--reader-font-size);
   line-height: var(--reader-line-height);
+  letter-spacing: 0;
   transition:
     color 180ms ease,
     font-size 180ms ease,
     line-height 180ms ease;
+}
+
+.reading-prose {
+  max-width: 72ch;
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.reading-prose p,
+.reading-prose li {
+  line-height: var(--reader-line-height);
+}
+
+.reading-paper {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(214, 168, 79, 0.2);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 248, 234, 0.08), rgba(255, 248, 234, 0.025)),
+    linear-gradient(135deg, rgba(7, 21, 33, 0.78), rgba(4, 8, 12, 0.9));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 234, 0.12),
+    0 24px 80px rgba(0, 0, 0, 0.26);
+}
+
+.reading-paper::before {
+  content: "";
+  position: absolute;
+  inset-inline: 22px;
+  top: 14px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.44), transparent);
+}
+
+.reader-control-panel {
+  backdrop-filter: blur(18px);
 }
 
 html[data-reader-mode="sepia"] .reader-text {
@@ -240,6 +414,17 @@ html[data-reader-mode="sepia"] .reader-text {
 
 html[data-reader-mode="light"] .reader-text {
   color: #2a2013;
+}
+
+html[data-ambient="bright"] .reading-paper,
+html[data-ambient="bright"] .reader-control-panel {
+  border-color: rgba(154, 100, 30, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 249, 235, 0.74)),
+    linear-gradient(135deg, rgba(255, 253, 247, 0.9), rgba(246, 235, 211, 0.82));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 20px 58px rgba(119, 78, 18, 0.12);
 }
 
 .hero-cosmos {
@@ -283,9 +468,30 @@ html[data-reader-mode="light"] .reader-text {
   box-shadow: 0 32px 110px rgba(0, 0, 0, 0.35);
 }
 
+.home-entry-panel {
+  position: relative;
+}
+
+.home-entry-panel::before {
+  content: "";
+  position: absolute;
+  inset-inline: 22px;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.72), transparent);
+}
+
 html[data-ambient="bright"] .portal-museum {
   border-color: rgba(154, 100, 30, 0.34);
   box-shadow: 0 24px 70px rgba(119, 78, 18, 0.16);
+}
+
+html[data-ambient="bright"] .home-entry-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 234, 0.78)) !important;
+  border-color: rgba(154, 100, 30, 0.28) !important;
+  box-shadow: 0 24px 70px rgba(119, 78, 18, 0.14) !important;
 }
 
 .image-scene {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, BookOpen, Globe2, Search, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, BookOpen, Compass, GalleryVerticalEnd, Globe2, Search, ShieldCheck, ShoppingBag, Sparkles } from "lucide-react";
 import { DailyAvestaCard } from "@/components/daily-avesta-card";
 import { FaqSection } from "@/components/faq-section";
 import { NewsletterSignup } from "@/components/newsletter-signup";
@@ -22,10 +22,41 @@ const featureBadges = [
 ];
 
 const portalCards = [
-  { title: "زرتشت", text: "آغاز آشنایی با زندگی، اندیشه و میراث پیام‌آور خرد.", href: "/zoroaster", image: "/images/ai/zoroaster-cover.png", footer: "شناخت زرتشت" },
+  { title: "زرتشت", text: "آغاز آشنایی با زندگی، اندیشه و میراث پیام‌آور خرد.", href: "/zoroaster", image: "/images/ai/zoroaster-hero.jpg", footer: "شناخت زرتشت" },
   { title: "گات‌ها", text: "ورود به کهن‌ترین سروده‌ها؛ با ترجمه، توضیح و مسیر مطالعه.", href: "/gathas", image: "/images/ai/gathas-hero.jpg", footer: "مطالعه گات‌ها" },
-  { title: "مقاله‌ها", text: "خوانش‌های پژوهشی و قابل‌فهم از مفاهیم، تاریخ و فرهنگ ایران باستان.", href: "/articles", image: "/images/ai/articles-cover.png", footer: "ورود به مقاله‌ها" },
+  { title: "مقاله‌ها", text: "خوانش‌های پژوهشی و قابل‌فهم از مفاهیم، تاریخ و فرهنگ ایران باستان.", href: "/articles", image: "/images/ai/articles-hero.jpg", footer: "ورود به مقاله‌ها" },
   { title: "کتابخانه", text: "منابع، نسخه‌ها و راهنمای اعتماد برای یک مطالعه عمیق‌تر.", href: "/library", image: "/images/ai/library-hero.jpg", footer: "مشاهده کتابخانه" },
+];
+
+const entryPaths = [
+  {
+    title: "تازه‌وارد هستم",
+    text: "با راهنمای ورود، مسیر مطالعه و پیشنهادهای آرام شروع کن.",
+    href: "/onboarding",
+    icon: Compass,
+    tone: "from-gold/22 to-gold/5"
+  },
+  {
+    title: "می‌خواهم اوستا را بخوانم",
+    text: "مستقیم وارد پورتال اوستا و بخش‌های اصلی شو.",
+    href: "/avesta",
+    icon: BookOpen,
+    tone: "from-cyan-300/18 to-gold/5"
+  },
+  {
+    title: "تصویر و رسانه می‌خواهم",
+    text: "نمایشگاه‌ها، ویدئوها، پادکست‌ها و تصویرهای AI را ببین.",
+    href: "/exhibitions",
+    icon: GalleryVerticalEnd,
+    tone: "from-blue-300/18 to-gold/5"
+  },
+  {
+    title: "فروشگاه فرهنگی",
+    text: "کتاب، هدیه، پوشیدنی و محصولات مرتبط با جهان اوستا.",
+    href: "/shop",
+    icon: ShoppingBag,
+    tone: "from-amber-300/20 to-gold/5"
+  }
 ];
 
 const studyShelves = [
@@ -75,6 +106,36 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <ScrollReveal>
+        <section className="relative z-20 mx-auto -mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="home-entry-panel grid gap-3 rounded-[22px] border border-gold/22 bg-[#071521]/76 p-3 shadow-[0_28px_90px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:grid-cols-2 xl:grid-cols-4">
+            {entryPaths.map((path) => {
+              const Icon = path.icon;
+
+              return (
+                <TrackedLink
+                  key={path.href}
+                  href={path.href}
+                  event="home_entry_path_click"
+                  payload={{ cta_id: `entry-${path.href.replaceAll("/", "-")}`, label: path.title, locale: "fa", source_route: "/" }}
+                  className="group relative overflow-hidden rounded-[18px] border border-gold/14 bg-night/44 p-5 transition hover:-translate-y-1 hover:border-gold/42"
+                >
+                  <span className={`absolute inset-0 bg-gradient-to-br ${path.tone} opacity-75 transition group-hover:opacity-100`} />
+                  <span className="relative z-10 flex items-start justify-between gap-4">
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-gold/22 bg-black/24 text-gold-light">
+                      <Icon size={22} />
+                    </span>
+                    <ArrowLeft size={18} className="mt-2 text-gold-light transition group-hover:-translate-x-1" />
+                  </span>
+                  <span className="relative z-10 mt-5 block text-xl font-black text-warm">{path.title}</span>
+                  <span className="relative z-10 mt-3 block text-sm leading-7 text-muted">{path.text}</span>
+                </TrackedLink>
+              );
+            })}
+          </div>
+        </section>
+      </ScrollReveal>
 
       <ScrollReveal><DailyAvestaCard item={dailyAvesta} /></ScrollReveal>
 

@@ -41,7 +41,7 @@ export function createPageMetadata({
   title,
   description,
   path,
-  image = "/images/ai/home-hero.png",
+  image = "/images/ai/home-hero-desktop.jpg",
   type = "website",
   noIndex = false
 }: {

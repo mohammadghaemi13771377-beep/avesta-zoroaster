@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, BookOpen, Headphones, Moon, ScrollText, Sparkles, Tags } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { ReadingRoomMode, ReadingRoomPreset } from "@/lib/reading-room";
 import { getReadingRoomRecommendation, readingDepthLabels } from "@/lib/reading-room";
+import { visualAssets } from "@/lib/visual-assets";
 
 type ReadingRoomLabProps = {
   presets: ReadingRoomPreset[];
@@ -15,6 +17,13 @@ const presetIcons: Record<ReadingRoomMode, typeof BookOpen> = {
   scholar: ScrollText,
   daily: Moon,
   audio: Headphones,
+};
+
+const presetImages: Record<ReadingRoomMode, string> = {
+  devotional: visualAssets.yasna,
+  scholar: visualAssets.gathas,
+  daily: visualAssets.khordehAvesta,
+  audio: visualAssets.media,
 };
 
 export function ReadingRoomLab({ presets }: ReadingRoomLabProps) {
@@ -83,6 +92,14 @@ export function ReadingRoomLab({ presets }: ReadingRoomLabProps) {
           </div>
 
           <div className={`image-scene ${active.scene} min-h-[360px] rounded-[18px] border border-gold/16`}>
+            <Image
+              src={presetImages[active.id]}
+              alt={active.title}
+              fill
+              sizes="(min-width: 1280px) 38vw, (min-width: 1024px) 44vw, 92vw"
+              className="object-cover transition duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/22 to-transparent" />
             <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-gold/16 bg-black/45 p-5 backdrop-blur">
               <p className="text-xs font-bold text-gold-light">Reader controls</p>
               <div className="mt-3 grid gap-2">

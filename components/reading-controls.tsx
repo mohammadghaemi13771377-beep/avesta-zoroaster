@@ -68,10 +68,12 @@ export function ReadingControls() {
   const [progress, setProgress] = useState(0);
   const [bookmarked, setBookmarked] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [readerMessage, setReaderMessage] = useState("تنظیمات مطالعه روی همین دستگاه ذخیره می‌شود تا هنگام بازگشت به متن، تجربه خواندن شخصی خودت را ادامه بدهی.");
+  const [readerMessage, setReaderMessage] = useState(
+    "تنظیمات مطالعه روی همین دستگاه ذخیره می‌شود تا هر بار با همان اندازه فونت، حالت نور و فاصله خط برگردی."
+  );
   const [canShare, setCanShare] = useState(false);
   const [note, setNote] = useState("");
-  const [noteStatus, setNoteStatus] = useState("یادداشت شخصی برای همین بند");
+  const [noteStatus, setNoteStatus] = useState("یادداشت شخصی برای همین صفحه");
 
   const active = useMemo(() => modes.find((item) => item.id === mode) ?? modes[0], [mode]);
 
@@ -164,11 +166,11 @@ export function ReadingControls() {
     const audio = document.getElementById("ritual-audio");
     if (audio) {
       audio.scrollIntoView({ behavior: "smooth", block: "center" });
-      setReaderMessage("به روایت صوتی همین صفحه رفتی؛ می‌توانی پخش، سرعت و زمان روایت را همان‌جا کنترل کنی.");
+      setReaderMessage("به روایت صوتی همین صفحه رفتی؛ پخش، سرعت و زمان روایت را همان‌جا کنترل کن.");
       return;
     }
 
-    setReaderMessage("برای این صفحه هنوز روایت صوتی منتشر نشده است. هنگام آماده‌شدن صوت، همین دکمه تو را مستقیم به آن می‌برد.");
+    setReaderMessage("برای این صفحه هنوز روایت صوتی منتشر نشده است. وقتی آماده شود، همین دکمه مستقیم تو را به آن می‌برد.");
   }
 
   function saveNote() {
@@ -197,7 +199,7 @@ export function ReadingControls() {
   }
 
   return (
-    <div className={`rounded-[18px] border border-gold/15 p-4 shadow-2xl shadow-black/25 ${active.className}`}>
+    <div className={`reader-control-panel rounded-[18px] border border-gold/15 p-4 shadow-2xl shadow-black/25 ${active.className}`}>
       <div className="mb-4 h-1.5 overflow-hidden rounded-full bg-current/10">
         <div className="h-full rounded-full bg-gold transition-all duration-300" style={{ width: `${progress}%` }} />
       </div>

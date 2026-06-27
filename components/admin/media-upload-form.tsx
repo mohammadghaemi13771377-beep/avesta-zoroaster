@@ -142,7 +142,7 @@ export function MediaUploadForm() {
           بعد از آپلود، این مسیر را در فرم «ثبت رسانه» بگذار تا به بند یا صفحه مربوط وصل شود.
         </p>
         <div className="mt-5 min-h-14 rounded-2xl border border-gold/10 bg-night/80 p-4 text-left text-sm leading-6 text-gold-light" dir="ltr">
-          {assetUrl || "/images/ai/media-cover.png"}
+          {assetUrl || "/images/ai/media-hero.jpg"}
         </div>
         {assetUrl ? (
           <button type="button" onClick={copyAssetUrl} className="mt-3 inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10">

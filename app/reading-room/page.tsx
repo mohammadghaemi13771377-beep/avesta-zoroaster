@@ -3,6 +3,7 @@ import { CinematicHub } from "@/components/cinematic-hub";
 import { ReadingRoomLab } from "@/components/reading-room-lab";
 import { ReadingQueuePanel } from "@/components/reading-queue-panel";
 import { getReadingRoomPresets, getReadingRoomStats } from "@/lib/reading-room";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "تالار مطالعه زنده | AVESTA-ZOROASTER",
@@ -17,6 +18,7 @@ export default function ReadingRoomPage() {
       title="تالار مطالعه زنده اوستا"
       lead="این تالار برای تجربه خواندن ساخته شده است: حالت مطالعه، عمق توضیح، واژه‌نامه، صوت، بوکمارک و مسیر بعدی، همه در یک تجربه سینمایی."
       scene="scene-fire"
+      heroImage={routeHeroByPath["/library"]}
       roman="R"
       actions={[
         { label: "انتخاب حالت مطالعه", href: "#reading-room" },

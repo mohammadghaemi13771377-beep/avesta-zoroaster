@@ -2,9 +2,10 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Clipboard, Eye, Filter, ImagePlus, Palette, Sparkles, UploadCloud } from "lucide-react";
 import type { VisualAssetItem, VisualAssetStatus } from "@/lib/visual-asset-control";
-import { getVisualAssetSummary, visualAssetStatusLabels, visualAssetStatusTone } from "@/lib/visual-asset-control";
+import { getLiveHeroAssets, getVisualAssetSummary, visualAssetStatusLabels, visualAssetStatusTone } from "@/lib/visual-asset-control";
 
 type VisualAssetControlBoardProps = {
   items: VisualAssetItem[];
@@ -21,6 +22,7 @@ const filters: Array<["all" | VisualAssetStatus, string]> = [
 export function VisualAssetControlBoard({ items }: VisualAssetControlBoardProps) {
   const [activeFilter, setActiveFilter] = useState<"all" | VisualAssetStatus>("all");
   const summary = getVisualAssetSummary(items);
+  const liveHeroes = getLiveHeroAssets();
   const filteredItems = useMemo(
     () => (activeFilter === "all" ? items : items.filter((item) => item.status === activeFilter)),
     [activeFilter, items],
@@ -62,6 +64,33 @@ export function VisualAssetControlBoard({ items }: VisualAssetControlBoardProps)
           </button>
         ))}
       </div>
+
+      <section className="mt-8 border-y border-gold/12 py-7">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="gold-text text-xs font-semibold tracking-[0.24em]">LIVE HERO REGISTRY</p>
+            <h3 className="mt-2 text-2xl font-black text-warm">تصاویر منتشرشده روی سایت</h3>
+            <p className="mt-2 max-w-3xl text-sm leading-7 text-muted">این بخش به فایل‌های واقعی متصل است؛ با کلیک روی هر کارت همان صفحه عمومی باز می‌شود.</p>
+          </div>
+          <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-sm font-black text-emerald-100">{liveHeroes.length} Hero فعال</span>
+        </div>
+
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {liveHeroes.map((asset) => (
+            <Link key={asset.route} href={asset.route} className="group overflow-hidden rounded-2xl border border-gold/12 bg-night/55 transition hover:-translate-y-1 hover:border-gold/40">
+              <div className="relative aspect-[16/8] overflow-hidden">
+                <Image src={asset.src} alt={asset.title} fill sizes="(min-width: 1280px) 28vw, (min-width: 640px) 44vw, 92vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-transparent to-transparent" />
+                <span className="absolute left-3 top-3 rounded-full border border-gold/25 bg-black/35 px-3 py-1 text-xs font-black text-gold-light backdrop-blur">{asset.format}</span>
+              </div>
+              <div className="p-4">
+                <p className="font-black text-warm group-hover:text-gold-light">{asset.title}</p>
+                <p className="mt-2 truncate font-mono text-xs text-muted">{asset.src}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="mt-6 grid gap-5 xl:grid-cols-2">
         {filteredItems.map((item) => (

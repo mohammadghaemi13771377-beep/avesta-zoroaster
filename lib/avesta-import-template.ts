@@ -150,13 +150,13 @@ function escapeCsvCell(value: string) {
 
 function coverImageForSection(slug: string) {
   const covers: Record<string, string> = {
-    yasna: "/images/ai/yasna-cover.png",
-    gathas: "/images/ai/gathas-cover.png",
+    yasna: "/images/ai/yasna-hero.jpg",
+    gathas: "/images/ai/gathas-hero.jpg",
     visperad: "/images/ai/avesta-portal.jpg",
-    vendidad: "/images/ai/vendidad-cover.png",
-    yashts: "/images/ai/yashts-cover.png",
-    "khordeh-avesta": "/images/ai/khordeh-avesta-cover.png",
-    hats: "/images/ai/hats-cover.png",
+    vendidad: "/images/ai/vendidad-hero.jpg",
+    yashts: "/images/ai/yashts-hero.jpg",
+    "khordeh-avesta": "/images/ai/khordeh-avesta-hero.jpg",
+    hats: "/images/ai/hats-hero.jpg",
   };
 
   return covers[slug] ?? "/images/ai/avesta-portal.jpg";

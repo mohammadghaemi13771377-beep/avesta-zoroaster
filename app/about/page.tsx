@@ -23,7 +23,7 @@ const missionCards = [
     href: "/search",
     icon: BookOpen,
     scene: "scene-tablets",
-    imageSrc: "/images/ai/dictionary-cover.png",
+    imageSrc: "/images/ai/dictionary-hero.jpg",
   },
   {
     title: "روایت سینمایی",
@@ -31,7 +31,7 @@ const missionCards = [
     href: "/media",
     icon: Sparkles,
     scene: "scene-mountain",
-    imageSrc: "/images/ai/media-cover.png",
+    imageSrc: "/images/ai/media-hero.jpg",
   },
   {
     title: "مسیر محصول",
@@ -39,7 +39,7 @@ const missionCards = [
     href: "/profile",
     icon: Compass,
     scene: "scene-fire",
-    imageSrc: "/images/ai/home-hero.png",
+    imageSrc: "/images/ai/home-hero-desktop.jpg",
   },
 ];
 

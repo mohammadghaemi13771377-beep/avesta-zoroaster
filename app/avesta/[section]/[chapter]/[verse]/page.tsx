@@ -139,9 +139,22 @@ export default async function VersePage({ params, searchParams }: PageProps) {
       {jsonLd.map((item, index) => (
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
-      <section className="hero-cosmos relative min-h-[660px] px-4 pb-16 pt-10 sm:px-6 lg:px-8">
+      <section className="hero-cosmos relative isolate min-h-[660px] overflow-hidden">
+        {heroImage ? (
+          <Image
+            src={heroImage}
+            alt={chapterGuide?.title ?? chapter.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        ) : null}
+        <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/70 to-[#071521]/18" />
+        <div className="hub-hero-side-shade absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(5,8,13,0.03),rgba(5,8,13,0.18)_38%,rgba(5,8,13,0.72)_100%)]" />
         <div className="hero-horizon" />
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.04fr_0.96fr]">
+        <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-night via-night/55 to-transparent" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8 lg:py-28">
           <div>
             <Link
               href={chapterHref}
@@ -168,7 +181,7 @@ export default async function VersePage({ params, searchParams }: PageProps) {
             </div>
           </div>
 
-          <div className="lux-frame p-4">
+          <div className="hidden lux-frame p-4">
             <div className={`image-scene ${section.atmosphere} min-h-[430px] overflow-hidden rounded-[1.55rem]`}>
               {heroImage ? (
                 <Image
@@ -475,10 +488,10 @@ function VerseBlock({
   terms: Array<{ term: string; slug: string; meaning: string }>;
 }) {
   return (
-    <section className={`lux-frame p-6 sm:p-10 ${tone === "gold" ? "border-gold-300/28 bg-gold-300/[0.045]" : ""}`}>
+    <section className={`reading-paper p-6 sm:p-10 ${tone === "gold" ? "border-gold-300/28 bg-gold-300/[0.045]" : ""}`}>
       <p className="gold-text text-sm font-semibold tracking-[0.24em]">{eyebrow}</p>
       <h2 className="mt-3 text-3xl font-black text-warm-50">{title}</h2>
-      <InlineGlossaryText text={body} terms={terms} className="reader-text mt-6 text-xl text-warm-100/84" />
+      <InlineGlossaryText text={body} terms={terms} className="reading-prose mt-6 text-xl text-warm-100/84" />
     </section>
   );
 }

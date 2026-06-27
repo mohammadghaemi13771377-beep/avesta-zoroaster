@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, BookOpen, Headphones, Landmark, Route, ScrollText, Sparkles, Tags } from "lucide-react";
@@ -61,6 +62,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
   const langQuery = locale === "en" ? "?lang=en" : "";
   const guide = getAvestaChapterGuide(section.slug, chapter.slug);
   const profile = getAvestaChapterProfile(section.slug, chapter.slug);
+  const heroImage = guide?.coverImage ?? section.coverImage;
   const firstVerseSlug = chapter.verses[0]?.slug ?? "verse-1";
   const firstVerse = await getVerseBySlugs(section.slug, chapter.slug, firstVerseSlug, locale);
   const pageHref = `/avesta/${section.slug}/${chapter.slug}`;
@@ -84,9 +86,22 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
       {jsonLd.map((item, index) => (
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
-      <section className="hero-cosmos relative px-4 pb-12 pt-10 sm:px-6 lg:px-8">
+      <section className="hero-cosmos relative isolate overflow-hidden">
+        {heroImage ? (
+          <Image
+            src={heroImage}
+            alt={guide?.title ?? chapter.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        ) : null}
+        <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/70 to-[#071521]/18" />
+        <div className="hub-hero-side-shade absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(5,8,13,0.03),rgba(5,8,13,0.18)_38%,rgba(5,8,13,0.72)_100%)]" />
         <div className="hero-horizon" />
-        <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night via-night/55 to-transparent" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8 lg:py-28">
           <Link
             href={`/avesta/${section.slug}${langQuery}`}
             className="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-black/24 px-4 py-2 text-sm font-bold text-gold-light transition hover:border-gold/55"
@@ -95,7 +110,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
             بازگشت به {section.title}
           </Link>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.78fr]">
+          <div className="mt-10 max-w-3xl">
             <div>
               <p className="text-sm font-black text-gold-light">اوستا / {section.title}</p>
               <h1 className="gold-text mt-4 text-5xl font-black leading-tight sm:text-7xl">{chapter.title}</h1>
@@ -117,7 +132,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
               </div>
             </div>
 
-            <aside className="lux-frame p-6">
+            <aside className="hidden lux-frame p-6">
               <div className="flex items-center gap-3 text-gold-light">
                 <ScrollText className="h-6 w-6" />
                 <h2 className="text-2xl font-black text-warm">وضعیت این زیرصفحه</h2>

@@ -18,7 +18,7 @@ export const visualAssets = {
   vendidad: "/images/ai/vendidad-hero.jpg",
   yashts: "/images/ai/yashts-hero.jpg",
   khordehAvesta: "/images/ai/khordeh-avesta-hero.jpg",
-  hats: "/images/ai/hats-cover.png",
+  hats: "/images/ai/hats-hero.jpg",
   productBook: "/images/ai/product-book.png",
   productMug: "/images/ai/product-mug.png",
   productShirt: "/images/ai/product-shirt.png",

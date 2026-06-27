@@ -136,7 +136,7 @@ export default function DictionaryTermPage({ params }: PageProps) {
 
           <div className="lux-frame p-4">
             <div className={`image-scene ${meta.scene} min-h-[360px] rounded-[1.4rem]`}>
-              <Image src="/images/ai/dictionary-cover.png" alt={`تصویر مفهومی ${term.term}`} fill sizes="(min-width: 1024px) 380px, 92vw" className="object-cover opacity-75" />
+              <Image src="/images/ai/dictionary-hero.jpg" alt={`تصویر مفهومی ${term.term}`} fill sizes="(min-width: 1024px) 380px, 92vw" className="object-cover opacity-75" />
               <div className="absolute inset-0 bg-gradient-to-t from-night/82 via-night/20 to-transparent" />
               <div className="absolute inset-0 grid place-items-center">
                 <Sparkles className="h-16 w-16 text-gold-light" />

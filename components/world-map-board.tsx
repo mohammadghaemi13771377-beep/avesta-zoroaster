@@ -10,11 +10,11 @@ type WorldMapBoardProps = {
 
 const realmImages: Record<string, string> = {
   "avesta-core": "/images/ai/avesta-portal.jpg",
-  "wisdom-experience": "/images/ai/gathas-cover.png",
-  "knowledge-graph": "/images/ai/dictionary-cover.png",
-  "media-museum": "/images/ai/media-cover.png",
-  "seasonal-growth": "/images/ai/zoroaster-cover.png",
-  "commerce-future": "/images/ai/shop-cover.png"
+  "wisdom-experience": "/images/ai/gathas-hero.jpg",
+  "knowledge-graph": "/images/ai/dictionary-hero.jpg",
+  "media-museum": "/images/ai/media-hero.jpg",
+  "seasonal-growth": "/images/ai/zoroaster-hero.jpg",
+  "commerce-future": "/images/ai/shop-hero.jpg"
 };
 
 export function WorldMapBoard({ realms }: WorldMapBoardProps) {

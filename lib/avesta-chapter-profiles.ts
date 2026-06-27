@@ -39,7 +39,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "در تجربه دیجیتال، آتش مرکزی، سکوت، آماده‌سازی ذهن و خواندن مرحله‌ای جایگاه آیینی این فصل را منتقل می‌کنند. کاربر ابتدا با فضای نیایش آشنا می‌شود و بعد وارد بندهای قابل مطالعه می‌شود.",
     keyThemes: ["آتش", "نیایش", "آمادگی ذهن", "پاکی", "شروع مطالعه"],
-    image: "/images/ai/yasna-cover.png",
+    image: "/images/ai/yasna-hero.jpg",
     imageAlt: {
       fa: "آتشکده‌ای روشن با آتش مقدس، ستون‌های سنگی و فضای آیینی یسنا",
       en: "A luminous fire temple with sacred fire, stone columns, and a Yasna ritual atmosphere"
@@ -64,7 +64,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "این صفحه تجربه‌ای آرام می‌سازد: سکوت پیش از خواندن، تمرکز بر واژه‌ها، و تبدیل هر بند به پرسشی برای زندگی امروز.",
     keyThemes: ["سکوت", "خرد", "انتخاب", "اشا", "مسئولیت اخلاقی"],
-    image: "/images/ai/gathas-cover.png",
+    image: "/images/ai/gathas-hero.jpg",
     imageAlt: {
       fa: "زرتشت در فضای روشن کوهستانی با نور نرم و حالتی مراقبه‌ای",
       en: "Zoroaster in a luminous mountain setting with soft light and a contemplative mood"
@@ -89,7 +89,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "قاب‌های آب، پاکی، نذر و مراقبت از طبیعت باید کنار هم بنشینند تا کاربر حس کند خواندن متن با یک عمل روزانه مرتبط می‌شود.",
     keyThemes: ["آب", "آناهیتا", "پاکی", "طبیعت", "زندگی"],
-    image: "/images/ai/yashts-cover.png",
+    image: "/images/ai/yashts-hero.jpg",
     imageAlt: {
       fa: "چشم‌انداز رود و کوهستان با نور طلایی و حس آبان یشت",
       en: "A river and mountain landscape with golden light evoking Aban Yasht"
@@ -114,7 +114,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "حس آسمان، سپیده و نور باید با کارت‌هایی درباره پیمان، دادگری و وفاداری همراه شود تا مخاطب از مفهوم اسطوره‌ای به رفتار عملی برسد.",
     keyThemes: ["پیمان", "اعتماد", "روشنایی", "دادگری", "وفاداری"],
-    image: "/images/ai/gathas-cover.png",
+    image: "/images/ai/gathas-hero.jpg",
     imageAlt: {
       fa: "آسمان روشن و کوهستان طلایی برای روایت مهر و پیمان",
       en: "A bright sky and golden mountain scene for Mithra, covenant, and trust"
@@ -139,7 +139,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "این فصل باید با دوگانه بصری نور و تاریکی کار کند، اما تاریکی نباید غالب شود. هدف نمایش مسئولیت انسان در پاک نگه داشتن جهان است.",
     keyThemes: ["آفرینش", "پاکی", "سرزمین", "آسیب", "انتخاب انسان"],
-    image: "/images/ai/vendidad-cover.png",
+    image: "/images/ai/vendidad-hero.jpg",
     imageAlt: {
       fa: "جهان دوپاره نور و تاریکی برای فرگرد اول وندیداد",
       en: "A split world of light and darkness for Vendidad Fargard One"
@@ -164,7 +164,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "در تجربه سایت، زمستان بزرگ، ور جم و نگهبانی از بذرهای زندگی باید به تصمیم‌های امروز درباره آمادگی، خرد و آینده وصل شوند.",
     keyThemes: ["جمشید", "بحران", "پناهگاه", "نگهداری زندگی", "امید"],
-    image: "/images/ai/vendidad-cover.png",
+    image: "/images/ai/vendidad-hero.jpg",
     imageAlt: {
       fa: "پناهگاه نورانی در برابر زمستان و تاریکی برای روایت جم",
       en: "A luminous refuge against winter and darkness for the story of Yima"
@@ -189,7 +189,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "صفحه باید حالت صبح، میان‌روز و شب داشته باشد و هر بخش با نیت کوتاه، صوت آینده و تمرین کوچک همراه شود.",
     keyThemes: ["نیایش روزانه", "نیت", "آرامش", "تکرار روشن", "موبایل"],
-    image: "/images/ai/khordeh-avesta-cover.png",
+    image: "/images/ai/khordeh-avesta-hero.jpg",
     imageAlt: {
       fa: "کتاب نیایش و نور صبحگاهی برای خرده اوستا",
       en: "A prayer book and morning light for Khordeh Avesta"
@@ -214,7 +214,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "در طراحی صفحه، آتش مرکزی با تمرین نگاه، آرام‌سازی فکر و انتخاب یک کردار درست همراه می‌شود.",
     keyThemes: ["آتش", "آگاهی", "پاکی", "نیایش", "بیداری"],
-    image: "/images/ai/yasna-cover.png",
+    image: "/images/ai/yasna-hero.jpg",
     imageAlt: {
       fa: "آتش مقدس در آتشکده‌ای آرام با نور طلایی",
       en: "Sacred fire in a quiet fire temple with golden light"
@@ -264,7 +264,7 @@ const profiles: AvestaChapterProfile[] = [
     ritualContext:
       "این صفحه بیشتر کاربردی است تا آیینی: طومار، شماره، وضعیت تکمیل، منبع، تصویر، صوت و مسیر ورود به بندها.",
     keyThemes: ["ساختار", "طومار", "پیشرفت", "مطالعه مرحله‌ای", "سیستم محتوا"],
-    image: "/images/ai/hats-cover.png",
+    image: "/images/ai/hats-hero.jpg",
     imageAlt: {
       fa: "طومار کهن و میز مطالعه برای نقشه هات‌های اوستا",
       en: "An ancient scroll and study desk for the Avesta Ha map"

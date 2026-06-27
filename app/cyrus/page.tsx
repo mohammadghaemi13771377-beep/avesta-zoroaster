@@ -15,7 +15,7 @@ const cyrusCards = [
     href: "/timeline",
     icon: Landmark,
     scene: "scene-stone",
-    imageSrc: "/images/ai/exhibitions-cover.png",
+    imageSrc: "/images/ai/exhibitions-hero.jpg",
   },
   {
     title: "منابع پژوهشی",
@@ -23,7 +23,7 @@ const cyrusCards = [
     href: "/library",
     icon: Library,
     scene: "scene-scroll",
-    imageSrc: "/images/ai/library-cover.png",
+    imageSrc: "/images/ai/library-hero.jpg",
   },
   {
     title: "مقاله‌های تاریخی",
@@ -31,7 +31,7 @@ const cyrusCards = [
     href: "/articles",
     icon: ScrollText,
     scene: "scene-tablets",
-    imageSrc: "/images/ai/articles-cover.png",
+    imageSrc: "/images/ai/articles-hero.jpg",
   },
   {
     title: "هویت شاهانه",
@@ -39,7 +39,7 @@ const cyrusCards = [
     href: "/media",
     icon: Crown,
     scene: "scene-sunrise",
-    imageSrc: "/images/ai/zoroastrianism-cover.png",
+    imageSrc: "/images/ai/zoroastrianism-hero.jpg",
   },
 ];
 
