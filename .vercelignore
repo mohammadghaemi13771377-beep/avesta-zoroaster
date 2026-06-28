@@ -1,0 +1,9 @@
+avesta-zoroaster-source.zip
+avesta-zoroaster-full-code.txt
+local-preview.html
+preview-server.mjs
+docs/
+
+.next/
+node_modules/
+*.tsbuildinfo
