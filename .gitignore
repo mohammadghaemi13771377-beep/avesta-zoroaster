@@ -9,6 +9,11 @@ out/
 build/
 dist/
 
+# generated delivery artifacts
+avesta-zoroaster-source.zip
+avesta-zoroaster-full-code.txt
+local-preview.html
+
 # local env
 .env
 .env*.local
