@@ -22,22 +22,13 @@ const filters: Array<{ label: string; value: SacredSeason | "all" }> = [
 
 export function SacredCalendarBoard({ events }: SacredCalendarBoardProps) {
   const [season, setSeason] = useState<SacredSeason | "all">("all");
-  const [activeId, setActiveId] = useState(events[0]?.id ?? "");
   const filteredEvents = useMemo(
     () => events.filter((event) => season === "all" || event.season === season),
     [events, season]
   );
-  const activeEvent = events.find((event) => event.id === activeId) ?? filteredEvents[0] ?? events[0];
+  const featuredEvent = filteredEvents[0] ?? events[0];
 
-  function chooseSeason(nextSeason: SacredSeason | "all") {
-    setSeason(nextSeason);
-    const nextEvent = events.find((event) => nextSeason === "all" || event.season === nextSeason);
-    if (nextEvent) {
-      setActiveId(nextEvent.id);
-    }
-  }
-
-  if (!activeEvent) {
+  if (!featuredEvent) {
     return null;
   }
 
@@ -54,7 +45,7 @@ export function SacredCalendarBoard({ events }: SacredCalendarBoardProps) {
             <button
               key={filter.value}
               type="button"
-              onClick={() => chooseSeason(filter.value)}
+              onClick={() => setSeason(filter.value)}
               className={
                 season === filter.value
                   ? "rounded-full bg-gold px-4 py-2 text-xs font-black text-night"
@@ -68,55 +59,51 @@ export function SacredCalendarBoard({ events }: SacredCalendarBoardProps) {
 
         <div className="mt-5 grid gap-3">
           {filteredEvents.map((event) => (
-            <div
+            <Link
               key={event.id}
+              href={`/calendar/${event.id}`}
               className={
-                activeEvent.id === event.id
-                  ? "rounded-2xl border border-gold/45 bg-gold/12 p-4 text-right"
-                  : "rounded-2xl border border-gold/10 bg-night/55 p-4 text-right transition hover:border-gold/35"
+                featuredEvent.id === event.id
+                  ? "block rounded-2xl border border-gold/45 bg-gold/12 p-4 text-right"
+                  : "block rounded-2xl border border-gold/10 bg-night/55 p-4 text-right transition hover:border-gold/35 hover:bg-gold/10"
               }
             >
-              <button type="button" onClick={() => setActiveId(event.id)} className="block w-full text-right">
-                <span className="text-xs font-bold text-gold-light">{event.dateLabel}</span>
-                <span className="mt-2 block text-xl font-black text-warm">{event.title}</span>
-                <span className="mt-2 block text-sm leading-7 text-muted">{event.subtitle}</span>
-              </button>
-              <Link
-                href={`/calendar/${event.id}`}
-                className="mt-3 inline-flex items-center gap-2 text-xs font-black text-gold-light"
-              >
+              <span className="text-xs font-bold text-gold-light">{event.dateLabel}</span>
+              <span className="mt-2 block text-xl font-black text-warm">{event.title}</span>
+              <span className="mt-2 block text-sm leading-7 text-muted">{event.subtitle}</span>
+              <span className="mt-3 inline-flex items-center gap-2 text-xs font-black text-gold-light">
                 صفحه اختصاصی
                 <ArrowLeft size={13} />
-              </Link>
-            </div>
+              </span>
+            </Link>
           ))}
         </div>
       </aside>
 
       <article className="lux-frame overflow-hidden p-5 sm:p-7">
-        <div className={`image-scene ${activeEvent.scene} min-h-[320px] rounded-[22px] border border-gold/15`}>
+        <div className={`image-scene ${featuredEvent.scene} min-h-[320px] rounded-[22px] border border-gold/15`}>
           <div className="absolute inset-x-6 top-6 flex items-center justify-between text-gold-light">
             <span className="rounded-full border border-gold/25 bg-black/25 px-4 py-2 text-xs font-bold backdrop-blur">
-              {seasonLabels[activeEvent.season]} / {activeEvent.month}
+              {seasonLabels[featuredEvent.season]} / {featuredEvent.month}
             </span>
             <Sparkles size={22} />
           </div>
           <div className="absolute bottom-7 right-7 max-w-xl">
             <p className="gold-text text-xs font-semibold tracking-[0.24em]">SACRED CALENDAR</p>
-            <h2 className="mt-3 text-5xl font-black text-warm">{activeEvent.title}</h2>
-            <p className="mt-3 text-lg leading-8 text-warm/82">{activeEvent.subtitle}</p>
+            <h2 className="mt-3 text-5xl font-black text-warm">{featuredEvent.title}</h2>
+            <p className="mt-3 text-lg leading-8 text-warm/82">{featuredEvent.subtitle}</p>
           </div>
         </div>
 
         <div className="mt-6 grid gap-5 xl:grid-cols-[1fr_0.95fr]">
           <div>
             <p className="text-sm font-bold text-gold-light">محور معنایی</p>
-            <h3 className="mt-2 text-2xl font-black text-warm">{activeEvent.spiritualTheme}</h3>
-            <p className="mt-4 leading-8 text-muted">{activeEvent.description}</p>
+            <h3 className="mt-2 text-2xl font-black text-warm">{featuredEvent.spiritualTheme}</h3>
+            <p className="mt-4 leading-8 text-muted">{featuredEvent.description}</p>
 
             <div className="mt-5 grid gap-3">
-              {activeEvent.readingPath.map((item) => (
-            <Link
+              {featuredEvent.readingPath.map((item) => (
+                <Link
                   key={item.href}
                   href={item.href}
                   className="flex items-center justify-between gap-3 rounded-2xl border border-gold/10 bg-gold/10 p-4 font-black text-gold-light transition hover:border-gold/35"
@@ -129,12 +116,8 @@ export function SacredCalendarBoard({ events }: SacredCalendarBoardProps) {
           </div>
 
           <div className="grid gap-4">
-            <CalendarList
-              icon={ScrollText}
-              title="ایده‌های تجربه کاربر"
-              items={activeEvent.ritualIdeas}
-            />
-            <CalendarList icon={Gift} title="ایده‌های فروشگاه آینده" items={activeEvent.productIdeas} />
+            <CalendarList icon={ScrollText} title="ایده‌های تجربه کاربر" items={featuredEvent.ritualIdeas} />
+            <CalendarList icon={Gift} title="ایده‌های فروشگاه آینده" items={featuredEvent.productIdeas} />
           </div>
         </div>
       </article>

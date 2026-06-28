@@ -21,8 +21,8 @@ export default function CitationsPage() {
       scene="scene-scroll"
       roman="C"
       actions={[
-        { label: "دیدن ارجاع‌ها", href: "#citation-board" },
-        { label: "مرکز اعتماد", href: "/trust-center", variant: "secondary" },
+        { label: "مرکز اعتماد", href: "/trust-center" },
+        { label: "روش پژوهش", href: "/research-methodology", variant: "secondary" },
       ]}
       stats={[
         { value: String(summary.total), label: "ارجاع ثبت‌شده" },
@@ -30,9 +30,7 @@ export default function CitationsPage() {
         { value: String(summary.needsReview), label: "نیازمند بازبینی" },
       ]}
     >
-      <div id="citation-board" className="scroll-mt-28">
-        <CitationBoard records={records} />
-      </div>
+      <CitationBoard records={records} />
     </CinematicHub>
   );
 }

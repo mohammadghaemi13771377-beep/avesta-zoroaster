@@ -4,7 +4,7 @@ import { Crown, Landmark, Library, ScrollText } from "lucide-react";
 import { CinematicHub, FeatureLinkGrid } from "@/components/cinematic-hub";
 
 export const metadata: Metadata = {
-  title: "کوروش",
+  title: "کوروش و ایران باستان | AVESTA-ZOROASTER",
   description: "جایگاه کوروش، فرهنگ ایران باستان و پیوندهای تاریخی در جهان AVESTA-ZOROASTER.",
 };
 
@@ -27,7 +27,7 @@ const cyrusCards = [
   },
   {
     title: "مقاله‌های تاریخی",
-    description: "مقاله‌های تحلیلی و منابع منتخب، روایت تاریخی را به مسیر مطالعه‌ای قابل‌فهم و پیوسته تبدیل می‌کنند.",
+    description: "مقاله‌های تحلیلی و منابع منتخب، روایت تاریخی را به مسیر مطالعه‌ای قابل فهم و پیوسته تبدیل می‌کنند.",
     href: "/articles",
     icon: ScrollText,
     scene: "scene-tablets",

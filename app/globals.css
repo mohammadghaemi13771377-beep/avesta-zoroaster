@@ -243,6 +243,81 @@ html[data-ambient="bright"] .hub-hero-bottom-shade {
   background: linear-gradient(to top, rgba(255, 252, 242, 0.96), rgba(255, 252, 242, 0.52), transparent);
 }
 
+.hub-hero-copy {
+  position: relative;
+  max-width: 52rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.48);
+}
+
+.hub-hero-copy::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -1.45rem -1.35rem -1.65rem;
+  border: 1px solid rgba(242, 213, 138, 0.13);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(242, 213, 138, 0.12), transparent 13rem),
+    linear-gradient(135deg, rgba(5, 8, 13, 0.58), rgba(7, 21, 33, 0.28) 62%, rgba(5, 8, 13, 0.08));
+  box-shadow: 0 24px 76px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(7px);
+}
+
+.hub-hero-title {
+  text-wrap: balance;
+}
+
+.hub-hero-lead {
+  text-shadow: 0 2px 18px rgba(5, 8, 13, 0.58);
+}
+
+.hub-hero-stats > div {
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.chapter-dedicated-badge {
+  border-color: rgba(125, 211, 252, 0.2);
+  background: rgba(125, 211, 252, 0.08);
+  color: #bae6fd;
+}
+
+html[data-ambient="bright"] .hub-hero-copy {
+  text-shadow: none;
+}
+
+html[data-ambient="bright"] .hub-hero-copy::before {
+  border-color: rgba(154, 100, 30, 0.2);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.9), transparent 13rem),
+    linear-gradient(135deg, rgba(255, 253, 247, 0.86), rgba(255, 248, 234, 0.62) 62%, rgba(255, 245, 222, 0.22));
+  box-shadow: 0 24px 66px rgba(119, 78, 18, 0.14);
+}
+
+html[data-ambient="bright"] .hub-hero-title {
+  color: #2f230f !important;
+}
+
+html[data-ambient="bright"] .hub-hero-eyebrow,
+html[data-ambient="bright"] .hub-hero-lead {
+  color: #6f4310 !important;
+  text-shadow: none;
+}
+
+html[data-ambient="bright"] .hub-hero-stats {
+  border-color: rgba(154, 100, 30, 0.24) !important;
+  background: rgba(154, 100, 30, 0.2) !important;
+}
+
+html[data-ambient="bright"] .hub-hero-stats > div {
+  background: rgba(255, 253, 247, 0.82) !important;
+}
+
+html[data-ambient="bright"] .chapter-dedicated-badge {
+  border-color: rgba(48, 92, 130, 0.22);
+  background: rgba(48, 92, 130, 0.08);
+  color: #244b68;
+}
+
 html[data-ambient="bright"] .lux-frame,
 html[data-ambient="bright"] .poster-panel,
 html[data-ambient="bright"] .poster-story-card {
@@ -452,6 +527,34 @@ html[data-ambient="bright"] .reader-control-panel {
   isolation: isolate;
 }
 
+.home-hero-copy {
+  position: relative;
+  max-width: 46rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.46);
+}
+
+.home-hero-copy::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -1.5rem -1.35rem -1.7rem;
+  border: 1px solid rgba(242, 213, 138, 0.14);
+  border-radius: 1.6rem;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(242, 213, 138, 0.14), transparent 12rem),
+    linear-gradient(135deg, rgba(5, 8, 13, 0.54), rgba(7, 21, 33, 0.22) 60%, rgba(5, 8, 13, 0.08));
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(7px);
+}
+
+.home-hero-eyebrow {
+  text-shadow: 0 2px 16px rgba(5, 8, 13, 0.5);
+}
+
+.home-hero-lead {
+  text-shadow: 0 2px 18px rgba(5, 8, 13, 0.58);
+}
+
 .home-hero::before {
   content: "";
   position: absolute;
@@ -492,6 +595,32 @@ html[data-ambient="bright"] .home-entry-panel {
     linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 234, 0.78)) !important;
   border-color: rgba(154, 100, 30, 0.28) !important;
   box-shadow: 0 24px 70px rgba(119, 78, 18, 0.14) !important;
+}
+
+html[data-ambient="bright"] .home-hero-copy {
+  text-shadow: none;
+}
+
+html[data-ambient="bright"] .home-hero-copy::before {
+  border-color: rgba(154, 100, 30, 0.22);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.92), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 253, 247, 0.84), rgba(255, 248, 234, 0.62) 62%, rgba(255, 245, 222, 0.24));
+  box-shadow: 0 26px 74px rgba(119, 78, 18, 0.14);
+}
+
+html[data-ambient="bright"] .home-hero-eyebrow {
+  color: #7b4b12 !important;
+  text-shadow: none;
+}
+
+html[data-ambient="bright"] .home-hero-lead {
+  color: #3b2b12 !important;
+  text-shadow: none;
+}
+
+html[data-ambient="bright"] .home-feature-badge {
+  border-color: rgba(154, 100, 30, 0.22) !important;
 }
 
 .image-scene {

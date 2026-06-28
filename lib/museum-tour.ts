@@ -44,11 +44,11 @@ export function getMuseumTour(): MuseumTour {
       {
         id: "gathas-chamber",
         title: "تالار گات‌ها",
-        subtitle: "سرودهای خرد و انتخاب",
+        subtitle: "سروده‌های خرد و انتخاب",
         scene: gathas?.atmosphere ?? "scene-sunrise",
         href: "/avesta/gathas",
         duration: "۴ دقیقه",
-        narration: "در این ایستگاه، کاربر با کهن‌ترین سرودهای زرتشت و پیام اخلاقی انتخاب آگاهانه روبه‌رو می‌شود.",
+        narration: "در این ایستگاه، کاربر با کهن‌ترین سروده‌های زرتشت و پیام اخلاقی انتخاب آگاهانه روبه‌رو می‌شود.",
         artifact: "گات‌ها",
         curatorNote: "گات‌ها باید مثل قلب شاعرانه و فلسفی جهان سایت ارائه شوند.",
       },
@@ -83,7 +83,7 @@ export function getMuseumTour(): MuseumTour {
         duration: "۳ دقیقه",
         narration: "تور با یک مسیر روزانه بسته می‌شود تا کاربر بعد از تماشا، یک قدم واقعی بردارد.",
         artifact: "راهنمای روزانه",
-        curatorNote: "موزه دیجیتال وقتی زنده می‌شود که به عادت، تمرین و برگشت کاربر وصل شود.",
+        curatorNote: "موزه دیجیتال وقتی زنده می‌شود که به عادت، تمرین و بازگشت کاربر وصل شود.",
       },
       {
         id: "asha-balance",

@@ -51,7 +51,6 @@ const termMeta: Record<string, { concept: string; scene: string; related: string
 export function DictionaryExplorer({ terms }: { terms: GlossaryTerm[] }) {
   const [query, setQuery] = useState("");
   const [concept, setConcept] = useState("همه");
-  const [activeSlug, setActiveSlug] = useState(terms[0]?.slug ?? "");
 
   const enrichedTerms = useMemo(
     () =>
@@ -75,7 +74,7 @@ export function DictionaryExplorer({ terms }: { terms: GlossaryTerm[] }) {
     return matchesQuery && matchesConcept;
   });
 
-  const activeTerm = filteredTerms.find((term) => term.slug === activeSlug) ?? filteredTerms[0] ?? enrichedTerms[0];
+  const activeTerm = filteredTerms[0] ?? enrichedTerms[0];
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
@@ -133,10 +132,9 @@ export function DictionaryExplorer({ terms }: { terms: GlossaryTerm[] }) {
         <div id="glossary-grid" className="grid gap-4 sm:grid-cols-2">
           {filteredTerms.length ? (
             filteredTerms.map((term) => (
-              <button
+              <Link
                 key={term.slug}
-                type="button"
-                onClick={() => setActiveSlug(term.slug)}
+                href={`/dictionary/${term.slug}`}
                 className={`lux-frame group block p-6 text-right transition hover:-translate-y-1 hover:border-gold/45 hover:shadow-gold ${
                   activeTerm?.slug === term.slug ? "border-gold/45 bg-gold/10" : ""
                 }`}
@@ -152,7 +150,7 @@ export function DictionaryExplorer({ terms }: { terms: GlossaryTerm[] }) {
                 <h2 className="mt-5 text-2xl font-black text-gold-light">{term.term}</h2>
                 <p className="mt-2 text-sm text-warm/70">{term.root}</p>
                 <p className="mt-3 leading-8 text-muted">{term.meaning}</p>
-              </button>
+              </Link>
             ))
           ) : (
             <div className="lux-frame p-8 text-center sm:col-span-2">
@@ -168,7 +166,7 @@ export function DictionaryExplorer({ terms }: { terms: GlossaryTerm[] }) {
         <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
           <div className="lux-frame p-5">
             <div className={`image-scene ${activeTerm.scene} h-52 rounded-2xl border border-gold/15`} />
-            <p className="gold-text mt-5 text-xs font-semibold tracking-[0.25em]">ACTIVE TERM</p>
+            <p className="gold-text mt-5 text-xs font-semibold tracking-[0.25em]">FEATURED TERM</p>
             <h2 className="mt-2 text-3xl font-black text-warm">{activeTerm.term}</h2>
             <p className="mt-2 font-bold text-gold-light">{activeTerm.root}</p>
             <p className="mt-4 leading-8 text-muted">{activeTerm.description}</p>

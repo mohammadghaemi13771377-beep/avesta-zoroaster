@@ -5,7 +5,7 @@ import { CinematicHub, FeatureLinkGrid } from "@/components/cinematic-hub";
 import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
-  title: "گات‌ها",
+  title: "گات‌ها | AVESTA-ZOROASTER",
   description: "صفحه مرکزی گات‌ها، سروده‌های منسوب به زرتشت و خوانش امروزی آن‌ها.",
 };
 

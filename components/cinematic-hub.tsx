@@ -56,12 +56,12 @@ export function CinematicHub({
         <div className="hero-horizon" />
         <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-night via-night/55 to-transparent" />
         <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8">
-          <div className="w-full">
-            <p className="gold-text text-sm font-semibold uppercase tracking-[0.34em]">{eyebrow}</p>
-            <h1 className="mt-5 max-w-4xl text-5xl font-black leading-tight text-warm-50 sm:text-7xl">
+          <div className="hub-hero-copy w-full">
+            <p className="hub-hero-eyebrow gold-text text-sm font-black uppercase tracking-[0.28em] sm:tracking-[0.34em]">{eyebrow}</p>
+            <h1 className="hub-hero-title mt-5 max-w-4xl text-5xl font-black leading-tight text-warm-50 sm:text-7xl">
               {title}
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-9 text-warm-100/82">{lead}</p>
+            <p className="hub-hero-lead mt-7 max-w-2xl text-lg font-semibold leading-9 text-warm-100/86">{lead}</p>
 
             {actions.length > 0 ? (
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -83,7 +83,7 @@ export function CinematicHub({
             ) : null}
 
             {stats.length > 0 ? (
-              <div className="mt-12 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-gold/24 bg-gold/20 sm:grid-cols-3">
+              <div className="hub-hero-stats mt-12 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-gold/24 bg-gold/20 sm:grid-cols-3">
                 {stats.map((stat) => (
                   <div key={stat.label} className="bg-[#05080d]/58 p-4 backdrop-blur-sm">
                     <p className="text-2xl font-black text-gold-100">{stat.value}</p>

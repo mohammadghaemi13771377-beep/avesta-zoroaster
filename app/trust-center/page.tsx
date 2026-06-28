@@ -21,18 +21,16 @@ export default function TrustCenterPage() {
       scene="scene-scroll"
       roman="T"
       actions={[
-        { label: "دیدن نقشه اعتماد", href: "#trust-board" },
-        { label: "مرکز ارجاع", href: "/citations", variant: "secondary" },
+        { label: "مرکز ارجاع", href: "/citations" },
+        { label: "روش پژوهش", href: "/research-methodology", variant: "secondary" },
       ]}
       stats={[
-        { value: `${summary.average}٪`, label: "میانگین اعتماد فعلی" },
+        { value: `${summary.average}%`, label: "میانگین اعتماد فعلی" },
         { value: String(summary.total), label: "رکورد قابل پایش" },
         { value: String(summary.verified), label: "مستند آماده انتشار" },
       ]}
     >
-      <div id="trust-board" className="scroll-mt-28">
-        <TrustCenterBoard records={records} />
-      </div>
+      <TrustCenterBoard records={records} />
     </CinematicHub>
   );
 }

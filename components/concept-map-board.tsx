@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, Filter, Network, Search, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ConceptLink, ConceptNode, ConceptNodeType } from "@/lib/concept-map";
 import { conceptLinkLabels, conceptTypeLabels } from "@/lib/concept-map";
 import { normalizeSearchText } from "@/lib/search";
@@ -15,18 +16,23 @@ type ConceptMapBoardProps = {
 const allLabel = "همه";
 
 export function ConceptMapBoard({ nodes, links }: ConceptMapBoardProps) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [type, setType] = useState<string>(allLabel);
   const [activeId, setActiveId] = useState(nodes[0]?.id ?? "");
 
   useEffect(() => {
-    const nodeId = window.location.hash.replace("#", "");
+    const nodeId = searchParams.get("concept") ?? "";
     if (nodes.some((node) => node.id === nodeId)) setActiveId(nodeId);
-  }, [nodes]);
+  }, [nodes, searchParams]);
 
   function selectNode(nodeId: string) {
     setActiveId(nodeId);
-    window.history.replaceState(null, "", `#${nodeId}`);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("concept", nodeId);
+    router.push(`${pathname}?${params.toString()}`);
   }
 
   const visibleNodes = useMemo(() => {

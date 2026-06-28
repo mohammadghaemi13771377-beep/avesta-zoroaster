@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useSearchParams } from "next/navigation";
 import { ArrowLeft, CheckCircle2, Circle, GalleryHorizontalEnd, RefreshCw, Sparkles } from "lucide-react";
 import type { Exhibition } from "@/lib/exhibitions";
 
@@ -37,15 +38,17 @@ function readProgress() {
 }
 
 export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [activeId, setActiveId] = useState(exhibitions[0]?.id ?? "");
   const [progress, setProgress] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
     setProgress(readProgress());
-    const slug = window.location.hash.replace("#", "");
+    const slug = searchParams.get("exhibition") ?? "";
     const matched = exhibitions.find((item) => item.slug === slug);
     if (matched) setActiveId(matched.id);
-  }, [exhibitions]);
+  }, [exhibitions, searchParams]);
 
   const active = exhibitions.find((exhibition) => exhibition.id === activeId) ?? exhibitions[0];
   const completedArtifacts = active ? progress[active.id] ?? [] : [];
@@ -71,9 +74,10 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
     window.localStorage.removeItem(storageKey);
   }
 
-  function selectExhibition(exhibition: Exhibition) {
-    setActiveId(exhibition.id);
-    window.history.replaceState(null, "", `#${exhibition.slug}`);
+  function exhibitionHref(exhibition: Exhibition) {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("exhibition", exhibition.slug);
+    return `${pathname}?${params.toString()}`;
   }
 
   if (!active) return null;
@@ -95,23 +99,22 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
             const done = progress[exhibition.id]?.length ?? 0;
 
             return (
-              <button
+              <Link
                 key={exhibition.id}
-                type="button"
-                onClick={() => selectExhibition(exhibition)}
+                href={exhibitionHref(exhibition)}
                 aria-pressed={selected}
                 className={
                   selected
                     ? "rounded-2xl border border-gold-300/45 bg-gold-300/15 p-4 text-right shadow-gold"
                     : "rounded-2xl border border-gold-400/12 bg-black/28 p-4 text-right transition hover:border-gold-300/35 hover:bg-gold-300/10"
                 }
-              >
+                >
                 <span className="flex items-center justify-between gap-3">
                   <span className="text-sm font-black text-warm-50">{exhibition.title}</span>
                   <span className="text-xs font-bold text-gold-100">{done}/{exhibition.artifacts.length}</span>
                 </span>
                 <span className="mt-2 block text-xs leading-6 text-warm-100/60">{exhibition.duration} / {exhibition.audience}</span>
-              </button>
+              </Link>
             );
           })}
         </div>

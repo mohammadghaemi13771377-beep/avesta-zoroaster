@@ -89,7 +89,12 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
               </select>
             </label>
           </div>
-          <p className="mt-3 text-sm text-muted">{filteredChapters.length} تالار در این فهرست پیدا شد.</p>
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm font-bold text-muted">{filteredChapters.length} تالار در این فهرست پیدا شد.</p>
+            <p className="rounded-full border border-gold/15 bg-gold/8 px-3 py-1.5 text-xs font-black text-gold-light">
+              فیلترها فقط همین فهرست را مرتب می‌کنند؛ هر کارت یک صفحه مستقل دارد.
+            </p>
+          </div>
         </div>
         {filteredChapters.length ? filteredChapters.map(({ chapter, index, guide, profile }) => {
           const coverImage = guide?.coverImage ?? sectionCoverBySlug[sectionSlug];
@@ -134,6 +139,9 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
                     <span className="inline-flex items-center gap-1 rounded-full border border-gold/18 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light">
                       <BookOpen className="h-3.5 w-3.5" />
                       {chapter.verses.length} بند
+                    </span>
+                    <span className="chapter-dedicated-badge inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-black">
+                      صفحه اختصاصی
                     </span>
                   </div>
 

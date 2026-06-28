@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { MonotheismPathsBoard } from "@/components/monotheism-paths-board";
 import { getMonotheismPaths } from "@/lib/monotheism-paths";
@@ -17,7 +18,7 @@ export default function MonotheismPathsPage() {
       scene="scene-cosmic"
       roman="M"
       actions={[
-        { label: "شروع مسیرها", href: "#paths" },
+        { label: "شروع مسیرها", href: "/monotheism/paths?path=ahura-mazda" },
         { label: "تمرین هفت‌روزه", href: "/practice", variant: "secondary" },
       ]}
       stats={[
@@ -26,8 +27,10 @@ export default function MonotheismPathsPage() {
         { value: "امروز", label: "تمرین قابل اجرا" },
       ]}
     >
-      <section id="paths">
+      <section>
+        <Suspense fallback={<div className="lux-frame p-6 text-muted">در حال آماده‌سازی مسیرها...</div>}>
         <MonotheismPathsBoard paths={getMonotheismPaths()} />
+        </Suspense>
       </section>
     </CinematicHub>
   );

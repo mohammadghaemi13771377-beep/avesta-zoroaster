@@ -6,7 +6,7 @@ import { ArrowLeft, Archive, BookOpen, Database, ScrollText } from "lucide-react
 import { CinematicHub } from "@/components/cinematic-hub";
 
 export const metadata: Metadata = {
-  title: "آرشیو نسخه‌ها",
+  title: "آرشیو نسخه‌ها | AVESTA-ZOROASTER",
   description: "جایگاه نسخه‌های قدیمی، منابع اسکن‌شده، کتاب‌های مرجع و فایل‌های پژوهشی AVESTA-ZOROASTER.",
 };
 
@@ -30,6 +30,17 @@ const archiveLanes: Array<{
     description: "برای اتصال آینده به PostgreSQL، جستجوی Meilisearch و پنل ورود دسته‌ای.",
     icon: Database,
   },
+];
+
+const archiveFields = [
+  "عنوان نسخه",
+  "زبان",
+  "سال/دوره",
+  "منبع",
+  "نوع فایل",
+  "وضعیت حق نشر",
+  "لینک فایل",
+  "توضیح پژوهشی",
 ];
 
 export default function LibraryArchivePage() {
@@ -66,13 +77,11 @@ export default function LibraryArchivePage() {
           <h2 className="text-2xl font-black">فیلدهای پیشنهادی آرشیو</h2>
         </div>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {["عنوان نسخه", "زبان", "سال/دوره", "منبع", "نوع فایل", "وضعیت حق نشر", "لینک فایل", "توضیح پژوهشی"].map(
-            (field) => (
-              <div key={field} className="rounded-2xl border border-gold/10 bg-night/55 px-4 py-3 text-sm font-bold text-warm">
-                {field}
-              </div>
-            )
-          )}
+          {archiveFields.map((field) => (
+            <div key={field} className="rounded-2xl border border-gold/10 bg-night/55 px-4 py-3 text-sm font-bold text-warm">
+              {field}
+            </div>
+          ))}
         </div>
         <Link
           href="/admin/library"

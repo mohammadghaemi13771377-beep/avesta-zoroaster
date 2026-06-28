@@ -21,7 +21,7 @@ export default function CalendarPage() {
       scene="scene-sunrise"
       roman="C"
       actions={[
-        { label: "دیدن مناسبت‌ها", href: "#calendar" },
+        { label: "نوروز", href: "/calendar/nowruz" },
         { label: "استودیوی کمپین", href: "/campaigns", variant: "secondary" },
       ]}
       stats={[
@@ -48,9 +48,7 @@ export default function CalendarPage() {
         </article>
       </div>
 
-      <div id="calendar" className="scroll-mt-28">
-        <SacredCalendarBoard events={sacredCalendarEvents} />
-      </div>
+      <SacredCalendarBoard events={sacredCalendarEvents} />
     </CinematicHub>
   );
 }

@@ -9,7 +9,7 @@ const summary = getWorldMapSummary(publicRealms);
 export const metadata: Metadata = {
   title: "نقشه جهان دیجیتال اوستا | AVESTA-ZOROASTER",
   description:
-    "نقشه قلمروهای جهان دیجیتال AVESTA-ZOROASTER؛ اوستا، تجربه مطالعه، دانش، رسانه، مناسبت‌ها، فروشگاه و عملیات ادمین.",
+    "نقشه قلمروهای جهان دیجیتال AVESTA-ZOROASTER؛ اوستا، تجربه مطالعه، دانش، رسانه، مناسبت‌ها و فروشگاه فرهنگی.",
 };
 
 export default function WorldPage() {

@@ -45,7 +45,6 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
   const [type, setType] = useState(allLabel);
   const [category, setCategory] = useState(allLabel);
   const [language, setLanguage] = useState(allLabel);
-  const [activeTitle, setActiveTitle] = useState(items[0]?.title ?? "");
   const [savedTitles, setSavedTitles] = useState<string[]>([]);
 
   useEffect(() => {
@@ -95,13 +94,13 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
     setSavedTitles(next);
   }
 
-  const activeItem = filteredItems.find((item) => item.title === activeTitle) ?? filteredItems[0] ?? items[0];
+  const activeItem = filteredItems[0] ?? items[0];
   const Icon = mode === "library" ? Library : ImageIcon;
   const placeholder =
     mode === "library"
       ? "جستجو در منابع، زبان، نویسنده و موضوع"
       : "جستجو در تصویر، صوت، mood و prompt";
-  const panelTitle = mode === "library" ? "منبع فعال" : "رسانه فعال";
+  const panelTitle = mode === "library" ? "منبع پیشنهادی" : "رسانه پیشنهادی";
   const companionHref = mode === "library" ? "/trust-center" : "/ai-studio";
   const companionLabel = mode === "library" ? "روش و منابع" : "استودیوی AI";
   const filterGrid = mode === "library" ? "lg:grid-cols-[minmax(0,1fr)_170px_170px_170px]" : "lg:grid-cols-[minmax(0,1fr)_220px_220px]";
@@ -184,10 +183,9 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {filteredItems.length ? (
               filteredItems.map((item, index) => (
-                <button
+                <Link
                   key={item.title}
-                  type="button"
-                  onClick={() => setActiveTitle(item.title)}
+                  href={item.href ?? `/search?q=${encodeURIComponent(item.title)}`}
                   className={`lux-frame group block p-5 text-right transition hover:-translate-y-1 hover:border-gold/45 hover:shadow-gold ${
                     activeItem?.title === item.title ? "border-gold/45 bg-gold/10" : ""
                   }`}
@@ -210,7 +208,7 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                   {item.language ? <p className="mt-1 text-sm text-muted">زبان: {item.language}</p> : null}
                   {item.mood ? <p className="mt-2 text-sm text-gold-light">Mood: {item.mood}</p> : null}
                   <p className="mt-4 min-h-24 leading-8 text-muted">{item.description}</p>
-                </button>
+                </Link>
               ))
             ) : (
               <div className="lux-frame p-8 text-center md:col-span-2">

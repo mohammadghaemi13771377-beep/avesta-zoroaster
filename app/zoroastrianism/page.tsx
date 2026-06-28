@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { BookOpen, Flame, Landmark, Scale, Sparkles } from "lucide-react";
 
 import { CinematicHub, FeatureLinkGrid } from "@/components/cinematic-hub";
-import { monotheismPillars } from "@/lib/sample-content";
 import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
-  title: "دین زرتشتی",
+  title: "دین زرتشتی | AVESTA-ZOROASTER",
   description: "آموزه‌ها، مفاهیم کلیدی، اهورامزدا، اشا، وهومن و جهان‌بینی زرتشتی.",
 };
 
@@ -45,6 +44,29 @@ const paths = [
   },
 ];
 
+const pillars = [
+  {
+    title: "اشا",
+    subtitle: "راستی و نظم کیهانی",
+    description: "اشا ستون فهم اخلاقی سایت است: راستی، هماهنگی، نظم، مسئولیت و پیوند انسان با جهان معنادار.",
+  },
+  {
+    title: "وهومن",
+    subtitle: "اندیشه نیک و خرد روشن",
+    description: "وهومن یادآور این است که آغاز کردار نیک از اندیشه روشن، پرسش درست و انتخاب آگاهانه می‌آید.",
+  },
+  {
+    title: "پندار، گفتار، کردار",
+    subtitle: "فرمول ساده و جهانی اخلاق",
+    description: "این سه‌گانه باید از شعار برند فراتر برود و در مسیر مطالعه، تمرین روزانه و تجربه کاربر حضور داشته باشد.",
+  },
+  {
+    title: "آتش",
+    subtitle: "نماد آگاهی و حضور",
+    description: "آتش در طراحی سایت نماد زنده بودن حقیقت، توجه، پاکی و روشنایی است؛ نه صرفاً یک عنصر تزئینی.",
+  },
+];
+
 export default function ZoroastrianismPage() {
   return (
     <CinematicHub
@@ -73,7 +95,7 @@ export default function ZoroastrianismPage() {
         </div>
         <h2 className="mt-3 text-4xl font-black text-warm">ستون‌هایی که کل سایت روی آن‌ها می‌ایستد</h2>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
-          {monotheismPillars.map((pillar) => (
+          {pillars.map((pillar) => (
             <article key={pillar.title} className="rounded-[18px] border border-gold/12 bg-night/60 p-6">
               <h3 className="text-2xl font-black text-warm">{pillar.title}</h3>
               <p className="mt-3 text-sm font-bold text-gold-light">{pillar.subtitle}</p>

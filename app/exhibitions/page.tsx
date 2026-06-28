@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { ExhibitionsGallery } from "@/components/exhibitions-gallery";
 import { getExhibitions, getExhibitionStats } from "@/lib/exhibitions";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 
 export default function ExhibitionsPage() {
   const exhibitions = getExhibitions();
+  const firstExhibitionHref = exhibitions[0]?.heroHref ?? "/tour";
 
   return (
     <CinematicHub
@@ -22,13 +24,15 @@ export default function ExhibitionsPage() {
       heroImage={routeHeroByPath["/exhibitions"]}
       roman="X"
       actions={[
-        { label: "شروع نمایشگاه‌ها", href: "#exhibitions" },
+        { label: "شروع نمایشگاه‌ها", href: firstExhibitionHref },
         { label: "تور موزه‌ای", href: "/tour", variant: "secondary" },
       ]}
       stats={getExhibitionStats()}
     >
       <div id="exhibitions" className="scroll-mt-28">
-        <ExhibitionsGallery exhibitions={exhibitions} />
+        <Suspense fallback={<div className="lux-frame p-6 text-muted">در حال آماده‌سازی نمایشگاه‌ها...</div>}>
+          <ExhibitionsGallery exhibitions={exhibitions} />
+        </Suspense>
       </div>
     </CinematicHub>
   );

@@ -80,17 +80,17 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-bold text-gold-light">
+          <div className="hub-hero-copy">
+            <p className="hub-hero-eyebrow inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-black text-gold-light">
               اوستا / {section.title}
             </p>
-            <h1 className="gold-text mt-6 text-6xl font-black leading-[1.12] sm:text-7xl">{section.title}</h1>
-            <p className="mt-7 max-w-2xl text-lg leading-10 text-warm/82">{section.description}</p>
+            <h1 className="hub-hero-title gold-text mt-6 text-6xl font-black leading-[1.12] sm:text-7xl">{section.title}</h1>
+            <p className="hub-hero-lead mt-7 max-w-2xl text-lg font-semibold leading-10 text-warm/86">{section.description}</p>
 
             <div className="mt-8 h-2 max-w-lg overflow-hidden rounded-full bg-warm/10">
               <div className="h-full rounded-full bg-gradient-to-l from-gold-light to-gold" style={{ width: `${sampleVerse.progress}%` }} />
             </div>
-            <p className="mt-3 text-xs text-muted">پیشرفت نمونه مطالعه: {sampleVerse.progress}%</p>
+            <p className="mt-3 text-xs font-bold text-muted">پیشرفت نمونه مطالعه: {sampleVerse.progress}%</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <TrackedLink

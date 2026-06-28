@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CinematicHub } from "@/components/cinematic-hub";
 import { ConceptMapBoard } from "@/components/concept-map-board";
 import { getConceptMap } from "@/lib/concept-map";
@@ -20,7 +21,7 @@ export default function ConceptMapPage() {
       scene="scene-cosmic"
       roman="N"
       actions={[
-        { label: "کاوش نقشه", href: "#concept-map" },
+        { label: "کاوش مفاهیم", href: "/dictionary" },
         { label: "واژه‌نامه", href: "/dictionary", variant: "secondary" },
       ]}
       stats={[
@@ -30,7 +31,9 @@ export default function ConceptMapPage() {
       ]}
     >
       <div id="concept-map" className="scroll-mt-28">
-        <ConceptMapBoard nodes={map.nodes} links={map.links} />
+        <Suspense fallback={<div className="lux-frame p-6 text-muted">در حال آماده‌سازی نقشه مفهومی...</div>}>
+          <ConceptMapBoard nodes={map.nodes} links={map.links} />
+        </Suspense>
       </div>
     </CinematicHub>
   );

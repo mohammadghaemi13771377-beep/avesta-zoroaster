@@ -55,7 +55,6 @@ const eventDetails = [
 
 export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
   const [activeEra, setActiveEra] = useState("همه");
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const enrichedEvents = useMemo(
     () =>
@@ -67,12 +66,11 @@ export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
   );
 
   const visibleEvents = activeEra === "همه" ? enrichedEvents : enrichedEvents.filter((event) => event.era === activeEra);
-  const selected = visibleEvents[activeIndex] ?? visibleEvents[0] ?? enrichedEvents[0];
+  const selected = visibleEvents[0] ?? enrichedEvents[0];
   const selectedGlobalIndex = enrichedEvents.findIndex((event) => event.title === selected?.title);
 
   function chooseEra(era: string) {
     setActiveEra(era);
-    setActiveIndex(0);
   }
 
   return (
@@ -104,7 +102,7 @@ export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
         <div className="lux-frame p-5">
           <div className="flex items-center gap-2 text-gold-light">
             <Sparkles size={18} />
-            <h2 className="font-black">رویداد فعال</h2>
+          <h2 className="font-black">رویداد پیشنهادی</h2>
           </div>
           <div className={`image-scene ${selected?.scene ?? "scene-stone"} relative mt-4 h-48 overflow-hidden rounded-2xl border border-gold/15`}>
             {selected?.imageSrc ? <Image src={selected.imageSrc} alt={`تصویر ${selected.title}`} fill sizes="360px" className="object-cover opacity-80" /> : null}
@@ -137,19 +135,18 @@ export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
             return (
               <article
                 key={event.title}
-                className={`lux-frame relative cursor-pointer p-6 transition md:mr-16 ${
+                className={`lux-frame relative p-6 transition md:mr-16 ${
                   isActive ? "border-gold/45 bg-gold/10" : "hover:border-gold/35"
                 }`}
-                onClick={() => setActiveIndex(index)}
               >
-                <button
-                  type="button"
-                  className="absolute -right-[4.15rem] top-8 hidden h-12 w-12 place-items-center rounded-full border border-gold/30 bg-night text-gold-light transition md:grid"
+                <Link
+                  href={event.href}
+                  className="absolute -right-[4.15rem] top-8 hidden h-12 w-12 place-items-center rounded-full border border-gold/30 bg-night text-gold-light transition hover:bg-gold/10 md:grid"
                   style={{ boxShadow: `0 0 28px ${event.accent}33` }}
-                  aria-label={`انتخاب ${event.title}`}
+                  aria-label={`باز کردن صفحه ${event.title}`}
                 >
                   <MapPin size={18} />
-                </button>
+                </Link>
 
                 <div className="grid gap-5 xl:grid-cols-[190px_minmax(0,1fr)]">
                   <div className={`image-scene ${event.scene} relative min-h-44 overflow-hidden rounded-2xl border border-gold/15`}>
@@ -184,7 +181,6 @@ export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
                       <Link
                         href={event.href}
                         className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:border-gold/45 hover:bg-gold/10"
-                        onClick={(clickEvent) => clickEvent.stopPropagation()}
                       >
                         <BookOpen size={15} />
                         {event.cta}
@@ -192,7 +188,6 @@ export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
                       <Link
                         href="/library"
                         className="inline-flex items-center gap-2 rounded-full border border-warm/10 px-4 py-2 text-sm font-bold text-muted transition hover:border-gold/30 hover:text-gold-light"
-                        onClick={(clickEvent) => clickEvent.stopPropagation()}
                       >
                         <Library size={15} />
                         منبع مرتبط
@@ -207,17 +202,13 @@ export function TimelineExplorer({ events }: { events: TimelineEvent[] }) {
 
         <div className="mt-6 grid gap-3 sm:grid-cols-5">
           {enrichedEvents.map((event, index) => (
-            <button
+            <Link
               key={event.title}
-              type="button"
-              onClick={() => {
-                chooseEra("همه");
-                setActiveIndex(index);
-              }}
+              href={event.href}
               className={`h-2 rounded-full transition ${
                 selectedGlobalIndex === index ? "bg-gold" : "bg-gold/20 hover:bg-gold/45"
               }`}
-              aria-label={`رفتن به رویداد ${event.title}`}
+              aria-label={`باز کردن مسیر ${event.title}`}
             />
           ))}
         </div>

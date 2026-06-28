@@ -21,15 +21,14 @@ function readCompleted() {
 }
 
 export function MuseumTourPanel({ tour }: MuseumTourPanelProps) {
-  const [activeId, setActiveId] = useState(tour.stops[0]?.id ?? "");
   const [completedIds, setCompletedIds] = useState<string[]>([]);
 
   useEffect(() => {
     setCompletedIds(readCompleted());
   }, []);
 
-  const activeStop = tour.stops.find((stop) => stop.id === activeId) ?? tour.stops[0];
   const progress = Math.round((completedIds.length / tour.stops.length) * 100);
+  const nextStop = useMemo(() => tour.stops.find((stop) => !completedIds.includes(stop.id)) ?? tour.stops[0], [completedIds, tour.stops]);
 
   function toggleStop(id: string) {
     const exists = completedIds.includes(id);
@@ -42,8 +41,6 @@ export function MuseumTourPanel({ tour }: MuseumTourPanelProps) {
     setCompletedIds([]);
     window.localStorage.removeItem(storageKey);
   }
-
-  const nextStop = useMemo(() => tour.stops.find((stop) => !completedIds.includes(stop.id)) ?? tour.stops[0], [completedIds, tour.stops]);
 
   return (
     <section className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr]">
@@ -60,18 +57,17 @@ export function MuseumTourPanel({ tour }: MuseumTourPanelProps) {
         </div>
         <div className="mt-5 grid gap-3">
           {tour.stops.map((stop) => {
-            const active = stop.id === activeStop.id;
+            const isNext = stop.id === nextStop.id;
             const done = completedIds.includes(stop.id);
 
             return (
-              <button
+              <Link
                 key={stop.id}
-                type="button"
-                onClick={() => setActiveId(stop.id)}
+                href={stop.href}
                 className={
-                  active
-                    ? "rounded-2xl border border-gold/50 bg-gold/15 p-4 text-right shadow-gold"
-                    : "rounded-2xl border border-gold/12 bg-night/55 p-4 text-right transition hover:border-gold/35 hover:bg-gold/10"
+                  isNext
+                    ? "block rounded-2xl border border-gold/50 bg-gold/15 p-4 text-right shadow-gold"
+                    : "block rounded-2xl border border-gold/12 bg-night/55 p-4 text-right transition hover:border-gold/35 hover:bg-gold/10"
                 }
               >
                 <span className="flex items-center justify-between gap-3">
@@ -79,7 +75,11 @@ export function MuseumTourPanel({ tour }: MuseumTourPanelProps) {
                   {done ? <CheckCircle2 className="text-emerald-100" size={16} /> : <Circle className="text-gold-light" size={16} />}
                 </span>
                 <span className="mt-2 block text-xs leading-6 text-muted">{stop.duration} / {stop.subtitle}</span>
-              </button>
+                <span className="mt-3 inline-flex items-center gap-2 text-xs font-black text-gold-light">
+                  ورود به صفحه
+                  <ArrowLeft size={13} />
+                </span>
+              </Link>
             );
           })}
         </div>
@@ -93,13 +93,13 @@ export function MuseumTourPanel({ tour }: MuseumTourPanelProps) {
         </button>
       </aside>
 
-      {activeStop ? (
+      {nextStop ? (
         <section className="lux-frame overflow-hidden p-5 sm:p-7">
-          <div className={`image-scene ${activeStop.scene} min-h-[440px] rounded-[1.5rem] border border-gold/15`}>
+          <div className={`image-scene ${nextStop.scene} min-h-[440px] rounded-[1.5rem] border border-gold/15`}>
             <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-gold/15 bg-black/45 p-5 backdrop-blur">
-              <p className="text-xs font-black text-gold-light">{activeStop.artifact}</p>
-              <h2 className="mt-2 text-4xl font-black text-warm">{activeStop.title}</h2>
-              <p className="mt-3 text-sm leading-8 text-muted">{activeStop.narration}</p>
+              <p className="text-xs font-black text-gold-light">{nextStop.artifact}</p>
+              <h2 className="mt-2 text-4xl font-black text-warm">{nextStop.title}</h2>
+              <p className="mt-3 text-sm leading-8 text-muted">{nextStop.narration}</p>
             </div>
           </div>
 
@@ -109,22 +109,22 @@ export function MuseumTourPanel({ tour }: MuseumTourPanelProps) {
                 <Headphones size={20} />
                 <p className="text-sm font-black">روایت راهنما</p>
               </div>
-              <p className="mt-4 text-xl font-black leading-10 text-warm">{activeStop.narration}</p>
-              <p className="mt-4 text-sm leading-8 text-muted">{activeStop.curatorNote}</p>
+              <p className="mt-4 text-xl font-black leading-10 text-warm">{nextStop.narration}</p>
+              <p className="mt-4 text-sm leading-8 text-muted">{nextStop.curatorNote}</p>
             </div>
             <div className="rounded-3xl border border-gold/10 bg-royal/45 p-5">
-              <p className="text-xs font-bold text-gold-light">اقدام ایستگاه</p>
+              <p className="text-xs font-bold text-gold-light">ایستگاه بعدی</p>
               <h3 className="mt-3 text-2xl font-black text-warm">{nextStop.title}</h3>
               <div className="mt-5 flex flex-wrap gap-3">
                 <button
                   type="button"
-                  onClick={() => toggleStop(activeStop.id)}
+                  onClick={() => toggleStop(nextStop.id)}
                   className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
                 >
-                  {completedIds.includes(activeStop.id) ? "باز کردن ایستگاه" : "ایستگاه را دیدم"}
+                  {completedIds.includes(nextStop.id) ? "باز کردن ایستگاه" : "ایستگاه را دیدم"}
                   <CheckCircle2 size={16} />
                 </button>
-                <Link href={activeStop.href} className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-5 py-3 text-sm font-bold text-gold-light transition hover:bg-gold/10">
+                <Link href={nextStop.href} className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-5 py-3 text-sm font-bold text-gold-light transition hover:bg-gold/10">
                   ورود به منبع
                   <ArrowLeft size={16} />
                 </Link>

@@ -5,14 +5,14 @@ import { CinematicHub, FeatureLinkGrid } from "@/components/cinematic-hub";
 import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
-  title: "زرتشت",
+  title: "زرتشت | AVESTA-ZOROASTER",
   description: "آغاز سفر با زرتشت؛ زندگی، پیام، گات‌ها و جایگاه او در خرد ایران باستان.",
 };
 
 const journeyCards = [
   {
     title: "پیام‌آور خرد",
-    description: "زرتشت در این روایت نه فقط یک نام تاریخی، بلکه آغاز یک جهان اخلاقی و روشن است.",
+    description: "زرتشت در این روایت فقط یک نام تاریخی نیست؛ آغاز یک جهان اخلاقی و روشن برای انتخاب آگاهانه است.",
     href: "/articles/zoroaster-life-message",
     icon: Sparkles,
     scene: "scene-prophet",
@@ -20,7 +20,7 @@ const journeyCards = [
   },
   {
     title: "گات‌ها",
-    description: "نزدیک‌ترین لایه متنی به پیام زرتشت؛ سرودهایی برای اندیشه، راستی و انتخاب آگاهانه.",
+    description: "نزدیک‌ترین لایه متنی به پیام زرتشت؛ سروده‌هایی برای اندیشه، راستی و انتخاب آگاهانه.",
     href: "/gathas",
     icon: BookOpen,
     scene: "scene-sunrise",

@@ -87,16 +87,16 @@ export default function HomePage() {
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
 
         <div className="relative z-10 mx-auto min-h-[calc(100vh-6rem)] max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:pl-8 lg:pr-[48%] lg:pt-32">
-          <div>
-            <p className="text-xl font-bold text-gold-light">به جهان دیجیتال</p>
+          <div className="home-hero-copy">
+            <p className="home-hero-eyebrow text-xl font-black text-gold-light">به جهان دیجیتال</p>
             <h1 className="gold-text mt-4 max-w-3xl text-6xl font-black leading-[1.12] sm:text-7xl lg:text-8xl">اوستا و زرتشت</h1>
-            <p className="mt-7 max-w-2xl text-xl leading-10 text-warm/82">کاوش در کهن‌ترین تعالیم یکتاپرستی، خرد و فرهنگ ایران باستان.</p>
+            <p className="home-hero-lead mt-7 max-w-2xl text-xl font-semibold leading-10 text-warm/88">کاوش در کهن‌ترین تعالیم یکتاپرستی، خرد و فرهنگ ایران باستان.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <TrackedLink href="/avesta" event="hero_cta_click" payload={{ cta_id: "home-hero-avesta", label: "ورود به پورتال اوستا", locale: "fa", source_route: "/" }} className="inline-flex items-center justify-center gap-3 rounded-xl bg-gradient-to-b from-gold-light to-gold px-7 py-4 font-black text-night shadow-gold transition hover:scale-[1.01]">ورود به پورتال اوستا <ArrowLeft size={18} /></TrackedLink>
               <TrackedLink href="/onboarding" event="hero_cta_click" payload={{ cta_id: "home-hero-onboarding", label: "آغاز مسیر مطالعه", locale: "fa", source_route: "/" }} className="inline-flex items-center justify-center gap-3 rounded-xl border border-gold/28 bg-black/18 px-7 py-4 font-bold text-gold-light transition hover:bg-gold/10">آغاز مسیر مطالعه</TrackedLink>
             </div>
             <div className="mt-14 grid max-w-3xl grid-cols-2 gap-3 md:grid-cols-4">
-              {featureBadges.map(([title, subtitle, Icon]) => <div key={title} className="border-r border-gold/16 px-4 first:border-r-0 md:first:border-r"><Icon className="text-gold-light" size={27} /><p className="mt-4 text-sm font-black text-warm">{title}</p><p className="mt-1 text-xs leading-6 text-muted">{subtitle}</p></div>)}
+              {featureBadges.map(([title, subtitle, Icon]) => <div key={title} className="home-feature-badge border-r border-gold/16 px-4 first:border-r-0 md:first:border-r"><Icon className="text-gold-light" size={27} /><p className="mt-4 text-sm font-black text-warm">{title}</p><p className="mt-1 text-xs font-medium leading-6 text-muted">{subtitle}</p></div>)}
             </div>
           </div>
           <div className="relative hidden min-h-[440px] sm:min-h-[560px]">

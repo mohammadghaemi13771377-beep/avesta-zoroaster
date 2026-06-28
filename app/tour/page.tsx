@@ -5,7 +5,8 @@ import { getMuseumTour, getMuseumTourStats } from "@/lib/museum-tour";
 
 export const metadata: Metadata = {
   title: "تور موزه‌ای جهان اوستا | AVESTA-ZOROASTER",
-  description: "تور هدایت‌شده و سینمایی برای تجربه پورتال اوستا، گات‌ها، واژه روز، رسانه، راهنمای روزانه و نورسنج اشا.",
+  description:
+    "تور هدایت‌شده و سینمایی برای تجربه پورتال اوستا، گات‌ها، واژه روز، رسانه، راهنمای روزانه و نورسنج اشا.",
 };
 
 export default function TourPage() {
@@ -19,14 +20,12 @@ export default function TourPage() {
       scene="scene-stone"
       roman="T"
       actions={[
-        { label: "شروع تور", href: "#tour" },
+        { label: "ورود به پورتال اوستا", href: "/avesta" },
         { label: "نمایشگاه‌ها", href: "/exhibitions", variant: "secondary" },
       ]}
       stats={getMuseumTourStats()}
     >
-      <div id="tour" className="scroll-mt-28">
-        <MuseumTourPanel tour={tour} />
-      </div>
+      <MuseumTourPanel tour={tour} />
     </CinematicHub>
   );
 }

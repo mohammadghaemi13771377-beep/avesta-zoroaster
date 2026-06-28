@@ -7,8 +7,8 @@ import { CollectionsBoard } from "@/components/collections-board";
 import { contentCollections } from "@/lib/content-collections";
 
 export const metadata: Metadata = {
-  title: "کلکسیون های مطالعاتی",
-  description: "مجموعه های موضوعی AVESTA-ZOROASTER برای مطالعه خرد، نیایش، ایران باستان و یکتاپرستی.",
+  title: "کلکسیون‌های مطالعاتی | AVESTA-ZOROASTER",
+  description: "مجموعه‌های موضوعی AVESTA-ZOROASTER برای مطالعه خرد، نیایش، ایران باستان و یکتاپرستی.",
 };
 
 const featureCards: Array<{
@@ -18,17 +18,17 @@ const featureCards: Array<{
 }> = [
   {
     title: "مطالعه هدفمند",
-    description: "هر کلکسیون یک مسیر موضوعی با لینک های واقعی سایت دارد.",
+    description: "هر کلکسیون یک مسیر موضوعی با لینک‌های واقعی سایت دارد.",
     Icon: Compass,
   },
   {
     title: "ذخیره مجموعه",
-    description: "کاربر می تواند کلکسیون های محبوبش را در پروفایل دنبال کند.",
+    description: "کاربر می‌تواند کلکسیون‌های محبوبش را در پروفایل دنبال کند.",
     Icon: Bookmark,
   },
   {
     title: "آماده محصول",
-    description: "بعدا این ساختار می تواند به اشتراک ویژه، دوره و مسیر آموزشی تبدیل شود.",
+    description: "بعداً این ساختار می‌تواند به اشتراک ویژه، دوره و مسیر آموزشی تبدیل شود.",
     Icon: Layers3,
   },
 ];
@@ -37,13 +37,13 @@ export default function CollectionsPage() {
   return (
     <CinematicHub
       eyebrow="Curated Collections"
-      title="کلکسیون های مطالعاتی اوستا"
-      lead="مسیرهای آماده برای کاربرانی که می خواهند به جای جستجوی پراکنده، از یک مجموعه موضوعی وارد جهان اوستا، زرتشت و ایران باستان شوند."
+      title="کلکسیون‌های مطالعاتی اوستا"
+      lead="مسیرهای آماده برای کاربرانی که می‌خواهند به جای جستجوی پراکنده، از یک مجموعه موضوعی وارد جهان اوستا، زرتشت و ایران باستان شوند."
       scene="scene-tablets"
       roman="C"
       actions={[
-        { label: "دیدن کلکسیون ها", href: "#collections" },
-        { label: "برنامه مطالعه", href: "/study-plan", variant: "secondary" },
+        { label: "برنامه مطالعه", href: "/study-plan" },
+        { label: "اوستا", href: "/avesta", variant: "secondary" },
       ]}
       stats={[
         { value: `${contentCollections.length}`, label: "کلکسیون اولیه" },
@@ -61,7 +61,7 @@ export default function CollectionsPage() {
         ))}
       </div>
 
-      <div id="collections" className="pt-8">
+      <div className="pt-8">
         <CollectionsBoard collections={contentCollections} />
       </div>
     </CinematicHub>

@@ -1,8 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import { ArrowLeft, BookOpen, Compass, Flame, Quote, Sparkles } from "lucide-react";
 import type { MonotheismPath, MonotheismPathTone } from "@/lib/monotheism-paths";
@@ -27,9 +28,17 @@ const toneClass: Record<MonotheismPathTone, string> = {
 };
 
 export function MonotheismPathsBoard({ paths }: MonotheismPathsBoardProps) {
-  const [activeId, setActiveId] = useState(paths[0]?.id ?? "");
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const requestedPath = searchParams.get("path") ?? "";
   const summary = useMemo(() => getMonotheismPathSummary(paths), [paths]);
-  const activePath = paths.find((path) => path.id === activeId) ?? paths[0];
+  const activePath = paths.find((path) => path.id === requestedPath) ?? paths[0];
+
+  function pathHref(pathId: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("path", pathId);
+    return `${pathname}?${params.toString()}`;
+  }
 
   return (
     <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr]">
@@ -51,10 +60,9 @@ export function MonotheismPathsBoard({ paths }: MonotheismPathsBoardProps) {
             const selected = path.id === activePath.id;
 
             return (
-              <button
+              <Link
                 key={path.id}
-                type="button"
-                onClick={() => setActiveId(path.id)}
+                href={pathHref(path.id)}
                 className={
                   selected
                     ? "rounded-2xl border border-gold/50 bg-gold/15 p-4 text-right shadow-gold"
@@ -63,7 +71,7 @@ export function MonotheismPathsBoard({ paths }: MonotheismPathsBoardProps) {
               >
                 <span className="text-base font-black text-warm">{path.title}</span>
                 <span className="mt-2 block text-xs leading-6 text-muted">{path.subtitle}</span>
-              </button>
+              </Link>
             );
           })}
         </div>

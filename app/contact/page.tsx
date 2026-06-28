@@ -9,31 +9,31 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "راه ارتباطی برای پژوهشگران، مترجمان، هنرمندان، طراحان AI و همکاران فرهنگی پروژه AVESTA-ZOROASTER.",
   path: "/contact",
-  image: "/images/ai/zoroaster-hero.jpg"
+  image: "/images/ai/zoroaster-hero.jpg",
 });
 
 const collaborationPaths = [
   {
     title: "پژوهش و منبع",
     body: "معرفی منابع معتبر، نسخه‌ها، مقاله‌ها، تصحیح خطاها و پیشنهاد citation برای صفحات اوستا.",
-    icon: ScrollText
+    icon: ScrollText,
   },
   {
     title: "ترجمه و ویرایش",
-    body: "همکاری برای ترجمه فارسی/انگلیسی طبیعی، دقیق و قابل فهم برای مخاطب عمومی و پژوهشگر.",
-    icon: UsersRound
+    body: "همکاری برای ترجمه فارسی و انگلیسی طبیعی، دقیق و قابل فهم برای مخاطب عمومی و پژوهشگر.",
+    icon: UsersRound,
   },
   {
     title: "تصویر و رسانه",
-    body: "تولید تصویر، ویدئو، صوت، poster و نمایشگاه‌های دیجیتال با هویت ایران باستان و اوستا.",
-    icon: Palette
-  }
+    body: "تولید تصویر، ویدئو، صوت، پوستر و نمایشگاه‌های دیجیتال با هویت ایران باستان و اوستا.",
+    icon: Palette,
+  },
 ];
 
 export default function ContactPage() {
   const breadcrumb = breadcrumbJsonLd([
     { name: "خانه", href: "/" },
-    { name: "تماس و همکاری", href: "/contact" }
+    { name: "تماس و همکاری", href: "/contact" },
   ]);
 
   return (
@@ -46,12 +46,12 @@ export default function ContactPage() {
       roman="C"
       actions={[
         { label: "مرکز اعتماد", href: "/trust-center" },
-        { label: "روش پژوهش", href: "/research-methodology", variant: "secondary" }
+        { label: "روش پژوهش", href: "/research-methodology", variant: "secondary" },
       ]}
       stats={[
         { value: "Research", label: "پژوهش و منبع" },
         { value: "Media", label: "تصویر و صوت" },
-        { value: "Global", label: "فارسی و انگلیسی" }
+        { value: "Global", label: "فارسی و انگلیسی" },
       ]}
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
@@ -71,8 +71,7 @@ export default function ContactPage() {
             <p className="gold-text text-sm font-semibold tracking-[0.24em]">COLLABORATION INBOX</p>
             <h2 className="mt-3 text-3xl font-black text-warm">پیام پیشنهادی برای شروع همکاری</h2>
             <p className="mt-4 leading-8 text-muted">
-              تا قبل از اتصال فرم production، بهترین مسیر این است که پیشنهاد همکاری با موضوع، زمینه تخصصی، نمونه کار/منبع
-              و مسیر پیشنهادی صفحه ارسال شود.
+              تا قبل از اتصال فرم production، بهترین مسیر این است که پیشنهاد همکاری با موضوع، زمینه تخصصی، نمونه کار یا منبع، و مسیر پیشنهادی صفحه ارسال شود.
             </p>
           </div>
           <Link href="mailto:hello@avesta-zoroaster.com" className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light">

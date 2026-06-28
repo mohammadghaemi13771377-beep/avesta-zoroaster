@@ -64,7 +64,7 @@ export default function CalendarEventPage({ params }: CalendarEventPageProps) {
       <section className="hero-cosmos relative px-4 pb-16 pt-12 sm:px-6 lg:px-8">
         <div className="hero-horizon" />
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
+          <div className="hub-hero-copy">
             <Link
               href="/calendar"
               className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10"
@@ -72,10 +72,10 @@ export default function CalendarEventPage({ params }: CalendarEventPageProps) {
               <ArrowRight size={17} />
               بازگشت به گاه‌شمار
             </Link>
-            <p className="gold-text mt-10 text-sm font-semibold tracking-[0.3em]">SACRED CALENDAR</p>
-            <h1 className="mt-4 text-5xl font-black leading-[1.15] text-warm sm:text-7xl">{event.title}</h1>
+            <p className="hub-hero-eyebrow gold-text mt-10 text-sm font-semibold tracking-[0.3em]">SACRED CALENDAR</p>
+            <h1 className="hub-hero-title mt-4 text-5xl font-black leading-[1.15] text-warm sm:text-7xl">{event.title}</h1>
             <p className="mt-5 text-2xl font-black leading-10 text-gold-light">{event.subtitle}</p>
-            <p className="mt-6 max-w-3xl text-lg leading-9 text-muted">{event.description}</p>
+            <p className="hub-hero-lead mt-6 max-w-3xl text-lg leading-9 text-muted">{event.description}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Badge icon={CalendarDays} label={event.dateLabel} />
               <Badge icon={Sparkles} label={seasonLabels[event.season]} />

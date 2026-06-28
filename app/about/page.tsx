@@ -4,7 +4,7 @@ import { BookOpen, Compass, Eye, Sparkles } from "lucide-react";
 import { CinematicHub, FeatureLinkGrid } from "@/components/cinematic-hub";
 
 export const metadata: Metadata = {
-  title: "درباره ما",
+  title: "درباره ما | AVESTA-ZOROASTER",
   description: "ماموریت AVESTA-ZOROASTER و چشم‌انداز جهان دیجیتال اوستا و زرتشت.",
 };
 

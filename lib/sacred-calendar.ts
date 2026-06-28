@@ -36,7 +36,7 @@ export const sacredCalendarEvents: SacredCalendarEvent[] = [
     season: "spring",
     scene: "scene-sunrise",
     description:
-      "نوروز در این سایت به عنوان دروازه نوزایی دیده می‌شود؛ لحظه‌ای برای پاک‌سازی، امید و بازگشت به نظم روشن زندگی.",
+      "نوروز در AVESTA-ZOROASTER فقط یک تاریخ نیست؛ دروازه نوزایی، پاک‌سازی ذهن، امید و بازگشت به نظم روشن زندگی است.",
     spiritualTheme: "نوزایی، راستی، روشنایی و آغاز اخلاقی",
     readingPath: [
       { label: "اوستا چیست؟", href: "/avesta" },
@@ -55,7 +55,7 @@ export const sacredCalendarEvents: SacredCalendarEvent[] = [
     season: "summer",
     scene: "scene-mountain",
     description:
-      "تیرگان می‌تواند به هاب آب، طبیعت و پیمان تبدیل شود؛ صفحه‌ای مناسب برای رسانه، مقاله و محتوای آموزشی کوتاه.",
+      "تیرگان می‌تواند هاب آب، طبیعت و پیمان باشد؛ صفحه‌ای مناسب برای رسانه، مقاله و محتوای آموزشی کوتاه درباره پیوند انسان با جهان زنده.",
     spiritualTheme: "پیمان، آب، طبیعت و سپاسگزاری",
     readingPath: [
       { label: "یشت‌ها", href: "/avesta/yashts" },
@@ -112,12 +112,12 @@ export const sacredCalendarEvents: SacredCalendarEvent[] = [
     season: "timeless",
     scene: "scene-cosmic",
     description:
-      "این مناسبت روزانه، موتور retention سایت است؛ هر روز یک پیام اخلاقی، یک نیت و یک قدم کوچک.",
+      "این مناسبت روزانه موتور بازگشت کاربر است؛ هر روز یک پیام اخلاقی، یک نیت و یک قدم کوچک.",
     spiritualTheme: "راستی، انتخاب، خرد و استمرار",
     readingPath: [
       { label: "اوستای امروز", href: "/" },
       { label: "دفتر روزانه", href: "/reflection" },
-      { label: "مأموریت‌های خرد", href: "/quests" },
+      { label: "ماموریت‌های خرد", href: "/quests" },
     ],
     ritualIdeas: ["ثبت پندار نیک", "گفتن یک جمله آگاهانه", "انجام یک کار کوچک نیک"],
     productIdeas: ["دفتر روزانه", "استیکر پندار نیک", "کارت‌های الهام روزانه"],

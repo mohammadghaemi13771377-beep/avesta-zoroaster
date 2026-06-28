@@ -27,7 +27,6 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
   const [category, setCategory] = useState(allLabel);
   const [tag, setTag] = useState(allLabel);
   const [sort, setSort] = useState("newest");
-  const [activeSlug, setActiveSlug] = useState(articles[0]?.slug ?? "");
 
   const categories = useMemo(
     () => [allLabel, ...Array.from(new Set(articles.map((article) => article.category)))],
@@ -63,7 +62,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
     setSort("newest");
   }
 
-  const activeArticle = filteredArticles.find((article) => article.slug === activeSlug) ?? filteredArticles[0] ?? articles[0];
+  const activeArticle = filteredArticles[0] ?? articles[0];
 
   return (
     <section className="mt-12">
@@ -120,10 +119,9 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {filteredArticles.length ? (
               filteredArticles.map((article, index) => (
-                <button
+                <Link
                   key={article.slug}
-                  type="button"
-                  onClick={() => setActiveSlug(article.slug)}
+                  href={`/articles/${article.slug}`}
                   className={`lux-frame group block p-5 text-right transition hover:-translate-y-1 hover:border-gold/45 hover:shadow-gold ${
                     activeArticle?.slug === article.slug ? "border-gold/45 bg-gold/10" : ""
                   }`}
@@ -169,7 +167,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
                       </span>
                     ))}
                   </div>
-                </button>
+                </Link>
               ))
             ) : (
               <div className="lux-frame p-8 text-center md:col-span-2">
@@ -199,7 +197,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
                   {activeArticle.coverTone}
                 </div>
               </div>
-              <p className="gold-text mt-5 text-xs font-semibold tracking-[0.25em]">ACTIVE ARTICLE</p>
+              <p className="gold-text mt-5 text-xs font-semibold tracking-[0.25em]">FEATURED RESULT</p>
               <h2 className="mt-2 text-3xl font-black text-warm">{activeArticle.title}</h2>
               <p className="mt-3 leading-8 text-muted">{activeArticle.excerpt}</p>
               <div className="mt-5 flex flex-wrap gap-2">

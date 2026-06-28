@@ -110,11 +110,11 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
             بازگشت به {section.title}
           </Link>
 
-          <div className="mt-10 max-w-3xl">
+          <div className="hub-hero-copy mt-10 max-w-3xl">
             <div>
-              <p className="text-sm font-black text-gold-light">اوستا / {section.title}</p>
-              <h1 className="gold-text mt-4 text-5xl font-black leading-tight sm:text-7xl">{chapter.title}</h1>
-              <p className="mt-6 max-w-3xl text-lg leading-10 text-warm/82">
+              <p className="hub-hero-eyebrow text-sm font-black text-gold-light">اوستا / {section.title}</p>
+              <h1 className="hub-hero-title gold-text mt-4 text-5xl font-black leading-tight sm:text-7xl">{chapter.title}</h1>
+              <p className="hub-hero-lead mt-6 max-w-3xl text-lg font-semibold leading-10 text-warm/86">
                 {guide?.chapterIntro ?? chapter.description ?? section.description}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -125,10 +125,13 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
                   شروع مطالعه بندها
                   <ArrowLeft className="h-4 w-4" />
                 </Link>
-                <button className="inline-flex items-center gap-2 rounded-xl border border-gold/25 bg-black/18 px-5 py-3 font-bold text-gold-light">
+                <Link
+                  href={`/media?section=${section.slug}&chapter=${chapter.slug}`}
+                  className="inline-flex items-center gap-2 rounded-xl border border-gold/25 bg-black/18 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10"
+                >
                   <Headphones className="h-4 w-4" />
-                  صوت آماده اتصال
-                </button>
+                  رسانه‌های مرتبط
+                </Link>
               </div>
             </div>
 
