@@ -248,8 +248,8 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
               <p className="text-sm font-black text-gold-light">بندها و قطعه‌های آماده</p>
               <h2 className="mt-2 text-3xl font-black text-warm">مسیر خواندن {chapter.title}</h2>
             </div>
-            <Link href={`/admin/avesta`} className="text-sm font-bold text-gold-light hover:text-warm">
-              مدیریت محتوا در ادمین
+            <Link href={`/media?section=${section.slug}&chapter=${chapter.slug}`} className="text-sm font-bold text-gold-light hover:text-warm">
+              رسانه و منابع مرتبط
             </Link>
           </div>
 

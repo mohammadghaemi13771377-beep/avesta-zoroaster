@@ -1,6 +1,7 @@
 import { avestaSections } from "@/lib/content";
 import { sampleChapters, sampleVerses } from "@/lib/sample-content";
 import { isLocale, type Locale } from "@/lib/i18n";
+import { sectionCoverBySlug } from "@/lib/visual-assets";
 
 type SearchParams = Record<string, string | string[] | undefined> | undefined;
 type PrismaLocale = "FA" | "EN";
@@ -155,7 +156,7 @@ async function readSectionsFromDatabase(locale: Locale): Promise<AvestaSectionVi
         href: `/avesta/${section.slug}${locale === "en" ? "?lang=en" : ""}`,
         description: translation?.description ?? section.description,
         atmosphere: atmosphereBySlug.get(section.slug) ?? "scene-cosmic",
-        coverImage: section.coverImage,
+        coverImage: section.coverImage ?? sectionCoverBySlug[section.slug],
         themeColor: section.themeColor,
         order: section.order
       };

@@ -156,7 +156,7 @@ export default function HomePage() {
         <div className="mb-7 flex items-center justify-center gap-4"><span className="h-px w-20 bg-gradient-to-l from-transparent to-gold/70" /><h2 className="gold-text text-center text-3xl font-black">پرتال اوستا</h2><span className="h-px w-20 bg-gradient-to-r from-transparent to-gold/70" /></div>
         <p className="mx-auto mb-7 max-w-2xl text-center leading-8 text-muted">برای ورود عمیق‌تر، یک بخش را انتخاب کنید. هر مسیر صفحه و روایت مستقل خود را دارد.</p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
-          {avestaSections.map((section) => <SectionCard key={section.slug} title={section.title} description={section.description} href={section.href} atmosphere={section.atmosphere} imageSrc={section.coverImage} roman={section.roman} tracking={{ event: "avesta_section_opened", payload: { section_slug: section.slug, card_position: section.roman, source_route: "/" } }} />)}
+          {avestaSections.map((section, index) => <SectionCard key={section.slug} title={section.title} description={section.description} href={section.href} atmosphere={section.atmosphere} imageSrc={section.coverImage} tracking={{ event: "avesta_section_opened", payload: { section_slug: section.slug, card_position: index + 1, source_route: "/" } }} />)}
         </div>
         </div>
       </section></ScrollReveal>

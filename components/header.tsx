@@ -31,7 +31,7 @@ export function Header() {
         <nav className="hidden items-center gap-1 text-sm text-warm/86 lg:flex">
           {navItems.map((item) =>
             item.href === "/avesta" ? (
-              <div className="group relative" key={item.href}>
+              <div className="header-dropdown-wrap group relative -my-2 py-2" key={item.href}>
                 <HeaderNavLink
                   href={item.href}
                   className="header-nav-pill flex items-center gap-1 rounded-xl px-4 py-2 transition"
@@ -39,17 +39,16 @@ export function Header() {
                   {item.label}
                   <ChevronDown size={15} />
                 </HeaderNavLink>
-                <div className="header-dropdown invisible absolute right-0 top-11 w-72 translate-y-2 rounded-2xl border border-gold/22 bg-[#071521]/95 p-3 opacity-0 shadow-2xl shadow-black/35 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="header-dropdown invisible absolute right-0 top-full mt-2 w-72 translate-y-2 rounded-2xl border border-gold/22 bg-[#071521]/95 p-3 opacity-0 shadow-2xl shadow-black/35 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   <p className="px-3 pb-2 text-xs font-black text-gold-light">دروازه‌های اوستا</p>
                   {avestaSections.map((section) => (
                     <HeaderNavLink
                       key={section.slug}
                       href={section.href}
-                      className="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-warm/82 transition hover:bg-gold/10 hover:text-gold-light"
+                      className="block rounded-xl px-4 py-3 text-sm text-warm/82 transition hover:bg-gold/10 hover:text-gold-light"
                       activeClassName="bg-gold/10 text-gold-light"
                     >
                       <span>{section.title}</span>
-                      <span className="font-serif text-xs text-gold/70">{section.roman}</span>
                     </HeaderNavLink>
                   ))}
                   <HeaderNavLink
@@ -71,12 +70,12 @@ export function Header() {
               </HeaderNavLink>
             )
           )}
-          <div className="group relative">
+          <div className="header-dropdown-wrap group relative -my-2 py-2">
             <button type="button" className="header-nav-pill flex items-center gap-1 rounded-xl px-4 py-2 transition">
               کاوش
               <ChevronDown size={15} />
             </button>
-            <div className="header-dropdown invisible absolute left-0 top-11 grid w-[560px] translate-y-2 grid-cols-2 gap-1 rounded-2xl border border-gold/22 bg-[#071521]/95 p-3 opacity-0 shadow-2xl shadow-black/35 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+            <div className="header-dropdown invisible absolute left-0 top-full mt-2 grid w-[560px] translate-y-2 grid-cols-2 gap-1 rounded-2xl border border-gold/22 bg-[#071521]/95 p-3 opacity-0 shadow-2xl shadow-black/35 transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
               {exploreNavItems.map((item) => (
                 <Link key={item.href} href={item.href} className="rounded-xl px-4 py-3 transition hover:bg-gold/10">
                   <span className="block text-sm font-black text-warm/90">{item.label}</span>

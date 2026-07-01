@@ -5,14 +5,13 @@ import { ArrowLeft, BookOpen, Flame, Sparkles } from "lucide-react";
 import { AvestaStudyPathsPanel } from "@/components/avesta-study-paths-panel";
 import { AvestaSectionExplorer } from "@/components/avesta-section-explorer";
 import { TrackedLink } from "@/components/tracked-link";
-import { getAvestaCompletionSections, getAvestaCompletionSummary } from "@/lib/avesta-completion";
 import { getAvestaSections, getLocaleFromSearchParams } from "@/lib/avesta-repository";
 import { getAvestaStudyPaths } from "@/lib/avesta-study-paths";
 import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
-  title: "پورتال اوستا",
-  description: "نقشه سینمایی جهان اوستا؛ یسنا، گات‌ها، ویسپرد، وندیداد، یشت‌ها، خرده اوستا و هات‌ها."
+  title: "جهان اوستا",
+  description: "دروازه مطالعه بخش‌های اوستا؛ یسنا، گات‌ها، ویسپرد، وندیداد، یشت‌ها، خرده اوستا و هات‌ها."
 };
 
 type PageProps = {
@@ -22,9 +21,13 @@ type PageProps = {
 export default async function AvestaPortalPage({ searchParams }: PageProps) {
   const locale = getLocaleFromSearchParams(searchParams);
   const sections = await getAvestaSections(locale);
-  const completionSections = getAvestaCompletionSections();
-  const completionSummary = getAvestaCompletionSummary(completionSections);
   const studyPaths = getAvestaStudyPaths();
+  const portalStats = [
+    { label: "بخش‌های اصلی", value: `${sections.length}` },
+    { label: "مسیرهای مطالعه", value: `${studyPaths.length}` },
+    { label: "جستجوی درون اوستا", value: "فعال" },
+    { label: "رسانه و منابع", value: "در حال گسترش" },
+  ];
 
   return (
     <main className="overflow-hidden pt-24" dir={locale === "en" ? "ltr" : "rtl"}>
@@ -44,14 +47,14 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-bold text-gold-light">
               <Sparkles size={16} />
-              قلب پروژه
+              دروازه اوستا
             </p>
             <h1 className="gold-text mt-6 max-w-3xl text-6xl font-black leading-[1.12] sm:text-7xl">
-              پورتال بزرگ اوستا
+              جهان اوستا
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-10 text-warm/82">
-              این صفحه مثل یک موزه دیجیتال و نقشه جهان اوستا طراحی شده است؛ هر بخش فضای اختصاصی، تصویرسازی
-              هنری و مسیر مطالعه خود را دارد.
+              از اینجا وارد بخش‌های مستقل اوستا می‌شوید. یسنا، گات‌ها، وندیداد، یشت‌ها و خرده‌اوستا هرکدام صفحه،
+              تصویر، مسیر مطالعه و فصل‌های مخصوص خودشان را دارند.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <TrackedLink
@@ -64,7 +67,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
                 <ArrowLeft size={17} />
               </TrackedLink>
               <TrackedLink
-                href="/gathas"
+                href="/avesta/gathas"
                 event="hero_cta_click"
                 payload={{ cta_id: "avesta-hero-gathas", label: "مطالعه گات‌ها", locale: locale, source_route: "/avesta" }}
                 className="inline-flex items-center gap-2 rounded-xl border border-gold/28 px-6 py-3 font-bold text-gold-light"
@@ -90,10 +93,9 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
 
       <section className="relative mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
         <div className="mb-6 grid gap-4 md:grid-cols-4">
-          <PortalStat label="بخش‌های اصلی" value={`${completionSummary.sections}`} />
-          <PortalStat label="آیتم‌های آماده" value={`${completionSummary.ready}`} />
-          <PortalStat label="تکمیل کل جهان" value={`${completionSummary.completion}%`} />
-          <PortalStat label="نیاز فوری" value={completionSummary.weakestField.label} />
+          {portalStats.map((stat) => (
+            <PortalStat key={stat.label} label={stat.label} value={stat.value} />
+          ))}
         </div>
 
         <AvestaSectionExplorer sections={sections} />

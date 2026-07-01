@@ -5,6 +5,7 @@ import { ArrowLeft, BookOpen, Globe2, ShieldCheck, Sparkles } from "lucide-react
 import { SectionCard } from "@/components/section-card";
 import { introCards } from "@/lib/content";
 import { getDictionary, type Locale, withLocale } from "@/lib/i18n";
+import { routeHeroByPath } from "@/lib/visual-assets";
 
 const featureBadges = [
   { title: "Cinematic", subtitle: "Digital museum", icon: Sparkles },
@@ -13,6 +14,13 @@ const featureBadges = [
   { title: "Trusted", subtitle: "Structured sources", icon: ShieldCheck },
 ];
 
+const introImageByHref: Record<string, string> = {
+  "/avesta": "/images/ai/avesta-portal.jpg",
+  "/zoroaster": "/images/ai/zoroaster-hero.jpg",
+  "/gathas": "/images/ai/gathas-hero.jpg",
+  "/zoroastrianism": "/images/ai/zoroastrianism-hero.jpg",
+};
+
 export function LocalizedHome({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
   const isEnglish = locale === "en";
@@ -20,6 +28,23 @@ export function LocalizedHome({ locale }: { locale: Locale }) {
   return (
     <main dir={isEnglish ? "ltr" : "rtl"} className="overflow-hidden">
       <section className="hero-cosmos relative min-h-screen pt-24">
+        <Image
+          src={routeHeroByPath["/"]}
+          alt={isEnglish ? "Cinematic sunrise over Persepolis and Avesta-Zoroaster" : "طلوع سینمایی جهان اوستا و زرتشت"}
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-cover md:block"
+        />
+        <Image
+          src="/images/ai/home-hero-mobile.jpg"
+          alt={isEnglish ? "Mobile hero sunrise over ancient Persian columns" : "طلوع سینمایی موبایل اوستا و زرتشت"}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[66%_center] md:hidden"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#05080d]/82 via-[#071521]/42 to-[#071521]/10 md:bg-gradient-to-r md:from-[#05080d]/92 md:via-[#071521]/62 md:to-[#071521]/8" />
         <div className="hero-horizon" />
         <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
           <div>
@@ -80,7 +105,13 @@ export function LocalizedHome({ locale }: { locale: Locale }) {
         <h2 className="mt-3 text-3xl font-black text-warm sm:text-4xl">{t.gatewayTitle}</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {introCards.map((card) => (
-            <SectionCard key={card.title} {...card} href={withLocale(card.href, locale)} kicker={t.introKicker} />
+            <SectionCard
+              key={card.title}
+              {...card}
+              href={withLocale(card.href, locale)}
+              imageSrc={introImageByHref[card.href]}
+              kicker={t.introKicker}
+            />
           ))}
         </div>
       </section>

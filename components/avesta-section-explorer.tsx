@@ -23,11 +23,12 @@ export function AvestaSectionExplorer({ sections }: { sections: AvestaSectionVie
         <div>
           <div className="mb-3 flex items-center gap-3 text-gold-light">
             <Compass size={18} />
-            <p className="text-xs font-black tracking-[0.16em]">DIRECT GATES</p>
+            <p className="text-xs font-black tracking-[0.16em]">مسیرهای مستقیم</p>
           </div>
-          <h2 className="gold-text text-3xl font-black">دروازه‌های مستقل اوستا</h2>
+          <h2 className="gold-text text-3xl font-black">ورود مستقیم به هر بخش</h2>
           <p className="mt-3 max-w-2xl leading-8 text-muted">
-            اینجا فقط نقشه ورود است. هر انتخاب، صفحه اختصاصی همان بخش را باز می‌کند؛ مثلاً وندیداد فقط وندیداد را نشان می‌دهد، نه دوباره کل اوستا را.
+            هر گزینه شما را به صفحه همان بخش می‌برد؛ وندیداد فقط فصل‌ها و روایت‌های وندیداد را نشان می‌دهد،
+            یشت‌ها فقط یشت‌ها را، و خرده‌اوستا مسیر نیایش‌های روزانه را.
           </p>
         </div>
         <span className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-sm font-bold text-gold-light">
@@ -46,7 +47,6 @@ export function AvestaSectionExplorer({ sections }: { sections: AvestaSectionVie
             className="group flex min-h-28 items-center justify-between gap-4 rounded-2xl border border-gold/15 bg-night/46 p-4 transition hover:-translate-y-1 hover:border-gold/45 hover:bg-gold/10"
           >
             <span>
-              <span className="text-xs font-black text-gold-light">{section.roman ?? index + 1}</span>
               <span className="mt-1 block text-lg font-black leading-8 text-warm">{section.title}</span>
               <span className="mt-1 block text-xs leading-6 text-muted">{sectionRouteNotes[section.slug] ?? "ورود به صفحه اختصاصی"}</span>
             </span>
@@ -64,7 +64,6 @@ export function AvestaSectionExplorer({ sections }: { sections: AvestaSectionVie
             href={section.href}
             atmosphere={section.atmosphere ?? "scene-cosmic"}
             imageSrc={sectionCoverBySlug[section.slug]}
-            roman={section.roman ?? `${index + 1}`}
             kicker="ورود به صفحه اختصاصی"
             tracking={{
               event: "avesta_section_opened",

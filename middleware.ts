@@ -1,6 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { AUTH_COOKIE } from "@/lib/auth-constants";
-import { getAvestaAccessDecision } from "@/lib/avesta-access-control";
 
 type SessionRole = "READER" | "EDITOR" | "ADMIN";
 
@@ -60,27 +59,6 @@ export function middleware(request: NextRequest) {
 
   const session = decodeMiddlewareSession(request.cookies.get(AUTH_COOKIE)?.value);
 
-  if (pathname === "/avesta" || pathname.startsWith("/avesta/")) {
-    const access = getAvestaAccessDecision(pathname, session?.role ?? null);
-
-    if (!access.allowed) {
-      if (access.action === "login") {
-        const loginUrl = request.nextUrl.clone();
-        loginUrl.pathname = "/login";
-        loginUrl.searchParams.set("next", pathname);
-        loginUrl.searchParams.set("visibility", access.visibility);
-        return NextResponse.redirect(loginUrl);
-      }
-
-      const deniedUrl = request.nextUrl.clone();
-      deniedUrl.pathname = "/avesta";
-      deniedUrl.searchParams.set("access", "restricted");
-      deniedUrl.searchParams.set("visibility", access.visibility);
-      deniedUrl.searchParams.set("required", access.requiredRole);
-      return NextResponse.redirect(deniedUrl);
-    }
-  }
-
   if (!needsAuth) {
     return NextResponse.next();
   }
@@ -122,7 +100,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/admin/:path*", "/api/admin/:path*", "/avesta", "/avesta/:path*"]
+  matcher: ["/profile/:path*", "/admin/:path*", "/api/admin/:path*"]
 };
 
 function getRequiredPermission(pathname: string) {

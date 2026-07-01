@@ -196,8 +196,7 @@ export default async function VersePage({ params, searchParams }: PageProps) {
                 />
               ) : null}
               <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/22 to-black/10" />
-              <div className="absolute inset-x-8 top-8 flex items-center justify-between text-gold-200/80">
-                <span className="font-serif text-4xl">{section.roman ?? "I"}</span>
+              <div className="absolute left-8 top-8 text-gold-200/80">
                 <Sparkles className="h-6 w-6" />
               </div>
               <div className="absolute bottom-8 right-8 max-w-xs">

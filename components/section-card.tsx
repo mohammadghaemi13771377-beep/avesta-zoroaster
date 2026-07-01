@@ -42,11 +42,6 @@ export function SectionCard({ title, description, href, atmosphere, kicker, roma
           />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-t from-[#020608]/82 via-[#071521]/10 to-transparent" />
-        {roman ? (
-          <div className="absolute right-3 top-3 z-10 rounded-full border border-gold/35 bg-black/30 px-3 py-1 font-display text-sm font-bold text-gold-light backdrop-blur">
-            {roman}
-          </div>
-        ) : null}
         <div className="absolute inset-x-4 bottom-4 z-10 h-px bg-gradient-to-l from-transparent via-gold/65 to-transparent" />
       </div>
 

@@ -32,7 +32,17 @@ export function Footer() {
             </p>
           </div>
 
-          <FooterColumn title="پروژه" links={[["درباره ما", "/about"], ["ماموریت", "/about"], ["حریم خصوصی", "/privacy-center"], ["همکاری", "/about"]]} />
+          <FooterColumn
+            title="پروژه"
+            links={[
+              ["درباره ما", "/about"],
+              ["ماموریت", "/mission"],
+              ["همکاری", "/collaboration"],
+              ["تماس با ما", "/contact"],
+              ["حریم خصوصی", "/privacy-center"],
+              ["قوانین استفاده", "/terms"],
+            ]}
+          />
           <FooterColumn title="منابع" links={resourceLinks} />
           <FooterColumn title="دسترسی سریع" links={quickLinks} />
         </div>
