@@ -4,6 +4,9 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PrivacyConsentBanner } from "@/components/privacy-consent-banner";
 import { MobileBottomNavigation } from "@/components/mobile-bottom-navigation";
+import { SiteAtmosphere } from "@/components/site-atmosphere";
+import { FloatingQuickAccess } from "@/components/floating-quick-access";
+import { SkipToContent } from "@/components/skip-to-content";
 import { absoluteUrl, languageAlternates, organizationJsonLd, seoKeywords, siteConfig, websiteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -50,9 +53,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
+        <SkipToContent />
+        <SiteAtmosphere />
         <Header />
-        {children}
+        <div id="main-content" tabIndex={-1}>
+          {children}
+        </div>
         <Footer />
+        <FloatingQuickAccess />
         <MobileBottomNavigation />
         <PrivacyConsentBanner />
       </body>

@@ -52,6 +52,7 @@ export function CinematicHub({
           />
         ) : null}
         <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/68 to-[#071521]/16" />
+        <div className="absolute inset-x-[8%] top-24 h-px bg-gradient-to-r from-transparent via-gold-200/55 to-transparent" />
         <div className="hub-hero-side-shade absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(5,8,13,0.02),rgba(5,8,13,0.16)_38%,rgba(5,8,13,0.74)_100%)]" />
         <div className="hero-horizon" />
         <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-night via-night/55 to-transparent" />
@@ -71,8 +72,8 @@ export function CinematicHub({
                     href={action.href}
                     className={
                       action.variant === "secondary"
-                        ? "inline-flex items-center justify-center gap-2 rounded-full border border-gold-400/30 bg-black/20 px-7 py-4 font-bold text-gold-100 transition hover:border-gold-300/60 hover:bg-gold-300/10"
-                        : "inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-l from-gold-300 to-gold-600 px-7 py-4 font-black text-obsidian-950 shadow-gold transition hover:-translate-y-0.5"
+                        ? "qerti-subtle-lift inline-flex items-center justify-center gap-2 rounded-full border border-gold-400/30 bg-black/20 px-7 py-4 font-bold text-gold-100 transition hover:border-gold-300/60 hover:bg-gold-300/10"
+                        : "qerti-cta inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-l from-gold-300 to-gold-600 px-7 py-4 font-black text-obsidian-950 shadow-gold transition hover:-translate-y-0.5"
                     }
                   >
                     {action.label}
@@ -83,7 +84,7 @@ export function CinematicHub({
             ) : null}
 
             {stats.length > 0 ? (
-              <div className="hub-hero-stats mt-12 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-gold/24 bg-gold/20 sm:grid-cols-3">
+              <div className="hub-hero-stats qerti-premium-shell mt-12 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-gold/24 bg-gold/20 sm:grid-cols-3">
                 {stats.map((stat) => (
                   <div key={stat.label} className="bg-[#05080d]/58 p-4 backdrop-blur-sm">
                     <p className="text-2xl font-black text-gold-100">{stat.value}</p>
@@ -143,7 +144,7 @@ export function FeatureLinkGrid({ items }: { items: FeatureLink[] }) {
         );
 
         const className =
-          "lux-frame group block p-5 transition hover:-translate-y-1 hover:border-gold-300/45 hover:shadow-gold";
+          "lux-frame qerti-feature-card qerti-subtle-lift group block p-5 hover:border-gold-300/45 hover:shadow-gold";
 
         return href ? (
           <Link key={title} href={href} className={className}>

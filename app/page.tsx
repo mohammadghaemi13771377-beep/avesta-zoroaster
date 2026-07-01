@@ -5,6 +5,8 @@ import { DailyAvestaCard } from "@/components/daily-avesta-card";
 import { FaqSection } from "@/components/faq-section";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { MobedHomeCallout } from "@/components/mobed-home-callout";
+import { HomeWorldMap } from "@/components/home-world-map";
+import { PathFinderGateway } from "@/components/path-finder-gateway";
 import { ReaderMemoryShelf } from "@/components/reader-memory-shelf";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { SectionCard } from "@/components/section-card";
@@ -109,7 +111,7 @@ export default function HomePage() {
 
       <ScrollReveal>
         <section className="relative z-20 mx-auto -mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="home-entry-panel grid gap-3 rounded-[22px] border border-gold/22 bg-[#071521]/76 p-3 shadow-[0_28px_90px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:grid-cols-2 xl:grid-cols-4">
+          <div className="home-entry-panel qerti-premium-shell qerti-soft-panel grid gap-3 rounded-[22px] border border-gold/22 p-3 shadow-[0_28px_90px_rgba(0,0,0,0.34)] backdrop-blur-2xl md:grid-cols-2 xl:grid-cols-4">
             {entryPaths.map((path) => {
               const Icon = path.icon;
 
@@ -119,7 +121,7 @@ export default function HomePage() {
                   href={path.href}
                   event="home_entry_path_click"
                   payload={{ cta_id: `entry-${path.href.replaceAll("/", "-")}`, label: path.title, locale: "fa", source_route: "/" }}
-                  className="group relative overflow-hidden rounded-[18px] border border-gold/14 bg-night/44 p-5 transition hover:-translate-y-1 hover:border-gold/42"
+                  className="qerti-feature-card qerti-subtle-lift group relative overflow-hidden rounded-[18px] border border-gold/14 bg-night/44 p-5 hover:border-gold/42"
                 >
                   <span className={`absolute inset-0 bg-gradient-to-br ${path.tone} opacity-75 transition group-hover:opacity-100`} />
                   <span className="relative z-10 flex items-start justify-between gap-4">
@@ -136,6 +138,10 @@ export default function HomePage() {
           </div>
         </section>
       </ScrollReveal>
+
+      <ScrollReveal delay={40}><PathFinderGateway /></ScrollReveal>
+
+      <ScrollReveal delay={50}><HomeWorldMap /></ScrollReveal>
 
       <ScrollReveal><DailyAvestaCard item={dailyAvesta} /></ScrollReveal>
 
@@ -156,16 +162,17 @@ export default function HomePage() {
       </section></ScrollReveal>
 
       <ScrollReveal delay={90}><section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
-          {portalCards.map((card) => <TrackedLink key={card.title} href={card.href} event="hero_cta_click" payload={{ cta_id: `home-portal-${card.href.replaceAll("/", "-")}`, label: card.title, locale: "fa", source_route: "/" }} className="lux-frame group block overflow-hidden rounded-[18px] p-4 transition hover:-translate-y-1 hover:border-gold/55"><h3 className="text-2xl font-black text-warm">{card.title}</h3><p className="mt-2 text-sm leading-7 text-muted">{card.text}</p><div className="image-scene relative mt-5 h-44 overflow-hidden rounded-[14px] border border-gold/14"><Image src={card.image} alt={`کاور ${card.title}`} fill sizes="(max-width: 1024px) 100vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent" /></div><span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">{card.footer}<ArrowLeft size={15} className="transition group-hover:-translate-x-1" /></span></TrackedLink>)}
+          {portalCards.map((card) => <TrackedLink key={card.title} href={card.href} event="hero_cta_click" payload={{ cta_id: `home-portal-${card.href.replaceAll("/", "-")}`, label: card.title, locale: "fa", source_route: "/" }} className="lux-frame qerti-feature-card qerti-subtle-lift group block overflow-hidden rounded-[18px] p-4 hover:border-gold/55"><h3 className="text-2xl font-black text-warm">{card.title}</h3><p className="mt-2 text-sm leading-7 text-muted">{card.text}</p><div className="image-scene relative mt-5 h-44 overflow-hidden rounded-[14px] border border-gold/14"><Image src={card.image} alt={`کاور ${card.title}`} fill sizes="(max-width: 1024px) 100vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent" /></div><span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">{card.footer}<ArrowLeft size={15} className="transition group-hover:-translate-x-1" /></span></TrackedLink>)}
       </section></ScrollReveal>
 
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="grid gap-5 lg:grid-cols-3">{studyShelves.map((shelf) => { const Icon = shelf.icon; return <Link key={shelf.href} href={shelf.href} className="lux-frame group p-6 transition hover:-translate-y-1 hover:border-gold/55"><Icon className="text-gold-light" size={24} /><h2 className="mt-5 text-2xl font-black text-warm">{shelf.title}</h2><p className="mt-3 leading-8 text-muted">{shelf.text}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-gold-light">ورود <ArrowLeft size={15} /></span></Link>; })}</div></section>
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div className="grid gap-5 lg:grid-cols-3">{studyShelves.map((shelf) => { const Icon = shelf.icon; return <Link key={shelf.href} href={shelf.href} className="lux-frame qerti-feature-card qerti-subtle-lift group p-6 hover:border-gold/55"><Icon className="text-gold-light" size={24} /><h2 className="mt-5 text-2xl font-black text-warm">{shelf.title}</h2><p className="mt-3 leading-8 text-muted">{shelf.text}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-gold-light">ورود <ArrowLeft size={15} /></span></Link>; })}</div></section>
 
       <ScrollReveal delay={80}><FaqSection items={homeFaqs} /></ScrollReveal>
 
-      <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8"><NewsletterSignup compact /><div className="lux-frame relative overflow-hidden rounded-[18px] p-7"><div className="absolute -bottom-20 right-8 h-44 w-44 rounded-full bg-gold/12 blur-3xl" /><h2 className="text-3xl font-black text-warm">در جریان بمانید</h2><p className="mt-3 leading-8 text-muted">برای دریافت تازه‌ها، مقاله‌ها و رویدادها ایمیل خود را وارد کنید.</p></div></section>
+      <section className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8"><NewsletterSignup compact /><div className="lux-frame qerti-premium-shell qerti-soft-panel relative overflow-hidden rounded-[18px] p-7"><h2 className="text-3xl font-black text-warm">در جریان بمانید</h2><p className="mt-3 leading-8 text-muted">برای دریافت تازه‌ها، مقاله‌ها و رویدادها ایمیل خود را وارد کنید.</p></div></section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-20 pt-4 sm:px-6 lg:px-8"><div className="mb-6 flex items-center justify-between gap-4"><div><p className="text-xs font-bold text-gold-light">برای ادامه مطالعه</p><h2 className="mt-2 text-3xl font-black text-warm">مقاله‌های منتخب</h2></div><Link href="/articles" className="inline-flex items-center gap-2 text-sm font-black text-gold-light">همه مقاله‌ها <ArrowLeft size={15} /></Link></div><div className="grid gap-5 lg:grid-cols-3">{featuredArticles.map((title) => <Link href="/articles" key={title} className="lux-frame group rounded-[18px] p-6 transition hover:-translate-y-1 hover:border-gold/55"><BookOpen className="text-gold-light" size={24} /><p className="mt-5 text-xs font-bold text-gold-light">مقاله پیشنهادی</p><h3 className="mt-3 text-2xl font-black leading-9 text-warm">{title}</h3><span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-gold-light">مطالعه <ArrowLeft size={15} /></span></Link>)}</div></section>
+      <section className="mx-auto max-w-7xl px-4 pb-20 pt-4 sm:px-6 lg:px-8"><div className="mb-6 flex items-center justify-between gap-4"><div><p className="text-xs font-bold text-gold-light">برای ادامه مطالعه</p><h2 className="mt-2 text-3xl font-black text-warm">مقاله‌های منتخب</h2></div><Link href="/articles" className="inline-flex items-center gap-2 text-sm font-black text-gold-light">همه مقاله‌ها <ArrowLeft size={15} /></Link></div><div className="grid gap-5 lg:grid-cols-3">{featuredArticles.map((title) => <Link href="/articles" key={title} className="lux-frame qerti-feature-card qerti-subtle-lift group rounded-[18px] p-6 hover:border-gold/55"><BookOpen className="text-gold-light" size={24} /><p className="mt-5 text-xs font-bold text-gold-light">مقاله پیشنهادی</p><h3 className="mt-3 text-2xl font-black leading-9 text-warm">{title}</h3><span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-gold-light">مطالعه <ArrowLeft size={15} /></span></Link>)}</div></section>
     </main>
   );
 }
+

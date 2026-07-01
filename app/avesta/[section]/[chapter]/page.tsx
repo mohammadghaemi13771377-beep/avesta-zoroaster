@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, BookOpen, Headphones, Landmark, Route, ScrollText, Sparkles, Tags } from "lucide-react";
 import { AvestaPosterExperience } from "@/components/avesta-poster-experience";
+import { AvestaChapterFocus } from "@/components/avesta-chapter-focus";
+import { AvestaReadingTrail } from "@/components/avesta-reading-trail";
 import { ReadingControls } from "@/components/reading-controls";
 import { avestaSections } from "@/lib/content";
 import { sampleChapters } from "@/lib/sample-content";
@@ -65,6 +67,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
   const heroImage = guide?.coverImage ?? section.coverImage;
   const firstVerseSlug = chapter.verses[0]?.slug ?? "verse-1";
   const firstVerse = await getVerseBySlugs(section.slug, chapter.slug, firstVerseSlug, locale);
+  const activeChapterIndex = chapters.findIndex((item) => item.slug === chapter.slug);
   const pageHref = `/avesta/${section.slug}/${chapter.slug}`;
   const jsonLd = [
     breadcrumbJsonLd([
@@ -150,6 +153,14 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
         </div>
       </section>
 
+      <AvestaReadingTrail
+        section={section}
+        chapter={chapter}
+        totalChapters={chapters.length}
+        activeChapterIndex={activeChapterIndex}
+        langQuery={langQuery}
+      />
+
       {guide ? (
         <AvestaPosterExperience
           guide={guide}
@@ -158,6 +169,8 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
           primaryLabel="شروع مطالعه بندها"
         />
       ) : null}
+
+      <AvestaChapterFocus section={section} chapter={chapter} chapters={chapters} profile={profile} langQuery={langQuery} />
 
       <section className="mx-auto max-w-7xl px-4 pb-24 pt-10 sm:px-6 lg:px-8">
         <ReadingControls />

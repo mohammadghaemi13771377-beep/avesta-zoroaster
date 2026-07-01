@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, Quote, Search, Sparkles } from "lucide-react";
 import { AvestaChapterAtlas } from "@/components/avesta-chapter-atlas";
 import { AvestaPosterExperience } from "@/components/avesta-poster-experience";
+import { AvestaReadingTrail } from "@/components/avesta-reading-trail";
+import { AvestaSectionFocus } from "@/components/avesta-section-focus";
 import { ReadingControls } from "@/components/reading-controls";
 import { TrackedLink } from "@/components/tracked-link";
 import { avestaSections } from "@/lib/content";
@@ -129,7 +131,11 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
         </div>
       </section>
 
+      <AvestaReadingTrail section={section} totalChapters={chapters.length} langQuery={langQuery} />
+
       {visualGuide ? <AvestaPosterExperience guide={visualGuide} langQuery={langQuery} /> : null}
+
+      <AvestaSectionFocus section={section} chapters={chapters} sampleVerse={sampleVerse} langQuery={langQuery} />
 
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
         <div id="reader-controls"><ReadingControls /></div>

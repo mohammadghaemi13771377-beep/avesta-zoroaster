@@ -20,6 +20,8 @@ import { QuoteShareCard } from "@/components/quote-share-card";
 import { RitualAudioPlayer } from "@/components/ritual-audio-player";
 import { SourceTrustPanel } from "@/components/source-trust-panel";
 import { VerseQuickActions } from "@/components/verse-quick-actions";
+import { AvestaReadingTrail } from "@/components/avesta-reading-trail";
+import { AvestaVerseFocus } from "@/components/avesta-verse-focus";
 import { InlineGlossaryText } from "@/components/inline-glossary-text";
 import { WisdomPath } from "@/components/wisdom-path";
 import {
@@ -209,6 +211,26 @@ export default async function VersePage({ params, searchParams }: PageProps) {
           </div>
         </div>
       </section>
+
+      <AvestaReadingTrail
+        section={section}
+        chapter={chapter}
+        verse={verse}
+        totalChapters={chapters.length}
+        totalVerses={orderedVerses.length}
+        activeChapterIndex={chapters.findIndex((item) => item.slug === chapter.slug)}
+        activeVerseIndex={activeVerseIndex}
+        langQuery={langQuery}
+      />
+
+      <AvestaVerseFocus
+        section={section}
+        chapter={chapter}
+        verse={verse}
+        activeVerseSlug={params.verse}
+        relatedTerms={relatedTerms}
+        langQuery={langQuery}
+      />
 
       <section className="relative z-10 px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
