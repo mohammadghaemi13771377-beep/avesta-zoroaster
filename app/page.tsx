@@ -82,23 +82,42 @@ export default function HomePage() {
     <main className="overflow-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd(homeFaqs)) }} />
       <section className="hero-cosmos home-hero relative min-h-screen pt-24">
-        <Image src={routeHeroByPath["/"]} alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="hidden object-cover md:block" />
-        <Image src="/images/ai/home-hero-mobile.jpg" alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="object-[66%_center] md:hidden" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#05080d]/82 via-[#071521]/42 to-[#071521]/10 md:bg-gradient-to-r md:from-[#05080d]/92 md:via-[#071521]/62 md:to-[#071521]/8" />
+        <Image src={routeHeroByPath["/"]} alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="hidden object-cover object-center md:block" />
+        <Image src="/images/ai/home-hero-mobile.jpg" alt="طلوع سینمایی جهان اوستا و زرتشت" fill priority sizes="100vw" className="object-cover object-[58%_center] md:hidden" />
+        <div className="home-hero-light absolute inset-0" />
+        <div className="home-hero-text-shade absolute inset-0" />
         <div className="hero-horizon" />
-        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-night via-night/62 to-transparent" />
 
-        <div className="relative z-10 mx-auto min-h-[calc(100vh-6rem)] max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:pl-8 lg:pr-[48%] lg:pt-32">
-          <div className="home-hero-copy">
-            <p className="home-hero-eyebrow text-xl font-black text-gold-light">به جهان دیجیتال</p>
-            <h1 className="gold-text mt-4 max-w-3xl text-6xl font-black leading-[1.12] sm:text-7xl lg:text-8xl">اوستا و زرتشت</h1>
-            <p className="home-hero-lead mt-7 max-w-2xl text-xl font-semibold leading-10 text-warm/88">کاوش در کهن‌ترین تعالیم یکتاپرستی، خرد و فرهنگ ایران باستان.</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <TrackedLink href="/avesta" event="hero_cta_click" payload={{ cta_id: "home-hero-avesta", label: "ورود به پورتال اوستا", locale: "fa", source_route: "/" }} className="inline-flex items-center justify-center gap-3 rounded-xl bg-gradient-to-b from-gold-light to-gold px-7 py-4 font-black text-night shadow-gold transition hover:scale-[1.01]">ورود به پورتال اوستا <ArrowLeft size={18} /></TrackedLink>
-              <TrackedLink href="/onboarding" event="hero_cta_click" payload={{ cta_id: "home-hero-onboarding", label: "آغاز مسیر مطالعه", locale: "fa", source_route: "/" }} className="inline-flex items-center justify-center gap-3 rounded-xl border border-gold/28 bg-black/18 px-7 py-4 font-bold text-gold-light transition hover:bg-gold/10">آغاز مسیر مطالعه</TrackedLink>
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl flex-col justify-center px-4 pb-28 pt-20 sm:px-6 lg:pl-[52%] lg:pr-8 lg:pt-24">
+          <div className="home-hero-copy max-w-2xl">
+            <p className="home-hero-eyebrow inline-flex items-center gap-2 rounded-full border border-gold/24 bg-night/18 px-4 py-2 text-sm font-black text-gold-light backdrop-blur-md">
+              <Sparkles className="h-4 w-4" />
+              به جهان دیجیتال اوستا
+            </p>
+            <h1 className="home-hero-title gold-text mt-5 max-w-3xl text-5xl font-black leading-[1.08] sm:text-6xl lg:text-7xl">
+              اوستا و زرتشت
+            </h1>
+            <p className="home-hero-lead mt-6 max-w-xl text-lg font-bold leading-9 text-[#fff8ea] sm:text-xl">
+              مرجع سینمایی و آموزشی خرد ایران باستان؛ مطالعه اوستا، گات‌ها، زرتشت و پیام یکتاپرستی در یک جهان دیجیتال.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <TrackedLink href="/avesta" event="hero_cta_click" payload={{ cta_id: "home-hero-avesta", label: "ورود به جهان اوستا", locale: "fa", source_route: "/" }} className="qerti-cta inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-b from-gold-light to-gold px-7 py-4 font-black text-night shadow-gold transition hover:-translate-y-0.5">
+                ورود به جهان اوستا
+                <ArrowLeft size={18} />
+              </TrackedLink>
+              <TrackedLink href="/onboarding" event="hero_cta_click" payload={{ cta_id: "home-hero-onboarding", label: "آغاز سفر", locale: "fa", source_route: "/" }} className="qerti-subtle-lift inline-flex items-center justify-center gap-3 rounded-2xl border border-warm/36 bg-night/18 px-7 py-4 font-black text-warm backdrop-blur-md transition hover:border-gold/55 hover:bg-gold/10">
+                آغاز سفر
+              </TrackedLink>
             </div>
-            <div className="mt-14 grid max-w-3xl grid-cols-2 gap-3 md:grid-cols-4">
-              {featureBadges.map(([title, subtitle, Icon]) => <div key={title} className="home-feature-badge border-r border-gold/16 px-4 first:border-r-0 md:first:border-r"><Icon className="text-gold-light" size={27} /><p className="mt-4 text-sm font-black text-warm">{title}</p><p className="mt-1 text-xs font-medium leading-6 text-muted">{subtitle}</p></div>)}
+            <div className="home-hero-feature-strip mt-10 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-gold/20 bg-gold/16 shadow-[0_22px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl md:grid-cols-4">
+              {featureBadges.map(([title, subtitle, Icon]) => (
+                <div key={title} className="home-feature-badge bg-night/42 px-4 py-4">
+                  <Icon className="text-gold-light" size={24} />
+                  <p className="mt-3 text-sm font-black text-warm">{title}</p>
+                  <p className="mt-1 text-xs font-bold leading-6 text-warm/70">{subtitle}</p>
+                </div>
+              ))}
             </div>
           </div>
           <div className="relative hidden min-h-[440px] sm:min-h-[560px]">
