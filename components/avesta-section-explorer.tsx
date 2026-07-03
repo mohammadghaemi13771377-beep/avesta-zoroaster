@@ -8,12 +8,12 @@ import { sectionCoverBySlug } from "@/lib/visual-assets";
 
 const sectionRouteNotes: Record<string, string> = {
   yasna: "نیایش، آتش و ساختار آیینی",
-  gathas: "سرودهای خرد و انتخاب آگاهانه",
+  gathas: "سروده های خرد و انتخاب آگاهانه",
   visperad: "آیین جمعی و گسترش یسنا",
-  vendidad: "پاکی، قانون و روایت‌های رازآلود",
-  yashts: "ستایش‌های اسطوره‌ای و طبیعت",
+  vendidad: "پاکی، قانون و روایت های رازآلود",
+  yashts: "ستایش های اسطوره ای و طبیعت",
   "khordeh-avesta": "نیایش روزانه و همراه شخصی",
-  hats: "نقشه مطالعه و ساختار هات‌ها",
+  hats: "نقشه مطالعه و ساختار هات ها",
 };
 
 export function AvestaSectionExplorer({ sections }: { sections: AvestaSectionView[] }) {
@@ -27,8 +27,8 @@ export function AvestaSectionExplorer({ sections }: { sections: AvestaSectionVie
           </div>
           <h2 className="gold-text text-3xl font-black">ورود مستقیم به هر بخش</h2>
           <p className="mt-3 max-w-2xl leading-8 text-muted">
-            هر گزینه شما را به صفحه همان بخش می‌برد؛ وندیداد فقط فصل‌ها و روایت‌های وندیداد را نشان می‌دهد،
-            یشت‌ها فقط یشت‌ها را، و خرده‌اوستا مسیر نیایش‌های روزانه را.
+            هر گزینه شما را به صفحه اختصاصی همان بخش می برد. وندیداد فقط فرگردها و روایت های وندیداد را نشان می دهد،
+            یشت ها فقط یشت ها را، و خرده اوستا مسیر نیایش های روزانه را.
           </p>
         </div>
         <span className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-sm font-bold text-gold-light">
@@ -44,11 +44,13 @@ export function AvestaSectionExplorer({ sections }: { sections: AvestaSectionVie
             href={section.href}
             event="avesta_section_direct_gate_click"
             payload={{ section_slug: section.slug, card_position: index + 1, source_route: "/avesta" }}
-            className="group flex min-h-28 items-center justify-between gap-4 rounded-2xl border border-gold/15 bg-night/46 p-4 transition hover:-translate-y-1 hover:border-gold/45 hover:bg-gold/10"
+            className="group flex min-h-28 items-center justify-between gap-4 rounded-2xl border border-gold/15 bg-gradient-to-l from-[#102435]/78 to-night/58 p-4 transition hover:-translate-y-1 hover:border-gold/45 hover:bg-gold/10"
           >
             <span>
               <span className="mt-1 block text-lg font-black leading-8 text-warm">{section.title}</span>
-              <span className="mt-1 block text-xs leading-6 text-muted">{sectionRouteNotes[section.slug] ?? "ورود به صفحه اختصاصی"}</span>
+              <span className="mt-1 block text-xs font-medium leading-6 text-muted">
+                {sectionRouteNotes[section.slug] ?? "ورود به صفحه اختصاصی"}
+              </span>
             </span>
             <DoorOpen className="shrink-0 text-gold-light transition group-hover:-translate-x-1" size={22} />
           </TrackedLink>

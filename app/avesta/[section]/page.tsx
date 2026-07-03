@@ -14,11 +14,11 @@ import {
   getAvestaSection,
   getLocaleFromSearchParams,
   getSectionChapters,
-  getSectionSampleVerse
+  getSectionSampleVerse,
 } from "@/lib/avesta-repository";
 import { getAvestaVisualGuide } from "@/lib/avesta-visual-guides";
-import { sectionCoverBySlug } from "@/lib/visual-assets";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo";
+import { sectionCoverBySlug } from "@/lib/visual-assets";
 
 type PageProps = {
   params: {
@@ -39,9 +39,16 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     return {};
   }
 
+  const image = section.coverImage ?? sectionCoverBySlug[section.slug];
+
   return {
-    title: section.title,
-    description: section.description
+    title: `${section.title} | جهان اوستا`,
+    description: section.description,
+    openGraph: {
+      title: `${section.title} | جهان اوستا`,
+      description: section.description,
+      images: [image],
+    },
   };
 }
 
@@ -64,13 +71,13 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
     breadcrumbJsonLd([
       { name: "خانه", href: "/" },
       { name: "اوستا", href: "/avesta" },
-      { name: section.title, href: pageHref }
+      { name: section.title, href: pageHref },
     ]),
     collectionPageJsonLd({
       name: `${section.title} در اوستا`,
       description: section.description,
-      url: pageHref
-    })
+      url: pageHref,
+    }),
   ];
 
   return (
@@ -78,16 +85,30 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
       {jsonLd.map((item, index) => (
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
+
       <section className="hero-cosmos relative min-h-[720px]">
+        {sectionCover ? (
+          <Image
+            src={sectionCover}
+            alt={section.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-74"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-l from-[#fff1c2]/8 via-[#071521]/44 to-[#05080d]/78" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_30%,rgba(242,213,138,0.22),transparent_34%),radial-gradient(circle_at_76%_42%,rgba(92,166,255,0.13),transparent_30%)]" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
           <div className="hub-hero-copy">
             <p className="hub-hero-eyebrow inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-black text-gold-light">
               اوستا / {section.title}
             </p>
             <h1 className="hub-hero-title gold-text mt-6 text-6xl font-black leading-[1.12] sm:text-7xl">{section.title}</h1>
-            <p className="hub-hero-lead mt-7 max-w-2xl text-lg font-semibold leading-10 text-warm/86">{section.description}</p>
+            <p className="hub-hero-lead mt-7 max-w-2xl text-lg font-semibold leading-10 text-warm/88">{section.description}</p>
 
             <div className="mt-8 h-2 max-w-lg overflow-hidden rounded-full bg-warm/10">
               <div className="h-full rounded-full bg-gradient-to-l from-gold-light to-gold" style={{ width: `${sampleVerse.progress}%` }} />
@@ -104,11 +125,11 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
                 شروع مطالعه
                 <ArrowLeft size={18} />
               </TrackedLink>
-              <Link href={`/search?type=verse&section=${section.slug}`} className="inline-flex items-center gap-2 rounded-xl border border-gold/25 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10">
+              <Link href={`/search?type=verse&section=${section.slug}`} className="inline-flex items-center gap-2 rounded-xl border border-gold/25 bg-night/18 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10">
                 <Search size={18} />
                 جستجو در {section.title}
               </Link>
-              <Link href="/library" className="inline-flex items-center gap-2 rounded-xl border border-gold/25 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10">
+              <Link href="/library" className="inline-flex items-center gap-2 rounded-xl border border-gold/25 bg-night/18 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10">
                 <BookOpen size={18} />
                 منابع پژوهشی
               </Link>
@@ -122,10 +143,11 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
                 alt={section.title}
                 fill
                 sizes="(min-width: 1024px) 560px, 100vw"
-                className="object-cover opacity-[0.88]"
+                className="object-cover opacity-[0.9]"
                 priority
               />
             ) : null}
+            <div className="absolute inset-0 bg-gradient-to-t from-night/52 via-transparent to-transparent" />
             <div className="absolute inset-x-10 bottom-10 z-10 h-px bg-gradient-to-l from-transparent via-gold/60 to-transparent" />
           </div>
         </div>
@@ -138,14 +160,16 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
       <AvestaSectionFocus section={section} chapters={chapters} sampleVerse={sampleVerse} langQuery={langQuery} />
 
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
-        <div id="reader-controls"><ReadingControls /></div>
+        <div id="reader-controls">
+          <ReadingControls />
+        </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="lux-frame rounded-[18px] p-7">
             <h2 className="text-3xl font-black text-warm">{section.title} چیست؟</h2>
             <p className="reader-text mt-5 text-muted">
-              این صفحه مسیر مطالعه بخش را مثل یک اتاق موزه نشان می‌دهد: معرفی، فصل‌ها، بندهای نمونه، لایه‌های
-              ترجمه، زمینه تاریخی و پیام اخلاقی برای امروز.
+              این صفحه مسیر مطالعه همین بخش را مثل یک اتاق موزه نشان می دهد: معرفی، فصل ها، بندهای نمونه،
+              لایه های ترجمه، زمینه تاریخی و پیام اخلاقی برای امروز.
             </p>
           </article>
 

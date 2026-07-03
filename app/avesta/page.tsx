@@ -2,16 +2,16 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import type { LucideIcon } from "lucide-react";
 import { ArrowLeft, BookOpen, Flame, Sparkles } from "lucide-react";
-import { AvestaStudyPathsPanel } from "@/components/avesta-study-paths-panel";
 import { AvestaSectionExplorer } from "@/components/avesta-section-explorer";
+import { AvestaStudyPathsPanel } from "@/components/avesta-study-paths-panel";
 import { TrackedLink } from "@/components/tracked-link";
 import { getAvestaSections, getLocaleFromSearchParams } from "@/lib/avesta-repository";
 import { getAvestaStudyPaths } from "@/lib/avesta-study-paths";
 import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
-  title: "جهان اوستا",
-  description: "دروازه مطالعه بخش‌های اوستا؛ یسنا، گات‌ها، ویسپرد، وندیداد، یشت‌ها، خرده اوستا و هات‌ها."
+  title: "جهان اوستا | AVESTA-ZOROASTER",
+  description: "دروازه مطالعه بخش های اوستا؛ یسنا، گات ها، ویسپرد، وندیداد، یشت ها، خرده اوستا و هات ها.",
 };
 
 type PageProps = {
@@ -23,70 +23,58 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
   const sections = await getAvestaSections(locale);
   const studyPaths = getAvestaStudyPaths();
   const portalStats = [
-    { label: "بخش‌های اصلی", value: `${sections.length}` },
-    { label: "مسیرهای مطالعه", value: `${studyPaths.length}` },
+    { label: "بخش اصلی", value: `${sections.length}` },
+    { label: "مسیر مطالعه", value: `${studyPaths.length}` },
     { label: "جستجوی درون اوستا", value: "فعال" },
     { label: "رسانه و منابع", value: "در حال گسترش" },
   ];
 
   return (
     <main className="overflow-hidden pt-24" dir={locale === "en" ? "ltr" : "rtl"}>
-      <section className="hero-cosmos relative min-h-[760px]">
+      <section className="hero-cosmos relative min-h-[700px]">
         <Image
           src={routeHeroByPath["/avesta"]}
-          alt="پورتال سینمایی اوستا"
+          alt="تالار نورانی اوستا با دروازه های مستقل"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-68"
+          className="object-cover opacity-78"
         />
-        <div className="absolute inset-0 bg-gradient-to-l from-[#06131c]/20 via-[#071521]/55 to-[#05080d]/82" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#fff1c2]/10 via-[#071521]/36 to-[#05080d]/72" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(242,213,138,0.28),transparent_36%),radial-gradient(circle_at_72%_38%,rgba(91,173,255,0.16),transparent_32%)]" />
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:pl-8 lg:pr-[48%] lg:py-32">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-bold text-gold-light">
-              <Sparkles size={16} />
-              دروازه اوستا
-            </p>
-            <h1 className="gold-text mt-6 max-w-3xl text-6xl font-black leading-[1.12] sm:text-7xl">
-              جهان اوستا
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-10 text-warm/82">
-              از اینجا وارد بخش‌های مستقل اوستا می‌شوید. یسنا، گات‌ها، وندیداد، یشت‌ها و خرده‌اوستا هرکدام صفحه،
-              تصویر، مسیر مطالعه و فصل‌های مخصوص خودشان را دارند.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <TrackedLink
-                href="/avesta/yasna"
-                event="avesta_section_opened"
-                payload={{ section_slug: "yasna", card_position: "hero-primary", source_route: "/avesta" }}
-                className="inline-flex items-center gap-2 rounded-xl bg-gold px-6 py-3 font-black text-night"
-              >
-                شروع با یسنا
-                <ArrowLeft size={17} />
-              </TrackedLink>
-              <TrackedLink
-                href="/avesta/gathas"
-                event="hero_cta_click"
-                payload={{ cta_id: "avesta-hero-gathas", label: "مطالعه گات‌ها", locale: locale, source_route: "/avesta" }}
-                className="inline-flex items-center gap-2 rounded-xl border border-gold/28 px-6 py-3 font-bold text-gold-light"
-              >
-                مطالعه گات‌ها
-              </TrackedLink>
-            </div>
-          </div>
 
-          <div className="hidden relative min-h-[470px]">
-            <div className="absolute inset-0 rounded-full bg-gold/10 blur-3xl" />
-            <Image
-              src="/images/avesta-zoroaster-logo.png"
-              alt="AVESTA-ZOROASTER"
-              width={680}
-              height={680}
-              className="relative z-10 mx-auto h-auto w-full max-w-[650px] object-contain drop-shadow-[0_30px_80px_rgba(0,0,0,0.7)]"
-              priority
-            />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:pl-8 lg:pr-[48%] lg:py-32">
+          <p className="inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-black text-gold-light">
+            <Sparkles size={16} />
+            دروازه اوستا
+          </p>
+          <h1 className="gold-text mt-6 max-w-3xl text-5xl font-black leading-[1.12] sm:text-7xl">
+            جهان اوستا
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg font-semibold leading-10 text-warm/88">
+            اینجا پورتال اصلی اوستاست؛ یک تالار روشن برای انتخاب مسیر. از این صفحه وارد بخش مستقل خودت شو:
+            یسنا، گات ها، وندیداد، یشت ها، خرده اوستا یا نقشه هات ها.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <TrackedLink
+              href="/avesta/yasna"
+              event="avesta_section_opened"
+              payload={{ section_slug: "yasna", card_position: "hero-primary", source_route: "/avesta" }}
+              className="inline-flex items-center gap-2 rounded-xl bg-gold px-6 py-3 font-black text-night"
+            >
+              شروع با یسنا
+              <ArrowLeft size={17} />
+            </TrackedLink>
+            <TrackedLink
+              href="/avesta/vendidad"
+              event="hero_cta_click"
+              payload={{ cta_id: "avesta-hero-vendidad", label: "ورود به وندیداد", locale, source_route: "/avesta" }}
+              className="inline-flex items-center gap-2 rounded-xl border border-gold/28 bg-night/18 px-6 py-3 font-bold text-gold-light backdrop-blur-sm"
+            >
+              ورود به وندیداد
+            </TrackedLink>
           </div>
         </div>
       </section>
@@ -105,9 +93,9 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
 
       <section className="mx-auto grid max-w-7xl gap-5 px-4 py-12 sm:px-6 lg:grid-cols-3 lg:px-8">
         {([
-          ["متن اصلی", "هر بند با متن اصلی، آوانویسی و ترجمه کلاسیک آماده می‌شود.", BookOpen],
-          ["تصویر اختصاصی", "برای هر بخش مسیر تولید تصویر AI و فضای هنری تعریف شده است.", Flame],
-          ["پیام امروز", "بازنویسی ساده، تحلیل مفهومی و پیام اخلاقی برای مخاطب امروز.", Sparkles]
+          ["متن اصلی", "هر بند با متن اصلی، آوانویسی، ترجمه و مسیر مطالعه آماده می شود.", BookOpen],
+          ["تصویر اختصاصی", "برای هر بخش مسیر تولید تصویر و فضای هنری جداگانه تعریف شده است.", Flame],
+          ["پیام امروز", "بازنویسی ساده، تحلیل مفهومی و پیام اخلاقی برای مخاطب امروز.", Sparkles],
         ] satisfies Array<[string, string, LucideIcon]>).map(([title, text, Icon]) => (
           <article key={title} className="lux-frame rounded-[18px] p-6">
             <Icon className="text-gold-light" size={28} />

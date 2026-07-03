@@ -32,7 +32,9 @@ export function VerseQuickActions() {
     try {
       const queue = JSON.parse(window.localStorage.getItem(queueKey) ?? "[]");
       setQueued(Array.isArray(queue) && queue.some((item: BookmarkItem) => item.href === currentHref));
-    } catch { setQueued(false); }
+    } catch {
+      setQueued(false);
+    }
   }, []);
 
   function toggleBookmark() {
@@ -45,9 +47,9 @@ export function VerseQuickActions() {
           {
             href: currentHref,
             title: document.title.replace(" | AVESTA-ZOROASTER", ""),
-            savedAt: new Date().toISOString()
+            savedAt: new Date().toISOString(),
           },
-          ...bookmarks
+          ...bookmarks,
         ];
 
     window.localStorage.setItem(bookmarksKey, JSON.stringify(next.slice(0, 50)));
@@ -57,9 +59,16 @@ export function VerseQuickActions() {
   function toggleQueue() {
     const currentHref = window.location.pathname;
     let queue: BookmarkItem[] = [];
-    try { const parsed = JSON.parse(window.localStorage.getItem(queueKey) ?? "[]"); queue = Array.isArray(parsed) ? parsed : []; } catch { queue = []; }
+    try {
+      const parsed = JSON.parse(window.localStorage.getItem(queueKey) ?? "[]");
+      queue = Array.isArray(parsed) ? parsed : [];
+    } catch {
+      queue = [];
+    }
     const exists = queue.some((item) => item.href === currentHref);
-    const next = exists ? queue.filter((item) => item.href !== currentHref) : [...queue, { href: currentHref, title: document.title.replace(" | AVESTA-ZOROASTER", ""), savedAt: new Date().toISOString() }];
+    const next = exists
+      ? queue.filter((item) => item.href !== currentHref)
+      : [...queue, { href: currentHref, title: document.title.replace(" | AVESTA-ZOROASTER", ""), savedAt: new Date().toISOString() }];
     window.localStorage.setItem(queueKey, JSON.stringify(next.slice(0, 30)));
     setQueued(!exists);
   }
@@ -106,7 +115,7 @@ export function VerseQuickActions() {
         className="inline-flex items-center gap-2 rounded-full border border-gold-400/25 bg-black/20 px-5 py-3 text-sm font-bold text-gold-100 transition hover:border-gold-300/60"
       >
         {shareStatus === "copied" ? <Check className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
-        {shareStatus === "copied" ? "پیوند کپی شد" : "اشتراک‌گذاری"}
+        {shareStatus === "copied" ? "پیوند کپی شد" : "اشتراک گذاری"}
       </button>
       <button
         type="button"

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, BookOpen, Headphones, Landmark, Route, ScrollText, Sparkles, Tags } from "lucide-react";
-import { AvestaPosterExperience } from "@/components/avesta-poster-experience";
+import { ArrowLeft, ArrowRight, BookOpen, Headphones, Landmark, Route, Sparkles, Tags } from "lucide-react";
 import { AvestaChapterFocus } from "@/components/avesta-chapter-focus";
+import { AvestaPosterExperience } from "@/components/avesta-poster-experience";
 import { AvestaReadingTrail } from "@/components/avesta-reading-trail";
 import { ReadingControls } from "@/components/reading-controls";
 import { avestaSections } from "@/lib/content";
@@ -13,7 +13,7 @@ import {
   getAvestaSection,
   getLocaleFromSearchParams,
   getSectionChapters,
-  getVerseBySlugs
+  getVerseBySlugs,
 } from "@/lib/avesta-repository";
 import { getAvestaChapterGuide } from "@/lib/avesta-chapter-guides";
 import { getAvestaChapterProfile } from "@/lib/avesta-chapter-profiles";
@@ -30,7 +30,7 @@ type PageProps = {
 export function generateStaticParams() {
   return sampleChapters.map((chapter) => ({
     section: chapter.sectionSlug,
-    chapter: chapter.slug
+    chapter: chapter.slug,
   }));
 }
 
@@ -40,14 +40,23 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const chapters = await getSectionChapters(params.section, locale);
   const chapter = chapters.find((item) => item.slug === params.chapter);
   const profile = getAvestaChapterProfile(params.section, params.chapter);
+  const guide = getAvestaChapterGuide(params.section, params.chapter);
 
   if (!section || !chapter) {
     return {};
   }
 
+  const description = profile?.summary ?? chapter.description ?? section.description;
+  const image = guide?.coverImage ?? section.coverImage;
+
   return {
     title: `${chapter.title} | ${section.title}`,
-    description: profile?.summary ?? chapter.description ?? section.description
+    description,
+    openGraph: {
+      title: `${chapter.title} | ${section.title}`,
+      description,
+      images: image ? [image] : undefined,
+    },
   };
 }
 
@@ -69,19 +78,20 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
   const firstVerse = await getVerseBySlugs(section.slug, chapter.slug, firstVerseSlug, locale);
   const activeChapterIndex = chapters.findIndex((item) => item.slug === chapter.slug);
   const pageHref = `/avesta/${section.slug}/${chapter.slug}`;
+  const description = profile?.summary ?? chapter.description ?? section.description;
   const jsonLd = [
     breadcrumbJsonLd([
       { name: "خانه", href: "/" },
       { name: "اوستا", href: "/avesta" },
       { name: section.title, href: `/avesta/${section.slug}` },
-      { name: chapter.title, href: pageHref }
+      { name: chapter.title, href: pageHref },
     ]),
     creativeWorkJsonLd({
       name: `${chapter.title} | ${section.title}`,
-      description: profile?.summary ?? chapter.description ?? section.description,
+      description,
       url: pageHref,
-      image: guide?.coverImage ?? section.coverImage
-    })
+      image: heroImage,
+    }),
   ];
 
   return (
@@ -89,21 +99,16 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
       {jsonLd.map((item, index) => (
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
-      <section className="hero-cosmos relative isolate overflow-hidden">
+
+      <section className="hero-cosmos relative isolate min-h-[700px] overflow-hidden">
         {heroImage ? (
-          <Image
-            src={heroImage}
-            alt={guide?.title ?? chapter.title}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
+          <Image src={heroImage} alt={guide?.title ?? chapter.title} fill priority sizes="100vw" className="object-cover object-center opacity-78" />
         ) : null}
-        <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/70 to-[#071521]/18" />
-        <div className="hub-hero-side-shade absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(5,8,13,0.03),rgba(5,8,13,0.18)_38%,rgba(5,8,13,0.72)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#fff2c5]/8 via-[#071521]/46 to-[#05080d]/84" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_30%,rgba(242,213,138,0.22),transparent_34%),radial-gradient(circle_at_76%_42%,rgba(92,166,255,0.14),transparent_32%)]" />
         <div className="hero-horizon" />
-        <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night via-night/55 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night via-night/55 to-transparent" />
+
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8 lg:py-28">
           <Link
             href={`/avesta/${section.slug}${langQuery}`}
@@ -114,41 +119,33 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
           </Link>
 
           <div className="hub-hero-copy mt-10 max-w-3xl">
-            <div>
-              <p className="hub-hero-eyebrow text-sm font-black text-gold-light">اوستا / {section.title}</p>
-              <h1 className="hub-hero-title gold-text mt-4 text-5xl font-black leading-tight sm:text-7xl">{chapter.title}</h1>
-              <p className="hub-hero-lead mt-6 max-w-3xl text-lg font-semibold leading-10 text-warm/86">
-                {guide?.chapterIntro ?? chapter.description ?? section.description}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href={`/avesta/${section.slug}/${chapter.slug}/${firstVerseSlug}${langQuery}`}
-                  className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 font-black text-night transition hover:bg-gold-light"
-                >
-                  شروع مطالعه بندها
-                  <ArrowLeft className="h-4 w-4" />
-                </Link>
-                <Link
-                  href={`/media?section=${section.slug}&chapter=${chapter.slug}`}
-                  className="inline-flex items-center gap-2 rounded-xl border border-gold/25 bg-black/18 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10"
-                >
-                  <Headphones className="h-4 w-4" />
-                  رسانه‌های مرتبط
-                </Link>
-              </div>
+            <p className="hub-hero-eyebrow text-sm font-black text-gold-light">اوستا / {section.title}</p>
+            <h1 className="hub-hero-title gold-text mt-4 text-5xl font-black leading-tight sm:text-7xl">{chapter.title}</h1>
+            <p className="hub-hero-lead mt-6 max-w-3xl text-lg font-semibold leading-10 text-warm/88">
+              {guide?.chapterIntro ?? description}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href={`/avesta/${section.slug}/${chapter.slug}/${firstVerseSlug}${langQuery}`}
+                className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 font-black text-night transition hover:bg-gold-light"
+              >
+                شروع مطالعه بندها
+                <ArrowLeft className="h-4 w-4" />
+              </Link>
+              <Link
+                href={`/media?section=${section.slug}&chapter=${chapter.slug}`}
+                className="inline-flex items-center gap-2 rounded-xl border border-gold/25 bg-black/18 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10"
+              >
+                <Headphones className="h-4 w-4" />
+                رسانه های مرتبط
+              </Link>
             </div>
 
-            <aside className="hidden lux-frame p-6">
-              <div className="flex items-center gap-3 text-gold-light">
-                <ScrollText className="h-6 w-6" />
-                <h2 className="text-2xl font-black text-warm">وضعیت این زیرصفحه</h2>
-              </div>
-              <div className="mt-5 grid gap-3">
-                <Stat label="بندهای آماده" value={`${chapter.verses.length}`} />
-                <Stat label="قالب تصویری" value={guide ? "فعال" : "عمومی"} />
-                <Stat label="لایه‌های محتوا" value="متن، ترجمه، ساده‌سازی، تحلیل" />
-              </div>
-            </aside>
+            <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+              <HeroStat label="بند آماده" value={`${chapter.verses.length}`} />
+              <HeroStat label="قالب تصویری" value={guide ? "فعال" : "عمومی"} />
+              <HeroStat label="مسیر" value="اختصاصی" />
+            </div>
           </div>
         </div>
       </section>
@@ -187,13 +184,11 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
               </div>
             </div>
             <p className="reader-text mt-5 text-muted">
-              {profile?.summary ??
-                chapter.description ??
-                "این زیرصفحه برای تبدیل هر یشت، فرگرد یا نیایش به یک تجربه کامل آماده شده است: تصویر، روایت، بندها، صوت، پیام اخلاقی و مسیر مطالعه."}
+              {description}
             </p>
             {guide?.curatorNote ? (
               <div className="mt-6 rounded-2xl border border-gold/18 bg-gold/10 p-5">
-                <p className="text-sm font-black text-gold-light">یادداشت دیزاین</p>
+                <p className="text-sm font-black text-gold-light">یادداشت طراحی</p>
                 <p className="mt-2 leading-8 text-warm/82">{guide.curatorNote}</p>
               </div>
             ) : null}
@@ -245,7 +240,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
         <section className="mt-8 lux-frame p-6 sm:p-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-black text-gold-light">بندها و قطعه‌های آماده</p>
+              <p className="text-sm font-black text-gold-light">بندها و قطعه های آماده</p>
               <h2 className="mt-2 text-3xl font-black text-warm">مسیر خواندن {chapter.title}</h2>
             </div>
             <Link href={`/media?section=${section.slug}&chapter=${chapter.slug}`} className="text-sm font-bold text-gold-light hover:text-warm">
@@ -288,11 +283,9 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
 
         {profile ? (
           <section className="mt-8 lux-frame p-6 sm:p-8">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="text-sm font-black text-gold-light">مسیرهای پیشنهادی</p>
-                <h2 className="mt-2 text-3xl font-black text-warm">بعد از {chapter.title} کجا برویم؟</h2>
-              </div>
+            <div>
+              <p className="text-sm font-black text-gold-light">مسیرهای پیشنهادی</p>
+              <h2 className="mt-2 text-3xl font-black text-warm">بعد از {chapter.title} کجا برویم؟</h2>
             </div>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               {profile.relatedChapters.map((item) => (
@@ -318,10 +311,10 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function HeroStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-gold/12 bg-black/22 p-4">
-      <p className="text-xs font-bold text-muted">{label}</p>
+    <div className="rounded-2xl border border-gold/16 bg-black/22 p-4 backdrop-blur">
+      <p className="text-xs font-black text-gold-light">{label}</p>
       <p className="mt-2 text-lg font-black text-warm">{value}</p>
     </div>
   );

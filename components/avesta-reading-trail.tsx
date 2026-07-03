@@ -31,7 +31,6 @@ export function AvestaReadingTrail({
     : hasChapter && totalChapters
       ? Math.round(((activeChapterIndex + 1) / totalChapters) * 100)
       : 18;
-
   const contextLabel = hasVerse ? "اتاق بند" : hasChapter ? "اتاق فصل" : "دروازه بخش";
   const primaryHref = hasChapter
     ? `/avesta/${section.slug}/${chapter!.slug}${langQuery}`

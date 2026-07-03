@@ -8,12 +8,12 @@ export const navItems = [
 
 export const exploreNavItems = [
   { label: "دین زرتشتی", href: "/zoroastrianism", description: "باور، آیین و میراث زنده" },
-  { label: "واژه‌نامه", href: "/dictionary", description: "مفهوم‌ها و ریشه‌های اوستایی" },
-  { label: "مقاله‌ها", href: "/articles", description: "خوانش پژوهشی و امروزی" },
+  { label: "واژه نامه", href: "/dictionary", description: "مفهوم ها و ریشه های اوستایی" },
+  { label: "مقاله ها", href: "/articles", description: "خوانش پژوهشی و امروزی" },
   { label: "رسانه", href: "/media", description: "تصویر، صدا و روایت" },
-  { label: "موبد هوشمند", href: "/mobed", description: "پرسش منبع‌دار و مسیر مطالعه" },
-  { label: "نمایشگاه‌ها", href: "/exhibitions", description: "موزه دیجیتال ایران باستان" },
-  { label: "تایم‌لاین", href: "/timeline", description: "مسیر تاریخ و فرهنگ" },
+  { label: "موبد هوشمند", href: "/mobed", description: "پرسش منبع دار و مسیر مطالعه" },
+  { label: "نمایشگاه ها", href: "/exhibitions", description: "موزه دیجیتال ایران باستان" },
+  { label: "تایم لاین", href: "/timeline", description: "مسیر تاریخ و فرهنگ" },
   { label: "روش پژوهش", href: "/research-methodology", description: "منابع و شیوه خوانش" },
   { label: "فروشگاه", href: "/shop", description: "محصولات فرهنگی" },
 ];
@@ -142,34 +142,34 @@ export const routeMap = [
   "/login",
   "/register",
   "/profile",
-  "/about"
+  "/about",
 ];
 
 export const introCards = [
   {
     title: "اوستا چیست؟",
-    description: "دروازه‌ای به متن‌های بنیادین، نیایش‌ها، حکمت و جهان‌بینی ایران باستان.",
+    description: "دروازه ای به متن های بنیادین، نیایش ها، حکمت و جهان بینی ایران باستان.",
     href: "/avesta",
-    atmosphere: "scene-fire"
+    atmosphere: "scene-fire",
   },
   {
     title: "زرتشت کیست؟",
-    description: "پیام‌آور خرد، راستی و انتخاب آگاهانه میان روشنایی و تاریکی.",
+    description: "پیام آور خرد، راستی و انتخاب آگاهانه میان روشنایی و تاریکی.",
     href: "/zoroaster",
-    atmosphere: "scene-prophet"
+    atmosphere: "scene-prophet",
   },
   {
-    title: "گات‌ها چیست؟",
-    description: "کهن‌ترین سروده‌های منسوب به زرتشت؛ متن‌هایی برای اندیشه، اخلاق و معنا.",
+    title: "گات ها چیست؟",
+    description: "کهن ترین سروده های منسوب به زرتشت؛ متن هایی برای اندیشه، اخلاق و معنا.",
     href: "/gathas",
-    atmosphere: "scene-sunrise"
+    atmosphere: "scene-sunrise",
   },
   {
     title: "اهورامزدا",
-    description: "نماد دانایی، روشنایی و نظم اخلاقی در قلب آموزه‌های زرتشتی.",
+    description: "نماد دانایی، روشنایی و نظم اخلاقی در قلب آموزه های زرتشتی.",
     href: "/zoroastrianism",
-    atmosphere: "scene-cosmic"
-  }
+    atmosphere: "scene-cosmic",
+  },
 ];
 
 export const avestaSections = [
@@ -177,69 +177,62 @@ export const avestaSections = [
     title: "یسنا",
     slug: "yasna",
     href: "/avesta/yasna",
-    description: "نیایش‌ها، هوم‌ها و آیین‌های بنیادین؛ جایی که آتش، سرود و روشنایی به هم می‌رسند.",
+    description: "نیایش ها، هوم ها و آیین های بنیادین؛ جایی که آتش، سرود و روشنایی به هم می رسند.",
     atmosphere: "scene-fire",
     coverImage: "/images/ai/yasna-hero.jpg",
-    roman: "I"
   },
   {
-    title: "گات‌ها",
+    title: "گات ها",
     slug: "gathas",
     href: "/avesta/gathas",
-    description: "سرودهای ژرف و روشن زرتشت؛ آرام، الهی و سرشار از معنا.",
+    description: "سروده های ژرف و روشن زرتشت؛ آرام، الهی و سرشار از معنا.",
     atmosphere: "scene-sunrise",
     coverImage: "/images/ai/gathas-hero.jpg",
-    roman: "II"
   },
   {
     title: "ویسپرد",
     slug: "visperad",
     href: "/avesta/visperad",
-    description: "متن آیینی برای تکمیل نیایش‌ها و بزرگداشت همه ردان و نیروهای نیک.",
+    description: "متن آیینی برای تکمیل نیایش ها و بزرگداشت همه ردان و نیروهای نیک.",
     atmosphere: "scene-tablets",
     coverImage: "/images/ai/avesta-portal.jpg",
-    roman: "III"
   },
   {
     title: "وندیداد",
     slug: "vendidad",
     href: "/avesta/vendidad",
-    description: "قانون، پاکی و رازهای تاریک‌تر اوستا در فضایی پرهیبت و رمزآلود.",
+    description: "قانون، پاکی و روایت های رازآلود اوستا؛ تاریک تر، اما با مسیر روشن انتخاب.",
     atmosphere: "scene-stone",
     coverImage: "/images/ai/vendidad-hero.jpg",
-    roman: "IV"
   },
   {
-    title: "یشت‌ها",
+    title: "یشت ها",
     slug: "yashts",
     href: "/avesta/yashts",
-    description: "سرودهای حماسی برای ایزدان، طبیعت، آسمان، آب، مهر و پیروزی.",
+    description: "سروده های حماسی برای ایزدان، طبیعت، آسمان، آب، مهر و پیروزی.",
     atmosphere: "scene-mountain",
     coverImage: "/images/ai/yashts-hero.jpg",
-    roman: "V"
   },
   {
     title: "خرده اوستا",
     slug: "khordeh-avesta",
     href: "/avesta/khordeh-avesta",
-    description: "نیایش‌های روزانه، آرامش شخصی و حضور روشنایی در زندگی معمول.",
+    description: "نیایش های روزانه، آرامش شخصی و حضور روشنایی در زندگی معمول.",
     atmosphere: "scene-scroll",
     coverImage: "/images/ai/khordeh-avesta-hero.jpg",
-    roman: "VI"
   },
   {
-    title: "هات‌ها",
+    title: "هات ها",
     slug: "hats",
     href: "/avesta/hats",
-    description: "نقشه مطالعه، طومار فصل‌ها و مسیر ورود به متن‌های جزءبه‌جزء.",
+    description: "نقشه مطالعه، طومار فصل ها و مسیر ورود به متن های جزء به جزء.",
     atmosphere: "scene-portrait",
     coverImage: "/images/ai/hats-hero.jpg",
-    roman: "VII"
-  }
+  },
 ];
 
 export const featuredArticles = [
   "اشا؛ نظم راستی در جهان زرتشتی",
   "فروهر در هنر و اندیشه ایران باستان",
-  "گات‌ها و پیام اخلاقی برای انسان امروز"
+  "گات ها و پیام اخلاقی برای انسان امروز",
 ];

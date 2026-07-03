@@ -47,7 +47,7 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
   if (!chapters.length) {
     return (
       <section className="mt-8 lux-frame rounded-[18px] p-7">
-        <p className="reader-text text-muted">فصل‌های این بخش بعد از ورود محتوای کامل از پنل مدیریت اضافه می‌شوند.</p>
+        <p className="reader-text text-muted">فصل های این بخش بعد از ورود محتوای کامل از پنل مدیریت اضافه می شوند.</p>
       </section>
     );
   }
@@ -69,7 +69,7 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
           href="/avesta"
           className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-black text-gold-light transition hover:border-gold/45 hover:bg-gold/10"
         >
-          نقشه همه بخش‌ها
+          نقشه همه بخش ها
           <ArrowLeft className="h-4 w-4" />
         </Link>
       </div>
@@ -92,7 +92,7 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
           <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm font-bold text-muted">{filteredChapters.length} تالار در این فهرست پیدا شد.</p>
             <p className="rounded-full border border-gold/15 bg-gold/8 px-3 py-1.5 text-xs font-black text-gold-light">
-              فیلترها فقط همین فهرست را مرتب می‌کنند؛ هر کارت یک صفحه مستقل دارد.
+              فیلترها فقط همین بخش را مرتب می کنند؛ هر کارت صفحه مستقل دارد.
             </p>
           </div>
         </div>
@@ -120,12 +120,12 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
                     />
                   ) : null}
                   <div className="absolute inset-0 bg-gradient-to-t from-night/88 via-night/18 to-transparent" />
-                  <div className="absolute right-4 top-4 rounded-full border border-gold/25 bg-night/58 px-3 py-1 font-serif text-lg text-gold-light backdrop-blur">
-                    {index + 1}
+                  <div className="absolute right-4 top-4 rounded-full border border-gold/25 bg-night/58 px-3 py-1 text-sm font-black text-gold-light backdrop-blur">
+                    فصل {index + 1}
                   </div>
                   <div className="absolute bottom-4 right-4 left-4">
                     <span className="inline-flex items-center gap-2 rounded-full border border-warm/15 bg-warm/10 px-3 py-1 text-xs font-black text-warm">
-                      {guide && profile ? "پوستر + پروفایل فعال" : guide ? "پوستر اختصاصی فعال" : "قالب عمومی"}
+                      {guide && profile ? "پوستر و پروفایل فعال" : guide ? "پوستر اختصاصی فعال" : "قالب عمومی"}
                     </span>
                   </div>
                 </Link>
@@ -140,21 +140,15 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
                       <BookOpen className="h-3.5 w-3.5" />
                       {chapter.verses.length} بند
                     </span>
-                    <span className="chapter-dedicated-badge inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-black">
-                      صفحه اختصاصی
-                    </span>
                   </div>
 
                   <p className="mt-3 min-h-16 leading-8 text-muted">{guide?.chapterIntro ?? chapter.description}</p>
 
                   {profile?.keyThemes.length ? (
                     <div className="mt-4 flex flex-wrap gap-2">
-                      {profile.keyThemes.slice(0, 4).map((theme) => (
-                        <span
-                          key={theme}
-                          className="rounded-full border border-gold/15 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light"
-                        >
-                          {theme}
+                      {profile.keyThemes.slice(0, 4).map((item) => (
+                        <span key={item} className="rounded-full border border-gold/15 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light">
+                          {item}
                         </span>
                       ))}
                     </div>
@@ -167,18 +161,12 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
                   ) : null}
 
                   <div className="mt-5 flex flex-wrap gap-3">
-                    <Link
-                      href={chapterHref}
-                      className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-black text-night transition hover:bg-gold-light"
-                    >
+                    <Link href={chapterHref} className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-black text-night transition hover:bg-gold-light">
                       ورود به صفحه اختصاصی
                       <ArrowLeft className="h-4 w-4" />
                     </Link>
                     {firstVerse ? (
-                      <Link
-                        href={`/avesta/${sectionSlug}/${chapter.slug}/${firstVerse.slug}${langQuery}`}
-                        className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-black/16 px-4 py-2 text-sm font-black text-gold-light transition hover:border-gold/45 hover:bg-gold/10"
-                      >
+                      <Link href={`/avesta/${sectionSlug}/${chapter.slug}/${firstVerse.slug}${langQuery}`} className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-black/16 px-4 py-2 text-sm font-black text-gold-light transition hover:border-gold/45 hover:bg-gold/10">
                         شروع از بند اول
                         <Sparkles className="h-4 w-4" />
                       </Link>
@@ -188,7 +176,13 @@ export function AvestaChapterAtlas({ sectionSlug, sectionTitle, chapters, langQu
               </div>
             </article>
           );
-        }) : <div className="lux-frame p-8 text-center lg:col-span-2"><Search className="mx-auto text-gold-light" size={30} /><h3 className="mt-4 text-2xl font-black text-warm">تالاری پیدا نشد</h3><p className="mt-3 text-muted">کلیدواژه یا فیلتر مفهومی را تغییر دهید.</p></div>}
+        }) : (
+          <div className="lux-frame p-8 text-center lg:col-span-2">
+            <Search className="mx-auto text-gold-light" size={30} />
+            <h3 className="mt-4 text-2xl font-black text-warm">تالاری پیدا نشد</h3>
+            <p className="mt-3 text-muted">کلیدواژه یا فیلتر مفهومی را تغییر بدهید.</p>
+          </div>
+        )}
       </div>
     </section>
   );

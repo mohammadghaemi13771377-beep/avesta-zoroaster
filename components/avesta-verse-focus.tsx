@@ -101,10 +101,10 @@ export function AvestaVerseFocus({
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-gold-light">
                   <Tags className="h-5 w-5" />
-                  <h3 className="font-black text-warm">واژه‌های نزدیک به این بند</h3>
+                  <h3 className="font-black text-warm">واژه های نزدیک به این بند</h3>
                 </div>
                 <Link href="/dictionary" className="text-sm font-black text-gold-light hover:text-warm">
-                  واژه‌نامه کامل
+                  واژه نامه کامل
                 </Link>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -116,7 +116,7 @@ export function AvestaVerseFocus({
                   ))
                 ) : (
                   <span className="rounded-full border border-gold/16 bg-black/18 px-3 py-1.5 text-xs font-bold text-muted">
-                    بعد از ورود محتوای کامل، واژه‌ها خودکار دقیق‌تر می‌شوند.
+                    بعد از ورود محتوای کامل، واژه ها خودکار دقیق تر می شوند.
                   </span>
                 )}
               </div>

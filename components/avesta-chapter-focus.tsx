@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
 import { ArrowLeft, ArrowRight, BookOpen, Headphones, NotebookPen, Search, Sparkles } from "lucide-react";
 import type { AvestaChapterProfile } from "@/lib/avesta-chapter-profiles";
 import type { AvestaChapterView, AvestaSectionView } from "@/lib/avesta-repository";
@@ -35,7 +36,7 @@ export function AvestaChapterFocus({ section, chapter, chapters, profile, langQu
               فقط {chapter.title}
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-warm/78">
-              این بخش برای تمرکز روی همین فصل ساخته شده است: بندها، فصل قبل و بعد، رسانه، جستجو و مسیرهای مرتبط فقط در همین زمینه دیده می‌شوند.
+              این صفحه برای تمرکز روی همین فصل ساخته شده است: بندها، فصل قبل و بعد، رسانه، جستجو و مسیرهای مرتبط فقط در همین زمینه دیده می شوند.
             </p>
 
             <div className="mt-6 h-2 max-w-xl overflow-hidden rounded-full bg-warm/10">
@@ -47,45 +48,35 @@ export function AvestaChapterFocus({ section, chapter, chapters, profile, langQu
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            <Link href={firstVerseHref} className="qerti-feature-card qerti-subtle-lift group rounded-[20px] border border-gold/16 bg-gold/10 p-5 hover:border-gold/48 hover:bg-gold/16">
-              <Sparkles className="h-6 w-6 text-gold-light" />
-              <h3 className="mt-4 text-xl font-black text-warm">شروع از بند اول</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">{firstVerse?.excerpt ?? "ورود به نخستین بند آماده این فصل."}</p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">
-                خواندن بند
-                <ArrowLeft className="h-4 w-4 transition group-hover:-translate-x-1" />
-              </span>
-            </Link>
-
-            <Link href={`/search?type=verse&section=${section.slug}&chapter=${chapter.slug}`} className="qerti-feature-card qerti-subtle-lift group rounded-[20px] border border-gold/16 bg-black/18 p-5 hover:border-gold/48 hover:bg-gold/10">
-              <Search className="h-6 w-6 text-gold-light" />
-              <h3 className="mt-4 text-xl font-black text-warm">جستجو در همین فصل</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">برای پیدا کردن واژه، بند، ترجمه یا مفهوم فقط داخل همین مسیر.</p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">
-                جستجو
-                <ArrowLeft className="h-4 w-4 transition group-hover:-translate-x-1" />
-              </span>
-            </Link>
-
-            <div className="qerti-feature-card rounded-[20px] border border-gold/16 bg-black/18 p-5">
-              <Headphones className="h-6 w-6 text-gold-light" />
-              <h3 className="mt-4 text-xl font-black text-warm">رسانه و صوت</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">جای اتصال پادکست، خوانش صوتی و ویدیوهای همین فصل.</p>
-              <Link href={`/media?section=${section.slug}&chapter=${chapter.slug}`} className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">
-                دیدن رسانه
-                <ArrowLeft className="h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="qerti-feature-card rounded-[20px] border border-gold/16 bg-black/18 p-5">
-              <NotebookPen className="h-6 w-6 text-gold-light" />
-              <h3 className="mt-4 text-xl font-black text-warm">یادداشت و برداشت</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">بعدا این بخش به حساب کاربری و یادداشت‌های ذخیره‌شده وصل می‌شود.</p>
-              <Link href="/reflection" className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">
-                ثبت برداشت
-                <ArrowLeft className="h-4 w-4" />
-              </Link>
-            </div>
+            <FocusCard
+              href={firstVerseHref}
+              icon={Sparkles}
+              title="شروع از بند اول"
+              description={firstVerse?.excerpt ?? "ورود به نخستین بند آماده این فصل."}
+              action="خواندن بند"
+              highlight
+            />
+            <FocusCard
+              href={`/search?type=verse&section=${section.slug}&chapter=${chapter.slug}`}
+              icon={Search}
+              title="جستجو در همین فصل"
+              description="برای پیدا کردن واژه، بند، ترجمه یا مفهوم فقط داخل همین مسیر."
+              action="جستجو"
+            />
+            <FocusCard
+              href={`/media?section=${section.slug}&chapter=${chapter.slug}`}
+              icon={Headphones}
+              title="رسانه و صدا"
+              description="جای اتصال پادکست، خوانش صوتی و ویدیوهای همین فصل."
+              action="دیدن رسانه"
+            />
+            <FocusCard
+              href="/reflection"
+              icon={NotebookPen}
+              title="یادداشت و برداشت"
+              description="بعدا این بخش به حساب کاربری و یادداشت های ذخیره شده وصل می شود."
+              action="ثبت برداشت"
+            />
           </div>
         </div>
 
@@ -96,11 +87,7 @@ export function AvestaChapterFocus({ section, chapter, chapters, profile, langQu
             href={previousChapter ? `/avesta/${section.slug}/${previousChapter.slug}${langQuery}` : `/avesta/${section.slug}${langQuery}`}
             reverse
           />
-          <ChapterMove
-            label="بازگشت به بخش"
-            title={section.title}
-            href={`/avesta/${section.slug}${langQuery}`}
-          />
+          <ChapterMove label="بازگشت به بخش" title={section.title} href={`/avesta/${section.slug}${langQuery}`} />
           <ChapterMove
             label="فصل بعدی"
             title={nextChapter?.title ?? "مسیرهای اوستا"}
@@ -110,7 +97,7 @@ export function AvestaChapterFocus({ section, chapter, chapters, profile, langQu
 
         {profile?.relatedChapters.length ? (
           <div className="qerti-feature-card relative z-10 mt-5 rounded-[20px] border border-gold/16 bg-night/42 p-5">
-            <p className="text-sm font-black text-gold-light">مطالعه مرتبط، بدون خروج بی‌دلیل از مسیر</p>
+            <p className="text-sm font-black text-gold-light">مطالعه مرتبط، بدون خروج بی دلیل از مسیر</p>
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               {profile.relatedChapters.map((item) => (
                 <Link key={item.href} href={item.href} className="qerti-subtle-lift group rounded-2xl border border-gold/12 bg-black/16 p-4 transition hover:border-gold/38 hover:bg-gold/10">
@@ -126,6 +113,41 @@ export function AvestaChapterFocus({ section, chapter, chapters, profile, langQu
         ) : null}
       </div>
     </section>
+  );
+}
+
+function FocusCard({
+  href,
+  icon: Icon,
+  title,
+  description,
+  action,
+  highlight = false,
+}: {
+  href: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  action: string;
+  highlight?: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`qerti-feature-card qerti-subtle-lift group rounded-[20px] border p-5 transition ${
+        highlight
+          ? "border-gold/16 bg-gold/10 hover:border-gold/48 hover:bg-gold/16"
+          : "border-gold/16 bg-black/18 hover:border-gold/48 hover:bg-gold/10"
+      }`}
+    >
+      <Icon className="h-6 w-6 text-gold-light" />
+      <h3 className="mt-4 text-xl font-black text-warm">{title}</h3>
+      <p className="mt-2 text-sm leading-7 text-muted">{description}</p>
+      <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">
+        {action}
+        <ArrowLeft className="h-4 w-4 transition group-hover:-translate-x-1" />
+      </span>
+    </Link>
   );
 }
 

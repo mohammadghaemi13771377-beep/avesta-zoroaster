@@ -14,28 +14,28 @@ type SectionFocusConfig = {
 
 const focusConfigBySlug: Record<string, SectionFocusConfig> = {
   yasna: {
-    mood: "نیایش، آتش، هات‌ها و ساختار آیینی",
-    promise: "این صفحه فقط برای ورود به یسنا ساخته شده است؛ مسیرها، فصل‌ها و بندها از همین بخش آغاز می‌شوند.",
+    mood: "نیایش، آتش، هات ها و ساختار آیینی",
+    promise: "این صفحه فقط برای ورود به یسنا ساخته شده است؛ مسیرها، فصل ها و بندها از همین بخش آغاز می شوند.",
     primaryTool: "شروع هات اول",
-    focus: ["آتش و نیایش", "ساختار هات‌ها", "ترجمه و پیام اخلاقی"],
+    focus: ["آتش و نیایش", "ساختار هات ها", "ترجمه و پیام اخلاقی"],
     related: [
       { label: "نیایش روزانه", href: "/avesta/khordeh-avesta" },
-      { label: "رسانه‌های آیینی", href: "/media" },
+      { label: "رسانه های آیینی", href: "/media" },
     ],
   },
   gathas: {
     mood: "خرد، انتخاب آگاهانه و پیام روشن زرتشت",
-    promise: "در این مسیر فقط گات‌ها را می‌بینی؛ از سروده‌ها به بندها و سپس تحلیل مفهومی می‌روی.",
+    promise: "در این مسیر فقط گات ها را می بینی؛ از سروده ها به بندها و سپس تحلیل مفهومی می روی.",
     primaryTool: "ورود به اهنود",
     focus: ["اشا", "وهومن", "مسئولیت انسان"],
     related: [
-      { label: "مقاله گات‌ها", href: "/articles/what-are-gathas" },
-      { label: "واژه‌نامه اشا", href: "/dictionary/asha" },
+      { label: "مقاله گات ها", href: "/articles/what-are-gathas" },
+      { label: "واژه نامه اشا", href: "/dictionary/asha" },
     ],
   },
   visperad: {
     mood: "آیین جمعی، گسترش یسنا و ستایش همگانی",
-    promise: "ویسپرد با صفحه مستقل خود پیش می‌رود و کاربر را به فضای آیینی همان متن می‌برد.",
+    promise: "ویسپرد با صفحه مستقل خود پیش می رود و کاربر را به فضای آیینی همان متن می برد.",
     primaryTool: "شروع ویسپرد",
     focus: ["آیین جمعی", "پیوند با یسنا", "نیایش گسترده"],
     related: [
@@ -45,21 +45,21 @@ const focusConfigBySlug: Record<string, SectionFocusConfig> = {
   },
   vendidad: {
     mood: "پاکی، قانون، مرز روشنایی و تاریکی",
-    promise: "اینجا کاربر فقط وندیداد را دنبال می‌کند؛ فرگردها، پیام امروز و جستجوی محدود به همین بخش.",
+    promise: "اینجا کاربر فقط وندیداد را دنبال می کند؛ فرگردها، پیام امروز و جستجوی محدود به همین بخش.",
     primaryTool: "شروع فرگرد اول",
-    focus: ["پاکی", "قانون و نظم", "روایت‌های رازآلود"],
+    focus: ["پاکی", "قانون و نظم", "روایت های رازآلود"],
     related: [
-      { label: "واژه‌نامه اشا", href: "/dictionary/asha" },
+      { label: "واژه نامه اشا", href: "/dictionary/asha" },
       { label: "مرکز اعتماد پژوهشی", href: "/trust-center" },
     ],
   },
   yashts: {
-    mood: "ستایش‌های اسطوره‌ای، طبیعت، آب، مهر و آسمان",
-    promise: "یشت‌ها مثل یک مسیر حماسی دیده می‌شوند؛ هر یشت صفحه و روایت مستقل خود را دارد.",
-    primaryTool: "شروع آبان‌یشت",
+    mood: "ستایش های اسطوره ای، طبیعت، آب، مهر و آسمان",
+    promise: "یشت ها مثل یک مسیر حماسی دیده می شوند؛ هر یشت صفحه و روایت مستقل خودش را دارد.",
+    primaryTool: "شروع آبان یشت",
     focus: ["طبیعت و آب", "مهر و پیمان", "حماسه و ستایش"],
     related: [
-      { label: "نمایشگاه‌ها", href: "/exhibitions" },
+      { label: "نمایشگاه ها", href: "/exhibitions" },
       { label: "رسانه", href: "/media" },
     ],
   },
@@ -74,10 +74,10 @@ const focusConfigBySlug: Record<string, SectionFocusConfig> = {
     ],
   },
   hats: {
-    mood: "نقشه مطالعه، ساختار هات‌ها و راهنمای فصل‌ها",
-    promise: "هات‌ها به کاربر کمک می‌کنند ساختار متن را مثل نقشه کتاب دنبال کند.",
-    primaryTool: "دیدن نقشه هات‌ها",
-    focus: ["ساختار", "نقشه مطالعه", "ادامه فصل‌ها"],
+    mood: "نقشه مطالعه، ساختار هات ها و راهنمای فصل ها",
+    promise: "هات ها به کاربر کمک می کنند ساختار متن را مثل نقشه کتاب دنبال کند.",
+    primaryTool: "دیدن نقشه هات ها",
+    focus: ["ساختار", "نقشه مطالعه", "ادامه فصل ها"],
     related: [
       { label: "تالار مطالعه", href: "/reading-room" },
       { label: "مسیرهای اوستا", href: "/avesta/paths" },
@@ -95,9 +95,9 @@ type AvestaSectionFocusProps = {
 export function AvestaSectionFocus({ section, chapters, sampleVerse, langQuery = "" }: AvestaSectionFocusProps) {
   const config = focusConfigBySlug[section.slug] ?? {
     mood: "مطالعه اختصاصی این بخش",
-    promise: "این صفحه برای تمرکز روی همین بخش ساخته شده و مسیرهای بعدی را جدا از نقشه کلی نشان می‌دهد.",
+    promise: "این صفحه برای تمرکز روی همین بخش ساخته شده و مسیرهای بعدی را جدا از نقشه کلی نشان می دهد.",
     primaryTool: "شروع مطالعه",
-    focus: ["معرفی", "فصل‌ها", "پیام امروز"],
+    focus: ["معرفی", "فصل ها", "پیام امروز"],
     related: [
       { label: "تالار مطالعه", href: "/reading-room" },
       { label: "کتابخانه", href: "/library" },
@@ -120,9 +120,9 @@ export function AvestaSectionFocus({ section, chapters, sampleVerse, langQuery =
           <div className="relative overflow-hidden rounded-[24px] border border-gold/18 bg-black/20">
             <div className="relative min-h-[390px]">
               {coverImage ? (
-                <Image src={coverImage} alt={section.title} fill sizes="(max-width: 1024px) 100vw, 44vw" className="object-cover opacity-80" />
+                <Image src={coverImage} alt={section.title} fill sizes="(max-width: 1024px) 100vw, 44vw" className="object-cover opacity-82" />
               ) : null}
-              <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/34 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-night/88 via-night/28 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                 <p className="inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/28 px-4 py-2 text-xs font-black text-gold-light backdrop-blur">
                   <Compass className="h-4 w-4" />
@@ -131,7 +131,7 @@ export function AvestaSectionFocus({ section, chapters, sampleVerse, langQuery =
                 <h2 id={`${section.slug}-focus-title`} className="mt-5 text-4xl font-black leading-tight text-warm sm:text-5xl">
                   فقط مسیر {section.title}
                 </h2>
-                <p className="mt-4 max-w-xl text-base font-semibold leading-8 text-warm/82">{config.promise}</p>
+                <p className="mt-4 max-w-xl text-base font-semibold leading-8 text-warm/84">{config.promise}</p>
               </div>
             </div>
           </div>
@@ -174,7 +174,7 @@ export function AvestaSectionFocus({ section, chapters, sampleVerse, langQuery =
               <div className="qerti-feature-card rounded-[22px] border border-gold/16 bg-night/46 p-5">
                 <div className="mb-4 flex items-center gap-2 text-gold-light">
                   <BookOpen className="h-5 w-5" />
-                  <h3 className="font-black">فصل‌های همین بخش</h3>
+                  <h3 className="font-black">فصل های همین بخش</h3>
                 </div>
                 <div className="grid gap-2">
                   {nextChapters.length ? nextChapters.map((chapter, index) => (
@@ -187,7 +187,7 @@ export function AvestaSectionFocus({ section, chapters, sampleVerse, langQuery =
                     </Link>
                   )) : (
                     <p className="rounded-2xl border border-gold/12 bg-black/16 p-4 text-sm leading-7 text-muted">
-                      فصل‌های این بخش بعدا از پنل ادمین اضافه می‌شوند.
+                      فصل های این بخش بعدا از پنل ادمین اضافه می شوند.
                     </p>
                   )}
                 </div>
@@ -208,7 +208,7 @@ export function AvestaSectionFocus({ section, chapters, sampleVerse, langQuery =
                   <Link href="/media" className="qerti-subtle-lift group flex items-center justify-between gap-3 rounded-2xl border border-gold/12 bg-black/16 px-4 py-3 transition hover:border-gold/36 hover:bg-gold/10">
                     <span className="inline-flex items-center gap-2 text-sm font-black text-warm">
                       <AudioLines className="h-4 w-4 text-gold-light" />
-                      صوت و رسانه مرتبط
+                      صدا و رسانه مرتبط
                     </span>
                     <ArrowLeft className="h-4 w-4 text-gold-light transition group-hover:-translate-x-1" />
                   </Link>
