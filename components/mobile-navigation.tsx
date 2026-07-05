@@ -38,7 +38,7 @@ export function MobileNavigation() {
           <button type="button" className="absolute inset-0 cursor-default" onClick={() => setOpen(false)} aria-label="بستن فهرست" />
           <aside className="absolute inset-y-0 right-0 flex w-[min(88vw,390px)] flex-col border-l border-gold/20 bg-[#071521] shadow-2xl shadow-black/70">
             <div className="flex items-center justify-between border-b border-gold/15 px-5 py-5">
-              <div><p className="font-display text-sm tracking-[0.18em] text-gold-light">AVESTA-ZOROASTER</p><p className="mt-1 text-xs text-muted">فهرست جهان خرد و روشنایی</p></div>
+              <div><p className="font-brand text-sm tracking-[0.18em] text-gold-light">AVESTA-ZOROASTER</p><p className="mt-1 text-xs text-muted">فهرست جهان خرد و روشنایی</p></div>
               <button type="button" onClick={() => setOpen(false)} className="grid h-10 w-10 place-items-center rounded-xl border border-gold/18 text-gold-light" aria-label="بستن"><X size={18} /></button>
             </div>
 

@@ -81,7 +81,7 @@ export function QuoteShareCard({
 
           <div className="relative z-10 flex h-full min-h-[300px] flex-col justify-between rounded-[1.35rem] border border-gold/20 bg-black/20 p-6 shadow-gold">
             <div className="flex items-center justify-between gap-4">
-              <p className="font-display text-lg tracking-[0.22em] text-gold-light">{brand}</p>
+              <p className="font-brand text-lg tracking-[0.22em] text-gold-light">{brand}</p>
               <Sparkles className="h-5 w-5 text-gold-light" />
             </div>
 

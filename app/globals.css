@@ -10,10 +10,71 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Estedad";
+  src:
+    url("/fonts/estedad/estedad-arabic-400.woff") format("woff"),
+    url("/fonts/estedad/estedad-latin-400.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src:
+    url("/fonts/estedad/estedad-arabic-500.woff") format("woff"),
+    url("/fonts/estedad/estedad-latin-500.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src:
+    url("/fonts/estedad/estedad-arabic-600.woff") format("woff"),
+    url("/fonts/estedad/estedad-latin-600.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src:
+    url("/fonts/estedad/estedad-arabic-700.woff") format("woff"),
+    url("/fonts/estedad/estedad-latin-700.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src:
+    url("/fonts/estedad/estedad-arabic-800.woff") format("woff"),
+    url("/fonts/estedad/estedad-latin-800.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Estedad";
+  src:
+    url("/fonts/estedad/estedad-arabic-900.woff") format("woff"),
+    url("/fonts/estedad/estedad-latin-900.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   --font-vazirmatn: Vazirmatn, IRANSansX, Tahoma, Arial, sans-serif;
-  --font-cinzel: Cinzel, "Cormorant Garamond", Georgia, serif;
+  --font-estedad: Estedad, Vazirmatn, Tahoma, Arial, sans-serif;
+  --font-brand: Cinzel, "Cormorant Garamond", Georgia, serif;
   --reader-font-size: 18px;
   --reader-line-height: 2;
   --pointer-x: 50vw;
@@ -32,6 +93,8 @@ html {
 body {
   min-height: 100vh;
   font-family: var(--font-vazirmatn);
+  font-weight: 400;
+  line-height: 2;
   font-feature-settings: "ss01" 1;
   text-rendering: optimizeLegibility;
   transition: background 280ms ease, color 280ms ease;
@@ -41,6 +104,89 @@ body {
     radial-gradient(circle at 12% 52%, rgba(72, 153, 180, 0.12), transparent 28rem),
     linear-gradient(180deg, #071521 0%, #07111a 42%, #050b10 100%);
   color: #fff8ea;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display,
+.hub-hero-title,
+.home-hero-title,
+.gold-text {
+  font-family: var(--font-estedad);
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+.hub-hero-title,
+.home-hero-title {
+  font-weight: 800 !important;
+  line-height: 1.28;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700 !important;
+  line-height: 1.38;
+}
+
+p,
+li,
+dd,
+dt,
+td,
+th,
+input,
+textarea,
+select {
+  font-family: var(--font-vazirmatn);
+}
+
+p,
+li {
+  line-height: 2;
+}
+
+nav,
+nav a,
+summary {
+  font-weight: 500;
+}
+
+button,
+input,
+select,
+textarea,
+.reader-text {
+  font-family: var(--font-vazirmatn);
+}
+
+button,
+[type="button"],
+[type="submit"] {
+  font-weight: 600;
+}
+
+blockquote,
+.reader-original,
+.golden-quote,
+.avesta-term,
+.chapter-title,
+.verse-title {
+  font-family: var(--font-estedad);
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: 0;
+}
+
+.font-brand {
+  font-family: var(--font-brand);
 }
 
 @media (max-width: 767px) {

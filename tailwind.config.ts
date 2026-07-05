@@ -33,7 +33,9 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-vazirmatn)", "Tahoma", "sans-serif"],
-        display: ["var(--font-cinzel)", "Cormorant Garamond", "serif"]
+        display: ["var(--font-estedad)", "var(--font-vazirmatn)", "Tahoma", "Arial", "sans-serif"],
+        serif: ["var(--font-estedad)", "var(--font-vazirmatn)", "Tahoma", "Arial", "sans-serif"],
+        brand: ["var(--font-brand)", "Cinzel", "Cormorant Garamond", "Georgia", "serif"]
       },
       boxShadow: {
         gold: "0 0 34px rgba(214, 168, 79, 0.18)"

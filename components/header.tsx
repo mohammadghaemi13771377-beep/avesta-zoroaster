@@ -23,7 +23,7 @@ export function Header() {
             priority
           />
           <div className="hidden sm:block">
-            <div className="font-display text-sm tracking-[0.18em] text-gold-light">AVESTA-ZOROASTER</div>
+            <div className="font-brand text-sm tracking-[0.18em] text-gold-light">AVESTA-ZOROASTER</div>
             <div className="text-[11px] font-medium text-warm/76">پندار نیک | گفتار نیک | کردار نیک</div>
           </div>
         </Link>

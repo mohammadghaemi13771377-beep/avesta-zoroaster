@@ -125,7 +125,7 @@ export function ShareStudioPanel({ state }: ShareStudioPanelProps) {
           <div className={`image-scene ${theme.scene} grid min-h-[610px] place-items-center rounded-[22px] border border-gold/16 p-5`}>
             <div className="relative z-10 flex min-h-[480px] w-full max-w-2xl flex-col justify-between rounded-[28px] border border-gold/24 bg-black/45 p-7 text-center shadow-gold backdrop-blur">
               <div className="flex items-center justify-between gap-4">
-                <p className="font-display text-lg tracking-[0.22em] text-gold-light">AVESTA-ZOROASTER</p>
+                <p className="font-brand text-lg tracking-[0.22em] text-gold-light">AVESTA-ZOROASTER</p>
                 <Sparkles className="text-gold-light" size={20} />
               </div>
               <blockquote className="py-8 text-3xl font-black leading-[2] text-warm">«{seed.quote}»</blockquote>
