@@ -20,7 +20,7 @@ const journeyCards = [
   },
   {
     title: "گات‌ها",
-    description: "نزدیک‌ترین لایه متنی به پیام زرتشت؛ سروده‌هایی برای اندیشه، راستی و انتخاب آگاهانه.",
+    description: "نزدیک‌ترین لایه متنی به پیام زرتشت؛ سروده‌هایی برای اندیشه، راستی و مسئولیت انسان.",
     href: "/gathas",
     icon: BookOpen,
     scene: "scene-sunrise",
@@ -40,7 +40,7 @@ const journeyCards = [
     href: "/timeline",
     icon: Landmark,
     scene: "scene-stone",
-    imageSrc: "/images/ai/exhibitions-hero.jpg",
+    imageSrc: "/images/ai/timeline-hero.jpg",
   },
 ];
 
@@ -52,15 +52,14 @@ export default function ZoroasterPage() {
       lead="این صفحه دروازه آشنایی با زندگی، پیام و میراث زرتشت است؛ جایی میان تاریخ، اخلاق، گات‌ها و تجربه تصویری ایران باستان."
       scene="scene-prophet"
       heroImage={routeHeroByPath["/zoroaster"]}
-      roman="Z"
       actions={[
         { label: "مطالعه گات‌ها", href: "/gathas" },
         { label: "دیدن تایم‌لاین", href: "/timeline", variant: "secondary" },
       ]}
       stats={[
-        { value: "۳", label: "اصل اخلاقی: پندار، گفتار، کردار" },
+        { value: "۳", label: "پندار نیک، گفتار نیک، کردار نیک" },
         { value: "۵", label: "سرود اصلی گات‌ها" },
-        { value: "∞", label: "مسیر مطالعه و تفسیر امروزی" },
+        { value: "امروز", label: "خوانش اخلاقی برای زندگی معاصر" },
       ]}
     >
       <FeatureLinkGrid items={journeyCards} />

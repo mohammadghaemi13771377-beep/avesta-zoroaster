@@ -2,7 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 type HubAction = {
   label: string;
@@ -32,7 +32,6 @@ export function CinematicHub({
   title,
   lead,
   scene,
-  roman = "I",
   actions = [],
   stats = [],
   heroImage,
@@ -42,14 +41,7 @@ export function CinematicHub({
     <main className="overflow-hidden pt-24">
       <section className={`hero-cosmos ${scene} relative isolate min-h-[680px] overflow-hidden`}>
         {heroImage ? (
-          <Image
-            src={heroImage}
-            alt={title}
-            fill
-            sizes="100vw"
-            className="object-cover object-center"
-            priority
-          />
+          <Image src={heroImage} alt={title} fill sizes="100vw" className="object-cover object-center" priority />
         ) : null}
         <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/68 to-[#071521]/16" />
         <div className="absolute inset-x-[8%] top-24 h-px bg-gradient-to-r from-transparent via-gold-200/55 to-transparent" />
@@ -59,9 +51,7 @@ export function CinematicHub({
         <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8">
           <div className="hub-hero-copy w-full">
             <p className="hub-hero-eyebrow gold-text text-sm font-black uppercase tracking-[0.28em] sm:tracking-[0.34em]">{eyebrow}</p>
-            <h1 className="hub-hero-title mt-5 max-w-4xl text-5xl font-black leading-tight text-warm-50 sm:text-7xl">
-              {title}
-            </h1>
+            <h1 className="hub-hero-title mt-5 max-w-4xl text-5xl font-black leading-tight text-warm-50 sm:text-7xl">{title}</h1>
             <p className="hub-hero-lead mt-7 max-w-2xl text-lg font-semibold leading-9 text-warm-100/86">{lead}</p>
 
             {actions.length > 0 ? (
@@ -94,10 +84,6 @@ export function CinematicHub({
               </div>
             ) : null}
           </div>
-          <div className="pointer-events-none absolute bottom-8 left-6 grid h-12 w-12 place-items-center rounded-full border border-gold/30 bg-black/25 font-serif text-xl text-gold-200 backdrop-blur-md sm:left-8">
-            {roman}
-          </div>
-          <Sparkles className="pointer-events-none absolute bottom-11 left-24 h-5 w-5 text-gold-200/85 sm:left-28" />
         </div>
       </section>
 
@@ -126,10 +112,18 @@ export function FeatureLinkGrid({ items }: { items: FeatureLink[] }) {
             <div className={scene ? `image-scene ${scene} h-40 rounded-2xl border border-gold-400/15` : ""}>
               {imageSrc ? (
                 <>
-                  <Image src={imageSrc} alt={`کاور ${title}`} fill sizes="(min-width: 1280px) 24vw, (min-width: 768px) 46vw, 92vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                  <Image
+                    src={imageSrc}
+                    alt={`کاور ${title}`}
+                    fill
+                    sizes="(min-width: 1280px) 24vw, (min-width: 768px) 46vw, 92vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
                   <span className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
                 </>
-              ) : !scene ? <Icon className="text-gold-200" size={30} /> : null}
+              ) : !scene ? (
+                <Icon className="text-gold-200" size={30} />
+              ) : null}
             </div>
             {scene ? <Icon className="mt-5 text-gold-200" size={28} /> : null}
             <h2 className="mt-5 text-2xl font-black text-warm-50">{title}</h2>
@@ -143,8 +137,7 @@ export function FeatureLinkGrid({ items }: { items: FeatureLink[] }) {
           </>
         );
 
-        const className =
-          "lux-frame qerti-feature-card qerti-subtle-lift group block p-5 hover:border-gold-300/45 hover:shadow-gold";
+        const className = "lux-frame qerti-feature-card qerti-subtle-lift group block p-5 hover:border-gold-300/45 hover:shadow-gold";
 
         return href ? (
           <Link key={title} href={href} className={className}>

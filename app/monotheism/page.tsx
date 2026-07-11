@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { ArrowLeft, Flame, Scale, Sparkles, Sun } from "lucide-react";
 import Link from "next/link";
+import { ArrowLeft, Flame, Scale, Sparkles, Sun } from "lucide-react";
 
 import { CinematicHub } from "@/components/cinematic-hub";
 import { routeHeroByPath } from "@/lib/visual-assets";
 
 export const metadata: Metadata = {
   title: "یکتاپرستی | AVESTA-ZOROASTER",
-  description:
-    "هاب یکتاپرستی AVESTA-ZOROASTER؛ اهورامزدا، اشا، اختیار انسان و پیام اخلاقی پندار نیک، گفتار نیک، کردار نیک.",
+  description: "هاب یکتاپرستی AVESTA-ZOROASTER؛ اهورامزدا، اشا، اختیار انسان و پیام اخلاقی پندار نیک، گفتار نیک، کردار نیک.",
 };
 
 const pillars = [
@@ -30,14 +29,14 @@ const pillars = [
     title: "اختیار انسان",
     subtitle: "انتخاب میان روشنایی و تاریکی",
     description:
-      "یکی از لایه‌های جذاب پروژه این است که انسان فقط تماشاگر نیست. او با پندار، گفتار و کردار خود در ساختن جهان اخلاقی سهم دارد.",
+      "انسان فقط تماشاگر نیست. او با پندار، گفتار و کردار خود در ساختن جهان اخلاقی سهم دارد؛ همین ایده باید در مسیرهای مطالعه و تمرین‌های سایت دیده شود.",
     accent: "#FFF8EA",
   },
   {
     title: "پندار نیک، گفتار نیک، کردار نیک",
     subtitle: "فرمول ساده، عمیق و جهانی اخلاق",
     description:
-      "این شعار باید مثل ستون طلایی کل سایت عمل کند: از صفحه خانه تا مطالعه اوستا، مقاله‌ها، تایم‌لاین، رسانه و تجربه کاربر.",
+      "این شعار مثل ستون طلایی کل سایت عمل می‌کند: از صفحه خانه تا مطالعه اوستا، مقاله‌ها، تایم‌لاین، رسانه و تجربه کاربر.",
     accent: "#B9B9B9",
   },
 ];
@@ -55,8 +54,7 @@ export default function MonotheismPage() {
     "@type": "EducationalOrganization",
     name: "AVESTA-ZOROASTER Monotheism Hub",
     url: "https://avesta-zoroaster.com/monotheism",
-    description:
-      "A cinematic Persian educational hub about Zoroastrian monotheism, Ahura Mazda, Asha and ethical wisdom.",
+    description: "A cinematic Persian educational hub about Zoroastrian monotheism, Ahura Mazda, Asha and ethical wisdom.",
   };
 
   return (
@@ -68,7 +66,6 @@ export default function MonotheismPage() {
         lead="این صفحه قلب معنایی سایت است: معرفی اهورامزدا، اشا، اختیار انسان و اخلاق زرتشتی به زبان مدرن، سینمایی و قابل لمس."
         scene="scene-fire"
         heroImage={routeHeroByPath["/monotheism"]}
-        roman="Y"
         actions={[
           { label: "شروع از گات‌ها", href: "/avesta/gathas/ahunavaiti/verse-1" },
           { label: "مسیرهای یکتاپرستی", href: "/monotheism/paths", variant: "secondary" },
@@ -91,10 +88,7 @@ export default function MonotheismPage() {
             <p className="mt-5 max-w-3xl leading-9 text-muted">
               این صفحه کاربر را از مفهوم به تجربه می‌برد: از نام اهورامزدا و اشا تا خواندن گات‌ها، دیدن تصویر، شنیدن روایت و فهم پیام اخلاقی امروز.
             </p>
-            <Link
-              href="/monotheism/paths"
-              className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-black text-night transition hover:bg-gold-light"
-            >
+            <Link href="/monotheism/paths" className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-black text-night transition hover:bg-gold-light">
               ورود به مسیرهای یکتاپرستی
               <ArrowLeft size={18} />
             </Link>
@@ -133,9 +127,7 @@ export default function MonotheismPage() {
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {journey.map(([step, title, description]) => (
               <article key={step} className="rounded-[18px] border border-gold/12 bg-night/60 p-6">
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-gold text-lg font-black text-night">
-                  {step}
-                </div>
+                <div className="grid h-12 w-12 place-items-center rounded-full bg-gold text-lg font-black text-night">{step}</div>
                 <h3 className="mt-5 text-2xl font-black text-warm">{title}</h3>
                 <p className="mt-3 leading-8 text-muted">{description}</p>
               </article>

@@ -40,7 +40,7 @@ const paths = [
     href: "/timeline",
     icon: Landmark,
     scene: "scene-stone",
-    imageSrc: "/images/ai/zoroaster-hero.jpg",
+    imageSrc: "/images/ai/timeline-hero.jpg",
   },
 ];
 
@@ -48,7 +48,7 @@ const pillars = [
   {
     title: "اشا",
     subtitle: "راستی و نظم کیهانی",
-    description: "اشا ستون فهم اخلاقی سایت است: راستی، هماهنگی، نظم، مسئولیت و پیوند انسان با جهان معنادار.",
+    description: "اشا ستون فهم اخلاقی سایت است: راستی، هماهنگی، نظم، مسئولیت و پیوند انسان با جهانی معنادار.",
   },
   {
     title: "وهومن",
@@ -75,7 +75,6 @@ export default function ZoroastrianismPage() {
       lead="این صفحه نقشه شناخت آموزه‌های زرتشتی است: یکتاپرستی، اهورامزدا، اشا، وهومن، اخلاق، نمادها و پیوند آن‌ها با فرهنگ ایران باستان."
       scene="scene-fire"
       heroImage={routeHeroByPath["/zoroastrianism"]}
-      roman="D"
       actions={[
         { label: "ورود به هاب یکتاپرستی", href: "/monotheism" },
         { label: "مطالعه اشا", href: "/articles/asha-truth-order", variant: "secondary" },
@@ -93,7 +92,7 @@ export default function ZoroastrianismPage() {
           <Scale size={20} />
           <p className="text-sm font-bold">مفاهیم بنیادین</p>
         </div>
-        <h2 className="mt-3 text-4xl font-black text-warm">ستون‌هایی که کل سایت روی آن‌ها می‌ایستد</h2>
+        <h2 className="mt-3 text-4xl font-black text-warm">ستون‌هایی که جهان سایت روی آن‌ها می‌ایستد</h2>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {pillars.map((pillar) => (
             <article key={pillar.title} className="rounded-[18px] border border-gold/12 bg-night/60 p-6">
