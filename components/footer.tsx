@@ -45,8 +45,7 @@ export function Footer() {
             <h2 className="font-brand text-2xl tracking-[0.16em] text-gold-light">AVESTA-ZOROASTER</h2>
             <p className="mt-3 text-sm text-gold-light">پندار نیک | گفتار نیک | کردار نیک</p>
             <p className="mt-5 max-w-sm leading-8 text-muted">
-              این وب‌سایت یک پروژه فرهنگی، آموزشی و پژوهشی برای تجربه دیجیتال اوستا، زرتشت و خرد ایران باستان است؛
-              جایی برای مطالعه، تصویر، منابع، روایت و مسیرهای یادگیری.
+              این وب‌سایت یک پروژه فرهنگی، آموزشی و پژوهشی برای تجربه دیجیتال اوستا، زرتشت و خرد ایران باستان است؛ جایی برای مطالعه، تصویر، منابع، روایت و مسیرهای یادگیری.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               <Link href="/avesta" className="rounded-full bg-gold px-4 py-2 text-xs font-black text-night transition hover:bg-gold-light">
@@ -65,7 +64,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-5 border-t border-gold/10 pt-8 text-sm text-muted md:flex-row">
-          <p>تمامی حقوق محفوظ است. © ۱۴۰۴</p>
+          <p>تمامی حقوق محفوظ است. © ۱۴۰۵</p>
           <Image
             src="/images/avesta-zoroaster-logo.png"
             alt="AVESTA-ZOROASTER"

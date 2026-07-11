@@ -27,7 +27,7 @@ const missionCards = [
   },
   {
     title: "روایت سینمایی",
-    description: "تصاویر AI، تایم‌لاین، کارت‌های طلایی و تالارهای مطالعه سایت را از وبلاگ جدا می‌کنند.",
+    description: "تصاویر اختصاصی، تایم‌لاین، کارت‌های طلایی و تالارهای مطالعه سایت را از یک وبلاگ ساده جدا می‌کنند.",
     href: "/media",
     icon: Sparkles,
     scene: "scene-mountain",
@@ -46,11 +46,10 @@ const missionCards = [
 export default function AboutPage() {
   return (
     <CinematicHub
-      eyebrow="Mission"
+      eyebrow="ماموریت پروژه"
       title="درباره AVESTA-ZOROASTER"
       lead="این پروژه برای تبدیل اوستا، گات‌ها و خرد ایران باستان به یک تجربه دیجیتال سینمایی، معتبر، مدرن و قابل توسعه ساخته می‌شود."
       scene="scene-prophet"
-      roman="AV"
       actions={[
         { label: "ورود به اوستا", href: "/avesta" },
         { label: "دیدن نقشه محتوا", href: "/timeline", variant: "secondary" },
