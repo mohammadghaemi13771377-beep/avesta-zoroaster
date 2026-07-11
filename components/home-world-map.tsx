@@ -47,7 +47,7 @@ const worldNodes = [
   {
     title: "آیین روزانه",
     label: "تمرین و مکث",
-    text: "خرده اوستا و اتاق نیایش.",
+    text: "خرده‌اوستا و اتاق نیایش.",
     href: "/ritual-room",
     icon: Flame,
   },

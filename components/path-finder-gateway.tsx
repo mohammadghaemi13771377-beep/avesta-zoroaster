@@ -1,20 +1,83 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, BookOpen, Flame, Headphones, Library, Route, Search, ShoppingBag, Sparkles } from "lucide-react";
-import { pathFinderOptions, type PathFinderOption } from "@/lib/path-finder";
 
-const iconByPath: Record<PathFinderOption["id"], typeof Route> = {
-  beginner: Route,
-  gathas: BookOpen,
-  prayer: Flame,
-  research: Library,
-  media: Headphones,
-  shop: ShoppingBag,
-};
+const gatewayOptions = [
+  {
+    id: "beginner",
+    title: "شروع از صفر",
+    description: "اگر تازه وارد جهان اوستا شده‌ای، این مسیر آرام‌ترین راه ورود است.",
+    eyebrow: "مقدماتی",
+    cta: "آیین ورود",
+    href: "/onboarding",
+    image: "/images/ai/home-hero-desktop.jpg",
+    imageAlt: "طلوع روشن در تخت جمشید برای شروع سفر اوستا",
+    accent: "#f2d58a",
+    icon: Route,
+  },
+  {
+    id: "gathas",
+    title: "مسیر گات‌ها",
+    description: "سروده‌های کهن، اشا، وهومن و پیام انتخاب آگاهانه را بخوان.",
+    eyebrow: "خرد روشن",
+    cta: "مطالعه گات‌ها",
+    href: "/gathas",
+    image: "/images/ai/gathas-hero.jpg",
+    imageAlt: "کتاب گشوده در کوهستان روشن برای گات‌ها",
+    accent: "#f2d58a",
+    icon: BookOpen,
+  },
+  {
+    id: "prayer",
+    title: "نیایش روزانه",
+    description: "خرده‌اوستا، آتش نیایش و متن‌های کوتاه برای مکث روزانه.",
+    eyebrow: "آرامش",
+    cta: "ورود به نیایش",
+    href: "/avesta/khordeh-avesta",
+    image: "/images/ai/khordeh-avesta-hero.jpg",
+    imageAlt: "کتاب دعا و آتش کوچک در خانه ایرانی روشن",
+    accent: "#d6a84f",
+    icon: Flame,
+  },
+  {
+    id: "research",
+    title: "پژوهش و منابع",
+    description: "کتابخانه، واژه‌نامه، مقاله‌ها و یادداشت‌های معتبر را دنبال کن.",
+    eyebrow: "پژوهشی",
+    cta: "مشاهده منابع",
+    href: "/library",
+    image: "/images/ai/library-hero.jpg",
+    imageAlt: "کتابخانه باستانی مدرن با نسخه‌های خطی",
+    accent: "#f2d58a",
+    icon: Library,
+  },
+  {
+    id: "media",
+    title: "تماشا و شنیدن",
+    description: "ویدئو، پادکست، نمایشگاه و تصویرهای سینمایی سایت را ببین.",
+    eyebrow: "چندرسانه‌ای",
+    cta: "ورود به رسانه",
+    href: "/media",
+    image: "/images/ai/media-hero.jpg",
+    imageAlt: "استودیوی رسانه با میکروفون، کتاب و آتش آرام",
+    accent: "#7dd3fc",
+    icon: Headphones,
+  },
+  {
+    id: "shop",
+    title: "فروشگاه فرهنگی",
+    description: "کتاب، یادگاری، پوشیدنی و محصولات آینده AVESTA-ZOROASTER.",
+    eyebrow: "فرهنگی",
+    cta: "دیدن فروشگاه",
+    href: "/shop",
+    image: "/images/ai/shop-hero.jpg",
+    imageAlt: "میز نمایش لوکس محصولات فرهنگی اوستا و زرتشت",
+    accent: "#d6a84f",
+    icon: ShoppingBag,
+  },
+];
 
 export function PathFinderGateway() {
-  const visibleOptions = pathFinderOptions.slice(0, 6);
-
   return (
     <section className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8" aria-labelledby="path-finder-title">
       <div className="relative overflow-hidden rounded-[26px] border border-gold/22 bg-[linear-gradient(135deg,rgba(255,248,234,0.10),rgba(7,21,33,0.68)_42%,rgba(5,8,13,0.84))] p-5 shadow-[0_30px_95px_rgba(0,0,0,0.32)] bright:bg-[linear-gradient(135deg,rgba(255,248,234,0.90),rgba(242,213,138,0.28),rgba(255,255,255,0.78))] sm:p-7">
@@ -29,10 +92,10 @@ export function PathFinderGateway() {
               مسیرهای ورود
             </p>
             <h2 id="path-finder-title" className="mt-5 max-w-xl text-3xl font-black leading-tight text-warm bright:text-stone-950 sm:text-5xl">
-              با یک انتخاب، وارد همان بخش شو
+              با یک انتخاب، مستقیم وارد همان جهان شو
             </h2>
             <p className="mt-4 max-w-xl text-base font-semibold leading-8 text-muted bright:text-stone-700">
-              صفحه اول قرار نیست فهرست کامل باشد؛ اینجا فقط مسیرهای اصلی را می‌بینی و هر کلیک تو را مستقیم به صفحه مربوط می‌برد.
+              صفحه اول فقط راه را نشان می‌دهد. هر کارت، تو را به صفحه اختصاصی همان موضوع می‌برد تا بین بخش‌های نامرتبط گم نشوی.
             </p>
             <Link
               href="/search"
@@ -44,8 +107,8 @@ export function PathFinderGateway() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {visibleOptions.map((option) => {
-              const Icon = iconByPath[option.id];
+            {gatewayOptions.map((option) => {
+              const Icon = option.icon;
 
               return (
                 <Link
