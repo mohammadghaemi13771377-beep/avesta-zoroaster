@@ -16,7 +16,7 @@ export function Header() {
         <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="AVESTA-ZOROASTER">
           <Image
             src="/images/avesta-zoroaster-logo.png"
-            alt="AVESTA-ZOROASTER logo"
+            alt="لوگوی AVESTA-ZOROASTER"
             width={42}
             height={42}
             className="h-10 w-10 rounded-full object-cover ring-1 ring-gold/30"
@@ -32,10 +32,7 @@ export function Header() {
           {navItems.map((item) =>
             item.href === "/avesta" ? (
               <div className="group relative -my-5 py-5" key={item.href}>
-                <HeaderNavLink
-                  href={item.href}
-                  className="header-nav-pill flex items-center gap-1 rounded-xl px-4 py-2 transition"
-                >
+                <HeaderNavLink href={item.href} className="header-nav-pill flex items-center gap-1 rounded-xl px-4 py-2 transition">
                   {item.label}
                   <ChevronDown size={15} />
                 </HeaderNavLink>
@@ -66,11 +63,7 @@ export function Header() {
                 </div>
               </div>
             ) : (
-              <HeaderNavLink
-                href={item.href}
-                key={item.href}
-                className="header-nav-pill rounded-xl px-4 py-2 transition"
-              >
+              <HeaderNavLink href={item.href} key={item.href} className="header-nav-pill rounded-xl px-4 py-2 transition">
                 {item.label}
               </HeaderNavLink>
             ),
@@ -103,7 +96,7 @@ export function Header() {
             className="hidden items-center gap-2 rounded-xl border border-gold/16 px-3 py-2 text-xs font-bold text-warm/85 transition hover:bg-gold/10 hover:text-gold-light md:inline-flex"
           >
             <UserRound size={15} />
-            ورود / ثبت نام
+            ورود / ثبت‌نام
           </Link>
           <Link
             href="/search"
@@ -118,11 +111,7 @@ export function Header() {
           <ReadingNotifications />
           <AmbientLightToggle />
           <LanguageSwitcher />
-          <Link
-            href="/login"
-            className="grid h-9 w-9 place-items-center rounded-xl bg-gold text-night transition hover:bg-gold-light md:hidden"
-            aria-label="ورود"
-          >
+          <Link href="/login" className="grid h-9 w-9 place-items-center rounded-xl bg-gold text-night transition hover:bg-gold-light md:hidden" aria-label="ورود">
             <LogIn size={17} />
           </Link>
         </div>

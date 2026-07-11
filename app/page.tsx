@@ -174,15 +174,15 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl flex-col justify-center px-4 pb-28 pt-20 sm:px-6 lg:pl-[52%] lg:pr-8 lg:pt-24">
           <div className="home-hero-copy max-w-2xl">
-            <p className="home-hero-eyebrow inline-flex items-center gap-2 rounded-full border border-gold/24 bg-night/18 px-4 py-2 text-sm font-black text-gold-light backdrop-blur-md">
+            <p className="home-hero-eyebrow inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#fff8ea]/82 px-4 py-2 text-sm font-black text-[#6f4310] shadow-[0_18px_56px_rgba(111,67,16,0.14)] backdrop-blur-md">
               <Sparkles className="h-4 w-4" />
               به جهان دیجیتال اوستا
             </p>
             <h1 className="home-hero-title gold-text mt-5 max-w-3xl text-5xl font-black leading-[1.08] sm:text-6xl lg:text-7xl">
               اوستا و زرتشت
             </h1>
-            <p className="home-hero-lead mt-6 max-w-xl text-lg font-bold leading-9 text-[#fff8ea] sm:text-xl">
-              مرجع سینمایی و آموزشی خرد ایران باستان؛ مطالعه اوستا، گات‌ها، زرتشت و پیام یکتاپرستی در یک جهان دیجیتال.
+            <p className="home-hero-lead mt-6 max-w-xl text-lg font-bold leading-9 text-[#2f230f] sm:text-xl">
+              مرجع سینمایی و آموزشی خرد ایران باستان؛ مطالعه اوستا، گات‌ها، زرتشت و پیام یکتاپرستی در یک جهان دیجیتال روشن.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <TrackedLink
@@ -198,17 +198,17 @@ export default function HomePage() {
                 href="/onboarding"
                 event="hero_cta_click"
                 payload={{ cta_id: "home-hero-onboarding", label: "آغاز سفر", locale: "fa", source_route: "/" }}
-                className="qerti-subtle-lift inline-flex items-center justify-center gap-3 rounded-2xl border border-warm/36 bg-night/18 px-7 py-4 font-black text-warm backdrop-blur-md transition hover:border-gold/55 hover:bg-gold/10"
+                className="qerti-subtle-lift inline-flex items-center justify-center gap-3 rounded-2xl border border-[#6f4310]/22 bg-[#fff8ea]/74 px-7 py-4 font-black text-[#4b330f] shadow-[0_18px_50px_rgba(111,67,16,0.12)] backdrop-blur-md transition hover:border-gold/55 hover:bg-[#fff8ea]/90"
               >
                 آغاز سفر
               </TrackedLink>
             </div>
-            <div className="home-hero-feature-strip mt-10 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-gold/20 bg-gold/16 shadow-[0_22px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl md:grid-cols-4">
+            <div className="home-hero-feature-strip mt-10 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-[#6f4310]/18 bg-[#fff8ea]/54 shadow-[0_22px_70px_rgba(111,67,16,0.16)] backdrop-blur-xl md:grid-cols-4">
               {featureBadges.map(([title, subtitle, Icon]) => (
-                <div key={title} className="home-feature-badge bg-night/42 px-4 py-4">
-                  <Icon className="text-gold-light" size={24} />
-                  <p className="mt-3 text-sm font-black text-warm">{title}</p>
-                  <p className="mt-1 text-xs font-bold leading-6 text-warm/70">{subtitle}</p>
+                <div key={title} className="home-feature-badge bg-[#fffdf8]/72 px-4 py-4">
+                  <Icon className="text-[#9a641e]" size={24} />
+                  <p className="mt-3 text-sm font-black text-[#2f230f]">{title}</p>
+                  <p className="mt-1 text-xs font-bold leading-6 text-[#6f4310]/78">{subtitle}</p>
                 </div>
               ))}
             </div>
@@ -290,13 +290,7 @@ export default function HomePage() {
                 <h3 className="text-2xl font-black text-warm">{card.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-muted">{card.text}</p>
                 <div className="image-scene relative mt-5 h-44 overflow-hidden rounded-[14px] border border-gold/14">
-                  <Image
-                    src={card.image}
-                    alt={`کاور ${card.title}`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 25vw"
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
+                  <Image src={card.image} alt={`کاور ${card.title}`} fill sizes="(max-width: 1024px) 100vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent" />
                 </div>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">
