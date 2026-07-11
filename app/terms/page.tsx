@@ -32,7 +32,7 @@ const rules = [
 export default function TermsPage() {
   return (
     <CinematicHub
-      eyebrow="Terms"
+      eyebrow="قوانین"
       title="قوانین استفاده"
       lead="AVESTA-ZOROASTER یک پلتفرم فرهنگی و آموزشی است. استفاده از سایت باید با احترام به منابع، پژوهش، فرهنگ و حقوق کاربران انجام شود."
       scene="scene-scroll"

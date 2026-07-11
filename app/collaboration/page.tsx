@@ -15,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
 const paths = [
   {
     title: "پژوهش و منابع",
-    body: "معرفی نسخه‌ها، کتاب‌ها، مقاله‌ها، citation و اصلاح خطاهای محتوایی برای بخش‌های اوستا و زرتشت.",
+    body: "معرفی نسخه‌ها، کتاب‌ها، مقاله‌ها، ارجاع‌ها و اصلاح خطاهای محتوایی برای بخش‌های اوستا و زرتشت.",
     icon: ScrollText,
   },
   {
@@ -25,7 +25,7 @@ const paths = [
   },
   {
     title: "هنر و رسانه",
-    body: "تولید تصویر، ویدیو، صوت، نمایشگاه دیجیتال و محتوای آموزشی با هویت ایران باستان و اوستا.",
+    body: "تولید تصویر، ویدیو، صدا، نمایشگاه دیجیتال و محتوای آموزشی با هویت ایران باستان و اوستا.",
     icon: Palette,
   },
 ];
@@ -33,7 +33,7 @@ const paths = [
 export default function CollaborationPage() {
   return (
     <CinematicHub
-      eyebrow="Collaboration"
+      eyebrow="همکاری"
       title="همکاری با جهان اوستا"
       lead="این پروژه برای بزرگ شدن به تیم‌های پژوهشی، هنری، فنی و محتوایی نیاز دارد. هر همکاری باید روشن، قابل پیگیری و با احترام به منبع و فرهنگ انجام شود."
       scene="scene-prophet"
@@ -62,8 +62,7 @@ export default function CollaborationPage() {
         <p className="gold-text text-sm font-semibold tracking-[0.24em]">COLLABORATION INBOX</p>
         <h2 className="mt-3 text-3xl font-black text-warm">برای شروع چه بفرستیم؟</h2>
         <p className="mt-4 max-w-3xl leading-8 text-muted">
-          موضوع همکاری، نمونه کار یا منبع پیشنهادی، مسیر پیشنهادی انتشار و راه ارتباطی خود را بفرستید. بعداً همین مسیر
-          به فرم ادمین و سیستم بررسی محتوا وصل می‌شود.
+          موضوع همکاری، نمونه کار یا منبع پیشنهادی، مسیر پیشنهادی انتشار و راه ارتباطی خود را بفرستید. بعداً همین مسیر به فرم ادمین و سیستم بررسی محتوا وصل می‌شود.
         </p>
         <Link href="mailto:hello@avesta-zoroaster.com" className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light">
           hello@avesta-zoroaster.com

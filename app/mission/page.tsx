@@ -22,7 +22,7 @@ const missionItems = [
   },
   {
     title: "اعتماد پژوهشی",
-    description: "منابع، روش پژوهش، یادداشت‌های احتیاطی و مسیر citation کمک می‌کنند محتوا مسئولانه رشد کند.",
+    description: "منابع، روش پژوهش، یادداشت‌های احتیاطی و مسیر ارجاع کمک می‌کنند محتوا مسئولانه رشد کند.",
     href: "/research-methodology",
     icon: ShieldCheck,
     scene: "scene-scroll",
@@ -49,7 +49,7 @@ const missionItems = [
 export default function MissionPage() {
   return (
     <CinematicHub
-      eyebrow="Mission"
+      eyebrow="ماموریت"
       title="ماموریت AVESTA-ZOROASTER"
       lead="هدف ما ساخت یک وب‌سایت ساده نیست؛ می‌خواهیم جهان دیجیتال اوستا و زرتشت را بسازیم: جایی برای خواندن، دیدن، شنیدن، فهمیدن و ادامه دادن مسیر خرد."
       scene="scene-cosmic"

@@ -6,8 +6,7 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
   title: "روش پژوهش و سیاست منابع | AVESTA-ZOROASTER",
-  description:
-    "روش پژوهش، سیاست ارجاع، بازبینی محتوایی و disclaimer آموزشی AVESTA-ZOROASTER برای اوستا، زرتشت و ایران باستان.",
+  description: "روش پژوهش، سیاست ارجاع، بازبینی محتوایی و یادداشت آموزشی AVESTA-ZOROASTER برای اوستا، زرتشت و ایران باستان.",
   path: "/research-methodology",
   image: "/images/ai/library-hero.jpg",
 });
@@ -20,7 +19,7 @@ const principles = [
   },
   {
     title: "هر ادعا نیازمند منبع است",
-    body: "مقاله‌ها و توضیح‌های پژوهشی باید به کتابخانه، citation، نسخه یا یادداشت تحریریه قابل پیگیری وصل شوند.",
+    body: "مقاله‌ها و توضیح‌های پژوهشی باید به کتابخانه، ارجاع، نسخه یا یادداشت تحریریه قابل پیگیری وصل شوند.",
     icon: FileSearch,
   },
   {
@@ -43,18 +42,17 @@ export default function ResearchMethodologyPage() {
 
   return (
     <CinematicHub
-      eyebrow="Research Method"
+      eyebrow="روش پژوهش"
       title="روش پژوهش، منابع و بازبینی"
       lead="AVESTA-ZOROASTER قرار است زیبا باشد، اما زیبایی بدون شفافیت پژوهشی کافی نیست. این صفحه توضیح می‌دهد محتوا چطور نوشته، منبع‌دهی، بازبینی و منتشر می‌شود."
       scene="scene-scroll"
       heroImage="/images/ai/library-hero.jpg"
-      roman="R"
       actions={[
         { label: "مرکز ارجاع", href: "/citations" },
         { label: "مرکز اعتماد", href: "/trust-center", variant: "secondary" },
       ]}
       stats={[
-        { value: "Sources", label: "منبع و citation" },
+        { value: "Sources", label: "منبع و ارجاع" },
         { value: "Review", label: "بازبینی پژوهشی" },
         { value: "Context", label: "زمینه تاریخی و آیینی" },
       ]}

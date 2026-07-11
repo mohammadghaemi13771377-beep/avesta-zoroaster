@@ -6,8 +6,7 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
   title: "تماس و همکاری | AVESTA-ZOROASTER",
-  description:
-    "راه ارتباطی برای پژوهشگران، مترجمان، هنرمندان، طراحان AI و همکاران فرهنگی پروژه AVESTA-ZOROASTER.",
+  description: "راه ارتباطی برای پژوهشگران، مترجمان، هنرمندان، طراحان و همکاران فرهنگی پروژه AVESTA-ZOROASTER.",
   path: "/contact",
   image: "/images/ai/zoroaster-hero.jpg",
 });
@@ -15,7 +14,7 @@ export const metadata: Metadata = createPageMetadata({
 const collaborationPaths = [
   {
     title: "پژوهش و منبع",
-    body: "معرفی منابع معتبر، نسخه‌ها، مقاله‌ها، تصحیح خطاها و پیشنهاد citation برای صفحات اوستا.",
+    body: "معرفی منابع معتبر، نسخه‌ها، مقاله‌ها، تصحیح خطاها و پیشنهاد ارجاع برای صفحات اوستا.",
     icon: ScrollText,
   },
   {
@@ -25,7 +24,7 @@ const collaborationPaths = [
   },
   {
     title: "تصویر و رسانه",
-    body: "تولید تصویر، ویدئو، صوت، پوستر و نمایشگاه‌های دیجیتال با هویت ایران باستان و اوستا.",
+    body: "تولید تصویر، ویدئو، صدا، پوستر و نمایشگاه‌های دیجیتال با هویت ایران باستان و اوستا.",
     icon: Palette,
   },
 ];
@@ -38,19 +37,18 @@ export default function ContactPage() {
 
   return (
     <CinematicHub
-      eyebrow="Contact"
+      eyebrow="تماس"
       title="تماس، همکاری و مشارکت"
       lead="این پروژه برای رشد جهانی به پژوهشگران، مترجمان، هنرمندان، طراحان و دوستداران فرهنگ ایران نیاز دارد. مسیر همکاری باید شفاف، محترمانه و قابل پیگیری باشد."
       scene="scene-prophet"
       heroImage="/images/ai/zoroaster-hero.jpg"
-      roman="C"
       actions={[
         { label: "مرکز اعتماد", href: "/trust-center" },
         { label: "روش پژوهش", href: "/research-methodology", variant: "secondary" },
       ]}
       stats={[
         { value: "Research", label: "پژوهش و منبع" },
-        { value: "Media", label: "تصویر و صوت" },
+        { value: "Media", label: "تصویر و صدا" },
         { value: "Global", label: "فارسی و انگلیسی" },
       ]}
     >
@@ -71,7 +69,7 @@ export default function ContactPage() {
             <p className="gold-text text-sm font-semibold tracking-[0.24em]">COLLABORATION INBOX</p>
             <h2 className="mt-3 text-3xl font-black text-warm">پیام پیشنهادی برای شروع همکاری</h2>
             <p className="mt-4 leading-8 text-muted">
-              تا قبل از اتصال فرم production، بهترین مسیر این است که پیشنهاد همکاری با موضوع، زمینه تخصصی، نمونه کار یا منبع، و مسیر پیشنهادی صفحه ارسال شود.
+              موضوع همکاری، زمینه تخصصی، نمونه کار یا منبع پیشنهادی و مسیر پیشنهادی انتشار را بفرستید. در نسخه دیتابیسی، همین مسیر به فرم ادمین و سیستم بازبینی محتوا وصل می‌شود.
             </p>
           </div>
           <Link href="mailto:hello@avesta-zoroaster.com" className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light">
