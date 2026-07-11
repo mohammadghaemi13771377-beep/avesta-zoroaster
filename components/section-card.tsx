@@ -9,7 +9,6 @@ type SectionCardProps = {
   href: string;
   atmosphere: string;
   kicker?: string;
-  roman?: string;
   imageSrc?: string;
   tracking?: {
     event: string;
