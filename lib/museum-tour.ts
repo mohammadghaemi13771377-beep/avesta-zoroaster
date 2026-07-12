@@ -6,6 +6,7 @@ export type MuseumTourStop = {
   title: string;
   subtitle: string;
   scene: string;
+  image: string;
   href: string;
   duration: string;
   narration: string;
@@ -35,6 +36,7 @@ export function getMuseumTour(): MuseumTour {
         title: "دروازه آتش",
         subtitle: "ورود به جهان روشنایی",
         scene: yasna?.atmosphere ?? "scene-fire",
+        image: "/images/ai/yasna-hero.jpg",
         href: "/avesta",
         duration: "۳ دقیقه",
         narration: "تور از آتش آغاز می‌شود؛ نماد حضور، مراقبت و روشنایی که کاربر را وارد متن اوستا می‌کند.",
@@ -46,6 +48,7 @@ export function getMuseumTour(): MuseumTour {
         title: "تالار گات‌ها",
         subtitle: "سروده‌های خرد و انتخاب",
         scene: gathas?.atmosphere ?? "scene-sunrise",
+        image: "/images/ai/gathas-hero.jpg",
         href: "/avesta/gathas",
         duration: "۴ دقیقه",
         narration: "در این ایستگاه، کاربر با کهن‌ترین سروده‌های زرتشت و پیام اخلاقی انتخاب آگاهانه روبه‌رو می‌شود.",
@@ -57,6 +60,7 @@ export function getMuseumTour(): MuseumTour {
         title: "ویترین واژه روز",
         subtitle: daily.term.label,
         scene: "scene-cosmic",
+        image: "/images/ai/dictionary-hero.jpg",
         href: daily.term.href,
         duration: "۲ دقیقه",
         narration: `واژه امروز ${daily.term.label} است؛ پلی میان متن، فهم و کاربرد اخلاقی امروز.`,
@@ -68,6 +72,7 @@ export function getMuseumTour(): MuseumTour {
         title: "گنجینه رسانه",
         subtitle: "تصویر، صوت و روایت",
         scene: "scene-mountain",
+        image: "/images/ai/media-hero.jpg",
         href: "/media",
         duration: "۳ دقیقه",
         narration: "این ایستگاه نشان می‌دهد سایت فقط خواندنی نیست؛ دیدنی، شنیدنی و قابل تجربه است.",
@@ -79,6 +84,7 @@ export function getMuseumTour(): MuseumTour {
         title: "اتاق روشنایی روزانه",
         subtitle: "از تجربه به عادت",
         scene: "scene-fire",
+        image: "/images/ai/khordeh-avesta-hero.jpg",
         href: "/daily-light",
         duration: "۳ دقیقه",
         narration: "تور با یک مسیر روزانه بسته می‌شود تا کاربر بعد از تماشا، یک قدم واقعی بردارد.",
@@ -90,6 +96,7 @@ export function getMuseumTour(): MuseumTour {
         title: "نورسنج اشا",
         subtitle: "سنجش تعادل پندار، گفتار، کردار",
         scene: "scene-sunrise",
+        image: "/images/ai/monotheism-hero.jpg",
         href: "/asha-balance",
         duration: "۳ دقیقه",
         narration: "آخرین ایستگاه، تجربه را به آینه تبدیل می‌کند: کاربر می‌بیند امروز کدام ستون اخلاقی نیاز به نور دارد.",

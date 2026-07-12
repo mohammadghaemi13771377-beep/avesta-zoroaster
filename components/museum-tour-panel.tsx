@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, Circle, Headphones, Map, RefreshCw } from "lucide-react";
 import type { MuseumTour } from "@/lib/museum-tour";
@@ -95,7 +96,24 @@ export function MuseumTourPanel({ tour }: MuseumTourPanelProps) {
 
       {nextStop ? (
         <section className="lux-frame overflow-hidden p-5 sm:p-7">
-          <div className={`image-scene ${nextStop.scene} min-h-[440px] rounded-[1.5rem] border border-gold/15`}>
+          <div className={`museum-tour-stage image-scene ${nextStop.scene} min-h-[440px] rounded-[1.5rem] border border-gold/15`}>
+            <Image
+              src={nextStop.image}
+              alt={`ایستگاه تور ${nextStop.title}`}
+              fill
+              sizes="(min-width: 1024px) 62vw, 92vw"
+              className="object-cover transition duration-700"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-night/88 via-night/22 to-night/6" />
+            <div className="absolute inset-x-6 top-6 flex flex-wrap items-center justify-between gap-3">
+              <span className="rounded-full border border-gold/22 bg-black/35 px-4 py-2 text-xs font-black text-gold-light backdrop-blur">
+                {nextStop.duration}
+              </span>
+              <span className="rounded-full border border-gold/22 bg-black/35 px-4 py-2 text-xs font-black text-gold-light backdrop-blur">
+                {nextStop.artifact}
+              </span>
+            </div>
             <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-gold/15 bg-black/45 p-5 backdrop-blur">
               <p className="text-xs font-black text-gold-light">{nextStop.artifact}</p>
               <h2 className="mt-2 text-4xl font-black text-warm">{nextStop.title}</h2>

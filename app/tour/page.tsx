@@ -19,6 +19,7 @@ export default function TourPage() {
       title="تور موزه‌ای جهان اوستا"
       lead="یک مسیر هدایت‌شده شبیه موزه دیجیتال؛ از آتش و گات‌ها تا واژه روز، رسانه، راهنمای روزانه و نورسنج اشا."
       scene="scene-stone"
+      heroImage="/images/ai/exhibitions-hero.jpg"
       actions={[
         { label: "ورود به پورتال اوستا", href: "/avesta" },
         { label: "نمایشگاه‌ها", href: "/exhibitions", variant: "secondary" },
