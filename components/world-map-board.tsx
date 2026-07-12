@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Compass, GalleryHorizontalEnd, Route, Sparkles } from "lucide-react";
 import type { WorldRealm } from "@/lib/world-map";
-import { getWorldMapSummary } from "@/lib/world-map";
+import { getWorldMapSummary, worldRealmStatusLabels } from "@/lib/world-map";
 
 type WorldMapBoardProps = {
   realms: WorldRealm[];
@@ -60,7 +60,7 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
 
       <section className="grid gap-5 lg:grid-cols-2">
         {publicRealms.map((realm) => (
-          <article key={realm.id} className="lux-frame overflow-hidden p-5">
+          <article key={realm.id} className="world-realm-card lux-frame overflow-hidden p-5">
             <div className={`image-scene ${realm.scene} h-56 rounded-3xl border border-gold/10`}>
               <Image
                 src={realmImages[realm.id] ?? "/images/ai/avesta-portal.jpg"}
@@ -70,9 +70,13 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
                 className="object-cover opacity-85"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-night/88 via-night/18 to-transparent" />
-              <div className="absolute inset-x-5 top-5 flex items-center justify-between">
-                <span className="font-serif text-4xl text-gold-light">{realm.roman}</span>
-                <span className="rounded-full border border-gold/25 bg-night/55 px-3 py-1 text-xs font-black text-gold-light backdrop-blur">قلمرو جهان اوستا</span>
+              <div className="absolute inset-x-5 top-5 flex items-center justify-between gap-3">
+                <span className="rounded-full border border-gold/25 bg-night/55 px-3 py-1 text-xs font-black text-gold-light backdrop-blur">
+                  {worldRealmStatusLabels[realm.status]}
+                </span>
+                <span className="rounded-full border border-gold/25 bg-night/55 px-3 py-1 text-xs font-black text-gold-light backdrop-blur">
+                  تکمیل {realm.completion}٪
+                </span>
               </div>
               <div className="absolute bottom-5 right-5 max-w-sm">
                 <p className="text-xs font-bold text-gold-light">{realm.subtitle}</p>
@@ -81,6 +85,13 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
             </div>
 
             <p className="mt-5 text-sm leading-8 text-muted">{realm.purpose}</p>
+
+            <div className="mt-5 h-2 overflow-hidden rounded-full bg-gold/10">
+              <div
+                className="h-full rounded-full bg-gradient-to-l from-gold-light via-gold to-cyan-200 shadow-[0_0_24px_rgba(242,213,138,0.35)]"
+                style={{ width: `${realm.completion}%` }}
+              />
+            </div>
 
             <div className="mt-5 grid gap-2 md:grid-cols-3">
               {realm.routes.filter((route) => !route.href.startsWith("/admin")).map((route) => (
@@ -92,6 +103,11 @@ export function WorldMapBoard({ realms }: WorldMapBoardProps) {
                   {route.label}
                 </Link>
               ))}
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-gold/10 bg-black/16 p-4">
+              <p className="text-xs font-black text-gold-light">گام بعدی این قلمرو</p>
+              <p className="mt-2 text-sm font-bold leading-7 text-muted">{realm.nextUnlock}</p>
             </div>
 
             <Link

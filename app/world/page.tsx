@@ -20,6 +20,7 @@ export default function WorldPage() {
       title="نقشه جهان AVESTA-ZOROASTER"
       lead="اینجا سایت فقط مجموعه‌ای از صفحه‌ها نیست؛ یک جهان چندقلمرویی است که از متن اوستا تا مطالعه، رسانه، مناسبت‌ها و فروشگاه فرهنگی امتداد دارد."
       scene="scene-cosmic"
+      heroImage="/images/ai/timeline-hero.jpg"
       actions={[
         { label: "ورود به قلمرو اوستا", href: "/avesta" },
         { label: "نمایشگاه‌ها", href: "/exhibitions", variant: "secondary" },

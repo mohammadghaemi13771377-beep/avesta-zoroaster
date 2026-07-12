@@ -763,6 +763,29 @@ html[data-ambient="bright"] .hub-hero-bottom-shade {
   transform: translateX(-12%);
 }
 
+.world-realm-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.world-realm-card::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  z-index: -1;
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(242, 213, 138, 0.12), transparent 14rem),
+    radial-gradient(circle at 84% 0%, rgba(126, 217, 230, 0.08), transparent 16rem);
+  opacity: 0.8;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.world-realm-card:hover::before {
+  opacity: 1;
+  transform: translateY(-0.25rem);
+}
+
 .chapter-dedicated-badge {
   border-color: rgba(125, 211, 252, 0.2);
   background: rgba(125, 211, 252, 0.08);
@@ -818,6 +841,12 @@ html[data-ambient="bright"] .hub-content-shelf > div::before {
 
 html[data-ambient="bright"] .home-world-node::before {
   background: linear-gradient(112deg, transparent 38%, rgba(154, 100, 30, 0.14) 50%, transparent 62%);
+}
+
+html[data-ambient="bright"] .world-realm-card::before {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(154, 100, 30, 0.1), transparent 14rem),
+    radial-gradient(circle at 84% 0%, rgba(48, 92, 130, 0.08), transparent 16rem);
 }
 
 html[data-ambient="bright"] .chapter-dedicated-badge {
