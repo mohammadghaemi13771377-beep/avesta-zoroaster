@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Bookmark, Check, Compass, Layers3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ContentCollection } from "@/lib/content-collections";
@@ -59,23 +60,35 @@ export function CollectionsBoard({ collections }: CollectionsBoardProps) {
           const saved = savedIds.includes(collection.id);
 
           return (
-            <article key={collection.id} className="lux-frame overflow-hidden rounded-[22px]">
-              <div className={`image-scene ${collection.scene} min-h-[230px]`}>
+            <article key={collection.id} className="collection-card lux-frame overflow-hidden rounded-[22px]">
+              <div className={`collection-card-scene image-scene ${collection.scene} min-h-[230px]`}>
+                <Image
+                  src={collection.image}
+                  alt={collection.title}
+                  fill
+                  sizes="(min-width: 768px) 44vw, 92vw"
+                  className="object-cover transition duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent" />
                 <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between gap-4">
                   <span
-                    className="rounded-full border border-gold/25 bg-black/35 px-3 py-1 text-xs font-black"
+                    className="rounded-full border border-gold/25 bg-black/35 px-3 py-1 text-xs font-black backdrop-blur"
                     style={{ color: collection.accent }}
                   >
                     {collection.subtitle}
                   </span>
-                  <Compass className="h-6 w-6 text-gold-light" />
+                  <span className="rounded-full border border-gold/25 bg-black/35 p-2 text-gold-light backdrop-blur">
+                    <Compass className="h-5 w-5" />
+                  </span>
+                </div>
+                <div className="absolute inset-x-6 bottom-6 z-10">
+                  <h3 className="max-w-xl text-3xl font-black leading-tight text-warm">{collection.title}</h3>
                 </div>
               </div>
 
               <div className="p-6">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
-                    <h3 className="text-3xl font-black text-warm">{collection.title}</h3>
                     <p className="mt-3 text-sm leading-8 text-muted">{collection.description}</p>
                   </div>
                   <button

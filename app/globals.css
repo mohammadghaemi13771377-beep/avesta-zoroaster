@@ -2136,6 +2136,66 @@ html[data-ambient="bright"] .home-feature-badge {
   opacity: 1;
 }
 
+.collection-card {
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+  transition: transform 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+}
+
+.collection-card::before,
+.collection-card-scene::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.collection-card::before {
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(242, 213, 138, 0.13), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.07), transparent 38%);
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.collection-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.collection-card-scene {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(242, 213, 138, 0.18), transparent 16rem),
+    linear-gradient(145deg, rgba(7, 21, 33, 0.82), rgba(5, 8, 13, 0.96));
+}
+
+.collection-card-scene::after {
+  inset-inline: 6%;
+  bottom: 0;
+  z-index: 2;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.86), transparent);
+  filter: drop-shadow(0 0 16px rgba(242, 213, 138, 0.46));
+}
+
+.collection-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(242, 213, 138, 0.28);
+  box-shadow: 0 28px 76px rgba(0, 0, 0, 0.32), 0 0 34px rgba(214, 168, 79, 0.12);
+}
+
+.collection-card:hover::before {
+  opacity: 1;
+}
+
+.collection-card:hover .collection-card-scene img {
+  transform: scale(1.045);
+}
+
 html[data-ambient="bright"] .qerti-soft-panel {
   background:
     radial-gradient(circle at 16% 0%, rgba(214, 168, 79, 0.18), transparent 14rem),
@@ -2172,17 +2232,30 @@ html[data-ambient="bright"] .exhibition-artifact-card:hover {
   box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 30px rgba(214, 168, 79, 0.16);
 }
 
+html[data-ambient="bright"] .collection-card-scene {
+  background:
+    radial-gradient(circle at 44% 0%, rgba(255, 255, 255, 0.42), transparent 16rem),
+    linear-gradient(145deg, rgba(255, 253, 247, 0.9), rgba(255, 248, 234, 0.72));
+}
+
+html[data-ambient="bright"] .collection-card:hover {
+  box-shadow: 0 24px 64px rgba(126, 91, 34, 0.16), 0 0 30px rgba(214, 168, 79, 0.15);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .qerti-subtle-lift,
   .qerti-cta::after,
   .qerti-feature-card::before,
   .exhibition-artifact-card,
-  .exhibition-artifact-card::before {
+  .exhibition-artifact-card::before,
+  .collection-card,
+  .collection-card::before {
     transition: none;
   }
 
   .qerti-subtle-lift:hover,
-  .exhibition-artifact-card:hover {
+  .exhibition-artifact-card:hover,
+  .collection-card:hover {
     transform: none;
   }
 }

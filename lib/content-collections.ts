@@ -4,6 +4,7 @@ export type ContentCollection = {
   subtitle: string;
   description: string;
   scene: string;
+  image: string;
   accent: string;
   items: Array<{
     label: string;
@@ -19,6 +20,7 @@ export const contentCollections: ContentCollection[] = [
     subtitle: "گات‌ها، اشا و انتخاب اخلاقی",
     description: "برای کاربری که می‌خواهد پیام زرتشت را به زبان امروز بفهمد: خرد، راستی، مسئولیت و اندیشه نیک.",
     scene: "scene-sunrise",
+    image: "/images/ai/gathas-hero.jpg",
     accent: "#F2D58A",
     items: [
       { label: "گات‌ها چیست؟", href: "/gathas", type: "هاب" },
@@ -32,6 +34,7 @@ export const contentCollections: ContentCollection[] = [
     subtitle: "یسنا، خرده اوستا و صوت آیینی",
     description: "مجموعه‌ای برای لمس فضای آیینی سایت: آتش، نیایش، خوانش صوتی و آرامش روزانه.",
     scene: "scene-fire",
+    image: "/images/ai/yasna-hero.jpg",
     accent: "#D6A84F",
     items: [
       { label: "پورتال یسنا", href: "/avesta/yasna", type: "اوستا" },
@@ -45,6 +48,7 @@ export const contentCollections: ContentCollection[] = [
     subtitle: "تاریخ، هخامنشیان و حافظه فرهنگی",
     description: "برای کاربرانی که از شکوه تاریخی، تایم‌لاین، معماری و روایت ایران باستان وارد جهان اوستا می‌شوند.",
     scene: "scene-stone",
+    image: "/images/ai/timeline-hero.jpg",
     accent: "#B9B9B9",
     items: [
       { label: "تایم‌لاین", href: "/timeline", type: "تاریخ" },
@@ -58,6 +62,7 @@ export const contentCollections: ContentCollection[] = [
     subtitle: "اهورامزدا، اشا و اخلاق سه‌گانه",
     description: "یک مسیر مفهومی برای فهم یکتاپرستی زرتشتی، دانایی، روشنایی و شعار پندار نیک، گفتار نیک، کردار نیک.",
     scene: "scene-cosmic",
+    image: "/images/ai/monotheism-hero.jpg",
     accent: "#FFF8EA",
     items: [
       { label: "هاب یکتاپرستی", href: "/monotheism", type: "هاب" },
