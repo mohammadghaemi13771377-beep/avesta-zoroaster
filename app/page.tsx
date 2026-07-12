@@ -150,7 +150,7 @@ export default function HomePage() {
     <main className="overflow-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd(homeFaqs)) }} />
 
-      <section className="hero-cosmos home-hero relative min-h-screen pt-24">
+      <section className="hero-cosmos home-hero relative min-h-[94vh] pt-24">
         <Image
           src={routeHeroByPath["/"]}
           alt="طلوع سینمایی جهان اوستا و زرتشت"
@@ -170,18 +170,18 @@ export default function HomePage() {
         <div className="home-hero-light absolute inset-0" />
         <div className="home-hero-text-shade absolute inset-0" />
         <div className="hero-horizon" />
-        <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-night via-night/62 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-night via-night/46 to-transparent" />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl flex-col justify-center px-4 pb-28 pt-20 sm:px-6 lg:pl-[52%] lg:pr-8 lg:pt-24">
-          <div className="home-hero-copy max-w-2xl">
-            <p className="home-hero-eyebrow inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#fff8ea]/82 px-4 py-2 text-sm font-black text-[#6f4310] shadow-[0_18px_56px_rgba(111,67,16,0.14)] backdrop-blur-md">
+        <div className="relative z-10 mx-auto flex min-h-[calc(94vh-6rem)] max-w-7xl flex-col justify-center px-4 pb-24 pt-16 sm:px-6 lg:pl-8 lg:pr-[52%] lg:pt-20">
+          <div className="home-hero-copy max-w-[43rem]">
+            <p className="home-hero-eyebrow inline-flex items-center gap-2 rounded-full border border-[#8a5a18]/24 bg-[#fff8ea]/88 px-4 py-2 text-sm font-black text-[#6f4310] shadow-[0_18px_56px_rgba(111,67,16,0.14)] backdrop-blur-md">
               <Sparkles className="h-4 w-4" />
               به جهان دیجیتال اوستا
             </p>
-            <h1 className="home-hero-title gold-text mt-5 max-w-3xl text-5xl font-black leading-[1.08] sm:text-6xl lg:text-7xl">
+            <h1 className="home-hero-title mt-5 max-w-3xl text-5xl font-black leading-[1.08] sm:text-6xl lg:text-7xl">
               اوستا و زرتشت
             </h1>
-            <p className="home-hero-lead mt-6 max-w-xl text-lg font-bold leading-9 text-[#2f230f] sm:text-xl">
+            <p className="home-hero-lead mt-6 max-w-xl text-lg font-bold leading-9 text-[#241909] sm:text-xl">
               مرجع سینمایی و آموزشی خرد ایران باستان؛ مطالعه اوستا، گات‌ها، زرتشت و پیام یکتاپرستی در یک جهان دیجیتال روشن.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -203,9 +203,9 @@ export default function HomePage() {
                 آغاز سفر
               </TrackedLink>
             </div>
-            <div className="home-hero-feature-strip mt-10 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-[#6f4310]/18 bg-[#fff8ea]/54 shadow-[0_22px_70px_rgba(111,67,16,0.16)] backdrop-blur-xl md:grid-cols-4">
+            <div className="home-hero-feature-strip mt-10 grid max-w-2xl grid-cols-2 gap-2 overflow-hidden rounded-[22px] border border-[#6f4310]/16 bg-[#fff8ea]/24 p-2 shadow-[0_22px_70px_rgba(111,67,16,0.12)] backdrop-blur-xl md:grid-cols-4">
               {featureBadges.map(([title, subtitle, Icon]) => (
-                <div key={title} className="home-feature-badge bg-[#fffdf8]/72 px-4 py-4">
+                <div key={title} className="home-feature-badge rounded-2xl border border-[#6f4310]/10 bg-[#fffdf8]/70 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.62)]">
                   <Icon className="text-[#9a641e]" size={24} />
                   <p className="mt-3 text-sm font-black text-[#2f230f]">{title}</p>
                   <p className="mt-1 text-xs font-bold leading-6 text-[#6f4310]/78">{subtitle}</p>
