@@ -742,6 +742,27 @@ html[data-ambient="bright"] .hub-hero-bottom-shade {
   filter: blur(10px);
 }
 
+.home-world-node {
+  position: relative;
+  isolation: isolate;
+}
+
+.home-world-node::before {
+  content: "";
+  position: absolute;
+  inset: -40% -80%;
+  z-index: -1;
+  background: linear-gradient(112deg, transparent 38%, rgba(242, 213, 138, 0.16) 50%, transparent 62%);
+  transform: translateX(34%);
+  opacity: 0;
+  transition: opacity 260ms ease, transform 680ms ease;
+}
+
+.home-world-node:hover::before {
+  opacity: 1;
+  transform: translateX(-12%);
+}
+
 .chapter-dedicated-badge {
   border-color: rgba(125, 211, 252, 0.2);
   background: rgba(125, 211, 252, 0.08);
@@ -793,6 +814,10 @@ html[data-ambient="bright"] .hub-hero-route span:nth-child(even) {
 
 html[data-ambient="bright"] .hub-content-shelf > div::before {
   background: radial-gradient(ellipse at 50% 0%, rgba(154, 100, 30, 0.18), transparent 68%);
+}
+
+html[data-ambient="bright"] .home-world-node::before {
+  background: linear-gradient(112deg, transparent 38%, rgba(154, 100, 30, 0.14) 50%, transparent 62%);
 }
 
 html[data-ambient="bright"] .chapter-dedicated-badge {
