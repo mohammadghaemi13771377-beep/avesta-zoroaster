@@ -131,20 +131,27 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
 
       <section className="space-y-6">
         <div id={active.slug} className="lux-frame scroll-mt-28 overflow-hidden p-5 sm:p-7">
-          <div className={`image-scene ${active.scene} min-h-[430px] rounded-[1.55rem] border border-gold-400/15`}>
+          <div className={`exhibition-stage image-scene ${active.scene} min-h-[430px] rounded-[1.55rem] border border-gold-400/15`}>
             <Image
               src={active.heroImage}
               alt={active.title}
               fill
               sizes="(min-width: 1280px) 760px, 92vw"
-              className="object-cover"
+              className="object-cover transition duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/12 to-transparent" />
-            <div className="absolute inset-x-6 top-6 flex items-center justify-between text-gold-100">
-              <span className="rounded-full border border-gold-400/20 bg-black/35 px-4 py-2 text-xs font-black">
-                {active.duration}
+            <div className="absolute inset-x-6 top-6 flex flex-wrap items-center justify-between gap-3 text-gold-100">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-gold-400/20 bg-black/35 px-4 py-2 text-xs font-black backdrop-blur">
+                  {active.duration}
+                </span>
+                <span className="rounded-full border border-gold-400/20 bg-black/35 px-4 py-2 text-xs font-black backdrop-blur">
+                  {active.artifacts.length} اثر
+                </span>
+              </div>
+              <span className="rounded-full border border-gold-300/25 bg-gold-300/12 p-2 shadow-gold">
+                <Sparkles size={18} />
               </span>
-              <Sparkles size={22} />
             </div>
             <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-gold-400/15 bg-black/50 p-5 backdrop-blur">
               <p className="text-xs font-black text-gold-100">Exhibition / {active.slug}</p>
@@ -178,7 +185,7 @@ export function ExhibitionsGallery({ exhibitions }: ExhibitionsGalleryProps) {
             const done = completedArtifacts.includes(artifact.id);
 
             return (
-              <article key={artifact.id} className="lux-frame overflow-hidden p-4">
+              <article key={artifact.id} className="exhibition-artifact-card lux-frame overflow-hidden p-4">
                 <div className={`image-scene ${artifact.scene} h-44 rounded-2xl border border-gold-400/15`}>
                   <Image
                     src={artifact.thumbnail}
