@@ -658,6 +658,32 @@ html[data-ambient="bright"] .hub-hero-bottom-shade {
   background: linear-gradient(to top, rgba(255, 252, 242, 0.96), rgba(255, 252, 242, 0.52), transparent);
 }
 
+.hub-hero-stage {
+  box-shadow: inset 0 -1px 0 rgba(242, 213, 138, 0.16);
+}
+
+.hub-hero-image {
+  transform: scale(1.015);
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.hub-hero-constellation {
+  position: absolute;
+  inset: 7rem 8% auto auto;
+  width: min(34rem, 72vw);
+  height: 16rem;
+  pointer-events: none;
+  opacity: 0.42;
+  background:
+    radial-gradient(circle at 8% 22%, rgba(242, 213, 138, 0.88) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 32% 9%, rgba(255, 248, 234, 0.7) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 54% 38%, rgba(126, 217, 230, 0.7) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 82% 19%, rgba(242, 213, 138, 0.8) 0 1.3px, transparent 2px),
+    linear-gradient(112deg, transparent 7%, rgba(242, 213, 138, 0.32) 7.4%, transparent 8% 29%, rgba(126, 217, 230, 0.22) 29.4%, transparent 30%),
+    linear-gradient(24deg, transparent 30%, rgba(242, 213, 138, 0.22) 30.3%, transparent 31% 53%, rgba(255, 248, 234, 0.18) 53.3%, transparent 54%);
+  mask-image: radial-gradient(ellipse at 50% 50%, black, transparent 72%);
+}
+
 .hub-hero-copy {
   position: relative;
   max-width: 52rem;
@@ -688,6 +714,32 @@ html[data-ambient="bright"] .hub-hero-bottom-shade {
 
 .hub-hero-stats > div {
   transition: background-color 180ms ease, color 180ms ease;
+}
+
+.hub-hero-route span:nth-child(even) {
+  height: 1px;
+  min-width: 2.75rem;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(242, 213, 138, 0.1), rgba(242, 213, 138, 0.64), rgba(126, 217, 230, 0.2));
+}
+
+.hub-content-shelf {
+  margin-top: -3.5rem;
+}
+
+.hub-content-shelf > div {
+  position: relative;
+}
+
+.hub-content-shelf > div::before {
+  content: "";
+  position: absolute;
+  inset: -1.4rem -1rem auto;
+  z-index: -1;
+  height: 8rem;
+  border-radius: 999px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(242, 213, 138, 0.18), transparent 68%);
+  filter: blur(10px);
 }
 
 .chapter-dedicated-badge {
@@ -725,6 +777,22 @@ html[data-ambient="bright"] .hub-hero-stats {
 
 html[data-ambient="bright"] .hub-hero-stats > div {
   background: rgba(255, 253, 247, 0.82) !important;
+}
+
+html[data-ambient="bright"] .hub-hero-constellation {
+  opacity: 0.28;
+}
+
+html[data-ambient="bright"] .hub-hero-route {
+  color: #7a4a13 !important;
+}
+
+html[data-ambient="bright"] .hub-hero-route span:nth-child(even) {
+  background: linear-gradient(90deg, rgba(154, 100, 30, 0.08), rgba(154, 100, 30, 0.44), rgba(48, 92, 130, 0.12));
+}
+
+html[data-ambient="bright"] .hub-content-shelf > div::before {
+  background: radial-gradient(ellipse at 50% 0%, rgba(154, 100, 30, 0.18), transparent 68%);
 }
 
 html[data-ambient="bright"] .chapter-dedicated-badge {

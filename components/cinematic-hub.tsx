@@ -38,14 +38,15 @@ export function CinematicHub({
   children,
 }: CinematicHubProps) {
   return (
-    <main className="overflow-hidden pt-24">
-      <section className={`hero-cosmos ${scene} relative isolate min-h-[680px] overflow-hidden`}>
+    <main className="overflow-hidden pt-20">
+      <section className={`hero-cosmos ${scene} hub-hero-stage relative isolate min-h-[680px] overflow-hidden`}>
         {heroImage ? (
-          <Image src={heroImage} alt={title} fill sizes="100vw" className="object-cover object-center" priority />
+          <Image src={heroImage} alt={title} fill sizes="100vw" className="hub-hero-image object-cover object-center" priority />
         ) : null}
         <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/68 to-[#071521]/16" />
         <div className="absolute inset-x-[8%] top-24 h-px bg-gradient-to-r from-transparent via-gold-200/55 to-transparent" />
         <div className="hub-hero-side-shade absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(5,8,13,0.02),rgba(5,8,13,0.16)_38%,rgba(5,8,13,0.74)_100%)]" />
+        <div className="hub-hero-constellation" aria-hidden="true" />
         <div className="hero-horizon" />
         <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-night via-night/55 to-transparent" />
         <div className="relative z-10 mx-auto flex min-h-[680px] max-w-7xl items-center px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8">
@@ -83,11 +84,21 @@ export function CinematicHub({
                 ))}
               </div>
             ) : null}
+
+            <div className="hub-hero-route mt-8 hidden max-w-3xl items-center gap-3 text-xs font-black text-gold-100/80 sm:flex">
+              <span>شناخت</span>
+              <span />
+              <span>مطالعه</span>
+              <span />
+              <span>منبع</span>
+              <span />
+              <span>همکاری</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="relative z-10 px-4 pb-20 sm:px-6 lg:px-8">
+      <section className="hub-content-shelf relative z-10 px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">{children}</div>
       </section>
     </main>
