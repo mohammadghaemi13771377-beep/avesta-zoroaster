@@ -106,10 +106,10 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
   const filterGrid = mode === "library" ? "lg:grid-cols-[minmax(0,1fr)_170px_170px_170px]" : "lg:grid-cols-[minmax(0,1fr)_220px_220px]";
 
   return (
-    <section className="mt-12">
+    <section className="resource-explorer-shell mt-12">
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div>
-          <div className="lux-frame p-5">
+          <div className="resource-filter-panel lux-frame p-5">
             <div className={`grid gap-4 ${filterGrid}`}>
               <label className="relative block">
                 <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={20} />
@@ -182,15 +182,15 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {filteredItems.length ? (
-              filteredItems.map((item, index) => (
+              filteredItems.map((item) => (
                 <Link
                   key={item.title}
                   href={item.href ?? `/search?q=${encodeURIComponent(item.title)}`}
-                  className={`lux-frame group block p-5 text-right transition hover:-translate-y-1 hover:border-gold/45 hover:shadow-gold ${
+                  className={`resource-card lux-frame group block p-5 text-right transition hover:border-gold/45 ${
                     activeItem?.title === item.title ? "border-gold/45 bg-gold/10" : ""
                   }`}
                 >
-                  <ResourceArtwork item={item} index={index} icon={Icon} />
+                  <ResourceArtwork item={item} icon={Icon} />
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     <span className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light">
@@ -221,9 +221,9 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
         </div>
 
         {activeItem ? (
-          <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
+          <aside className="resource-spotlight space-y-5 lg:sticky lg:top-28 lg:self-start">
             <div className="lux-frame p-5">
-              <ResourceArtwork item={activeItem} index={Math.max(0, items.indexOf(activeItem))} icon={Icon} tall />
+              <ResourceArtwork item={activeItem} icon={Icon} tall />
               <p className="gold-text mt-5 text-xs font-semibold tracking-[0.25em]">{panelTitle}</p>
               <h2 className="mt-2 text-3xl font-black text-warm">{activeItem.title}</h2>
               <p className="mt-3 leading-8 text-muted">{activeItem.description}</p>
@@ -284,24 +284,22 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
 
 function ResourceArtwork({
   item,
-  index,
   icon: Icon,
   tall = false,
 }: {
   item: ResourceItem;
-  index: number;
   icon: LucideIcon;
   tall?: boolean;
 }) {
   return (
-    <div className={`image-atmosphere relative ${tall ? "h-56" : "h-48"} rounded-2xl border border-gold/10`}>
+    <div className={`resource-artwork image-atmosphere relative ${tall ? "h-56" : "h-48"} rounded-2xl border border-gold/10`}>
       {item.thumbnail ? (
         <Image
           src={item.thumbnail}
           alt={item.title}
           fill
           sizes={tall ? "360px" : "(min-width: 768px) 44vw, 92vw"}
-          className="object-cover"
+          className="object-cover transition duration-700"
         />
       ) : null}
       <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/10 to-transparent" />
@@ -309,8 +307,11 @@ function ResourceArtwork({
       <div className="absolute inset-0 grid place-items-center">
         {!item.thumbnail ? <Icon className="text-gold-light" size={42} /> : null}
       </div>
-      <div className="absolute right-5 top-4 z-10 font-display text-lg font-bold text-gold-light">
-        {String(index + 1).padStart(2, "0")}
+      <div className="absolute right-5 top-4 z-10 rounded-full border border-gold/20 bg-black/35 px-3 py-1 text-xs font-black text-gold-light backdrop-blur">
+        {item.type}
+      </div>
+      <div className="absolute left-5 bottom-4 z-10 rounded-full border border-warm/10 bg-black/35 px-3 py-1 text-xs font-bold text-warm/80 backdrop-blur">
+        {item.category}
       </div>
     </div>
   );
