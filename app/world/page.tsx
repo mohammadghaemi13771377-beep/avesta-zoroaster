@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { CinematicHub } from "@/components/cinematic-hub";
 import { WorldMapBoard } from "@/components/world-map-board";
 import { getWorldMapSummary, worldRealms } from "@/lib/world-map";
@@ -15,11 +16,10 @@ export const metadata: Metadata = {
 export default function WorldPage() {
   return (
     <CinematicHub
-      eyebrow="Digital World"
+      eyebrow="جهان دیجیتال"
       title="نقشه جهان AVESTA-ZOROASTER"
       lead="اینجا سایت فقط مجموعه‌ای از صفحه‌ها نیست؛ یک جهان چندقلمرویی است که از متن اوستا تا مطالعه، رسانه، مناسبت‌ها و فروشگاه فرهنگی امتداد دارد."
       scene="scene-cosmic"
-      roman="W"
       actions={[
         { label: "ورود به قلمرو اوستا", href: "/avesta" },
         { label: "نمایشگاه‌ها", href: "/exhibitions", variant: "secondary" },

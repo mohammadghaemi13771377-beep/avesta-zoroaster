@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { CinematicHub } from "@/components/cinematic-hub";
 import { MuseumTourPanel } from "@/components/museum-tour-panel";
 import { getMuseumTour, getMuseumTourStats } from "@/lib/museum-tour";
@@ -14,11 +15,10 @@ export default function TourPage() {
 
   return (
     <CinematicHub
-      eyebrow="Guided Museum Tour"
+      eyebrow="تور موزه‌ای"
       title="تور موزه‌ای جهان اوستا"
       lead="یک مسیر هدایت‌شده شبیه موزه دیجیتال؛ از آتش و گات‌ها تا واژه روز، رسانه، راهنمای روزانه و نورسنج اشا."
       scene="scene-stone"
-      roman="T"
       actions={[
         { label: "ورود به پورتال اوستا", href: "/avesta" },
         { label: "نمایشگاه‌ها", href: "/exhibitions", variant: "secondary" },

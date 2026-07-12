@@ -46,11 +46,10 @@ const cyrusCards = [
 export default function CyrusPage() {
   return (
     <CinematicHub
-      eyebrow="Ancient Iran"
+      eyebrow="ایران باستان"
       title="کوروش و روایت تاریخی ایران باستان"
       lead="این مسیر برای روایت تاریخی، فرهنگی و تصویری ایران باستان در کنار جهان اوستا آماده شده است؛ نه به عنوان صفحه خشک تاریخی، بلکه به عنوان تالاری از حافظه، شکوه و منابع."
       scene="scene-stone"
-      roman="C"
       actions={[
         { label: "مشاهده تایم‌لاین", href: "/timeline" },
         { label: "منابع تاریخی", href: "/library", variant: "secondary" },

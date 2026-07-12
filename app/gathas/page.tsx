@@ -52,7 +52,6 @@ export default function GathasPage() {
       lead="گات‌ها هسته تجربه مطالعاتی سایت هستند؛ بخشی آرام، نورانی و عمیق برای خواندن، شنیدن، فهمیدن و تبدیل پیام زرتشت به زبان امروز."
       scene="scene-sunrise"
       heroImage={routeHeroByPath["/gathas"]}
-      roman="G"
       actions={[
         { label: "ورود به گات‌ها", href: "/avesta/gathas" },
         { label: "واژه‌نامه مفاهیم", href: "/dictionary", variant: "secondary" },
