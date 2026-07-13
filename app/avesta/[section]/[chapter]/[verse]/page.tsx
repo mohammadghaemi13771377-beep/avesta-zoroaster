@@ -387,7 +387,7 @@ function getRelatedTermsForVerse(verse: AvestaVerseView) {
 
 function FeatureBadge({ icon: Icon, title, description }: { icon: LucideIcon; title: string; description: string }) {
   return (
-    <div className="rounded-2xl border border-gold/16 bg-black/24 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.26)] backdrop-blur-md">
+    <div className="avesta-reader-feature-badge rounded-2xl border border-gold/16 bg-black/24 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.26)] backdrop-blur-md">
       <Icon className="h-5 w-5 text-gold-light" />
       <h3 className="mt-3 text-sm font-black text-warm">{title}</h3>
       <p className="mt-2 text-xs leading-6 text-warm/70">{description}</p>
@@ -397,7 +397,7 @@ function FeatureBadge({ icon: Icon, title, description }: { icon: LucideIcon; ti
 
 function VerseBlock({ block, relatedTerms }: { block: AvestaVerseBlock; relatedTerms: Array<{ term: string; slug: string; meaning: string }> }) {
   return (
-    <section className="rounded-[22px] border border-gold/12 bg-night/50 p-5">
+    <section className="avesta-reading-layer-card rounded-[22px] border border-gold/12 bg-night/50 p-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5 text-xs font-black text-gold-light">
           {block.label}

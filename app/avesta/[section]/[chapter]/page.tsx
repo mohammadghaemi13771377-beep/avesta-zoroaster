@@ -253,7 +253,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
               <Link
                 key={verse.slug}
                 href={`/avesta/${section.slug}/${chapter.slug}/${verse.slug}${langQuery}`}
-                className="group rounded-2xl border border-gold/12 bg-night/58 p-5 transition hover:-translate-y-1 hover:border-gold/45 hover:bg-gold/10"
+                className="avesta-verse-route-card group rounded-2xl border border-gold/12 bg-night/58 p-5 transition hover:border-gold/45 hover:bg-gold/10"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -271,7 +271,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
         {guide ? (
           <section className="mt-8 grid gap-4 md:grid-cols-3">
             {guide.todayPractice.map((practice, index) => (
-              <article key={practice} className="poster-panel p-5">
+              <article key={practice} className="avesta-practice-card poster-panel p-5">
                 <Sparkles className="h-5 w-5 text-gold-light" />
                 <p className="mt-4 font-serif text-3xl text-gold-light">{index + 1}</p>
                 <h3 className="mt-2 text-lg font-black text-warm">تمرین کوتاه</h3>
