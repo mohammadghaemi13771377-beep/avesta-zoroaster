@@ -46,13 +46,13 @@ const trustItems: Array<[string, string, LucideIcon]> = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-gold/12 bg-[#020305]">
+    <footer className="footer-museum relative overflow-hidden border-t border-gold/12 bg-[#020305]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(242,213,138,0.15),transparent_32rem),radial-gradient(circle_at_12%_80%,rgba(126,217,230,0.08),transparent_24rem)]" />
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-light/70 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="lux-frame qerti-soft-panel rounded-[24px] p-6 sm:p-8">
+          <div className="footer-brand-card lux-frame qerti-soft-panel rounded-[24px] p-6 sm:p-8">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
               <Image
                 src="/images/avesta-zoroaster-logo.png"
@@ -88,7 +88,7 @@ export function Footer() {
 
           <div className="grid gap-3 sm:grid-cols-2">
             {trustItems.map(([title, subtitle, Icon]) => (
-              <div key={title} className="qerti-feature-card rounded-[20px] border border-gold/14 bg-royal/54 p-5">
+              <div key={title} className="footer-trust-card qerti-feature-card rounded-[20px] border border-gold/14 bg-royal/54 p-5">
                 <Icon className="text-gold-light" size={22} />
                 <p className="mt-4 text-sm font-black text-warm">{title}</p>
                 <p className="mt-1 text-xs font-bold leading-6 text-muted">{subtitle}</p>
@@ -97,14 +97,14 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-7 rounded-[24px] border border-gold/12 bg-black/16 p-6 backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4">
+        <div className="footer-link-shelf mt-10 grid gap-7 rounded-[24px] border border-gold/12 bg-black/16 p-6 backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4">
           <FooterColumn title="پروژه" links={projectLinks} />
           <FooterColumn title="منابع" links={resourceLinks} />
           <FooterColumn title="دسترسی سریع" links={quickLinks} />
           <FooterColumn title="حساب و قوانین" links={policyLinks} />
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-gold/10 pt-7 text-sm text-muted md:flex-row">
+        <div className="footer-legal-row mt-8 flex flex-col items-center justify-between gap-4 border-t border-gold/10 pt-7 text-sm text-muted md:flex-row">
           <p>تمامی حقوق محفوظ است. © ۱۴۰۵</p>
           <p className="text-center">این وب‌سایت یک پروژه فرهنگی و آموزشی است و جایگزین منبع دانشگاهی قطعی نیست.</p>
           <p>ساخته‌شده برای جهان دیجیتال اوستا</p>
@@ -120,7 +120,7 @@ function FooterColumn({ title, links }: { title: string; links: string[][] }) {
       <h3 className="text-base font-black text-gold-light">{title}</h3>
       <div className="mt-4 grid gap-2.5 text-sm text-warm/78">
         {links.map(([label, href]) => (
-          <Link key={`${label}-${href}`} href={href} className="group inline-flex items-center justify-between gap-3 rounded-xl px-1 py-1 transition hover:text-gold-light">
+          <Link key={`${label}-${href}`} href={href} className="footer-link group inline-flex items-center justify-between gap-3 rounded-xl px-1 py-1 transition hover:text-gold-light">
             <span>{label}</span>
             <ArrowLeft className="h-3.5 w-3.5 opacity-0 transition group-hover:-translate-x-1 group-hover:opacity-100" />
           </Link>

@@ -717,6 +717,89 @@ a {
   border-color: rgba(242, 213, 138, 0.18);
 }
 
+.footer-museum {
+  isolation: isolate;
+}
+
+.footer-museum::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(5, 8, 13, 0.7), rgba(2, 3, 5, 0.96)),
+    url("/images/ai/exhibitions-hero.jpg") center 32% / cover;
+  opacity: 0.3;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 74%, transparent 100%);
+}
+
+.footer-brand-card,
+.footer-link-shelf,
+.footer-trust-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.footer-brand-card::before,
+.footer-link-shelf::before,
+.footer-trust-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(242, 213, 138, 0.14), transparent 14rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.04), transparent 52%);
+}
+
+.footer-brand-card::after {
+  content: "";
+  position: absolute;
+  inset-inline: 2rem;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.72), transparent);
+}
+
+.footer-trust-card {
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+.footer-trust-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(242, 213, 138, 0.32);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26), 0 0 28px rgba(214, 168, 79, 0.1);
+}
+
+.footer-link {
+  position: relative;
+  min-height: 2rem;
+}
+
+.footer-link::before {
+  content: "";
+  position: absolute;
+  inset: 0 -0.5rem;
+  z-index: -1;
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, rgba(214, 168, 79, 0.1), rgba(126, 217, 230, 0.04));
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.footer-link:hover::before,
+.footer-link:focus-visible::before {
+  opacity: 1;
+}
+
+.footer-legal-row {
+  position: relative;
+}
+
 html[data-ambient="bright"] {
   color-scheme: light;
 }
@@ -1179,6 +1262,36 @@ html[data-ambient="bright"] .mobile-menu-link:focus-visible,
 html[data-ambient="bright"] .mobile-menu-sub-link:hover,
 html[data-ambient="bright"] .mobile-menu-sub-link:focus-visible {
   border-color: rgba(154, 100, 30, 0.2);
+}
+
+html[data-ambient="bright"] .footer-museum {
+  background: #f8edcf !important;
+  border-color: rgba(154, 100, 30, 0.18) !important;
+}
+
+html[data-ambient="bright"] .footer-museum::before {
+  background:
+    linear-gradient(180deg, rgba(255, 248, 234, 0.72), rgba(248, 237, 207, 0.92)),
+    url("/images/ai/light-theme-texture.jpg") center / cover;
+  opacity: 0.86;
+}
+
+html[data-ambient="bright"] .footer-brand-card,
+html[data-ambient="bright"] .footer-link-shelf,
+html[data-ambient="bright"] .footer-trust-card {
+  border-color: rgba(154, 100, 30, 0.24) !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(214, 168, 79, 0.12), transparent 14rem),
+    linear-gradient(180deg, rgba(255, 253, 247, 0.9), rgba(255, 248, 234, 0.78)) !important;
+  box-shadow: 0 18px 50px rgba(119, 78, 18, 0.1);
+}
+
+html[data-ambient="bright"] .footer-link::before {
+  background: linear-gradient(90deg, rgba(154, 100, 30, 0.1), rgba(48, 92, 130, 0.05));
+}
+
+html[data-ambient="bright"] .footer-legal-row {
+  border-color: rgba(154, 100, 30, 0.18) !important;
 }
 
 html[data-ambient="bright"] .header-nav-pill:hover,
