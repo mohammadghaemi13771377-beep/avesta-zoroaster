@@ -2046,6 +2046,8 @@ html[data-ambient="bright"] .reader-control-panel {
 
 .home-entry-panel {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
 .home-entry-panel::before {
@@ -2058,6 +2060,61 @@ html[data-ambient="bright"] .reader-control-panel {
   background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.72), transparent);
 }
 
+.home-entry-panel::after {
+  content: "";
+  position: absolute;
+  inset: -35% 12% auto;
+  z-index: -1;
+  height: 11rem;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(242, 213, 138, 0.2), transparent 68%),
+    radial-gradient(ellipse at 70% 40%, rgba(126, 217, 230, 0.09), transparent 64%);
+  filter: blur(12px);
+}
+
+.home-entry-card {
+  min-height: 13.5rem;
+}
+
+.home-entry-card::after {
+  content: "";
+  position: absolute;
+  inset-inline: 1.15rem;
+  bottom: 0.85rem;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.55), transparent);
+  opacity: 0;
+  transform: scaleX(0.64);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.home-entry-card:hover::after,
+.home-entry-card:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.home-portal-card {
+  position: relative;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(242, 213, 138, 0.13), transparent 9rem),
+    linear-gradient(180deg, rgba(255, 248, 234, 0.035), rgba(0, 0, 0, 0.08));
+}
+
+.home-portal-card .image-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 248, 234, 0.16), transparent 7rem),
+    linear-gradient(180deg, rgba(255, 248, 234, 0.02), rgba(5, 8, 13, 0.3));
+  opacity: 0.85;
+}
+
 html[data-ambient="bright"] .portal-museum {
   border-color: rgba(154, 100, 30, 0.34);
   box-shadow: 0 24px 70px rgba(119, 78, 18, 0.16);
@@ -2068,6 +2125,19 @@ html[data-ambient="bright"] .home-entry-panel {
     linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 234, 0.78)) !important;
   border-color: rgba(154, 100, 30, 0.28) !important;
   box-shadow: 0 24px 70px rgba(119, 78, 18, 0.14) !important;
+}
+
+html[data-ambient="bright"] .home-entry-card {
+  background:
+    radial-gradient(circle at 82% 10%, rgba(214, 168, 79, 0.11), transparent 8rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(255, 248, 234, 0.58)) !important;
+  border-color: rgba(154, 100, 30, 0.2) !important;
+}
+
+html[data-ambient="bright"] .home-portal-card {
+  background:
+    radial-gradient(circle at 82% 6%, rgba(214, 168, 79, 0.13), transparent 8rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 248, 234, 0.56));
 }
 
 html[data-ambient="bright"] .home-hero-copy {

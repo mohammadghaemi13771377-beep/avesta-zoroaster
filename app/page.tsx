@@ -228,7 +228,7 @@ export default function HomePage() {
                   href={path.href}
                   event="home_entry_path_click"
                   payload={{ cta_id: `entry-${path.href.replaceAll("/", "-")}`, label: path.title, locale: "fa", source_route: "/" }}
-                  className="qerti-feature-card qerti-subtle-lift group relative overflow-hidden rounded-[18px] border border-gold/14 bg-night/44 p-5 hover:border-gold/42"
+                  className="home-entry-card qerti-feature-card qerti-subtle-lift group relative overflow-hidden rounded-[18px] border border-gold/14 bg-night/44 p-5 hover:border-gold/42"
                 >
                   <span className={`absolute inset-0 bg-gradient-to-br ${path.tone} opacity-75 transition group-hover:opacity-100`} />
                   <span className="relative z-10 flex items-start justify-between gap-4">
@@ -285,7 +285,7 @@ export default function HomePage() {
                 href={card.href}
                 event="hero_cta_click"
                 payload={{ cta_id: `home-portal-${card.href.replaceAll("/", "-")}`, label: card.title, locale: "fa", source_route: "/" }}
-                className="lux-frame qerti-feature-card qerti-subtle-lift group block overflow-hidden rounded-[18px] p-4 hover:border-gold/55"
+                className="home-portal-card lux-frame qerti-feature-card qerti-subtle-lift group block overflow-hidden rounded-[18px] p-4 hover:border-gold/55"
               >
                 <h3 className="text-2xl font-black text-warm">{card.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-muted">{card.text}</p>
