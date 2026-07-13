@@ -94,8 +94,8 @@ export function HomeWorldMap() {
           </Link>
         </div>
 
-        <div className="relative z-10 mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {worldNodes.map((node) => {
+        <div className="home-world-grid relative z-10 mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {worldNodes.map((node, index) => {
             const Icon = node.icon;
 
             return (
@@ -104,6 +104,7 @@ export function HomeWorldMap() {
                 href={node.href}
                 className="home-world-node group flex min-h-[224px] flex-col justify-between overflow-hidden rounded-[18px] border border-gold/14 bg-black/20 p-3 transition duration-300 hover:-translate-y-1 hover:border-gold/45 hover:bg-gold/10 bright:bg-white/44"
               >
+                <span className="home-world-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <span className="relative block h-28 overflow-hidden rounded-2xl border border-gold/14">
                   <Image
                     src={node.image}
