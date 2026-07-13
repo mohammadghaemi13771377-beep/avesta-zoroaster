@@ -80,7 +80,7 @@ const gatewayOptions = [
 export function PathFinderGateway() {
   return (
     <section className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8" aria-labelledby="path-finder-title">
-      <div className="relative overflow-hidden rounded-[26px] border border-gold/22 bg-[linear-gradient(135deg,rgba(255,248,234,0.10),rgba(7,21,33,0.68)_42%,rgba(5,8,13,0.84))] p-5 shadow-[0_30px_95px_rgba(0,0,0,0.32)] bright:bg-[linear-gradient(135deg,rgba(255,248,234,0.90),rgba(242,213,138,0.28),rgba(255,255,255,0.78))] sm:p-7">
+      <div className="path-finder-stage relative overflow-hidden rounded-[26px] border border-gold/22 bg-[linear-gradient(135deg,rgba(255,248,234,0.10),rgba(7,21,33,0.68)_42%,rgba(5,8,13,0.84))] p-5 shadow-[0_30px_95px_rgba(0,0,0,0.32)] bright:bg-[linear-gradient(135deg,rgba(255,248,234,0.90),rgba(242,213,138,0.28),rgba(255,255,255,0.78))] sm:p-7">
         <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-light/70 to-transparent" />
         <div className="absolute -right-24 -top-20 h-72 w-72 rounded-full bg-gold-light/18 blur-3xl" />
         <div className="absolute -bottom-28 left-10 h-80 w-80 rounded-full bg-sky-300/10 blur-3xl" />
@@ -106,16 +106,17 @@ export function PathFinderGateway() {
             </Link>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {gatewayOptions.map((option) => {
+          <div className="path-finder-grid grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {gatewayOptions.map((option, index) => {
               const Icon = option.icon;
 
               return (
                 <Link
                   key={option.id}
                   href={option.href}
-                  className="group relative min-h-[205px] overflow-hidden rounded-[20px] border border-gold/18 bg-night/54 p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 bright:bg-white/55"
+                  className="path-finder-card group relative min-h-[205px] overflow-hidden rounded-[20px] border border-gold/18 bg-night/54 p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 bright:bg-white/55"
                 >
+                  <span className="path-finder-card-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                   <Image
                     src={option.image}
                     alt={option.imageAlt}
