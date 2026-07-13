@@ -1920,28 +1920,31 @@ html[data-ambient="bright"] .reader-control-panel {
 
 .home-hero-text-shade {
   background:
-    linear-gradient(90deg, rgba(255, 248, 234, 0.6) 0%, rgba(255, 248, 234, 0.36) 32%, rgba(5, 8, 13, 0.04) 58%, rgba(5, 8, 13, 0.46) 100%),
+    radial-gradient(ellipse at 23% 38%, rgba(255, 252, 239, 0.52), rgba(255, 248, 234, 0.2) 28%, transparent 56%),
+    linear-gradient(90deg, rgba(255, 248, 234, 0.44) 0%, rgba(255, 248, 234, 0.2) 34%, rgba(5, 8, 13, 0.02) 60%, rgba(5, 8, 13, 0.42) 100%),
     linear-gradient(180deg, rgba(255, 248, 234, 0.08), transparent 34%, rgba(5, 8, 13, 0.28));
 }
 
 .home-hero-copy {
   position: relative;
   text-shadow: none;
+  padding: clamp(1.1rem, 2.2vw, 1.65rem);
 }
 
 .home-hero-copy::before {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -1.2rem -1.15rem -1.25rem;
-  border: 1px solid rgba(154, 100, 30, 0.08);
-  border-radius: 1.55rem;
+  inset: 0;
+  border: 1px solid rgba(154, 100, 30, 0.1);
+  border-radius: 2rem;
   background:
-    radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.64), transparent 11rem),
-    radial-gradient(circle at 86% 16%, rgba(242, 213, 138, 0.16), transparent 12rem),
-    linear-gradient(135deg, rgba(255, 253, 247, 0.42), rgba(255, 248, 234, 0.2) 58%, rgba(255, 248, 234, 0.02));
-  box-shadow: 0 22px 62px rgba(111, 67, 16, 0.08);
-  backdrop-filter: blur(2px);
+    radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.58), transparent 12rem),
+    radial-gradient(circle at 88% 16%, rgba(242, 213, 138, 0.16), transparent 14rem),
+    linear-gradient(118deg, rgba(255, 253, 247, 0.36), rgba(255, 248, 234, 0.16) 48%, rgba(255, 248, 234, 0.01) 82%);
+  box-shadow: 0 24px 72px rgba(111, 67, 16, 0.07);
+  backdrop-filter: blur(1px);
+  mask-image: linear-gradient(90deg, #000 0 68%, transparent 100%);
 }
 
 .home-hero-copy::after {
@@ -1959,10 +1962,10 @@ html[data-ambient="bright"] .reader-control-panel {
 .home-hero-title {
   text-wrap: balance;
   max-width: 14ch;
-  font-size: clamp(3.7rem, 6.2vw, 5.85rem) !important;
+  font-size: clamp(3.45rem, 5.65vw, 5.55rem) !important;
   line-height: 1.02 !important;
   color: #8a510c;
-  background: linear-gradient(180deg, #f6cf70 0%, #c88a22 42%, #7a4a11 100%);
+  background: linear-gradient(180deg, #ffe7a3 0%, #d49a32 42%, #77480d 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1976,7 +1979,7 @@ html[data-ambient="bright"] .reader-control-panel {
 }
 
 .home-hero-lead {
-  max-width: 42rem;
+  max-width: 39rem;
   color: #201607 !important;
   text-shadow: 0 1px 0 rgba(255, 248, 234, 0.42);
 }
@@ -1984,8 +1987,8 @@ html[data-ambient="bright"] .reader-control-panel {
 .home-hero-feature-strip {
   position: relative;
   border-radius: 1.15rem !important;
-  background: rgba(255, 253, 247, 0.18) !important;
-  box-shadow: 0 18px 54px rgba(111, 67, 16, 0.09) !important;
+  background: rgba(255, 253, 247, 0.12) !important;
+  box-shadow: 0 18px 48px rgba(111, 67, 16, 0.08) !important;
 }
 
 .home-feature-badge {
@@ -2128,12 +2131,13 @@ html[data-ambient="bright"] .home-feature-badge {
   }
 
   .home-hero-copy::before {
-    inset: -1rem -0.85rem -1.15rem;
+    inset: 0;
     border-color: rgba(242, 213, 138, 0.13);
     background:
       radial-gradient(circle at 20% 0%, rgba(242, 213, 138, 0.2), transparent 9rem),
       linear-gradient(180deg, rgba(5, 8, 13, 0.2), rgba(5, 8, 13, 0.62));
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+    mask-image: none;
   }
 
   .home-hero-copy::after {
