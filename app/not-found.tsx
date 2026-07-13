@@ -25,7 +25,7 @@ const destinations = [
 
 export default function NotFound() {
   return (
-    <main className="hero-cosmos relative min-h-[calc(100vh-8rem)] overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <main className="not-found-world hero-cosmos relative min-h-[calc(100vh-8rem)] overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <div className="hero-horizon" />
       <div className="pointer-events-none absolute inset-0 opacity-45 [background-image:radial-gradient(rgba(242,213,138,0.38)_1px,transparent_1px)] [background-size:30px_30px]" />
 
@@ -63,7 +63,7 @@ export default function NotFound() {
         </div>
 
         <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none">
-          <div className="qerti-premium-shell qerti-soft-panel lux-frame relative aspect-[4/3] overflow-hidden rounded-[1.75rem] p-3">
+          <div className="not-found-artifact qerti-premium-shell qerti-soft-panel lux-frame relative aspect-[4/3] overflow-hidden rounded-[1.75rem] p-3">
             <Image
               src="/images/ai/avesta-portal.jpg"
               alt="نمایی نمادین از جهان دیجیتال اوستا"
@@ -86,7 +86,7 @@ export default function NotFound() {
           <Link
             key={href}
             href={href}
-            className="lux-frame qerti-feature-card qerti-subtle-lift group rounded-2xl p-5 hover:border-gold/60"
+            className="not-found-destination lux-frame qerti-feature-card qerti-subtle-lift group rounded-2xl p-5 hover:border-gold/60"
           >
             <Icon className="text-gold" size={22} aria-hidden="true" />
             <h2 className="mt-4 text-base font-black text-warm">{title}</h2>
