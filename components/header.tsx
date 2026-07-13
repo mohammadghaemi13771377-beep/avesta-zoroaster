@@ -39,12 +39,12 @@ export function Header() {
                 <div className="invisible absolute right-0 top-[calc(100%-0.25rem)] z-50 w-80 translate-y-1 pt-4 opacity-0 transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
                   <div className="header-dropdown rounded-2xl border border-gold/24 p-3 shadow-2xl shadow-black/45">
                     <p className="px-3 pb-2 text-xs font-black text-gold-light">دروازه‌های اوستا</p>
-                    <div className="grid gap-1">
+                    <div className="grid gap-1.5">
                       {avestaSections.map((section) => (
                         <HeaderNavLink
                           key={section.slug}
                           href={section.href}
-                          className="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-warm/84 transition hover:bg-gold/10 hover:text-gold-light"
+                          className="header-dropdown-link header-avesta-gate flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm text-warm/84 transition hover:bg-gold/10 hover:text-gold-light"
                           activeClassName="bg-gold/12 text-gold-light"
                         >
                           <span>{section.title}</span>
@@ -54,7 +54,7 @@ export function Header() {
                     </div>
                     <HeaderNavLink
                       href="/dictionary"
-                      className="mt-2 block rounded-xl border border-gold/18 bg-gold/8 px-4 py-3 text-sm font-black text-gold-light transition hover:bg-gold/14"
+                      className="header-dropdown-link mt-2 block rounded-xl border border-gold/18 bg-gold/8 px-4 py-3 text-sm font-black text-gold-light transition hover:bg-gold/14"
                       activeClassName="bg-gold/12 text-gold-light"
                     >
                       واژه‌نامه
@@ -77,7 +77,7 @@ export function Header() {
             <div className="invisible absolute left-0 top-[calc(100%-0.25rem)] z-50 w-[560px] translate-y-1 pt-4 opacity-0 transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
               <div className="header-dropdown grid grid-cols-2 gap-1 rounded-2xl border border-gold/24 p-3 shadow-2xl shadow-black/45">
                 {exploreNavItems.map((item) => (
-                  <Link key={item.href} href={item.href} className="rounded-xl px-4 py-3 transition hover:bg-gold/10">
+                  <Link key={item.href} href={item.href} className="header-dropdown-link header-explore-card rounded-xl px-4 py-3 transition hover:bg-gold/10">
                     <span className="block text-sm font-black text-warm/92">{item.label}</span>
                     <span className="mt-1 block text-xs font-medium leading-5 text-muted">{item.description}</span>
                   </Link>
