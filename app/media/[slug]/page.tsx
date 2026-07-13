@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, BookOpen, Headphones, Image as ImageIcon, Link2, Music2, Sparkles, Video } from "lucide-react";
@@ -59,7 +60,7 @@ export default async function MediaDetailPage({ params }: PageProps) {
   };
 
   return (
-    <main className="overflow-hidden pt-24">
+    <main className="media-detail-page overflow-hidden pt-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="hero-cosmos relative px-4 pb-16 pt-12 sm:px-6 lg:px-8">
         <div className="hero-horizon" />
@@ -83,10 +84,23 @@ export default async function MediaDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          <div className="lux-frame p-4">
-            <div className="image-atmosphere grid min-h-[360px] place-items-center rounded-[1.4rem] p-8 text-center">
+          <div className="media-detail-preview lux-frame p-4">
+            <div className="media-detail-artwork image-atmosphere relative grid min-h-[360px] place-items-center overflow-hidden rounded-[1.4rem] p-8 text-center">
+              {asset.thumbnail ? (
+                <Image
+                  src={asset.thumbnail}
+                  alt={asset.title}
+                  fill
+                  priority
+                  sizes="390px"
+                  className="object-cover"
+                />
+              ) : null}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent" />
               <div className="relative z-10">
-                <Icon className="mx-auto text-gold-light" size={62} />
+                <span className="mx-auto grid h-20 w-20 place-items-center rounded-full border border-gold/25 bg-black/35 text-gold-light shadow-gold backdrop-blur">
+                  <Icon size={42} />
+                </span>
                 <p className="mt-6 text-sm font-bold text-gold-light">Media Asset</p>
                 <p className="mt-3 text-2xl font-black text-warm">{asset.category}</p>
               </div>
@@ -97,7 +111,7 @@ export default async function MediaDetailPage({ params }: PageProps) {
 
       <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-24 sm:px-6 lg:grid-cols-[1fr_340px] lg:px-8">
         <article className="space-y-6">
-          <section className="lux-frame p-7">
+          <section className="media-detail-panel lux-frame p-7">
             <div className="flex items-center gap-2 text-gold-light">
               <Sparkles size={20} />
               <h2 className="text-2xl font-black">کاربرد در تجربه سایت</h2>
@@ -105,10 +119,15 @@ export default async function MediaDetailPage({ params }: PageProps) {
             <p className="mt-4 leading-9 text-muted">
               این رسانه برای کامل‌کردن تجربه تصویری، صوتی یا پژوهشی سایت استفاده می‌شود و می‌تواند به صفحه، بخش یا بند مشخصی از اوستا وصل شود.
             </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <MiniMetric label="نوع" value={asset.type} />
+              <MiniMetric label="دسته" value={asset.category} />
+              <MiniMetric label="وضعیت" value={asset.status ?? "sample"} />
+            </div>
           </section>
 
           {asset.prompt ? (
-            <section className="lux-frame p-7">
+            <section className="media-detail-panel lux-frame p-7">
               <div className="flex items-center gap-2 text-gold-light">
                 <ImageIcon size={20} />
                 <h2 className="text-2xl font-black">پرامپت یا دستور تولید</h2>
@@ -120,7 +139,7 @@ export default async function MediaDetailPage({ params }: PageProps) {
           ) : null}
 
           {asset.url ? (
-            <section className="lux-frame p-7">
+            <section className="media-detail-panel lux-frame p-7">
               <div className="flex items-center gap-2 text-gold-light">
                 <Link2 size={20} />
                 <h2 className="text-2xl font-black">فایل رسانه</h2>
@@ -136,7 +155,7 @@ export default async function MediaDetailPage({ params }: PageProps) {
           ) : null}
         </article>
 
-        <aside className="lux-frame h-fit p-6 lg:sticky lg:top-28">
+        <aside className="media-detail-sidebar lux-frame h-fit p-6 lg:sticky lg:top-28">
           <p className="gold-text text-sm font-semibold tracking-[0.22em]">CONNECTIONS</p>
           <h2 className="mt-3 text-2xl font-black text-warm">اتصال‌های محتوایی</h2>
           <div className="mt-5 grid gap-3">
@@ -175,10 +194,19 @@ function Badge({ children, muted = false }: { children: string; muted?: boolean 
 
 function ConnectionCard({ href, label, value }: { href: string; label: string; value: string }) {
   return (
-    <Link href={href} className="rounded-2xl border border-gold/10 bg-night/55 p-4 transition hover:border-gold/40 hover:bg-gold/10">
+    <Link href={href} className="media-connection-card rounded-2xl border border-gold/10 bg-night/55 p-4 transition hover:border-gold/40 hover:bg-gold/10">
       <p className="text-xs font-bold text-gold-light">{label}</p>
       <p className="mt-2 font-black text-warm">{value}</p>
     </Link>
+  );
+}
+
+function MiniMetric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-gold/10 bg-night/55 px-4 py-3">
+      <p className="text-xs font-bold text-muted">{label}</p>
+      <p className="mt-1 text-sm font-black text-gold-light">{value}</p>
+    </div>
   );
 }
 
