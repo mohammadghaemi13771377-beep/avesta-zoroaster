@@ -622,6 +622,101 @@ a {
   background: rgba(214, 168, 79, 0.08);
 }
 
+.mobile-menu-overlay {
+  background:
+    radial-gradient(circle at 12% 16%, rgba(242, 213, 138, 0.16), transparent 16rem),
+    radial-gradient(circle at 88% 20%, rgba(126, 217, 230, 0.12), transparent 18rem),
+    rgba(0, 0, 0, 0.75) !important;
+}
+
+.mobile-menu-panel {
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(242, 213, 138, 0.14), transparent 17rem),
+    linear-gradient(180deg, rgba(8, 28, 38, 0.98), rgba(5, 12, 18, 0.98)) !important;
+}
+
+.mobile-menu-panel::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: -1;
+  height: 18rem;
+  background:
+    linear-gradient(180deg, rgba(242, 213, 138, 0.08), transparent),
+    url("/images/ai/avesta-portal.jpg") center top / cover;
+  opacity: 0.18;
+  mask-image: linear-gradient(180deg, #000, transparent);
+}
+
+.mobile-menu-brand {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 248, 234, 0.04), rgba(255, 248, 234, 0.01));
+}
+
+.mobile-search-gate,
+.mobile-menu-link,
+.mobile-menu-section-toggle,
+.mobile-menu-sub-link {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.mobile-search-gate::before,
+.mobile-menu-link::before,
+.mobile-menu-section-toggle::before,
+.mobile-menu-sub-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(242, 213, 138, 0.18), transparent 5rem),
+    linear-gradient(90deg, rgba(242, 213, 138, 0.08), rgba(126, 217, 230, 0.04));
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.mobile-search-gate {
+  box-shadow: inset 0 1px 0 rgba(255, 248, 234, 0.1), 0 16px 44px rgba(214, 168, 79, 0.08);
+}
+
+.mobile-menu-link {
+  border: 1px solid rgba(242, 213, 138, 0.06);
+}
+
+.mobile-menu-subpanel {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(242, 213, 138, 0.08), transparent 10rem),
+    rgba(5, 8, 13, 0.36) !important;
+}
+
+.mobile-menu-sub-link {
+  border: 1px solid transparent;
+}
+
+.mobile-search-gate:hover::before,
+.mobile-search-gate:focus-visible::before,
+.mobile-menu-link:hover::before,
+.mobile-menu-link:focus-visible::before,
+.mobile-menu-section-toggle:hover::before,
+.mobile-menu-section-toggle:focus-visible::before,
+.mobile-menu-sub-link:hover::before,
+.mobile-menu-sub-link:focus-visible::before {
+  opacity: 1;
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link:focus-visible,
+.mobile-menu-sub-link:hover,
+.mobile-menu-sub-link:focus-visible {
+  border-color: rgba(242, 213, 138, 0.18);
+}
+
 html[data-ambient="bright"] {
   color-scheme: light;
 }
@@ -1043,6 +1138,47 @@ html[data-ambient="bright"] .header-avesta-gate:hover,
 html[data-ambient="bright"] .header-avesta-gate:focus-visible {
   border-color: rgba(154, 100, 30, 0.25);
   background: rgba(255, 248, 234, 0.72);
+}
+
+html[data-ambient="bright"] .mobile-menu-overlay {
+  background:
+    radial-gradient(circle at 12% 16%, rgba(214, 168, 79, 0.14), transparent 16rem),
+    radial-gradient(circle at 88% 20%, rgba(48, 92, 130, 0.08), transparent 18rem),
+    rgba(255, 248, 234, 0.72) !important;
+}
+
+html[data-ambient="bright"] .mobile-menu-panel {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(214, 168, 79, 0.14), transparent 17rem),
+    linear-gradient(180deg, rgba(255, 253, 247, 0.98), rgba(255, 248, 234, 0.96)) !important;
+  border-color: rgba(154, 100, 30, 0.24) !important;
+  box-shadow: -18px 0 54px rgba(119, 78, 18, 0.14) !important;
+}
+
+html[data-ambient="bright"] .mobile-menu-panel::before {
+  opacity: 0.12;
+}
+
+html[data-ambient="bright"] .mobile-menu-brand {
+  background: linear-gradient(180deg, rgba(154, 100, 30, 0.05), rgba(255, 248, 234, 0.02));
+}
+
+html[data-ambient="bright"] .mobile-search-gate,
+html[data-ambient="bright"] .mobile-menu-subpanel {
+  border-color: rgba(154, 100, 30, 0.18) !important;
+  background: rgba(255, 253, 247, 0.62) !important;
+}
+
+html[data-ambient="bright"] .mobile-menu-link,
+html[data-ambient="bright"] .mobile-menu-sub-link {
+  border-color: rgba(154, 100, 30, 0.08);
+}
+
+html[data-ambient="bright"] .mobile-menu-link:hover,
+html[data-ambient="bright"] .mobile-menu-link:focus-visible,
+html[data-ambient="bright"] .mobile-menu-sub-link:hover,
+html[data-ambient="bright"] .mobile-menu-sub-link:focus-visible {
+  border-color: rgba(154, 100, 30, 0.2);
 }
 
 html[data-ambient="bright"] .header-nav-pill:hover,
