@@ -31,7 +31,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
 
   return (
     <main className="overflow-hidden pt-24" dir={locale === "en" ? "ltr" : "rtl"}>
-      <section className="hero-cosmos relative min-h-[700px]">
+      <section className="hero-cosmos avesta-portal-hero relative min-h-[700px]">
         <Image
           src={routeHeroByPath["/avesta"]}
           alt="تالار نورانی اوستا با دروازه های مستقل"
@@ -45,7 +45,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
         <div className="hero-horizon" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:pl-8 lg:pr-[48%] lg:py-32">
+        <div className="avesta-portal-copy relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:pl-8 lg:pr-[48%] lg:py-32">
           <p className="inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-black text-gold-light">
             <Sparkles size={16} />
             دروازه اوستا
@@ -54,8 +54,8 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
             جهان اوستا
           </h1>
           <p className="mt-7 max-w-2xl text-lg font-semibold leading-10 text-warm/88">
-            اینجا پورتال اصلی اوستاست؛ یک تالار روشن برای انتخاب مسیر. از این صفحه وارد بخش مستقل خودت شو:
-            یسنا، گات ها، وندیداد، یشت ها، خرده اوستا یا نقشه هات ها.
+            اینجا تالار اصلی اوستاست؛ یک مسیر روشن برای ورود مستقیم به هر بخش. از این صفحه وارد
+            یسنا، گات ها، وندیداد، یشت ها، خرده اوستا یا نقشه هات ها شو و فقط همان جهان را ببین.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <TrackedLink
@@ -80,7 +80,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
       </section>
 
       <section className="relative mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-        <div className="mb-6 grid gap-4 md:grid-cols-4">
+        <div className="avesta-portal-stats mb-6 grid gap-4 md:grid-cols-4">
           {portalStats.map((stat) => (
             <PortalStat key={stat.label} label={stat.label} value={stat.value} />
           ))}
@@ -97,7 +97,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
           ["تصویر اختصاصی", "برای هر بخش مسیر تولید تصویر و فضای هنری جداگانه تعریف شده است.", Flame],
           ["پیام امروز", "بازنویسی ساده، تحلیل مفهومی و پیام اخلاقی برای مخاطب امروز.", Sparkles],
         ] satisfies Array<[string, string, LucideIcon]>).map(([title, text, Icon]) => (
-          <article key={title} className="lux-frame rounded-[18px] p-6">
+          <article key={title} className="avesta-portal-principle lux-frame rounded-[18px] p-6">
             <Icon className="text-gold-light" size={28} />
             <h3 className="mt-5 text-2xl font-black text-warm">{title}</h3>
             <p className="mt-3 leading-8 text-muted">{text}</p>
@@ -110,7 +110,7 @@ export default async function AvestaPortalPage({ searchParams }: PageProps) {
 
 function PortalStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[18px] border border-gold/15 bg-royal/62 p-5 shadow-xl shadow-black/20">
+    <div className="avesta-portal-stat rounded-[18px] border border-gold/15 bg-royal/62 p-5 shadow-xl shadow-black/20">
       <p className="text-xs font-black text-gold-light">{label}</p>
       <p className="mt-2 break-words text-xl font-black leading-8 text-warm sm:text-2xl">{value}</p>
     </div>
