@@ -65,10 +65,10 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
   const activeArticle = filteredArticles[0] ?? articles[0];
 
   return (
-    <section className="mt-12">
+    <section className="article-journal mt-12">
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div>
-          <div className="lux-frame p-5">
+          <div className="article-filter-panel lux-frame p-5">
             <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_180px_180px]">
               <label className="relative block">
                 <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={20} />
@@ -76,7 +76,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="جستجو در مقاله‌ها، تگ‌ها و مفاهیم"
-                  className="h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-12 pl-12 text-warm outline-none transition placeholder:text-muted focus:border-gold"
+                  className="article-input h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-12 pl-12 text-warm outline-none transition placeholder:text-muted focus:border-gold"
                 />
                 {query ? (
                   <button
@@ -92,7 +92,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
               <select
                 value={category}
                 onChange={(event) => setCategory(event.target.value)}
-                className="h-14 rounded-full border border-gold/20 bg-night/70 px-5 text-warm outline-none focus:border-gold"
+                className="article-select h-14 rounded-full border border-gold/20 bg-night/70 px-5 text-warm outline-none focus:border-gold"
               >
                 {categories.map((item) => (
                   <option key={item}>{item}</option>
@@ -100,7 +100,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
               </select>
               <label className="relative block">
                 <Filter className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={17} />
-                <select value={sort} onChange={(event) => setSort(event.target.value)} className="h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-11 pl-5 text-warm outline-none focus:border-gold" aria-label="ترتیب مقاله‌ها">
+                <select value={sort} onChange={(event) => setSort(event.target.value)} className="article-select h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-11 pl-5 text-warm outline-none focus:border-gold" aria-label="ترتیب مقاله‌ها">
                   <option value="newest">تازه‌ترین</option>
                   <option value="shortest">کوتاه‌ترین مطالعه</option>
                   <option value="title">عنوان</option>
@@ -109,24 +109,24 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
             </div>
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap gap-2">
-                {tags.map((item) => <button key={item} type="button" onClick={() => setTag(item)} className={`rounded-full border px-3 py-1.5 text-xs font-bold transition ${tag === item ? "border-gold/45 bg-gold/15 text-gold-light" : "border-warm/10 text-muted hover:border-gold/25 hover:text-gold-light"}`}>{item}</button>)}
+                {tags.map((item) => <button key={item} type="button" onClick={() => setTag(item)} className={`article-tag-chip rounded-full border px-3 py-1.5 text-xs font-bold transition ${tag === item ? "border-gold/45 bg-gold/15 text-gold-light" : "border-warm/10 text-muted hover:border-gold/25 hover:text-gold-light"}`}>{item}</button>)}
               </div>
-              {(query || category !== allLabel || tag !== allLabel || sort !== "newest") ? <button type="button" onClick={resetFilters} className="rounded-full border border-gold/20 px-3 py-1.5 text-xs font-bold text-gold-light transition hover:bg-gold/10">پاک‌سازی</button> : null}
+              {(query || category !== allLabel || tag !== allLabel || sort !== "newest") ? <button type="button" onClick={resetFilters} className="article-reset-chip rounded-full border border-gold/20 px-3 py-1.5 text-xs font-bold text-gold-light transition hover:bg-gold/10">پاک‌سازی</button> : null}
             </div>
             <p className="mt-4 text-sm text-muted">{filteredArticles.length} مقاله برای این فیلتر آماده است.</p>
           </div>
 
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
+          <div className="article-card-grid mt-6 grid gap-5 md:grid-cols-2">
             {filteredArticles.length ? (
               filteredArticles.map((article, index) => (
                 <Link
                   key={article.slug}
                   href={`/articles/${article.slug}`}
-                  className={`lux-frame group block p-5 text-right transition hover:-translate-y-1 hover:border-gold/45 hover:shadow-gold ${
+                  className={`article-card lux-frame group block p-5 text-right transition hover:-translate-y-1 hover:border-gold/45 hover:shadow-gold ${
                     activeArticle?.slug === article.slug ? "border-gold/45 bg-gold/10" : ""
                   }`}
                 >
-                  <div className="image-atmosphere relative h-48 rounded-2xl border border-gold/10">
+                  <div className="article-card-image image-atmosphere relative h-48 rounded-2xl border border-gold/10">
                     {article.coverImage ? (
                       <Image
                         src={article.coverImage}
@@ -161,7 +161,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {article.tags.map((tag) => (
-                      <span key={tag} className="inline-flex items-center gap-1 rounded-full border border-gold/10 px-3 py-1 text-xs text-muted">
+                      <span key={tag} className="article-mini-tag inline-flex items-center gap-1 rounded-full border border-gold/10 px-3 py-1 text-xs text-muted">
                         <Tag size={12} />
                         {tag}
                       </span>
@@ -170,7 +170,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
                 </Link>
               ))
             ) : (
-              <div className="lux-frame p-8 text-center md:col-span-2">
+              <div className="article-empty-state lux-frame p-8 text-center md:col-span-2">
                 <Search className="mx-auto text-gold-light" size={34} />
                 <h2 className="mt-4 text-2xl font-black text-warm">مقاله‌ای پیدا نشد</h2>
                 <p className="mt-3 leading-8 text-muted">فیلتر را بازتر کنید یا عبارت کوتاه‌تری جستجو کنید.</p>
@@ -181,8 +181,8 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
 
         {activeArticle ? (
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-            <div className="lux-frame p-5">
-              <div className="image-atmosphere relative h-52 rounded-2xl border border-gold/10">
+            <div className="article-feature-card lux-frame p-5">
+              <div className="article-feature-image image-atmosphere relative h-52 rounded-2xl border border-gold/10">
                 {activeArticle.coverImage ? (
                   <Image
                     src={activeArticle.coverImage}
@@ -202,7 +202,7 @@ export function ArticlesExplorer({ articles }: { articles: ArticleItem[] }) {
               <p className="mt-3 leading-8 text-muted">{activeArticle.excerpt}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {activeArticle.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-gold/15 bg-gold/10 px-3 py-1 text-xs text-gold-light">
+                  <span key={tag} className="article-feature-tag rounded-full border border-gold/15 bg-gold/10 px-3 py-1 text-xs text-gold-light">
                     {tag}
                   </span>
                 ))}

@@ -38,9 +38,9 @@ export default function ArticlesPage() {
         { value: "Links", label: "اتصال به واژه‌نامه و اوستا" },
       ]}
     >
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div className="article-journal-stats grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {stats.map(([title, description, Icon]) => (
-          <article key={title} className="lux-frame p-6">
+          <article key={title} className="article-journal-stat lux-frame p-6">
             <Icon className="text-gold-200" size={30} />
             <h2 className="mt-5 text-2xl font-black text-warm-50">{title}</h2>
             <p className="mt-3 leading-8 text-warm-100/68">{description}</p>
