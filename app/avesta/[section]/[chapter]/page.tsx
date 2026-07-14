@@ -100,7 +100,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
 
-      <section className="hero-cosmos relative isolate min-h-[700px] overflow-hidden">
+      <section className="hero-cosmos avesta-chapter-hero relative isolate min-h-[700px] overflow-hidden">
         {heroImage ? (
           <Image src={heroImage} alt={guide?.title ?? chapter.title} fill priority sizes="100vw" className="object-cover object-center opacity-78" />
         ) : null}
@@ -118,7 +118,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
             بازگشت به {section.title}
           </Link>
 
-          <div className="hub-hero-copy mt-10 max-w-3xl">
+          <div className="avesta-chapter-copy hub-hero-copy mt-10 max-w-3xl">
             <p className="hub-hero-eyebrow text-sm font-black text-gold-light">اوستا / {section.title}</p>
             <h1 className="hub-hero-title gold-text mt-4 text-5xl font-black leading-tight sm:text-7xl">{chapter.title}</h1>
             <p className="hub-hero-lead mt-6 max-w-3xl text-lg font-semibold leading-10 text-warm/88">
@@ -173,7 +173,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
         <ReadingControls />
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
-          <article className="lux-frame p-6 sm:p-8">
+          <article className="avesta-chapter-info-card lux-frame p-6 sm:p-8">
             <div className="flex items-center gap-3">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/25 bg-gold/12 text-gold-light">
                 <BookOpen className="h-5 w-5" />
@@ -194,7 +194,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
             ) : null}
           </article>
 
-          <aside className="poster-parchment p-6">
+          <aside className="avesta-chapter-parchment poster-parchment p-6">
             <p className="text-sm font-black text-night/65">پیام محوری</p>
             <h3 className="mt-3 text-2xl font-black text-night">{firstVerse?.quote ?? "پندار نیک، گفتار نیک، کردار نیک"}</h3>
             <p className="mt-4 leading-8 text-night/78">{firstVerse?.ethicalMessage ?? section.description}</p>
@@ -204,14 +204,14 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
         {profile ? (
           <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
             <div className="grid gap-4 md:grid-cols-2">
-              <article className="lux-frame p-6">
+              <article className="avesta-chapter-info-card lux-frame p-6">
                 <div className="flex items-center gap-3 text-gold-light">
                   <Landmark className="h-5 w-5" />
                   <h3 className="text-xl font-black text-warm">زمینه تاریخی</h3>
                 </div>
                 <p className="mt-4 leading-8 text-muted">{profile.historicalContext}</p>
               </article>
-              <article className="lux-frame p-6">
+              <article className="avesta-chapter-info-card lux-frame p-6">
                 <div className="flex items-center gap-3 text-gold-light">
                   <Route className="h-5 w-5" />
                   <h3 className="text-xl font-black text-warm">زمینه آیینی و تجربه کاربر</h3>
@@ -220,7 +220,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
               </article>
             </div>
 
-            <aside className="poster-panel p-6">
+            <aside className="avesta-chapter-side-panel poster-panel p-6">
               <div className="flex items-center gap-3 text-gold-light">
                 <Tags className="h-5 w-5" />
                 <h3 className="text-xl font-black text-warm">کلیدهای فهم فصل</h3>
@@ -237,7 +237,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
           </section>
         ) : null}
 
-        <section className="mt-8 lux-frame p-6 sm:p-8">
+        <section className="avesta-chapter-verses-shell mt-8 lux-frame p-6 sm:p-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-sm font-black text-gold-light">بندها و قطعه های آماده</p>
@@ -282,7 +282,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
         ) : null}
 
         {profile ? (
-          <section className="mt-8 lux-frame p-6 sm:p-8">
+          <section className="avesta-chapter-next-shell mt-8 lux-frame p-6 sm:p-8">
             <div>
               <p className="text-sm font-black text-gold-light">مسیرهای پیشنهادی</p>
               <h2 className="mt-2 text-3xl font-black text-warm">بعد از {chapter.title} کجا برویم؟</h2>
@@ -292,7 +292,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
                 <Link
                   key={item.href}
                   href={`${item.href}${langQuery}`}
-                  className="group rounded-2xl border border-gold/12 bg-night/58 p-5 transition hover:-translate-y-1 hover:border-gold/45 hover:bg-gold/10"
+                  className="avesta-chapter-next-card group rounded-2xl border border-gold/12 bg-night/58 p-5 transition hover:-translate-y-1 hover:border-gold/45 hover:bg-gold/10"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -313,7 +313,7 @@ export default async function AvestaChapterPage({ params, searchParams }: PagePr
 
 function HeroStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-gold/16 bg-black/22 p-4 backdrop-blur">
+    <div className="avesta-chapter-stat rounded-2xl border border-gold/16 bg-black/22 p-4 backdrop-blur">
       <p className="text-xs font-black text-gold-light">{label}</p>
       <p className="mt-2 text-lg font-black text-warm">{value}</p>
     </div>
