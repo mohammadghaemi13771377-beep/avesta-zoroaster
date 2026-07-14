@@ -2669,6 +2669,134 @@ html[data-ambient="bright"] .reader-control-panel {
   z-index: 1;
 }
 
+.avesta-section-hero {
+  isolation: isolate;
+}
+
+.avesta-section-hero::before,
+.avesta-section-hero::after,
+.avesta-section-copy::after,
+.avesta-section-image::before,
+.avesta-section-image::after,
+.avesta-section-info-card::before,
+.avesta-section-info-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.avesta-section-hero::before {
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 21% 26%, rgba(255, 248, 234, 0.22), transparent 17rem),
+    radial-gradient(circle at 76% 26%, rgba(242, 213, 138, 0.18), transparent 23rem),
+    linear-gradient(120deg, rgba(255, 248, 234, 0.07), transparent 38%, rgba(126, 217, 230, 0.05));
+  mix-blend-mode: screen;
+}
+
+.avesta-section-hero::after {
+  inset-inline: 9%;
+  bottom: 3.1rem;
+  z-index: 2;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.78), rgba(126, 217, 230, 0.42), transparent);
+  filter: drop-shadow(0 0 18px rgba(242, 213, 138, 0.32));
+}
+
+.avesta-section-copy {
+  position: relative;
+}
+
+.avesta-section-copy::after {
+  inset-inline: 0 auto;
+  bottom: -1rem;
+  width: min(28rem, 84%);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(242, 213, 138, 0.7), transparent);
+  filter: drop-shadow(0 0 10px rgba(242, 213, 138, 0.32));
+}
+
+.avesta-section-image {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(242, 213, 138, 0.16), transparent 12rem),
+    linear-gradient(180deg, rgba(255, 248, 234, 0.035), rgba(5, 8, 13, 0.28));
+}
+
+.avesta-section-image::before {
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 42% 18%, rgba(255, 248, 234, 0.15), transparent 11rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.08), transparent 46%);
+  mix-blend-mode: screen;
+}
+
+.avesta-section-image::after {
+  inset: 1rem;
+  z-index: 3;
+  border: 1px solid rgba(242, 213, 138, 0.18);
+  border-radius: 1.1rem;
+  box-shadow: inset 0 0 42px rgba(242, 213, 138, 0.07);
+}
+
+.avesta-section-info-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.avesta-section-info-card::before {
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(242, 213, 138, 0.13), transparent 10rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.055), transparent 45%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.avesta-section-info-card::after {
+  inset-inline: 1.15rem;
+  bottom: 0.9rem;
+  z-index: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.55), transparent);
+  opacity: 0;
+  transform: scaleX(0.7);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.avesta-section-info-card:hover,
+.avesta-section-info-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(242, 213, 138, 0.34);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+}
+
+.avesta-section-info-card:hover::before,
+.avesta-section-info-card:focus-visible::before,
+.avesta-section-info-card:hover::after,
+.avesta-section-info-card:focus-visible::after {
+  opacity: 1;
+}
+
+.avesta-section-info-card:hover::after,
+.avesta-section-info-card:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.avesta-section-info-card > * {
+  position: relative;
+  z-index: 1;
+}
+
 .newsletter-shell,
 .newsletter-form-panel,
 .newsletter-topic-pill,
@@ -2856,6 +2984,47 @@ html[data-ambient="bright"] .avesta-portal-stat:focus-visible,
 html[data-ambient="bright"] .avesta-portal-principle:hover,
 html[data-ambient="bright"] .avesta-portal-principle:focus-visible {
   box-shadow: 0 20px 54px rgba(126, 91, 34, 0.14);
+}
+
+html[data-ambient="bright"] .avesta-section-hero::before {
+  background:
+    radial-gradient(circle at 21% 26%, rgba(255, 255, 255, 0.36), transparent 17rem),
+    radial-gradient(circle at 76% 26%, rgba(214, 168, 79, 0.18), transparent 23rem),
+    linear-gradient(120deg, rgba(255, 253, 247, 0.18), transparent 38%, rgba(76, 144, 186, 0.06));
+  mix-blend-mode: multiply;
+}
+
+html[data-ambient="bright"] .avesta-section-copy::after {
+  background: linear-gradient(90deg, rgba(154, 100, 30, 0.5), transparent);
+  filter: none;
+}
+
+html[data-ambient="bright"] .avesta-section-image {
+  border-color: rgba(154, 100, 30, 0.22) !important;
+  box-shadow: 0 22px 64px rgba(119, 78, 18, 0.13) !important;
+}
+
+html[data-ambient="bright"] .avesta-section-image::before {
+  background:
+    radial-gradient(circle at 42% 18%, rgba(255, 255, 255, 0.28), transparent 11rem),
+    linear-gradient(135deg, rgba(255, 253, 247, 0.2), transparent 46%);
+  mix-blend-mode: multiply;
+}
+
+html[data-ambient="bright"] .avesta-section-image::after {
+  border-color: rgba(154, 100, 30, 0.18);
+  box-shadow: inset 0 0 40px rgba(154, 100, 30, 0.08);
+}
+
+html[data-ambient="bright"] .avesta-section-info-card::before {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(214, 168, 79, 0.13), transparent 10rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.32), transparent 45%);
+}
+
+html[data-ambient="bright"] .avesta-section-info-card:hover,
+html[data-ambient="bright"] .avesta-section-info-card:focus-visible {
+  box-shadow: 0 18px 50px rgba(126, 91, 34, 0.13);
 }
 
 html[data-ambient="bright"] .newsletter-shell::before,

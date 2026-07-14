@@ -86,7 +86,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
 
-      <section className="hero-cosmos relative min-h-[720px]">
+      <section className="hero-cosmos avesta-section-hero relative min-h-[720px]">
         {sectionCover ? (
           <Image
             src={sectionCover}
@@ -103,7 +103,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night to-transparent" />
 
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
-          <div className="hub-hero-copy">
+          <div className="avesta-section-copy hub-hero-copy">
             <p className="hub-hero-eyebrow inline-flex items-center gap-2 rounded-full border border-gold/24 bg-black/22 px-4 py-2 text-sm font-black text-gold-light">
               اوستا / {section.title}
             </p>
@@ -136,7 +136,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
             </div>
           </div>
 
-          <div className={`image-scene ${section.atmosphere} min-h-[470px] rounded-[22px] border border-gold/20 shadow-2xl shadow-black/50`}>
+          <div className={`avesta-section-image image-scene ${section.atmosphere} min-h-[470px] rounded-[22px] border border-gold/20 shadow-2xl shadow-black/50`}>
             {sectionCover ? (
               <Image
                 src={sectionCover}
@@ -165,7 +165,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <article className="lux-frame rounded-[18px] p-7">
+          <article className="avesta-section-info-card lux-frame rounded-[18px] p-7">
             <h2 className="text-3xl font-black text-warm">{section.title} چیست؟</h2>
             <p className="reader-text mt-5 text-muted">
               این صفحه مسیر مطالعه همین بخش را مثل یک اتاق موزه نشان می دهد: معرفی، فصل ها، بندهای نمونه،
@@ -173,7 +173,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
             </p>
           </article>
 
-          <article className="lux-frame rounded-[18px] p-7">
+          <article className="avesta-section-info-card lux-frame rounded-[18px] p-7">
             <p className="text-sm font-bold text-gold-light">{sampleVerse.chapterTitle}</p>
             <h2 className="mt-3 text-3xl font-black text-warm">{sampleVerse.verseNumber}</h2>
             <p className="reader-text mt-4 text-muted">{sampleVerse.quote}</p>
@@ -184,7 +184,7 @@ export default async function AvestaSectionPage({ params, searchParams }: PagePr
 
         <div className="mt-8 grid gap-5">
           {sampleVerse.blocks.map((block) => (
-            <section key={block.label} className="lux-frame rounded-[18px] p-6">
+            <section key={block.label} className="avesta-section-info-card lux-frame rounded-[18px] p-6">
               <p className="text-sm font-bold text-gold-light">{block.label}</p>
               <h3 className="mt-3 text-2xl font-black text-warm">{block.title}</h3>
               <p className="reader-text mt-3 text-muted">{block.body}</p>
