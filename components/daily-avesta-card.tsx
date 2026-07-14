@@ -52,13 +52,13 @@ export function DailyAvestaCard({ item }: DailyAvestaCardProps) {
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8" aria-labelledby="daily-avesta-title">
-      <div className="relative overflow-hidden rounded-[26px] border border-gold/20 bg-[linear-gradient(135deg,rgba(255,248,234,0.09),rgba(7,21,33,0.70)_46%,rgba(5,8,13,0.86))] shadow-[0_28px_88px_rgba(0,0,0,0.28)] bright:bg-[linear-gradient(135deg,rgba(255,253,247,0.92),rgba(242,213,138,0.24),rgba(255,255,255,0.82))]">
+      <div className="daily-avesta-stage relative overflow-hidden rounded-[26px] border border-gold/20 bg-[linear-gradient(135deg,rgba(255,248,234,0.09),rgba(7,21,33,0.70)_46%,rgba(5,8,13,0.86))] shadow-[0_28px_88px_rgba(0,0,0,0.28)] bright:bg-[linear-gradient(135deg,rgba(255,253,247,0.92),rgba(242,213,138,0.24),rgba(255,255,255,0.82))]">
         <div className="absolute -right-24 top-0 h-72 w-72 rounded-full bg-gold-light/16 blur-3xl" />
         <div className="absolute -bottom-28 left-10 h-80 w-80 rounded-full bg-sky-300/10 blur-3xl" />
         <div className="grid gap-0 lg:grid-cols-[0.82fr_1.18fr]">
           <div className="relative min-h-[310px] overflow-hidden p-5 sm:p-7">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(242,213,138,0.32),transparent_13rem),linear-gradient(145deg,rgba(7,21,33,0.94),rgba(5,8,13,0.72))] bright:bg-[radial-gradient(circle_at_50%_35%,rgba(214,168,79,0.24),transparent_13rem),linear-gradient(145deg,rgba(255,253,247,0.88),rgba(242,213,138,0.18))]" />
-            <div className="relative z-10 flex h-full min-h-[266px] flex-col justify-between rounded-[22px] border border-gold/22 bg-black/20 p-6 shadow-gold backdrop-blur-md bright:bg-white/52">
+            <div className="daily-avesta-quote-panel relative z-10 flex h-full min-h-[266px] flex-col justify-between rounded-[22px] border border-gold/22 bg-black/20 p-6 shadow-gold backdrop-blur-md bright:bg-white/52">
               <div className="flex items-center justify-between gap-4">
                 <span className="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/10 px-3 py-1 text-xs font-black text-gold-light bright:text-amber-800">
                   <Flame size={14} />
@@ -83,13 +83,13 @@ export function DailyAvestaCard({ item }: DailyAvestaCardProps) {
             </p>
 
             <div className="mt-6 grid gap-3 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="rounded-2xl border border-gold/15 bg-night/42 p-5 bright:bg-white/50">
+              <div className="daily-avesta-insight rounded-2xl border border-gold/15 bg-night/42 p-5 bright:bg-white/50">
                 <p className="text-xs font-black text-gold-light bright:text-amber-800">پرسش تأمل امروز</p>
                 <p className="mt-2 text-xl font-black leading-9 text-warm bright:text-stone-950">{item.reflectionPrompt}</p>
               </div>
               <Link
                 href={item.term.href}
-                className="rounded-2xl border border-gold/15 bg-night/42 p-5 transition hover:border-gold/40 hover:bg-gold/10 bright:bg-white/50"
+                className="daily-avesta-insight rounded-2xl border border-gold/15 bg-night/42 p-5 transition hover:border-gold/40 hover:bg-gold/10 bright:bg-white/50"
               >
                 <p className="text-xs font-black text-gold-light bright:text-amber-800">واژه امروز</p>
                 <h3 className="mt-2 text-2xl font-black text-warm bright:text-stone-950">{item.term.label}</h3>
@@ -121,7 +121,7 @@ export function DailyAvestaCard({ item }: DailyAvestaCardProps) {
                 {copied ? <Check size={17} /> : <Copy size={17} />}
                 {copied ? "کپی شد" : "کپی پیام"}
               </button>
-              <span className="text-xs font-bold text-muted bright:text-stone-600">{status}</span>
+              <span className="daily-avesta-status text-xs font-bold text-muted bright:text-stone-600">{status}</span>
             </div>
           </div>
         </div>
