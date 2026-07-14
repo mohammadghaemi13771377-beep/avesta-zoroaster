@@ -4549,6 +4549,143 @@ html[data-ambient="bright"] .search-recent-chip:focus-visible {
   box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 28px rgba(214, 168, 79, 0.13);
 }
 
+.dictionary-control-panel,
+.dictionary-term-card,
+.dictionary-feature-card,
+.dictionary-empty-state,
+.dictionary-related-chip {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.dictionary-control-panel::before,
+.dictionary-term-card::before,
+.dictionary-feature-card::before,
+.dictionary-empty-state::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(242, 213, 138, 0.16), transparent 10rem),
+    radial-gradient(circle at 84% 18%, rgba(87, 158, 190, 0.11), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.07), transparent 40%);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.dictionary-term-card::after,
+.dictionary-feature-card::after {
+  content: "";
+  position: absolute;
+  inset-inline: 10%;
+  bottom: 0;
+  z-index: 1;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.74), transparent);
+  filter: drop-shadow(0 0 14px rgba(242, 213, 138, 0.36));
+}
+
+.dictionary-control-panel > *,
+.dictionary-term-card > *,
+.dictionary-feature-card > *,
+.dictionary-empty-state > * {
+  position: relative;
+  z-index: 1;
+}
+
+.dictionary-term-grid {
+  counter-reset: glossary-term;
+}
+
+.dictionary-term-card {
+  counter-increment: glossary-term;
+}
+
+.dictionary-term-card h2::before {
+  content: counter(glossary-term, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(242, 213, 138, 0.58);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.dictionary-term-card,
+.dictionary-feature-card,
+.dictionary-action-chip,
+.dictionary-related-chip {
+  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease, background-color 260ms ease;
+}
+
+.dictionary-term-card:hover,
+.dictionary-term-card:focus-visible,
+.dictionary-feature-card:hover,
+.dictionary-feature-card:focus-within,
+.dictionary-action-chip:hover,
+.dictionary-action-chip:focus-visible,
+.dictionary-related-chip:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.28), 0 0 30px rgba(214, 168, 79, 0.12);
+}
+
+.dictionary-control-panel:hover::before,
+.dictionary-control-panel:focus-within::before,
+.dictionary-term-card:hover::before,
+.dictionary-term-card:focus-visible::before,
+.dictionary-feature-card:hover::before,
+.dictionary-feature-card:focus-within::before,
+.dictionary-empty-state:hover::before,
+.dictionary-empty-state:focus-within::before {
+  opacity: 1;
+}
+
+.dictionary-input,
+.dictionary-select {
+  box-shadow: inset 0 1px 0 rgba(255, 248, 234, 0.06), 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.dictionary-feature-scene {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 234, 0.08),
+    0 22px 58px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(214, 168, 79, 0.1);
+}
+
+html[data-ambient="bright"] .dictionary-control-panel,
+html[data-ambient="bright"] .dictionary-feature-card,
+html[data-ambient="bright"] .dictionary-empty-state {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.46), transparent 15rem),
+    linear-gradient(145deg, rgba(255, 253, 247, 0.95), rgba(255, 248, 234, 0.78));
+}
+
+html[data-ambient="bright"] .dictionary-control-panel::before,
+html[data-ambient="bright"] .dictionary-term-card::before,
+html[data-ambient="bright"] .dictionary-feature-card::before,
+html[data-ambient="bright"] .dictionary-empty-state::before {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(214, 168, 79, 0.18), transparent 10rem),
+    radial-gradient(circle at 84% 18%, rgba(76, 144, 186, 0.12), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 40%);
+}
+
+html[data-ambient="bright"] .dictionary-term-card:hover,
+html[data-ambient="bright"] .dictionary-term-card:focus-visible,
+html[data-ambient="bright"] .dictionary-feature-card:hover,
+html[data-ambient="bright"] .dictionary-feature-card:focus-within,
+html[data-ambient="bright"] .dictionary-action-chip:hover,
+html[data-ambient="bright"] .dictionary-action-chip:focus-visible,
+html[data-ambient="bright"] .dictionary-related-chip:hover {
+  box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 28px rgba(214, 168, 79, 0.13);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .qerti-subtle-lift,
   .qerti-cta::after,
@@ -4568,7 +4705,11 @@ html[data-ambient="bright"] .search-recent-chip:focus-visible {
   .search-result-card,
   .search-suggestion-chip,
   .search-recent-chip,
-  .search-saved-pill {
+  .search-saved-pill,
+  .dictionary-term-card,
+  .dictionary-feature-card,
+  .dictionary-action-chip,
+  .dictionary-related-chip {
     transition: none;
   }
 
@@ -4584,7 +4725,11 @@ html[data-ambient="bright"] .search-recent-chip:focus-visible {
   .search-type-card:hover,
   .search-result-card:hover,
   .search-suggestion-chip:hover,
-  .search-recent-chip:hover {
+  .search-recent-chip:hover,
+  .dictionary-term-card:hover,
+  .dictionary-feature-card:hover,
+  .dictionary-action-chip:hover,
+  .dictionary-related-chip:hover {
     transform: none;
   }
 }
