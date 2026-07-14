@@ -111,15 +111,15 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
   }
 
   return (
-    <div className="lux-frame p-5">
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_180px_180px_180px]">
+    <div className="search-panel-shell lux-frame p-5">
+      <div className="search-control-grid grid gap-4 lg:grid-cols-[minmax(0,1fr)_180px_180px_180px]">
         <label className="relative block">
           <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={20} />
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="جستجو در اوستا، ترجمه، واژه‌نامه، مقاله، رسانه و کتابخانه"
-            className="h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-12 pl-12 text-warm outline-none transition placeholder:text-muted focus:border-gold"
+            className="search-input h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-12 pl-12 text-warm outline-none transition placeholder:text-muted focus:border-gold"
           />
           {query ? (
             <button
@@ -138,7 +138,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
           <select
             value={type}
             onChange={(event) => setType(event.target.value as SearchType)}
-            className="h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-12 pl-5 text-warm outline-none focus:border-gold"
+            className="search-select h-14 w-full rounded-full border border-gold/20 bg-night/70 pr-12 pl-5 text-warm outline-none focus:border-gold"
           >
             {typeOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -151,7 +151,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
         <select
           value={category}
           onChange={(event) => setCategory(event.target.value)}
-          className="h-14 rounded-full border border-gold/20 bg-night/70 px-5 text-warm outline-none focus:border-gold"
+          className="search-select h-14 rounded-full border border-gold/20 bg-night/70 px-5 text-warm outline-none focus:border-gold"
         >
           {categories.map((item) => (
             <option key={item} value={item}>
@@ -162,20 +162,20 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
         <select
           value={section}
           onChange={(event) => setSection(event.target.value)}
-          className="h-14 rounded-full border border-gold/20 bg-night/70 px-5 text-warm outline-none focus:border-gold"
+          className="search-select h-14 rounded-full border border-gold/20 bg-night/70 px-5 text-warm outline-none focus:border-gold"
           aria-label="فیلتر بخش"
         >
           {sections.map((item) => <option key={item} value={item}>{item === "all" ? "همه بخش‌ها" : item}</option>)}
         </select>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="search-suggestion-row mt-5 flex flex-wrap gap-2">
         {suggestedQueries.map((item) => (
           <button
             key={item}
             type="button"
             onClick={() => setQuery(item)}
-            className="inline-flex items-center gap-2 rounded-full border border-gold/15 bg-gold/10 px-3 py-2 text-xs font-bold text-gold-light transition hover:border-gold/40"
+            className="search-suggestion-chip inline-flex items-center gap-2 rounded-full border border-gold/15 bg-gold/10 px-3 py-2 text-xs font-bold text-gold-light transition hover:border-gold/40"
           >
             <Sparkles size={13} />
             {item}
@@ -184,7 +184,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
       </div>
 
       {semanticHints.length ? (
-        <div className="mt-4 rounded-2xl border border-gold/18 bg-gold/10 p-4">
+        <div className="search-semantic-panel mt-4 rounded-2xl border border-gold/18 bg-gold/10 p-4">
           <p className="inline-flex items-center gap-2 text-sm font-black text-gold-light"><Sparkles size={16} />جستجوی مفهومی فعال است</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {semanticHints.flatMap((hint) => hint.related.slice(0, 5).map((item) => <span key={`${hint.term}-${item}`} className="rounded-full border border-gold/16 bg-night/45 px-3 py-1.5 text-xs font-bold text-warm">{hint.term} ← {item}</span>))}
@@ -199,7 +199,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
         </div>
       ) : null}
 
-      <div className="mt-4 rounded-2xl border border-gold/10 bg-night/45 p-4">
+        <div className="search-saved-panel mt-4 rounded-2xl border border-gold/10 bg-night/45 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-gold-light">
             <Bookmark size={17} />
@@ -220,7 +220,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
             {savedSearches.map((item) => (
               <span
                 key={item}
-                className="inline-flex items-center overflow-hidden rounded-full border border-gold/15 bg-gold/10 text-xs font-bold text-gold-light"
+                className="search-saved-pill inline-flex items-center overflow-hidden rounded-full border border-gold/15 bg-gold/10 text-xs font-bold text-gold-light"
               >
                 <button type="button" onClick={() => setQuery(item)} className="px-3 py-2">
                   {item}
@@ -246,7 +246,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
               key={item}
               type="button"
               onClick={() => setQuery(item)}
-              className="inline-flex items-center gap-2 rounded-full border border-warm/10 px-3 py-2 text-xs text-muted transition hover:border-gold/30 hover:text-gold-light"
+              className="search-recent-chip inline-flex items-center gap-2 rounded-full border border-warm/10 px-3 py-2 text-xs text-muted transition hover:border-gold/30 hover:text-gold-light"
             >
               <Clock3 size={13} />
               {item}
@@ -255,13 +255,13 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
         </div>
       ) : null}
 
-      <div className="mt-5 grid gap-3 md:grid-cols-3 lg:grid-cols-6">
+      <div className="search-type-grid mt-5 grid gap-3 md:grid-cols-3 lg:grid-cols-6">
         {resultTypes.map((item) => (
           <button
             key={item.value}
             type="button"
             onClick={() => setType(item.value)}
-            className={`rounded-2xl border p-3 text-right transition ${
+            className={`search-type-card rounded-2xl border p-3 text-right transition ${
               type === item.value
                 ? "border-gold/45 bg-gold/15"
                 : "border-gold/10 bg-night/45 hover:border-gold/30"
@@ -283,13 +283,13 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
         </p>
       </div>
 
-      <div className="mt-5 grid gap-3">
+      <div className="search-results-grid mt-5 grid gap-3">
         {topResults.length ? (
           topResults.map((item) => (
             <Link
               key={item.id}
               href={item.href}
-              className="group rounded-2xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/40 hover:bg-gold/10"
+              className="search-result-card group rounded-2xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/40 hover:bg-gold/10"
             >
               <div className="flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light">
@@ -317,7 +317,7 @@ export function SearchPanel({ initialQuery = "", initialType = "all", initialSec
             </Link>
           ))
         ) : (
-          <div className="rounded-2xl border border-gold/10 bg-night/55 p-8 text-center">
+          <div className="search-empty-state rounded-2xl border border-gold/10 bg-night/55 p-8 text-center">
             <Search className="mx-auto text-gold-light" size={34} />
             <h2 className="mt-4 text-2xl font-black text-warm">نتیجه‌ای پیدا نشد</h2>
             <p className="mx-auto mt-3 max-w-xl leading-8 text-muted">

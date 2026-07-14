@@ -43,16 +43,18 @@ export default function SearchPage({ searchParams }: PageProps) {
         { value: "Fast", label: "طراحی‌شده برای Meilisearch" },
       ]}
     >
-      <div className="mb-6 grid gap-5 md:grid-cols-3">
+      <div className="search-command-stats mb-6 grid gap-5 md:grid-cols-3">
         {stats.map(([title, description, Icon]) => (
-          <article key={title} className="lux-frame p-5">
+          <article key={title} className="search-command-stat lux-frame p-5">
             <Icon className="text-gold-light" size={28} />
             <h2 className="mt-4 text-xl font-black text-warm">{title}</h2>
             <p className="mt-2 leading-7 text-muted">{description}</p>
           </article>
         ))}
       </div>
-      <SearchPanel initialQuery={query} initialType={type} initialSection={section || "all"} />
+      <div className="search-command-panel">
+        <SearchPanel initialQuery={query} initialType={type} initialSection={section || "all"} />
+      </div>
     </CinematicHub>
   );
 }
