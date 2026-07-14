@@ -268,37 +268,39 @@ export default function HomePage() {
 
       <ScrollReveal delay={90}>
         <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-black text-gold-light">دروازه‌های اصلی</p>
-              <h2 className="gold-text mt-2 text-3xl font-black sm:text-5xl">از کدام جهان شروع می‌کنی؟</h2>
+          <div className="home-portal-stage relative overflow-hidden rounded-[26px] border border-gold/16 p-5 sm:p-7">
+            <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-black text-gold-light">دروازه‌های اصلی</p>
+                <h2 className="gold-text mt-2 text-3xl font-black sm:text-5xl">از کدام جهان شروع می‌کنی؟</h2>
+              </div>
+              <Link href="/avesta" className="inline-flex items-center gap-2 text-sm font-black text-gold-light">
+                مشاهده پورتال کامل اوستا
+                <ArrowLeft size={15} />
+              </Link>
             </div>
-            <Link href="/avesta" className="inline-flex items-center gap-2 text-sm font-black text-gold-light">
-              مشاهده پورتال کامل اوستا
-              <ArrowLeft size={15} />
-            </Link>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {portalCards.map((card) => (
-              <TrackedLink
-                key={card.title}
-                href={card.href}
-                event="hero_cta_click"
-                payload={{ cta_id: `home-portal-${card.href.replaceAll("/", "-")}`, label: card.title, locale: "fa", source_route: "/" }}
-                className="home-portal-card lux-frame qerti-feature-card qerti-subtle-lift group block overflow-hidden rounded-[18px] p-4 hover:border-gold/55"
-              >
-                <h3 className="text-2xl font-black text-warm">{card.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-muted">{card.text}</p>
-                <div className="image-scene relative mt-5 h-44 overflow-hidden rounded-[14px] border border-gold/14">
-                  <Image src={card.image} alt={`کاور ${card.title}`} fill sizes="(max-width: 1024px) 100vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent" />
-                </div>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">
-                  {card.footer}
-                  <ArrowLeft size={15} className="transition group-hover:-translate-x-1" />
-                </span>
-              </TrackedLink>
-            ))}
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {portalCards.map((card) => (
+                <TrackedLink
+                  key={card.title}
+                  href={card.href}
+                  event="hero_cta_click"
+                  payload={{ cta_id: `home-portal-${card.href.replaceAll("/", "-")}`, label: card.title, locale: "fa", source_route: "/" }}
+                  className="home-portal-card lux-frame qerti-feature-card qerti-subtle-lift group block overflow-hidden rounded-[18px] p-4 hover:border-gold/55"
+                >
+                  <h3 className="text-2xl font-black text-warm">{card.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-muted">{card.text}</p>
+                  <div className="image-scene relative mt-5 h-44 overflow-hidden rounded-[14px] border border-gold/14">
+                    <Image src={card.image} alt={`کاور ${card.title}`} fill sizes="(max-width: 1024px) 100vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent" />
+                  </div>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light">
+                    {card.footer}
+                    <ArrowLeft size={15} className="transition group-hover:-translate-x-1" />
+                  </span>
+                </TrackedLink>
+              ))}
+            </div>
           </div>
         </section>
       </ScrollReveal>
@@ -309,7 +311,7 @@ export default function HomePage() {
             const Icon = shelf.icon;
 
             return (
-              <Link key={shelf.href} href={shelf.href} className="lux-frame qerti-feature-card qerti-subtle-lift group p-6 hover:border-gold/55">
+              <Link key={shelf.href} href={shelf.href} className="study-shelf-card lux-frame qerti-feature-card qerti-subtle-lift group p-6 hover:border-gold/55">
                 <Icon className="text-gold-light" size={24} />
                 <h2 className="mt-5 text-2xl font-black text-warm">{shelf.title}</h2>
                 <p className="mt-3 leading-8 text-muted">{shelf.text}</p>

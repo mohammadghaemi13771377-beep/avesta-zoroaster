@@ -2418,12 +2418,77 @@ html[data-ambient="bright"] .reader-control-panel {
   transform: scaleX(1);
 }
 
+.home-portal-stage {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(242, 213, 138, 0.13), transparent 15rem),
+    radial-gradient(circle at 82% 10%, rgba(126, 217, 230, 0.08), transparent 16rem),
+    linear-gradient(145deg, rgba(255, 248, 234, 0.045), rgba(7, 21, 33, 0.42) 48%, rgba(5, 8, 13, 0.56));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 234, 0.08),
+    0 26px 80px rgba(0, 0, 0, 0.2);
+}
+
+.home-portal-stage::before,
+.home-portal-stage::after,
+.home-portal-card::before,
+.study-shelf-card::before,
+.study-shelf-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.home-portal-stage::before {
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(115deg, transparent 0 28%, rgba(255, 248, 234, 0.07) 38%, transparent 48%),
+    radial-gradient(circle at 50% 100%, rgba(214, 168, 79, 0.1), transparent 20rem);
+  mix-blend-mode: screen;
+}
+
+.home-portal-stage::after {
+  inset-inline: 8%;
+  bottom: 0;
+  z-index: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.72), transparent);
+  filter: drop-shadow(0 0 16px rgba(242, 213, 138, 0.34));
+}
+
+.home-portal-stage > * {
+  position: relative;
+  z-index: 1;
+}
+
 .home-portal-card {
   position: relative;
   min-height: 100%;
   background:
     radial-gradient(circle at 80% 0%, rgba(242, 213, 138, 0.13), transparent 9rem),
     linear-gradient(180deg, rgba(255, 248, 234, 0.035), rgba(0, 0, 0, 0.08));
+}
+
+.home-portal-card::before {
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(125deg, rgba(255, 248, 234, 0.08), transparent 35%),
+    radial-gradient(circle at 82% 10%, rgba(242, 213, 138, 0.14), transparent 8rem);
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.home-portal-card:hover::before,
+.home-portal-card:focus-visible::before {
+  opacity: 1;
+}
+
+.home-portal-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .home-portal-card .image-scene::after {
@@ -2435,6 +2500,49 @@ html[data-ambient="bright"] .reader-control-panel {
     radial-gradient(circle at 50% 16%, rgba(255, 248, 234, 0.16), transparent 7rem),
     linear-gradient(180deg, rgba(255, 248, 234, 0.02), rgba(5, 8, 13, 0.3));
   opacity: 0.85;
+}
+
+.study-shelf-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.study-shelf-card::before {
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 14% 8%, rgba(242, 213, 138, 0.12), transparent 9rem),
+    linear-gradient(130deg, rgba(255, 248, 234, 0.06), transparent 44%);
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.study-shelf-card::after {
+  inset-inline: 1.25rem;
+  bottom: 1rem;
+  z-index: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.54), transparent);
+  opacity: 0;
+  transform: scaleX(0.72);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.study-shelf-card:hover::before,
+.study-shelf-card:focus-visible::before {
+  opacity: 1;
+}
+
+.study-shelf-card:hover::after,
+.study-shelf-card:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.study-shelf-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 html[data-ambient="bright"] .portal-museum {
@@ -2460,6 +2568,30 @@ html[data-ambient="bright"] .home-portal-card {
   background:
     radial-gradient(circle at 82% 6%, rgba(214, 168, 79, 0.13), transparent 8rem),
     linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 248, 234, 0.56));
+}
+
+html[data-ambient="bright"] .home-portal-stage {
+  background:
+    radial-gradient(circle at 16% 0%, rgba(214, 168, 79, 0.14), transparent 15rem),
+    radial-gradient(circle at 82% 10%, rgba(76, 144, 186, 0.09), transparent 16rem),
+    linear-gradient(145deg, rgba(255, 253, 247, 0.92), rgba(255, 248, 234, 0.72));
+  border-color: rgba(154, 100, 30, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    0 24px 70px rgba(119, 78, 18, 0.12);
+}
+
+html[data-ambient="bright"] .home-portal-stage::before {
+  background:
+    linear-gradient(115deg, transparent 0 28%, rgba(255, 255, 255, 0.34) 38%, transparent 48%),
+    radial-gradient(circle at 50% 100%, rgba(214, 168, 79, 0.12), transparent 20rem);
+  mix-blend-mode: multiply;
+}
+
+html[data-ambient="bright"] .study-shelf-card::before {
+  background:
+    radial-gradient(circle at 14% 8%, rgba(214, 168, 79, 0.13), transparent 9rem),
+    linear-gradient(130deg, rgba(255, 255, 255, 0.32), transparent 44%);
 }
 
 html[data-ambient="bright"] .home-hero-copy {
