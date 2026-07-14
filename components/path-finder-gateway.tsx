@@ -95,15 +95,22 @@ export function PathFinderGateway() {
               با یک انتخاب، مستقیم وارد همان جهان شو
             </h2>
             <p className="mt-4 max-w-xl text-base font-semibold leading-8 text-muted bright:text-stone-700">
-              صفحه اول فقط راه را نشان می‌دهد. هر کارت، تو را به صفحه اختصاصی همان موضوع می‌برد تا بین بخش‌های نامرتبط گم نشوی.
+              صفحه اول فقط راه را نشان می‌دهد. هر کارت تو را به صفحه اختصاصی همان موضوع می‌برد تا بین بخش‌های نامرتبط گم نشوی.
             </p>
             <Link
               href="/search"
-              className="mt-6 inline-flex items-center justify-center gap-2 rounded-2xl border border-gold/25 bg-black/20 px-5 py-3 text-sm font-black text-gold-light transition hover:bg-gold/10 bright:bg-white/52 bright:text-amber-900"
+              className="path-finder-search-cta mt-6 inline-flex items-center justify-center gap-2 rounded-2xl border border-gold/25 bg-black/20 px-5 py-3 text-sm font-black text-gold-light transition hover:bg-gold/10 bright:bg-white/52 bright:text-amber-900"
             >
               <Search className="h-4 w-4" />
               جستجوی هوشمند
             </Link>
+            <div className="mt-5 grid max-w-md grid-cols-3 overflow-hidden rounded-2xl border border-gold/16 bg-black/18 text-center bright:bg-white/45">
+              {["۶ مسیر", "صفحه اختصاصی", "بدون اسکرول"].map((item) => (
+                <span key={item} className="border-l border-gold/12 px-2 py-3 text-[11px] font-black text-gold-light last:border-l-0 bright:text-amber-900">
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="path-finder-grid grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
@@ -116,7 +123,9 @@ export function PathFinderGateway() {
                   href={option.href}
                   className="path-finder-card group relative min-h-[205px] overflow-hidden rounded-[20px] border border-gold/18 bg-night/54 p-5 transition duration-300 hover:-translate-y-1 hover:border-gold/50 bright:bg-white/55"
                 >
-                  <span className="path-finder-card-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="path-finder-card-index" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <Image
                     src={option.image}
                     alt={option.imageAlt}
