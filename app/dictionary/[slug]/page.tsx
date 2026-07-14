@@ -110,13 +110,13 @@ export default function DictionaryTermPage({ params }: PageProps) {
   return (
     <main className="overflow-hidden pt-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section className="hero-cosmos relative px-4 pb-16 pt-12 sm:px-6 lg:px-8">
+      <section className="dictionary-term-hero hero-cosmos relative px-4 pb-16 pt-12 sm:px-6 lg:px-8">
         <div className="hero-horizon" />
         <div className="relative z-10 mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_380px]">
-          <div>
+          <div className="dictionary-term-copy">
             <Link
               href="/dictionary"
-              className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10"
+              className="dictionary-back-chip inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10"
             >
               <ArrowRight size={17} />
               بازگشت به واژه‌نامه
@@ -127,15 +127,15 @@ export default function DictionaryTermPage({ params }: PageProps) {
             <p className="mt-6 max-w-3xl text-lg leading-9 text-muted">{term.description}</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {meta.related.map((item) => (
-                <span key={item} className="rounded-full border border-gold/15 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light">
+                <span key={item} className="dictionary-term-tag rounded-full border border-gold/15 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light">
                   {item}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="lux-frame p-4">
-            <div className={`image-scene ${meta.scene} min-h-[360px] rounded-[1.4rem]`}>
+          <div className="dictionary-term-art lux-frame p-4">
+            <div className={`dictionary-term-scene image-scene ${meta.scene} min-h-[360px] rounded-[1.4rem]`}>
               <Image src="/images/ai/dictionary-hero.jpg" alt={`تصویر مفهومی ${term.term}`} fill sizes="(min-width: 1024px) 380px, 92vw" className="object-cover opacity-75" />
               <div className="absolute inset-0 bg-gradient-to-t from-night/82 via-night/20 to-transparent" />
               <div className="absolute inset-0 grid place-items-center">
@@ -150,7 +150,7 @@ export default function DictionaryTermPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-5 px-4 pb-24 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <section className="dictionary-term-body mx-auto grid max-w-6xl gap-5 px-4 pb-24 sm:px-6 lg:grid-cols-2 lg:px-8">
         <InfoBlock title="معنی" body={term.meaning} icon={BookOpen} />
         <InfoBlock title="ریشه" body={term.root} icon={Sparkles} />
         <InfoBlock title="تلفظ راهنما" body={meta.pronunciation} icon={Volume2} />
@@ -161,13 +161,13 @@ export default function DictionaryTermPage({ params }: PageProps) {
           icon={Waypoints}
         />
 
-        <section className="lux-frame p-6 lg:col-span-2">
+        <section className="dictionary-related-panel lux-frame p-6 lg:col-span-2">
           <div className="flex items-center gap-2 text-gold-light">
             <Search size={20} />
             <h2 className="text-2xl font-black">مسیرهای مرتبط</h2>
           </div>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            <Link href={`/search?q=${encodeURIComponent(term.term)}&type=verse`} className="rounded-2xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/40 hover:bg-gold/10">
+            <Link href={`/search?q=${encodeURIComponent(term.term)}&type=verse`} className="dictionary-related-card rounded-2xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/40 hover:bg-gold/10">
               <p className="text-xs font-bold text-gold-light">کاربردهای متنی</p>
               <h3 className="mt-2 flex items-center justify-between gap-3 text-xl font-black text-warm">بندهای مرتبط<ArrowLeft size={18} /></h3>
             </Link>
@@ -175,7 +175,7 @@ export default function DictionaryTermPage({ params }: PageProps) {
               <Link
                 key={href}
                 href={href}
-                className="rounded-2xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/40 hover:bg-gold/10"
+                className="dictionary-related-card rounded-2xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/40 hover:bg-gold/10"
               >
                 <p className="text-xs font-bold text-gold-light">ادامه مطالعه</p>
                 <h3 className="mt-2 flex items-center justify-between gap-3 text-xl font-black text-warm">
@@ -201,7 +201,7 @@ function InfoBlock({
   icon: LucideIcon;
 }) {
   return (
-    <section className="lux-frame p-6">
+    <section className="dictionary-info-block lux-frame p-6">
       <Icon className="text-gold-light" size={26} />
       <h2 className="mt-4 text-2xl font-black text-gold-light">{title}</h2>
       <p className="mt-3 leading-8 text-muted">{body}</p>
