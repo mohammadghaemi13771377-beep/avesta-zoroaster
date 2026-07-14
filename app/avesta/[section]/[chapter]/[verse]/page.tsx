@@ -157,7 +157,7 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
 
-      <section className="hero-cosmos relative isolate min-h-[720px] overflow-hidden">
+      <section className="hero-cosmos avesta-verse-hero relative isolate min-h-[720px] overflow-hidden">
         <Image src={heroImage} alt={guide?.title ?? chapter.title} fill priority sizes="100vw" className="object-cover object-center opacity-82" />
         <div className="absolute inset-0 bg-gradient-to-l from-[#fff2c5]/10 via-[#071521]/42 to-[#05080d]/86" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_28%,rgba(242,213,138,0.26),transparent_32%),radial-gradient(circle_at_78%_48%,rgba(126,217,230,0.13),transparent_34%)]" />
@@ -173,7 +173,7 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
             بازگشت به {chapter.title}
           </Link>
 
-          <div className="hub-hero-copy mt-10 max-w-3xl">
+          <div className="avesta-verse-copy hub-hero-copy mt-10 max-w-3xl">
             <p className="hub-hero-eyebrow text-sm font-black text-gold-light">
               {section.title} / {chapter.title}
             </p>
@@ -218,11 +218,11 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
         <ReadingControls />
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
-          <article className="space-y-6">
+          <article className="avesta-verse-reader-stack space-y-6">
             <SourceTrustPanel profile={trustProfile} />
 
             {guide ? (
-              <section className="lux-frame p-6 sm:p-8">
+              <section className="avesta-verse-info-card lux-frame p-6 sm:p-8">
                 <div className="flex items-center gap-3">
                   <span className="grid h-12 w-12 place-items-center rounded-2xl border border-gold/25 bg-gold/12 text-gold-light">
                     <Sparkles className="h-5 w-5" />
@@ -243,7 +243,7 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
               quote={verse.quote}
             />
 
-            <section className="lux-frame overflow-hidden p-6 sm:p-8">
+            <section className="avesta-verse-quote-shell lux-frame overflow-hidden p-6 sm:p-8">
               <div className="flex items-start gap-4">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-gold/25 bg-gold/12 text-gold-light">
                   <Quote className="h-5 w-5" />
@@ -262,7 +262,7 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
               verseNumber={verse.verseNumber}
             />
 
-            <section className="lux-frame p-6 sm:p-8">
+            <section className="avesta-reading-layers-shell lux-frame p-6 sm:p-8">
               <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="text-xs font-black text-gold-light">READING LAYERS</p>
@@ -280,7 +280,7 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
               </div>
             </section>
 
-            <section className="lux-frame bg-gold/10 p-6 sm:p-8">
+            <section className="avesta-verse-message-card lux-frame bg-gold/10 p-6 sm:p-8">
               <div className="flex items-start gap-4">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-gold/25 bg-night/35 text-gold-light">
                   <Sparkles className="h-5 w-5" />
@@ -302,8 +302,8 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
             />
           </article>
 
-          <aside className="space-y-5">
-            <section className="lux-frame p-5">
+          <aside className="avesta-verse-sidebar space-y-5">
+            <section className="avesta-verse-sidebar-card lux-frame p-5">
               <div className="flex items-center gap-2 text-gold-light">
                 <BookOpen className="h-5 w-5" />
                 <h2 className="font-black text-warm">همین فصل</h2>
@@ -327,14 +327,14 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
               </div>
             </section>
 
-            <section className="lux-frame p-5">
+            <section className="avesta-verse-sidebar-card lux-frame p-5">
               <div className="flex items-center gap-2 text-gold-light">
                 <Music2 className="h-5 w-5" />
                 <h2 className="font-black text-warm">رسانه‌های مرتبط</h2>
               </div>
               <div className="mt-4 space-y-3">
                 {relatedMedia.slice(0, 3).map((asset) => (
-                  <Link key={asset.slug} href={asset.href ?? `/media/${asset.slug}`} className="group block overflow-hidden rounded-2xl border border-gold/10 bg-night/45 transition hover:border-gold/35 hover:bg-gold/10">
+                  <Link key={asset.slug} href={asset.href ?? `/media/${asset.slug}`} className="avesta-verse-media-card group block overflow-hidden rounded-2xl border border-gold/10 bg-night/45 transition hover:border-gold/35 hover:bg-gold/10">
                     <div className="relative aspect-video overflow-hidden bg-gold/10">
                       {asset.thumbnail ? (
                         <Image src={asset.thumbnail} alt={asset.title} fill sizes="320px" className="object-cover transition duration-500 group-hover:scale-105" />
@@ -354,7 +354,7 @@ export default async function AvestaVersePage({ params, searchParams }: PageProp
               </div>
             </section>
 
-            <section className="lux-frame p-5">
+            <section className="avesta-verse-sidebar-card lux-frame p-5">
               <div className="flex items-center gap-2 text-gold-light">
                 <BookMarked className="h-5 w-5" />
                 <h2 className="font-black text-warm">ورود محتوا از ادمین</h2>

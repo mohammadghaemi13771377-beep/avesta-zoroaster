@@ -2949,6 +2949,163 @@ html[data-ambient="bright"] .reader-control-panel {
   isolation: isolate;
 }
 
+.avesta-verse-hero {
+  isolation: isolate;
+}
+
+.avesta-verse-hero::before,
+.avesta-verse-hero::after,
+.avesta-verse-copy::after,
+.avesta-reader-feature-badge::before,
+.avesta-verse-info-card::before,
+.avesta-verse-quote-shell::before,
+.avesta-reading-layers-shell::before,
+.avesta-verse-message-card::before,
+.avesta-verse-sidebar-card::before,
+.avesta-verse-media-card::before,
+.avesta-reading-layer-card::before,
+.avesta-reading-layer-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.avesta-verse-hero::before {
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 75% 28%, rgba(255, 248, 234, 0.22), transparent 16rem),
+    radial-gradient(circle at 32% 28%, rgba(242, 213, 138, 0.2), transparent 22rem),
+    linear-gradient(112deg, rgba(126, 217, 230, 0.06), transparent 40%, rgba(255, 248, 234, 0.06));
+  mix-blend-mode: screen;
+}
+
+.avesta-verse-hero::after {
+  inset-inline: 10%;
+  bottom: 3.1rem;
+  z-index: 2;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(126, 217, 230, 0.34), rgba(242, 213, 138, 0.82), transparent);
+  filter: drop-shadow(0 0 18px rgba(242, 213, 138, 0.36));
+}
+
+.avesta-verse-copy {
+  position: relative;
+}
+
+.avesta-verse-copy::after {
+  inset-inline: auto 0;
+  bottom: -1rem;
+  width: min(30rem, 84%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.76));
+  filter: drop-shadow(0 0 12px rgba(242, 213, 138, 0.34));
+}
+
+.avesta-reader-feature-badge,
+.avesta-verse-info-card,
+.avesta-verse-quote-shell,
+.avesta-reading-layers-shell,
+.avesta-verse-message-card,
+.avesta-verse-sidebar-card,
+.avesta-verse-media-card,
+.avesta-reading-layer-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.avesta-reader-feature-badge::before,
+.avesta-verse-info-card::before,
+.avesta-verse-quote-shell::before,
+.avesta-reading-layers-shell::before,
+.avesta-verse-message-card::before,
+.avesta-verse-sidebar-card::before,
+.avesta-verse-media-card::before,
+.avesta-reading-layer-card::before {
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(242, 213, 138, 0.13), transparent 9rem),
+    radial-gradient(circle at 92% 16%, rgba(126, 217, 230, 0.07), transparent 11rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.055), transparent 48%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.avesta-reading-layer-card::after {
+  inset-inline: 1rem;
+  bottom: 0.85rem;
+  z-index: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.55), transparent);
+  opacity: 0;
+  transform: scaleX(0.72);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.avesta-reader-feature-badge {
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.avesta-reader-feature-badge:hover,
+.avesta-reader-feature-badge:focus-visible,
+.avesta-reading-layer-card:hover,
+.avesta-reading-layer-card:focus-visible,
+.avesta-verse-sidebar-card:hover,
+.avesta-verse-sidebar-card:focus-within,
+.avesta-verse-media-card:hover,
+.avesta-verse-media-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(242, 213, 138, 0.36);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+}
+
+.avesta-reader-feature-badge:hover::before,
+.avesta-reader-feature-badge:focus-visible::before,
+.avesta-verse-info-card:hover::before,
+.avesta-verse-info-card:focus-within::before,
+.avesta-verse-quote-shell:hover::before,
+.avesta-verse-quote-shell:focus-within::before,
+.avesta-reading-layers-shell:hover::before,
+.avesta-reading-layers-shell:focus-within::before,
+.avesta-verse-message-card:hover::before,
+.avesta-verse-message-card:focus-within::before,
+.avesta-verse-sidebar-card:hover::before,
+.avesta-verse-sidebar-card:focus-within::before,
+.avesta-verse-media-card:hover::before,
+.avesta-verse-media-card:focus-visible::before,
+.avesta-reading-layer-card:hover::before,
+.avesta-reading-layer-card:focus-visible::before,
+.avesta-reading-layer-card:hover::after,
+.avesta-reading-layer-card:focus-visible::after {
+  opacity: 1;
+}
+
+.avesta-reading-layer-card:hover::after,
+.avesta-reading-layer-card:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.avesta-reader-feature-badge > *,
+.avesta-verse-info-card > *,
+.avesta-verse-quote-shell > *,
+.avesta-reading-layers-shell > *,
+.avesta-verse-message-card > *,
+.avesta-verse-sidebar-card > *,
+.avesta-verse-media-card > *,
+.avesta-reading-layer-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.avesta-verse-sidebar {
+  position: sticky;
+  top: 6.25rem;
+  align-self: start;
+}
+
 .newsletter-shell,
 .newsletter-form-panel,
 .newsletter-topic-pill,
@@ -3215,6 +3372,52 @@ html[data-ambient="bright"] .avesta-chapter-info-card:hover,
 html[data-ambient="bright"] .avesta-chapter-info-card:focus-visible,
 html[data-ambient="bright"] .avesta-chapter-next-card:hover,
 html[data-ambient="bright"] .avesta-chapter-next-card:focus-visible {
+  box-shadow: 0 18px 50px rgba(126, 91, 34, 0.13);
+}
+
+html[data-ambient="bright"] .avesta-verse-hero::before {
+  background:
+    radial-gradient(circle at 75% 28%, rgba(255, 255, 255, 0.34), transparent 16rem),
+    radial-gradient(circle at 32% 28%, rgba(214, 168, 79, 0.18), transparent 22rem),
+    linear-gradient(112deg, rgba(76, 144, 186, 0.06), transparent 40%, rgba(255, 253, 247, 0.16));
+  mix-blend-mode: multiply;
+}
+
+html[data-ambient="bright"] .avesta-verse-copy::after {
+  background: linear-gradient(90deg, transparent, rgba(154, 100, 30, 0.52));
+  filter: none;
+}
+
+html[data-ambient="bright"] .avesta-reader-feature-badge {
+  border-color: rgba(154, 100, 30, 0.18) !important;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(214, 168, 79, 0.12), transparent 7rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 248, 234, 0.52)) !important;
+  box-shadow: 0 14px 36px rgba(119, 78, 18, 0.09);
+}
+
+html[data-ambient="bright"] .avesta-reader-feature-badge::before,
+html[data-ambient="bright"] .avesta-verse-info-card::before,
+html[data-ambient="bright"] .avesta-verse-quote-shell::before,
+html[data-ambient="bright"] .avesta-reading-layers-shell::before,
+html[data-ambient="bright"] .avesta-verse-message-card::before,
+html[data-ambient="bright"] .avesta-verse-sidebar-card::before,
+html[data-ambient="bright"] .avesta-verse-media-card::before,
+html[data-ambient="bright"] .avesta-reading-layer-card::before {
+  background:
+    radial-gradient(circle at 16% 0%, rgba(214, 168, 79, 0.13), transparent 9rem),
+    radial-gradient(circle at 92% 16%, rgba(76, 144, 186, 0.07), transparent 11rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 48%);
+}
+
+html[data-ambient="bright"] .avesta-reader-feature-badge:hover,
+html[data-ambient="bright"] .avesta-reader-feature-badge:focus-visible,
+html[data-ambient="bright"] .avesta-reading-layer-card:hover,
+html[data-ambient="bright"] .avesta-reading-layer-card:focus-visible,
+html[data-ambient="bright"] .avesta-verse-sidebar-card:hover,
+html[data-ambient="bright"] .avesta-verse-sidebar-card:focus-within,
+html[data-ambient="bright"] .avesta-verse-media-card:hover,
+html[data-ambient="bright"] .avesta-verse-media-card:focus-visible {
   box-shadow: 0 18px 50px rgba(126, 91, 34, 0.13);
 }
 
