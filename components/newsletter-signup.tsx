@@ -98,7 +98,7 @@ export function NewsletterSignup({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <section className={compact ? "lux-frame rounded-[18px] p-5" : "grid gap-5 lg:grid-cols-[0.8fr_1.2fr]"}>
+    <section className={compact ? "newsletter-shell lux-frame rounded-[18px] p-5" : "grid gap-5 lg:grid-cols-[0.8fr_1.2fr]"}>
       {!compact ? (
         <aside className="lux-frame p-6">
           <div className="flex items-center gap-2 text-gold-light">
@@ -114,7 +114,7 @@ export function NewsletterSignup({ compact = false }: { compact?: boolean }) {
         </aside>
       ) : null}
 
-      <div className={compact ? "" : "lux-frame p-6 sm:p-7"}>
+      <div className={compact ? "newsletter-form-panel" : "newsletter-form-panel lux-frame p-6 sm:p-7"}>
         <div className="flex items-center gap-3">
           <div className="grid h-14 w-14 place-items-center rounded-full border border-gold/30 text-gold-light">
             <Mail size={23} />
@@ -154,8 +154,8 @@ export function NewsletterSignup({ compact = false }: { compact?: boolean }) {
                 onClick={() => toggleTopic(topic.id)}
                 className={
                   active
-                    ? "rounded-2xl border border-gold/45 bg-gold/12 p-4 text-right"
-                    : "rounded-2xl border border-gold/10 bg-night/55 p-4 text-right transition hover:border-gold/35"
+                    ? "newsletter-topic-pill rounded-2xl border border-gold/45 bg-gold/12 p-4 text-right"
+                    : "newsletter-topic-pill rounded-2xl border border-gold/10 bg-night/55 p-4 text-right transition hover:border-gold/35"
                 }
               >
                 <span className="text-sm font-black text-warm">{topic.label}</span>

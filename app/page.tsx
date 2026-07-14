@@ -350,7 +350,7 @@ export default function HomePage() {
         </div>
         <div className="grid gap-5 lg:grid-cols-3">
           {featuredArticles.map((title) => (
-            <Link key={title} href="/articles" className="lux-frame qerti-feature-card qerti-subtle-lift group rounded-[18px] p-6 hover:border-gold/55">
+            <Link key={title} href="/articles" className="home-article-card lux-frame qerti-feature-card qerti-subtle-lift group rounded-[18px] p-6 hover:border-gold/55">
               <BookOpen className="text-gold-light" size={24} />
               <p className="mt-5 text-xs font-bold text-gold-light">مقاله پیشنهادی</p>
               <h3 className="mt-3 text-2xl font-black leading-9 text-warm">{title}</h3>
