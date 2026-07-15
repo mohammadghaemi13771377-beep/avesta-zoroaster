@@ -4735,6 +4735,227 @@ html[data-ambient="bright"] .checkout-payment-link:hover {
   box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 28px rgba(214, 168, 79, 0.13);
 }
 
+.profile-page {
+  background:
+    radial-gradient(circle at 14% 10%, rgba(242, 213, 138, 0.08), transparent 18rem),
+    radial-gradient(circle at 86% 22%, rgba(76, 144, 186, 0.08), transparent 22rem),
+    var(--color-night);
+}
+
+.profile-identity-card,
+.profile-stat-card,
+.profile-action-card,
+.profile-setting-card,
+.profile-reading-summary-card,
+.profile-bookmark-card,
+.profile-empty-card,
+.reader-memory-panel,
+.reader-memory-metric,
+.reader-memory-route-card,
+.reader-achievements-panel,
+.reader-achievement-card,
+.reader-lastread-card,
+.reader-notes-panel,
+.reader-note-card,
+.reader-bookmark-row,
+.reader-empty-card,
+.reader-memory-refresh,
+.profile-avatar {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.profile-identity-card::before,
+.profile-stat-card::before,
+.profile-action-card::before,
+.profile-setting-card::before,
+.profile-reading-summary-card::before,
+.profile-bookmark-card::before,
+.profile-empty-card::before,
+.reader-memory-panel::before,
+.reader-memory-metric::before,
+.reader-memory-route-card::before,
+.reader-achievements-panel::before,
+.reader-achievement-card::before,
+.reader-lastread-card::before,
+.reader-notes-panel::before,
+.reader-note-card::before,
+.reader-bookmark-row::before,
+.reader-empty-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(242, 213, 138, 0.15), transparent 11rem),
+    radial-gradient(circle at 88% 18%, rgba(76, 144, 186, 0.1), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.08), transparent 42%);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.profile-identity-card > *,
+.profile-stat-card > *,
+.profile-action-card > *,
+.profile-setting-card > *,
+.profile-reading-summary-card > *,
+.profile-bookmark-card > *,
+.profile-empty-card > *,
+.reader-memory-panel > *,
+.reader-memory-metric > *,
+.reader-memory-route-card > *,
+.reader-achievements-panel > *,
+.reader-achievement-card > *,
+.reader-lastread-card > *,
+.reader-notes-panel > *,
+.reader-note-card > *,
+.reader-bookmark-row > *,
+.reader-empty-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.profile-identity-card::after,
+.profile-reading-summary-card::after,
+.reader-memory-panel::after,
+.reader-achievements-panel::after {
+  content: "";
+  position: absolute;
+  inset-inline: 10%;
+  bottom: 0;
+  z-index: 1;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.76), transparent);
+  filter: drop-shadow(0 0 16px rgba(242, 213, 138, 0.34));
+  opacity: 0.74;
+}
+
+.profile-identity-card,
+.profile-stat-card,
+.profile-action-card,
+.profile-setting-card,
+.profile-reading-summary-card,
+.profile-bookmark-card,
+.reader-memory-metric,
+.reader-memory-route-card,
+.reader-achievement-card,
+.reader-lastread-card,
+.reader-note-card,
+.reader-bookmark-row,
+.reader-memory-refresh,
+.profile-avatar {
+  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease, background-color 260ms ease;
+}
+
+.profile-identity-card:hover,
+.profile-identity-card:focus-within,
+.profile-stat-card:hover,
+.profile-action-card:hover,
+.profile-action-card:focus-visible,
+.profile-setting-card:hover,
+.profile-reading-summary-card:hover,
+.profile-reading-summary-card:focus-within,
+.profile-bookmark-card:hover,
+.reader-memory-metric:hover,
+.reader-memory-route-card:hover,
+.reader-memory-route-card:focus-visible,
+.reader-achievement-card:hover,
+.reader-lastread-card:hover,
+.reader-lastread-card:focus-visible,
+.reader-note-card:hover,
+.reader-note-card:focus-visible,
+.reader-bookmark-row:hover,
+.reader-bookmark-row:focus-visible,
+.reader-memory-refresh:hover,
+.reader-memory-refresh:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(242, 213, 138, 0.32);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 0 30px rgba(214, 168, 79, 0.12);
+}
+
+.profile-identity-card:hover::before,
+.profile-identity-card:focus-within::before,
+.profile-stat-card:hover::before,
+.profile-action-card:hover::before,
+.profile-setting-card:hover::before,
+.profile-reading-summary-card:hover::before,
+.profile-reading-summary-card:focus-within::before,
+.profile-bookmark-card:hover::before,
+.reader-memory-panel:hover::before,
+.reader-memory-panel:focus-within::before,
+.reader-memory-metric:hover::before,
+.reader-memory-route-card:hover::before,
+.reader-achievement-card:hover::before,
+.reader-lastread-card:hover::before,
+.reader-notes-panel:hover::before,
+.reader-note-card:hover::before,
+.reader-bookmark-row:hover::before {
+  opacity: 1;
+}
+
+.profile-avatar {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 234, 0.12),
+    0 0 36px rgba(214, 168, 79, 0.15);
+}
+
+.reader-memory-metric {
+  box-shadow: inset 0 1px 0 rgba(255, 248, 234, 0.06);
+}
+
+html[data-ambient="bright"] .profile-page {
+  background:
+    radial-gradient(circle at 14% 10%, rgba(214, 168, 79, 0.12), transparent 18rem),
+    radial-gradient(circle at 86% 22%, rgba(76, 144, 186, 0.1), transparent 22rem),
+    var(--color-night);
+}
+
+html[data-ambient="bright"] .profile-identity-card,
+html[data-ambient="bright"] .profile-reading-summary-card,
+html[data-ambient="bright"] .reader-memory-panel,
+html[data-ambient="bright"] .reader-achievements-panel {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.48), transparent 15rem),
+    linear-gradient(145deg, rgba(255, 253, 247, 0.95), rgba(255, 248, 234, 0.76));
+}
+
+html[data-ambient="bright"] .profile-identity-card::before,
+html[data-ambient="bright"] .profile-stat-card::before,
+html[data-ambient="bright"] .profile-action-card::before,
+html[data-ambient="bright"] .profile-setting-card::before,
+html[data-ambient="bright"] .profile-reading-summary-card::before,
+html[data-ambient="bright"] .profile-bookmark-card::before,
+html[data-ambient="bright"] .reader-memory-panel::before,
+html[data-ambient="bright"] .reader-memory-metric::before,
+html[data-ambient="bright"] .reader-memory-route-card::before,
+html[data-ambient="bright"] .reader-achievement-card::before,
+html[data-ambient="bright"] .reader-lastread-card::before,
+html[data-ambient="bright"] .reader-note-card::before,
+html[data-ambient="bright"] .reader-bookmark-row::before {
+  background:
+    radial-gradient(circle at 16% 0%, rgba(214, 168, 79, 0.2), transparent 11rem),
+    radial-gradient(circle at 88% 18%, rgba(76, 144, 186, 0.12), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 42%);
+}
+
+html[data-ambient="bright"] .profile-stat-card:hover,
+html[data-ambient="bright"] .profile-action-card:hover,
+html[data-ambient="bright"] .profile-setting-card:hover,
+html[data-ambient="bright"] .profile-reading-summary-card:hover,
+html[data-ambient="bright"] .reader-memory-metric:hover,
+html[data-ambient="bright"] .reader-memory-route-card:hover,
+html[data-ambient="bright"] .reader-achievement-card:hover,
+html[data-ambient="bright"] .reader-lastread-card:hover,
+html[data-ambient="bright"] .reader-note-card:hover,
+html[data-ambient="bright"] .reader-bookmark-row:hover {
+  box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 28px rgba(214, 168, 79, 0.13);
+}
+
 .shop-detail-page {
   background:
     radial-gradient(circle at 12% 18%, rgba(242, 213, 138, 0.08), transparent 18rem),
@@ -5699,6 +5920,19 @@ html[data-ambient="bright"] .source-trust-panel::before {
   .checkout-back-link,
   .checkout-submit-button,
   .checkout-payment-link,
+  .profile-identity-card,
+  .profile-stat-card,
+  .profile-action-card,
+  .profile-setting-card,
+  .profile-reading-summary-card,
+  .profile-bookmark-card,
+  .reader-memory-metric,
+  .reader-memory-route-card,
+  .reader-achievement-card,
+  .reader-lastread-card,
+  .reader-note-card,
+  .reader-bookmark-row,
+  .reader-memory-refresh,
   .avesta-verse-route-card,
   .avesta-practice-card,
   .avesta-reader-feature-badge,
@@ -5761,6 +5995,19 @@ html[data-ambient="bright"] .source-trust-panel::before {
   .checkout-back-link:hover,
   .checkout-submit-button:hover,
   .checkout-payment-link:hover,
+  .profile-identity-card:hover,
+  .profile-stat-card:hover,
+  .profile-action-card:hover,
+  .profile-setting-card:hover,
+  .profile-reading-summary-card:hover,
+  .profile-bookmark-card:hover,
+  .reader-memory-metric:hover,
+  .reader-memory-route-card:hover,
+  .reader-achievement-card:hover,
+  .reader-lastread-card:hover,
+  .reader-note-card:hover,
+  .reader-bookmark-row:hover,
+  .reader-memory-refresh:hover,
   .avesta-verse-route-card:hover,
   .avesta-practice-card:hover,
   .avesta-reader-feature-badge:hover,

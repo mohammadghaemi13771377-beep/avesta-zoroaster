@@ -130,7 +130,7 @@ export function ReaderMemory() {
     settings.mode === "sepia" ? "سپیا" : settings.mode === "light" ? "روشن" : settings.mode === "dark" ? "شب" : "پیش‌فرض";
 
   return (
-    <section className="lux-frame p-7">
+    <section className="reader-memory-panel lux-frame p-7">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3 text-gold-light">
           <Sparkles size={20} />
@@ -142,7 +142,7 @@ export function ReaderMemory() {
         <button
           type="button"
           onClick={loadMemory}
-          className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light transition hover:border-gold/40"
+          className="reader-memory-refresh inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-xs font-bold text-gold-light transition hover:border-gold/40"
         >
           <RefreshCw size={13} />
           تازه‌سازی
@@ -167,7 +167,7 @@ export function ReaderMemory() {
       <div className="mt-5 grid gap-3 lg:grid-cols-3">
         <Link
           href="/study-plan"
-          className="block rounded-2xl border border-gold/20 bg-gold/10 p-5 transition hover:border-gold/50"
+          className="reader-memory-route-card block rounded-2xl border border-gold/20 bg-gold/10 p-5 transition hover:border-gold/50"
         >
           <p className="text-sm font-black text-gold-light">مسیر آموزشی فعال</p>
           <h3 className="mt-2 text-xl font-black text-warm">ادامه برنامه ۷ روزه اوستا</h3>
@@ -177,7 +177,7 @@ export function ReaderMemory() {
         </Link>
         <Link
           href="/quests"
-          className="block rounded-2xl border border-gold/20 bg-night/55 p-5 transition hover:border-gold/50 hover:bg-gold/10"
+          className="reader-memory-route-card block rounded-2xl border border-gold/20 bg-night/55 p-5 transition hover:border-gold/50 hover:bg-gold/10"
         >
           <p className="text-sm font-black text-gold-light">مأموریت‌های خرد</p>
           <h3 className="mt-2 text-xl font-black text-warm">{questLevel}</h3>
@@ -185,7 +185,7 @@ export function ReaderMemory() {
         </Link>
         <Link
           href="/collections"
-          className="block rounded-2xl border border-gold/20 bg-night/55 p-5 transition hover:border-gold/50 hover:bg-gold/10"
+          className="reader-memory-route-card block rounded-2xl border border-gold/20 bg-night/55 p-5 transition hover:border-gold/50 hover:bg-gold/10"
         >
           <p className="text-sm font-black text-gold-light">کلکسیون‌های ذخیره‌شده</p>
           <h3 className="mt-2 text-xl font-black text-warm">ادامه مسیرهای موضوعی</h3>
@@ -193,7 +193,7 @@ export function ReaderMemory() {
         </Link>
         <Link
           href="/reflection"
-          className="block rounded-2xl border border-gold/20 bg-night/55 p-5 transition hover:border-gold/50 hover:bg-gold/10"
+          className="reader-memory-route-card block rounded-2xl border border-gold/20 bg-night/55 p-5 transition hover:border-gold/50 hover:bg-gold/10"
         >
           <p className="text-sm font-black text-gold-light">دفتر پندار، گفتار، کردار</p>
           <h3 className="mt-2 text-xl font-black text-warm">ثبت روزانه روشنایی</h3>
@@ -201,7 +201,7 @@ export function ReaderMemory() {
         </Link>
         <Link
           href="/search"
-          className="block rounded-2xl border border-gold/20 bg-night/55 p-5 transition hover:border-gold/50 hover:bg-gold/10"
+          className="reader-memory-route-card block rounded-2xl border border-gold/20 bg-night/55 p-5 transition hover:border-gold/50 hover:bg-gold/10"
         >
           <p className="text-sm font-black text-gold-light">حافظه جستجو</p>
           <h3 className="mt-2 text-xl font-black text-warm">بازگشت به جستجوی پیشرفته</h3>
@@ -209,7 +209,7 @@ export function ReaderMemory() {
         </Link>
       </div>
 
-      <div className="mt-5 rounded-2xl border border-gold/10 bg-night/55 p-5">
+      <div className="reader-achievements-panel mt-5 rounded-2xl border border-gold/10 bg-night/55 p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-gold-light">
             <Award size={18} />
@@ -225,8 +225,8 @@ export function ReaderMemory() {
               key={achievement.id}
               className={
                 achievement.unlocked
-                  ? "rounded-2xl border border-gold/20 bg-gold/10 p-4"
-                  : "rounded-2xl border border-warm/10 bg-royal/35 p-4"
+                  ? "reader-achievement-card rounded-2xl border border-gold/20 bg-gold/10 p-4"
+                  : "reader-achievement-card rounded-2xl border border-warm/10 bg-royal/35 p-4"
               }
             >
               <div className="flex items-start justify-between gap-3">
@@ -254,7 +254,7 @@ export function ReaderMemory() {
       {lastRead ? (
         <Link
           href={lastRead.href}
-          className="mt-5 block rounded-2xl border border-gold/20 bg-gold/10 p-5 transition hover:border-gold/50"
+          className="reader-lastread-card mt-5 block rounded-2xl border border-gold/20 bg-gold/10 p-5 transition hover:border-gold/50"
         >
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-gold-light">
@@ -274,7 +274,7 @@ export function ReaderMemory() {
 
       <div className="mt-5 grid gap-3">
         {notes.length ? (
-          <div className="rounded-2xl border border-gold/10 bg-night/55 p-5">
+          <div className="reader-notes-panel rounded-2xl border border-gold/10 bg-night/55 p-5">
             <div className="flex items-center gap-2 text-gold-light">
               <StickyNote size={17} />
               <p className="text-sm font-black">آخرین یادداشت‌های شخصی</p>
@@ -284,7 +284,7 @@ export function ReaderMemory() {
                 <Link
                   key={href}
                   href={href}
-                  className="rounded-2xl border border-gold/10 bg-royal/45 p-4 transition hover:border-gold/40"
+                  className="reader-note-card rounded-2xl border border-gold/10 bg-royal/45 p-4 transition hover:border-gold/40"
                 >
                   <p className="line-clamp-2 text-sm leading-7 text-warm">{body}</p>
                   <p className="mt-2 text-xs text-muted" dir="ltr">
@@ -301,7 +301,7 @@ export function ReaderMemory() {
             <Link
               key={bookmark.href}
               href={bookmark.href}
-              className="rounded-2xl border border-gold/10 bg-night/55 p-4 transition hover:border-gold/40 hover:bg-gold/10"
+              className="reader-bookmark-row rounded-2xl border border-gold/10 bg-night/55 p-4 transition hover:border-gold/40 hover:bg-gold/10"
             >
               <p className="text-xs font-bold text-gold-light">ذخیره‌شده</p>
               <h3 className="mt-2 font-black leading-7 text-warm">{bookmark.title || bookmark.href}</h3>
@@ -311,7 +311,7 @@ export function ReaderMemory() {
             </Link>
           ))
         ) : (
-          <div className="rounded-2xl border border-gold/10 bg-night/55 p-5">
+          <div className="reader-empty-card rounded-2xl border border-gold/10 bg-night/55 p-5">
             <p className="font-bold text-warm">هنوز بوکمارک محلی ثبت نشده است.</p>
             <p className="mt-2 text-sm leading-7 text-muted">
               از صفحه بندهای اوستا یا مقاله‌ها دکمه بوکمارک را بزنید تا اینجا نمایش داده شود.
@@ -333,7 +333,7 @@ function MemoryMetric({
   value: string;
 }) {
   return (
-    <div className="rounded-2xl border border-gold/10 bg-night/55 p-4">
+    <div className="reader-memory-metric rounded-2xl border border-gold/10 bg-night/55 p-4">
       <Icon className="text-gold-light" size={20} />
       <p className="mt-3 text-xs font-bold text-muted">{label}</p>
       <p className="mt-1 text-xl font-black text-warm">{value}</p>

@@ -35,7 +35,7 @@ export function ProfileReadingSummary({ fallback }: { fallback: { section: strin
 
   return (
     <>
-      <section className="lux-frame p-7">
+      <section className="profile-reading-summary-card lux-frame p-7">
         <div className="flex items-center gap-2 text-gold-light"><BookOpen size={20} /><p className="text-sm font-bold">ادامهٔ مطالعه</p></div>
         <p className="mt-4 text-sm font-bold text-gold-light">{reading.section}</p>
         <h2 className="mt-2 text-3xl font-black text-warm">{reading.title}</h2>
@@ -43,10 +43,10 @@ export function ProfileReadingSummary({ fallback }: { fallback: { section: strin
         <div className="mt-6 h-2 overflow-hidden rounded-full bg-warm/10"><div className="h-full rounded-full bg-gold" style={{ width: `${reading.progress}%` }} /></div>
         <Link href={reading.href} className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-black text-night transition hover:bg-gold-light">ادامهٔ خواندن <ArrowLeft size={18} /></Link>
       </section>
-      <section className="lux-frame p-7">
+      <section className="profile-reading-summary-card lux-frame p-7">
         <div className="flex items-center gap-2 text-gold-light"><Bookmark size={20} /><p className="text-sm font-bold">بوکمارک‌ها</p></div>
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
-          {bookmarks.length ? bookmarks.map((bookmark) => <Link key={bookmark.href} href={bookmark.href || "/avesta"} className="rounded-2xl border border-gold/10 bg-night/55 p-4 transition hover:border-gold/40 hover:bg-gold/10"><p className="text-xs font-bold text-gold-light">ذخیره‌شده</p><h3 className="mt-2 font-black leading-7 text-warm">{bookmark.title || "بند ذخیره‌شده"}</h3></Link>) : <p className="sm:col-span-3 rounded-2xl border border-dashed border-gold/18 px-4 py-6 text-sm leading-7 text-muted">هنوز بندی را ذخیره نکرده‌اید. در صفحهٔ هر بند، دکمهٔ «ذخیره بند» را بزنید تا اینجا ظاهر شود.</p>}
+          {bookmarks.length ? bookmarks.map((bookmark) => <Link key={bookmark.href} href={bookmark.href || "/avesta"} className="profile-bookmark-card rounded-2xl border border-gold/10 bg-night/55 p-4 transition hover:border-gold/40 hover:bg-gold/10"><p className="text-xs font-bold text-gold-light">ذخیره‌شده</p><h3 className="mt-2 font-black leading-7 text-warm">{bookmark.title || "بند ذخیره‌شده"}</h3></Link>) : <p className="profile-empty-card sm:col-span-3 rounded-2xl border border-dashed border-gold/18 px-4 py-6 text-sm leading-7 text-muted">هنوز بندی را ذخیره نکرده‌اید. در صفحهٔ هر بند، دکمهٔ «ذخیره بند» را بزنید تا اینجا ظاهر شود.</p>}
         </div>
       </section>
     </>

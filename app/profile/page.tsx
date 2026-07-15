@@ -22,12 +22,12 @@ export default function ProfilePage() {
   ];
 
   return (
-    <main className="overflow-hidden pt-24">
-      <section className="hero-cosmos relative px-4 py-16 sm:px-6 lg:px-8">
+    <main className="profile-page overflow-hidden pt-24">
+      <section className="profile-hero hero-cosmos relative px-4 py-16 sm:px-6 lg:px-8">
         <div className="hero-horizon" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="lux-frame p-7">
-            <div className="grid h-20 w-20 place-items-center rounded-full border border-gold/25 bg-gold/10 text-gold-light">
+          <div className="profile-identity-card lux-frame p-7">
+            <div className="profile-avatar grid h-20 w-20 place-items-center rounded-full border border-gold/25 bg-gold/10 text-gold-light">
               <UserRound size={34} />
             </div>
             <p className="gold-text mt-6 text-sm font-semibold tracking-[0.28em]">READER PROFILE</p>
@@ -40,7 +40,7 @@ export default function ProfilePage() {
 
             <div className="mt-8 grid gap-3">
               {profileSnapshot.readingStats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-gold/10 bg-night/55 p-5">
+                <div key={stat.label} className="profile-stat-card rounded-2xl border border-gold/10 bg-night/55 p-5">
                   <div className="flex items-center justify-between gap-4">
                     <h2 className="font-black text-warm">{stat.label}</h2>
                     <span className="text-2xl font-black text-gold-light">{stat.value}</span>
@@ -97,7 +97,7 @@ export default function ProfilePage() {
 
             <Link
               href="/dashboard"
-              className="block rounded-[18px] border border-gold/20 bg-gold/10 p-6 transition hover:border-gold/50"
+              className="profile-action-card block rounded-[18px] border border-gold/20 bg-gold/10 p-6 transition hover:border-gold/50"
             >
               <p className="text-sm font-black text-gold-light">Personal Command Center</p>
               <h2 className="mt-2 text-2xl font-black text-warm">ورود به نورخانه شخصی</h2>
@@ -108,7 +108,7 @@ export default function ProfilePage() {
 
             <Link
               href="/memory"
-              className="block rounded-[18px] border border-gold/20 bg-gold/10 p-6 transition hover:border-gold/50"
+              className="profile-action-card block rounded-[18px] border border-gold/20 bg-gold/10 p-6 transition hover:border-gold/50"
             >
               <p className="text-sm font-black text-gold-light">Reader Memory</p>
               <h2 className="mt-2 text-2xl font-black text-warm">باز کردن داشبورد کامل حافظه مطالعه</h2>
@@ -125,7 +125,7 @@ export default function ProfilePage() {
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-4">
           {settings.map(([label, value, Icon]) => (
-            <article key={label} className="lux-frame p-6">
+            <article key={label} className="profile-setting-card lux-frame p-6">
               <Icon className="text-gold-light" size={28} />
               <h2 className="mt-5 text-xl font-black text-warm">{label}</h2>
               <p className="mt-2 text-2xl font-black text-gold-light">{value}</p>
