@@ -44,23 +44,23 @@ export function AuthForm({ mode }: AuthFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="lux-frame p-6 shadow-2xl shadow-black/30">
+    <form onSubmit={handleSubmit} className="auth-form-panel lux-frame p-6 shadow-2xl shadow-black/30">
       <div className="grid gap-4">
         {!isLogin ? (
-          <label className="grid gap-2">
+          <label className="auth-field grid gap-2">
             <span className="text-sm font-bold text-warm">نام نمایشی</span>
             <div className="relative">
               <UserRound className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={18} />
               <input
                 value={displayName}
                 onChange={(event) => setDisplayName(event.target.value)}
-                className="h-13 w-full rounded-2xl border border-gold/20 bg-night/70 py-3 pr-12 pl-4 text-warm outline-none focus:border-gold"
+                className="auth-input h-13 w-full rounded-2xl border border-gold/20 bg-night/70 py-3 pr-12 pl-4 text-warm outline-none focus:border-gold"
               />
             </div>
           </label>
         ) : null}
 
-        <label className="grid gap-2">
+        <label className="auth-field grid gap-2">
           <span className="text-sm font-bold text-warm">ایمیل</span>
           <div className="relative">
             <Mail className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={18} />
@@ -69,12 +69,12 @@ export function AuthForm({ mode }: AuthFormProps) {
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="h-13 w-full rounded-2xl border border-gold/20 bg-night/70 py-3 pr-12 pl-4 text-left text-warm outline-none focus:border-gold"
+              className="auth-input h-13 w-full rounded-2xl border border-gold/20 bg-night/70 py-3 pr-12 pl-4 text-left text-warm outline-none focus:border-gold"
             />
           </div>
         </label>
 
-        <label className="grid gap-2">
+        <label className="auth-field grid gap-2">
           <span className="text-sm font-bold text-warm">رمز عبور</span>
           <div className="relative">
             <KeyRound className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={18} />
@@ -83,7 +83,7 @@ export function AuthForm({ mode }: AuthFormProps) {
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="h-13 w-full rounded-2xl border border-gold/20 bg-night/70 py-3 pr-12 pl-4 text-left text-warm outline-none focus:border-gold"
+              className="auth-input h-13 w-full rounded-2xl border border-gold/20 bg-night/70 py-3 pr-12 pl-4 text-left text-warm outline-none focus:border-gold"
             />
           </div>
         </label>
@@ -91,13 +91,13 @@ export function AuthForm({ mode }: AuthFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-4 font-black text-night transition hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-70"
+          className="auth-submit-button mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-4 font-black text-night transition hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-70"
         >
           {loading ? <Loader2 className="animate-spin" size={18} /> : null}
           {isLogin ? "ورود به پروفایل" : "ساخت حساب"}
           <ArrowLeft size={18} />
         </button>
-        <p className="leading-8 text-muted">{status}</p>
+        <p className="auth-status leading-8 text-muted">{status}</p>
       </div>
     </form>
   );
