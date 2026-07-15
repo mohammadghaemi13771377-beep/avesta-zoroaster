@@ -56,10 +56,10 @@ export default function ProductPage({ params }: ProductPageProps) {
   };
 
   return (
-    <main className="px-4 pb-20 pt-32 sm:px-6 lg:px-8">
+    <main className="shop-detail-page px-4 pb-20 pt-32 sm:px-6 lg:px-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-        <section className={`image-scene ${product.imageScene} min-h-[520px] rounded-[24px] border border-gold/18`}>
+        <section className={`shop-detail-gallery image-scene ${product.imageScene} min-h-[520px] rounded-[24px] border border-gold/18`}>
           <Image
             src={product.imageSrc}
             alt={product.title}
@@ -69,10 +69,14 @@ export default function ProductPage({ params }: ProductPageProps) {
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+          <div className="absolute inset-x-8 bottom-8 z-10 rounded-3xl border border-gold/18 bg-black/35 p-5 text-warm backdrop-blur">
+            <p className="text-xs font-bold text-gold-light">{product.categoryLabel}</p>
+            <p className="mt-2 text-2xl font-black">{product.badge}</p>
+          </div>
         </section>
 
-        <section className="lux-frame p-7">
-          <Link href="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-gold-light">
+        <section className="shop-detail-panel lux-frame p-7">
+          <Link href="/shop" className="shop-detail-back inline-flex items-center gap-2 text-sm font-bold text-gold-light">
             <ArrowLeft size={16} />
             بازگشت به فروشگاه
           </Link>
@@ -93,11 +97,11 @@ export default function ProductPage({ params }: ProductPageProps) {
             <InfoCard icon={Sparkles} label="تم" value={product.spiritualTheme} />
           </div>
 
-          <div className="mt-7 rounded-3xl border border-gold/10 bg-night/55 p-5">
+          <div className="shop-detail-materials mt-7 rounded-3xl border border-gold/10 bg-night/55 p-5">
             <h2 className="text-2xl font-black text-warm">جزئیات محصول</h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {product.materials.map((item) => (
-                <span key={item} className="rounded-full border border-gold/20 px-3 py-1 text-xs font-bold text-gold-light">
+                <span key={item} className="shop-material-chip rounded-full border border-gold/20 px-3 py-1 text-xs font-bold text-gold-light">
                   {item}
                 </span>
               ))}
@@ -113,7 +117,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
 function InfoCard({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-gold/10 bg-royal/45 p-4">
+    <div className="shop-detail-info rounded-2xl border border-gold/10 bg-royal/45 p-4">
       <Icon className="text-gold-light" size={22} />
       <p className="mt-3 text-xs font-bold text-muted">{label}</p>
       <p className="mt-1 font-black text-warm">{value}</p>

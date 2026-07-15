@@ -72,20 +72,20 @@ export function ProductPurchaseActions({ product }: { product: ShopProduct }) {
   }
 
   return (
-    <div className="mt-7 grid gap-3 sm:grid-cols-3">
+    <div className="product-purchase-panel mt-7 grid gap-3 sm:grid-cols-3">
       <button
         type="button"
         onClick={addToCart}
-        className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-gold px-7 py-4 font-black text-night transition hover:bg-gold-light"
+        className="product-purchase-primary inline-flex w-full items-center justify-center gap-3 rounded-full bg-gold px-7 py-4 font-black text-night transition hover:bg-gold-light"
       >
         {added ? <Check size={19} /> : <ShoppingBag size={19} />}
         {added ? "به سبد اضافه شد" : "افزودن به سبد"}
       </button>
-      <Link href={checkoutHref} className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-gold/30 px-7 py-4 font-black text-gold-light transition hover:bg-gold/10">
+      <Link href={checkoutHref} className="product-purchase-secondary inline-flex w-full items-center justify-center gap-3 rounded-full border border-gold/30 px-7 py-4 font-black text-gold-light transition hover:bg-gold/10">
         مشاهده سبد و سفارش
         <ShoppingBag size={19} />
       </Link>
-      <button type="button" onClick={toggleWishlist} aria-pressed={wishlisted} className={`inline-flex w-full items-center justify-center gap-3 rounded-full border px-7 py-4 font-black transition ${wishlisted ? "border-gold bg-gold/12 text-gold-light" : "border-gold/30 text-gold-light hover:bg-gold/10"}`}>
+      <button type="button" onClick={toggleWishlist} aria-pressed={wishlisted} className={`product-purchase-wishlist inline-flex w-full items-center justify-center gap-3 rounded-full border px-7 py-4 font-black transition ${wishlisted ? "border-gold bg-gold/12 text-gold-light" : "border-gold/30 text-gold-light hover:bg-gold/10"}`}>
         <Heart size={19} fill={wishlisted ? "currentColor" : "none"} />
         {wishlisted ? "در علاقه‌مندی‌ها" : "ذخیره برای بعد"}
       </button>
