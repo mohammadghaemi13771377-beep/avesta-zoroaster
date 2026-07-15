@@ -14,7 +14,7 @@ const statusStyle = {
 
 export function SourceTrustPanel({ profile }: SourceTrustPanelProps) {
   return (
-    <section className="lux-frame p-6">
+    <section className="lux-frame source-trust-panel p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <span className="grid h-12 w-12 place-items-center rounded-full border border-gold/25 bg-gold/10 text-gold-light">

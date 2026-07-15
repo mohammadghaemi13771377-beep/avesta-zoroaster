@@ -87,22 +87,22 @@ export default function ArticleDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <main className="overflow-hidden pt-24">
+    <main className="article-detail-page overflow-hidden pt-24">
       {jsonLd.map((item, index) => (
         <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }} />
       ))}
 
-      <section className="hero-cosmos relative isolate overflow-hidden">
+      <section className="article-detail-hero hero-cosmos relative isolate overflow-hidden">
         <Image src={article.coverImage} alt={article.title} fill priority sizes="100vw" className="object-cover object-center" />
         <div className="hub-hero-overlay absolute inset-0 bg-gradient-to-l from-[#05080d]/94 via-[#071521]/70 to-[#071521]/18" />
         <div className="hub-hero-side-shade absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(5,8,13,0.03),rgba(5,8,13,0.18)_38%,rgba(5,8,13,0.72)_100%)]" />
         <div className="hero-horizon" />
         <div className="hub-hero-bottom-shade absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-night via-night/55 to-transparent" />
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:pl-[45%] lg:pr-8 lg:py-28">
-          <div>
+        <div className="relative z-10 mx-auto grid max-w-6xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_340px] lg:px-8 lg:py-28">
+          <div className="article-detail-hero-copy">
             <Link
               href="/articles"
-              className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10"
+              className="article-back-chip inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10"
             >
               <ArrowRight size={17} />
               بازگشت به مقالات
@@ -112,14 +112,14 @@ export default function ArticleDetailPage({ params }: PageProps) {
             <p className="mt-6 max-w-3xl text-lg leading-9 text-muted">{article.excerpt}</p>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-gold/15 bg-gold/10 px-4 py-2 text-sm text-gold-light">
+              <span className="article-detail-pill inline-flex items-center gap-2 rounded-full border border-gold/15 bg-gold/10 px-4 py-2 text-sm text-gold-light">
                 <Clock size={16} />
                 {article.readingTime}
               </span>
               {article.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 rounded-full border border-warm/10 bg-warm/5 px-4 py-2 text-sm text-muted"
+                  className="article-detail-pill inline-flex items-center gap-1 rounded-full border border-warm/10 bg-warm/5 px-4 py-2 text-sm text-muted"
                 >
                   <Tag size={14} />
                   {tag}
@@ -128,10 +128,10 @@ export default function ArticleDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          <div className="hidden lux-frame p-4">
-            <div className="image-atmosphere grid min-h-[340px] place-items-center rounded-[1.4rem] p-8 text-center">
+          <div className="article-cover-note lux-frame p-4">
+            <div className="image-atmosphere grid min-h-[300px] place-items-center rounded-[1.4rem] p-8 text-center">
               <div>
-                <p className="text-sm font-bold text-gold-light">AI Cover Direction</p>
+                <p className="text-sm font-bold text-gold-light">فضای تصویری مقاله</p>
                 <p className="mt-4 text-2xl font-black leading-10 text-warm">{article.coverTone}</p>
               </div>
             </div>
@@ -139,19 +139,19 @@ export default function ArticleDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-8 px-4 pb-24 sm:px-6 lg:grid-cols-[1fr_320px] lg:px-8">
+      <section className="article-detail-layout mx-auto grid max-w-6xl gap-8 px-4 pb-24 pt-10 sm:px-6 lg:grid-cols-[1fr_320px] lg:px-8">
         <article className="space-y-6">
           <ReadingControls />
           <SourceTrustPanel profile={trustProfile} />
           {article.sections.map((section) => (
-            <section key={section.heading} className="reading-paper p-7 sm:p-9">
+            <section key={section.heading} className="article-reading-section reading-paper p-7 sm:p-9">
               <h2 className="text-3xl font-black leading-[1.45] text-warm">{section.heading}</h2>
               <p className="reading-prose mt-5 text-muted">{section.body}</p>
             </section>
           ))}
         </article>
 
-        <aside className="lux-frame h-fit p-5 lg:sticky lg:top-28">
+        <aside className="article-related-sidebar lux-frame h-fit p-5 lg:sticky lg:top-28">
           <div className="flex items-center gap-2 text-gold-light">
             <BookOpen size={18} />
             <h2 className="font-black">پیوندهای مرتبط</h2>
@@ -161,7 +161,7 @@ export default function ArticleDetailPage({ params }: PageProps) {
               <Link
                 key={term}
                 href={`/dictionary/${term}`}
-                className="rounded-2xl border border-gold/10 bg-royal/45 p-4 text-sm font-bold text-warm transition hover:border-gold/40 hover:bg-gold/10"
+                className="article-related-link rounded-2xl border border-gold/10 bg-royal/45 p-4 text-sm font-bold text-warm transition hover:border-gold/40 hover:bg-gold/10"
               >
                 واژه‌نامه: {term}
               </Link>
@@ -170,14 +170,14 @@ export default function ArticleDetailPage({ params }: PageProps) {
               <Link
                 key={href}
                 href={href}
-                className="rounded-2xl border border-gold/10 bg-royal/45 p-4 text-sm font-bold text-warm transition hover:border-gold/40 hover:bg-gold/10"
+                className="article-related-link rounded-2xl border border-gold/10 bg-royal/45 p-4 text-sm font-bold text-warm transition hover:border-gold/40 hover:bg-gold/10"
               >
                 متن مرتبط: {href}
               </Link>
             ))}
             <Link
               href="/search?type=article"
-              className="rounded-2xl border border-gold/10 bg-gold/10 p-4 text-sm font-bold text-gold-light transition hover:border-gold/40"
+              className="article-related-link rounded-2xl border border-gold/10 bg-gold/10 p-4 text-sm font-bold text-gold-light transition hover:border-gold/40"
             >
               <span className="flex items-center justify-between gap-3">
                 جستجوی مقالات
