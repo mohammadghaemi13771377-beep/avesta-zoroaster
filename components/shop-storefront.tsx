@@ -36,6 +36,16 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
     [availability, category, products, query]
   );
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const overviewStats = useMemo(
+    () => [
+      { label: "محصول نمایشی", value: filteredProducts.length.toLocaleString("fa-IR") },
+      { label: "سبد خرید", value: cartQuantity.toLocaleString("fa-IR") },
+      { label: "علاقه‌مندی‌ها", value: wishlist.length.toLocaleString("fa-IR") },
+      { label: "جمع سفارش", value: total ? formatPrice(total) : "۰ تومان" },
+    ],
+    [cartQuantity, filteredProducts.length, total, wishlist.length],
+  );
   const checkoutHref =
     cart.length > 0
       ? `/shop/checkout?items=${encodeURIComponent(cart.map((item) => `${item.slug}:${item.quantity}`).join(","))}`
@@ -91,9 +101,9 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
   }
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
+    <div className="shop-storefront-grid grid gap-6 xl:grid-cols-[1fr_360px]">
       <section className="space-y-6">
-        <div className="lux-frame p-5">
+        <div className="shop-filter-panel lux-frame p-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-gold-light">
               <SlidersHorizontal size={20} />
@@ -111,8 +121,8 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
                 onClick={() => setCategory(item.id)}
                 className={
                   category === item.id
-                    ? "rounded-full bg-gold px-4 py-2 text-xs font-black text-night"
-                    : "rounded-full border border-gold/20 px-4 py-2 text-xs font-bold text-gold-light transition hover:bg-gold/10"
+                    ? "shop-category-chip rounded-full bg-gold px-4 py-2 text-xs font-black text-night"
+                    : "shop-category-chip rounded-full border border-gold/20 px-4 py-2 text-xs font-bold text-gold-light transition hover:bg-gold/10"
                 }
               >
                 {item.label}
@@ -122,9 +132,9 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
           <div className="mt-5 grid gap-3 md:grid-cols-[minmax(0,1fr)_180px]">
             <label className="relative block">
               <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gold-light" size={18} />
-              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="جستجو در کتاب، هدیه، پوشاک و هنر" className="h-12 w-full rounded-xl border border-gold/20 bg-night/60 pr-11 pl-4 text-sm text-warm outline-none placeholder:text-muted focus:border-gold" />
+              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="جستجو در کتاب، هدیه، پوشاک و هنر" className="shop-input h-12 w-full rounded-xl border border-gold/20 bg-night/60 pr-11 pl-4 text-sm text-warm outline-none placeholder:text-muted focus:border-gold" />
             </label>
-            <select value={availability} onChange={(event) => setAvailability(event.target.value as "all" | ShopProduct["inventoryStatus"])} className="h-12 rounded-xl border border-gold/20 bg-night/60 px-4 text-sm text-warm outline-none focus:border-gold" aria-label="فیلتر وضعیت موجودی">
+            <select value={availability} onChange={(event) => setAvailability(event.target.value as "all" | ShopProduct["inventoryStatus"])} className="shop-input h-12 rounded-xl border border-gold/20 bg-night/60 px-4 text-sm text-warm outline-none focus:border-gold" aria-label="فیلتر وضعیت موجودی">
               <option value="all">همه وضعیت‌ها</option>
               <option value="available">موجود</option>
               <option value="preorder">پیش‌فروش</option>
@@ -134,10 +144,19 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
           {(query || category !== "all" || availability !== "all") ? <button type="button" onClick={resetFilters} className="mt-4 rounded-full border border-gold/20 px-4 py-2 text-xs font-bold text-gold-light transition hover:bg-gold/10">پاک‌سازی فیلترها</button> : null}
         </div>
 
+        <div className="shop-overview-strip grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {overviewStats.map((stat) => (
+            <div key={stat.label} className="shop-overview-stat rounded-2xl border border-gold/10 bg-night/45 p-4">
+              <p className="text-xs font-bold text-muted">{stat.label}</p>
+              <p className="mt-2 text-xl font-black text-gold-light">{stat.value}</p>
+            </div>
+          ))}
+        </div>
+
         <div className="grid gap-5 md:grid-cols-2">
           {filteredProducts.map((product) => (
-            <article key={product.slug} className="lux-frame overflow-hidden rounded-[18px] p-4">
-              <Link href={`/shop/${product.slug}`} className={`image-scene ${product.imageScene} block h-56 rounded-[14px] border border-gold/14`}>
+            <article key={product.slug} className="shop-product-card lux-frame overflow-hidden rounded-[18px] p-4">
+              <Link href={`/shop/${product.slug}`} className={`shop-product-image image-scene ${product.imageScene} block h-56 rounded-[14px] border border-gold/14`}>
                 <Image
                   src={product.imageSrc}
                   alt={product.title}
@@ -184,7 +203,7 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
         </div>
       </section>
 
-      <aside className="lux-frame h-fit p-5 xl:sticky xl:top-28">
+      <aside className="shop-cart-panel lux-frame h-fit p-5 xl:sticky xl:top-28">
         <div className="flex items-center gap-2 text-gold-light">
           <ShoppingBag size={21} />
           <h2 className="text-2xl font-black">سبد خرید شما</h2>
@@ -195,13 +214,13 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
         <div className="mt-5 grid gap-3">
           {cart.length ? (
             cart.map((item) => (
-              <div key={item.slug} className="rounded-2xl border border-gold/10 bg-night/55 p-4">
+              <div key={item.slug} className="shop-cart-item rounded-2xl border border-gold/10 bg-night/55 p-4">
                 <div className="flex items-start justify-between gap-3"><p className="font-black leading-7 text-warm">{item.title}</p><button type="button" onClick={() => setQuantity(item.slug, 0)} className="text-muted transition hover:text-gold-light" aria-label={`حذف ${item.title}`}><Trash2 size={16} /></button></div>
                 <div className="mt-3 flex items-center justify-between gap-3"><div className="inline-flex items-center rounded-full border border-gold/15"><button type="button" onClick={() => setQuantity(item.slug, item.quantity - 1)} className="grid h-8 w-8 place-items-center text-gold-light"><Minus size={14} /></button><span className="min-w-8 text-center text-sm font-black text-warm">{item.quantity}</span><button type="button" onClick={() => setQuantity(item.slug, item.quantity + 1)} className="grid h-8 w-8 place-items-center text-gold-light"><Plus size={14} /></button></div><p className="text-sm text-muted">{formatPrice(item.price * item.quantity)}</p></div>
               </div>
             ))
           ) : (
-            <div className="rounded-2xl border border-gold/10 bg-night/55 p-5 text-sm leading-7 text-muted">
+            <div className="shop-cart-item rounded-2xl border border-gold/10 bg-night/55 p-5 text-sm leading-7 text-muted">
               هنوز محصولی اضافه نشده است.
             </div>
           )}
@@ -230,7 +249,7 @@ export function ShopStorefront({ products }: { products: ShopProduct[] }) {
         </div>
         <div className="mt-5 border-t border-gold/12 pt-5">
           <div className="flex items-center gap-2 text-gold-light"><Heart size={18} /><h3 className="font-black">علاقه‌مندی‌ها</h3><span className="mr-auto text-xs text-muted">{wishlist.length}</span></div>
-          {wishlist.length ? <div className="mt-3 grid gap-2">{products.filter((product) => wishlist.includes(product.slug)).map((product) => <div key={product.slug} className="flex items-center justify-between gap-3 rounded-xl border border-gold/10 bg-night/45 p-3"><Link href={`/shop/${product.slug}`} className="min-w-0 flex-1 truncate text-sm font-black text-warm hover:text-gold-light">{product.title}</Link><button type="button" onClick={() => toggleWishlist(product.slug)} className="text-muted hover:text-gold-light" aria-label={`حذف ${product.title}`}><Trash2 size={15} /></button></div>)}</div> : <p className="mt-3 text-xs leading-6 text-muted">محصول‌های دلخواهت را با آیکن قلب نگه دار.</p>}
+          {wishlist.length ? <div className="mt-3 grid gap-2">{products.filter((product) => wishlist.includes(product.slug)).map((product) => <div key={product.slug} className="shop-wishlist-item flex items-center justify-between gap-3 rounded-xl border border-gold/10 bg-night/45 p-3"><Link href={`/shop/${product.slug}`} className="min-w-0 flex-1 truncate text-sm font-black text-warm hover:text-gold-light">{product.title}</Link><button type="button" onClick={() => toggleWishlist(product.slug)} className="text-muted hover:text-gold-light" aria-label={`حذف ${product.title}`}><Trash2 size={15} /></button></div>)}</div> : <p className="mt-3 text-xs leading-6 text-muted">محصول‌های دلخواهت را با آیکن قلب نگه دار.</p>}
         </div>
       </aside>
     </div>
