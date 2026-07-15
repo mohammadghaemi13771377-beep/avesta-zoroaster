@@ -81,6 +81,16 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
     });
   }, [category, items, language, query, type]);
 
+  const overviewStats = useMemo(
+    () => [
+      { label: mode === "library" ? "منابع پیدا شده" : "رسانه‌های پیدا شده", value: filteredItems.length.toLocaleString("fa-IR") },
+      { label: "نوع محتوا", value: Math.max(types.length - 1, 0).toLocaleString("fa-IR") },
+      { label: mode === "library" ? "زبان‌ها" : "دسته‌ها", value: (mode === "library" ? Math.max(languages.length - 1, 0) : Math.max(categories.length - 1, 0)).toLocaleString("fa-IR") },
+      { label: mode === "library" ? "قفسه من" : "آیتم پیشنهادی", value: mode === "library" ? savedTitles.length.toLocaleString("fa-IR") : "۱" },
+    ],
+    [categories.length, filteredItems.length, languages.length, mode, savedTitles.length, types.length],
+  );
+
   function resetFilters() {
     setQuery("");
     setType(allLabel);
@@ -178,6 +188,15 @@ export function ResourceExplorer({ items, mode }: ResourceExplorerProps) {
                 ) : null}
               </div>
             </div>
+          </div>
+
+          <div className="resource-overview-strip mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            {overviewStats.map((stat) => (
+              <div key={stat.label} className="resource-overview-stat rounded-2xl border border-gold/10 bg-night/45 p-4">
+                <p className="text-xs font-bold text-muted">{stat.label}</p>
+                <p className="mt-2 text-2xl font-black text-gold-light">{stat.value}</p>
+              </div>
+            ))}
           </div>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">

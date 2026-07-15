@@ -4060,6 +4060,45 @@ html[data-ambient="bright"] .home-feature-badge {
   overflow: hidden;
 }
 
+.resource-overview-stat {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease, background-color 260ms ease;
+}
+
+.resource-overview-stat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(242, 213, 138, 0.14), transparent 9rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.08), transparent 45%);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.resource-overview-stat > * {
+  position: relative;
+  z-index: 1;
+}
+
+.resource-overview-stat:hover,
+.resource-overview-stat:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(242, 213, 138, 0.28);
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.24), 0 0 28px rgba(214, 168, 79, 0.1);
+}
+
+.resource-overview-stat:hover::before,
+.resource-overview-stat:focus-within::before {
+  opacity: 1;
+}
+
 .resource-filter-panel::after,
 .resource-card::before,
 .resource-artwork::after,
@@ -4353,6 +4392,18 @@ html[data-ambient="bright"] .resource-artwork {
     linear-gradient(145deg, rgba(255, 253, 247, 0.92), rgba(255, 248, 234, 0.72));
 }
 
+html[data-ambient="bright"] .resource-overview-stat {
+  background:
+    radial-gradient(circle at 24% 0%, rgba(255, 255, 255, 0.44), transparent 10rem),
+    linear-gradient(145deg, rgba(255, 253, 247, 0.92), rgba(255, 248, 234, 0.72));
+}
+
+html[data-ambient="bright"] .resource-overview-stat::before {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(214, 168, 79, 0.18), transparent 9rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.36), transparent 45%);
+}
+
 html[data-ambient="bright"] .resource-filter-panel::after {
   background:
     linear-gradient(115deg, transparent 0 32%, rgba(255, 255, 255, 0.28) 42%, transparent 52%),
@@ -4361,6 +4412,11 @@ html[data-ambient="bright"] .resource-filter-panel::after {
 
 html[data-ambient="bright"] .resource-card:hover {
   box-shadow: 0 24px 64px rgba(126, 91, 34, 0.15), 0 0 30px rgba(214, 168, 79, 0.14);
+}
+
+html[data-ambient="bright"] .resource-overview-stat:hover,
+html[data-ambient="bright"] .resource-overview-stat:focus-within {
+  box-shadow: 0 20px 54px rgba(126, 91, 34, 0.14), 0 0 26px rgba(214, 168, 79, 0.12);
 }
 
 html[data-ambient="bright"] .media-detail-preview::before,
@@ -5159,6 +5215,8 @@ html[data-ambient="bright"] .source-trust-panel::before {
   .collection-card::before,
   .resource-card,
   .resource-card::before,
+  .resource-overview-stat,
+  .resource-overview-stat::before,
   .avesta-verse-route-card,
   .avesta-practice-card,
   .avesta-reader-feature-badge,
@@ -5198,6 +5256,7 @@ html[data-ambient="bright"] .source-trust-panel::before {
   .exhibition-artifact-card:hover,
   .collection-card:hover,
   .resource-card:hover,
+  .resource-overview-stat:hover,
   .avesta-verse-route-card:hover,
   .avesta-practice-card:hover,
   .avesta-reader-feature-badge:hover,
