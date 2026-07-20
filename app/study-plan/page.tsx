@@ -28,13 +28,13 @@ export default function StudyPlanPage() {
         { value: "Local", label: "ذخیره پیشرفت روی دستگاه" },
       ]}
     >
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="study-plan-page grid gap-5 md:grid-cols-3">
         {[
           ["بدون سردرگمی", "کاربر از ابتدا با فهرست سنگین اوستا تنها نمی‌ماند.", Compass],
           ["تجربه روزانه", "هر قدم کوتاه، قابل انجام و متصل به صفحه واقعی سایت است.", Flame],
           ["آماده پروفایل", "پیشرفت فعلاً محلی ذخیره می‌شود و بعداً به حساب کاربری وصل می‌شود.", BookOpen],
         ].map(([title, description, Icon]) => (
-          <article key={String(title)} className="lux-frame p-6">
+          <article key={String(title)} className="study-plan-feature-card lux-frame p-6">
             <Icon className="text-gold-light" size={28} />
             <h2 className="mt-5 text-2xl font-black text-warm">{title}</h2>
             <p className="mt-3 text-sm leading-8 text-muted">{description}</p>
@@ -42,12 +42,12 @@ export default function StudyPlanPage() {
         ))}
       </div>
 
-      <div id="study-plan" className="pt-6">
+      <div id="study-plan" className="study-plan-anchor pt-6">
         <StudyPlanBoard steps={studyPlanSteps} />
       </div>
 
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="lux-frame p-7">
+        <div className="study-plan-future-panel lux-frame p-7">
           <div className="flex items-center gap-2 text-gold-light">
             <Sparkles size={20} />
             <h2 className="text-2xl font-black">نسخه آینده</h2>

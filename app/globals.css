@@ -5087,6 +5087,142 @@ html[data-ambient="bright"] .auth-submit-button:hover {
   box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 28px rgba(214, 168, 79, 0.13);
 }
 
+.study-plan-page,
+.study-plan-anchor,
+.study-plan-feature-card,
+.study-plan-future-panel,
+.study-plan-board,
+.study-plan-reset-button,
+.study-plan-progress-card,
+.study-plan-next-link,
+.study-plan-step-card,
+.study-plan-step-toggle,
+.study-plan-step-link {
+  position: relative;
+  isolation: isolate;
+}
+
+.study-plan-feature-card,
+.study-plan-future-panel,
+.study-plan-board,
+.study-plan-progress-card,
+.study-plan-step-card {
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.study-plan-page::before {
+  content: "";
+  position: absolute;
+  inset: -4rem -2rem auto;
+  z-index: -1;
+  height: 22rem;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 0%, rgba(242, 213, 138, 0.18), transparent 18rem),
+    radial-gradient(circle at 18% 22%, rgba(78, 130, 164, 0.12), transparent 16rem);
+  filter: blur(3px);
+}
+
+.study-plan-feature-card::before,
+.study-plan-future-panel::before,
+.study-plan-board::before,
+.study-plan-progress-card::before,
+.study-plan-step-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(242, 213, 138, 0.14), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.08), transparent 46%);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.study-plan-feature-card > *,
+.study-plan-future-panel > *,
+.study-plan-board > *,
+.study-plan-progress-card > *,
+.study-plan-step-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.study-plan-board::after,
+.study-plan-future-panel::after,
+.study-plan-progress-card::after {
+  content: "";
+  position: absolute;
+  inset-inline: 9%;
+  bottom: 0;
+  z-index: 1;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.72), transparent);
+  filter: drop-shadow(0 0 16px rgba(242, 213, 138, 0.28));
+}
+
+.study-plan-feature-card,
+.study-plan-reset-button,
+.study-plan-next-link,
+.study-plan-step-card,
+.study-plan-step-toggle,
+.study-plan-step-link {
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease, background-color 240ms ease, color 240ms ease;
+}
+
+.study-plan-feature-card:hover,
+.study-plan-feature-card:focus-within,
+.study-plan-step-card:hover,
+.study-plan-step-card:focus-within,
+.study-plan-reset-button:hover,
+.study-plan-reset-button:focus-visible,
+.study-plan-next-link:hover,
+.study-plan-next-link:focus-visible,
+.study-plan-step-toggle:hover,
+.study-plan-step-toggle:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(242, 213, 138, 0.34);
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.28), 0 0 28px rgba(214, 168, 79, 0.12);
+}
+
+.study-plan-feature-card:hover::before,
+.study-plan-feature-card:focus-within::before,
+.study-plan-future-panel:hover::before,
+.study-plan-board:hover::before,
+.study-plan-progress-card:hover::before,
+.study-plan-step-card:hover::before,
+.study-plan-step-card:focus-within::before {
+  opacity: 1;
+}
+
+.study-plan-progress-card {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 234, 0.1),
+    0 26px 68px rgba(0, 0, 0, 0.22);
+}
+
+html[data-ambient="bright"] .study-plan-feature-card,
+html[data-ambient="bright"] .study-plan-future-panel,
+html[data-ambient="bright"] .study-plan-board,
+html[data-ambient="bright"] .study-plan-progress-card,
+html[data-ambient="bright"] .study-plan-step-card {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.5), transparent 14rem),
+    linear-gradient(145deg, rgba(255, 253, 247, 0.94), rgba(255, 248, 234, 0.72));
+}
+
+html[data-ambient="bright"] .study-plan-feature-card:hover,
+html[data-ambient="bright"] .study-plan-step-card:hover,
+html[data-ambient="bright"] .study-plan-reset-button:hover,
+html[data-ambient="bright"] .study-plan-next-link:hover,
+html[data-ambient="bright"] .study-plan-step-toggle:hover {
+  box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 28px rgba(214, 168, 79, 0.13);
+}
+
 .onboarding-page {
   position: relative;
 }
@@ -6236,6 +6372,11 @@ html[data-ambient="bright"] .source-trust-panel::before {
   .auth-benefit-card,
   .auth-form-panel,
   .auth-submit-button,
+  .study-plan-feature-card,
+  .study-plan-reset-button,
+  .study-plan-next-link,
+  .study-plan-step-card,
+  .study-plan-step-toggle,
   .onboarding-control-panel,
   .onboarding-recommendation-panel,
   .onboarding-option-button,
@@ -6322,6 +6463,11 @@ html[data-ambient="bright"] .source-trust-panel::before {
   .auth-benefit-card:hover,
   .auth-form-panel:hover,
   .auth-submit-button:hover,
+  .study-plan-feature-card:hover,
+  .study-plan-reset-button:hover,
+  .study-plan-next-link:hover,
+  .study-plan-step-card:hover,
+  .study-plan-step-toggle:hover,
   .onboarding-control-panel:hover,
   .onboarding-recommendation-panel:hover,
   .onboarding-option-button:hover,

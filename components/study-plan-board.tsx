@@ -48,7 +48,7 @@ export function StudyPlanBoard({ steps }: StudyPlanBoardProps) {
 
   return (
     <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-      <div className="lux-frame p-6 sm:p-8">
+      <div className="study-plan-board lux-frame p-6 sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div>
             <div className="flex items-center gap-2 text-gold-light">
@@ -64,7 +64,7 @@ export function StudyPlanBoard({ steps }: StudyPlanBoardProps) {
           <button
             type="button"
             onClick={resetPlan}
-            className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10"
+            className="study-plan-reset-button inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10"
           >
             <RotateCcw size={16} />
             شروع دوباره
@@ -72,7 +72,7 @@ export function StudyPlanBoard({ steps }: StudyPlanBoardProps) {
         </div>
 
         <div className="mt-7 grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="rounded-3xl border border-gold/15 bg-night/60 p-5">
+          <div className="study-plan-progress-card rounded-3xl border border-gold/15 bg-night/60 p-5">
             <p className="text-sm font-bold text-gold-light">پیشرفت مسیر</p>
             <p className="mt-3 text-6xl font-black text-warm">{summary.progress}٪</p>
             <div className="mt-5 h-3 overflow-hidden rounded-full bg-warm/10">
@@ -83,7 +83,7 @@ export function StudyPlanBoard({ steps }: StudyPlanBoardProps) {
             </p>
             <Link
               href={summary.nextStep.href}
-              className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
+              className="study-plan-next-link mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
             >
               قدم بعدی: {summary.nextStep.title}
               <ArrowLeft size={17} />
@@ -97,7 +97,7 @@ export function StudyPlanBoard({ steps }: StudyPlanBoardProps) {
               return (
                 <article
                   key={step.id}
-                  className="rounded-3xl border border-gold/10 bg-royal/45 p-5 transition hover:border-gold/35"
+                  className="study-plan-step-card rounded-3xl border border-gold/10 bg-royal/45 p-5 transition hover:border-gold/35"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
@@ -123,8 +123,8 @@ export function StudyPlanBoard({ steps }: StudyPlanBoardProps) {
                       onClick={() => toggleStep(step.id)}
                       className={
                         completed
-                          ? "inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-black text-emerald-100"
-                          : "inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs font-black text-gold-light"
+                          ? "study-plan-step-toggle inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-4 py-2 text-xs font-black text-emerald-100"
+                          : "study-plan-step-toggle inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs font-black text-gold-light"
                       }
                     >
                       {completed ? <CheckCircle2 size={15} /> : <Circle size={15} />}
@@ -133,7 +133,7 @@ export function StudyPlanBoard({ steps }: StudyPlanBoardProps) {
                   </div>
                   <Link
                     href={step.href}
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light transition hover:text-gold"
+                    className="study-plan-step-link mt-4 inline-flex items-center gap-2 text-sm font-black text-gold-light transition hover:text-gold"
                   >
                     ورود به این قدم
                     <ArrowLeft size={15} />
