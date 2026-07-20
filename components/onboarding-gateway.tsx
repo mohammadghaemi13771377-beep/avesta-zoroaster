@@ -58,8 +58,8 @@ export function OnboardingGateway({ initialInput }: { initialInput: OnboardingIn
 
   return (
     <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-      <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
-        <aside className="lux-frame h-fit p-5 lg:sticky lg:top-28">
+      <div className="onboarding-grid grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
+        <aside className="onboarding-control-panel lux-frame h-fit p-5 lg:sticky lg:top-28">
           <div className="flex items-center gap-3 text-gold-light">
             <Compass size={24} />
             <h2 className="text-xl font-black text-warm">آیین ورود</h2>
@@ -97,18 +97,18 @@ export function OnboardingGateway({ initialInput }: { initialInput: OnboardingIn
           <button
             type="button"
             onClick={saveProfile}
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
+            className="onboarding-save-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
           >
             <Check size={17} />
             ذخیره مسیر شروع
           </button>
-          <p className="mt-3 text-xs leading-6 text-muted">{saveState}</p>
+          <p className="onboarding-save-state mt-3 text-xs leading-6 text-muted">{saveState}</p>
         </aside>
 
-        <section className="lux-frame overflow-hidden p-5 sm:p-7">
+        <section className="onboarding-recommendation-panel lux-frame overflow-hidden p-5 sm:p-7">
           <div className="grid gap-5 xl:grid-cols-[1.08fr_0.92fr]">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs font-black text-gold-light">
+              <div className="onboarding-badge inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs font-black text-gold-light">
                 <Flame size={16} />
                 مسیر شروع پیشنهادی
               </div>
@@ -118,7 +118,7 @@ export function OnboardingGateway({ initialInput }: { initialInput: OnboardingIn
                 <Link
                   href={recommendation.startHref}
                   onClick={() => trackStart(recommendation.startLabel, recommendation.startHref)}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
+                  className="onboarding-primary-link inline-flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
                 >
                   {recommendation.startLabel}
                   <ArrowLeft size={17} />
@@ -126,15 +126,15 @@ export function OnboardingGateway({ initialInput }: { initialInput: OnboardingIn
                 <Link
                   href={recommendation.secondaryHref}
                   onClick={() => trackStart(recommendation.secondaryLabel, recommendation.secondaryHref)}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/20 px-5 py-3 text-sm font-black text-gold-light transition hover:bg-gold/10"
+                  className="onboarding-secondary-link inline-flex items-center justify-center gap-2 rounded-full border border-gold/20 px-5 py-3 text-sm font-black text-gold-light transition hover:bg-gold/10"
                 >
                   {recommendation.secondaryLabel}
                 </Link>
               </div>
             </div>
 
-            <div className="image-scene scene-cosmic min-h-[340px] rounded-[18px] border border-gold/16">
-              <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-gold/16 bg-black/42 p-5 backdrop-blur">
+            <div className="onboarding-scene-card image-scene scene-cosmic min-h-[340px] rounded-[18px] border border-gold/16">
+              <div className="onboarding-profile-preview absolute inset-x-6 bottom-6 rounded-3xl border border-gold/16 bg-black/42 p-5 backdrop-blur">
                 <p className="text-sm font-black text-gold-light">پروفایل شروع</p>
                 <p className="mt-3 text-lg font-black leading-8 text-warm">{recommendation.savedProfile.summary}</p>
                 <p className="mt-2 text-xs leading-6 text-muted">این داده فعلاً در مرورگر ذخیره می‌شود و بعداً به پروفایل واقعی وصل می‌شود.</p>
@@ -144,7 +144,7 @@ export function OnboardingGateway({ initialInput }: { initialInput: OnboardingIn
 
           <div className="mt-7 grid gap-4 md:grid-cols-3">
             {recommendation.pillars.map((pillar) => (
-              <Link key={pillar.title} href={pillar.href} className="rounded-3xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/35 hover:bg-gold/10">
+              <Link key={pillar.title} href={pillar.href} className="onboarding-pillar-card rounded-3xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/35 hover:bg-gold/10">
                 <p className="text-xs font-black text-gold-light">{pillar.href}</p>
                 <h3 className="mt-3 text-xl font-black text-warm">{pillar.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-muted">{pillar.text}</p>
@@ -152,7 +152,7 @@ export function OnboardingGateway({ initialInput }: { initialInput: OnboardingIn
             ))}
           </div>
 
-          <div className="mt-7 rounded-3xl border border-gold/10 bg-royal/35 p-5">
+          <div className="onboarding-seven-day-panel mt-7 rounded-3xl border border-gold/10 bg-royal/35 p-5">
             <div className="flex items-center gap-2 text-gold-light">
               <Sparkles size={18} />
               <h3 className="font-black text-warm">برنامه شروع چندروزه</h3>
@@ -162,7 +162,7 @@ export function OnboardingGateway({ initialInput }: { initialInput: OnboardingIn
                 <Link
                   key={`${step.day}-${step.href}`}
                   href={step.href}
-                  className="group rounded-2xl border border-gold/10 bg-night/55 p-4 transition hover:border-gold/35"
+                  className="onboarding-step-card group rounded-2xl border border-gold/10 bg-night/55 p-4 transition hover:border-gold/35"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
@@ -186,13 +186,13 @@ function ControlGroup({ title, children }: { title: string; children: ReactNode 
   return (
     <div className="mt-6">
       <p className="text-xs font-black text-gold-light">{title}</p>
-      <div className="mt-3 grid gap-2">{children}</div>
+      <div className="onboarding-control-options mt-3 grid gap-2">{children}</div>
     </div>
   );
 }
 
 function buttonClass(active: boolean) {
   return active
-    ? "inline-flex items-center gap-2 rounded-2xl border border-gold/50 bg-gold/15 px-4 py-3 text-right text-sm font-black text-warm"
-    : "inline-flex items-center gap-2 rounded-2xl border border-gold/10 bg-night/55 px-4 py-3 text-right text-sm font-bold text-muted transition hover:border-gold/35 hover:text-warm";
+    ? "onboarding-option-button onboarding-option-active inline-flex items-center gap-2 rounded-2xl border border-gold/50 bg-gold/15 px-4 py-3 text-right text-sm font-black text-warm"
+    : "onboarding-option-button inline-flex items-center gap-2 rounded-2xl border border-gold/10 bg-night/55 px-4 py-3 text-right text-sm font-bold text-muted transition hover:border-gold/35 hover:text-warm";
 }

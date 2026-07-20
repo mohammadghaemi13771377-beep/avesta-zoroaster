@@ -22,7 +22,7 @@ export default function OnboardingPage() {
       ]}
       stats={getOnboardingStats()}
     >
-      <div id="gateway" className="scroll-mt-28">
+      <div id="gateway" className="onboarding-page scroll-mt-28">
         <OnboardingGateway initialInput={normalizeOnboardingInput()} />
       </div>
     </CinematicHub>
