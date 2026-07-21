@@ -79,6 +79,7 @@ const adminLinks: Array<[string, string, LucideIcon]> = [
   ["بازبینی منابع", "/admin/source-review", ShieldCheck],
   ["فروشگاه", "/admin/shop", PackageOpen],
   ["Inventory", "/admin/inventory", Boxes],
+  ["عملیات محتوا", "/admin/content-operations", ClipboardList],
   ["صف تولید", "/admin/production", UploadCloud],
   ["Brief تولید", "/admin/production/briefs", ClipboardList],
   ["Review تولید", "/admin/production/review", ShieldCheck],
