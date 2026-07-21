@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { decodeSession, type DemoSession } from "@/lib/auth";
-import { adminRoleProfiles } from "@/lib/admin-roles";
 import { AUTH_COOKIE } from "@/lib/auth-constants";
+import { adminRoleProfiles } from "@/lib/admin-roles";
 
 export type AdminAccessResult =
   | {
