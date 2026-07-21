@@ -33,7 +33,7 @@ export default function JourneyBuilderPage({ searchParams }: JourneyBuilderPageP
       ]}
       stats={getJourneyBuilderStats()}
     >
-      <div id="builder" className="scroll-mt-28">
+      <div id="builder" className="journey-builder-page scroll-mt-28">
         <JourneyBuilderPanel initialInput={initialInput} />
       </div>
     </CinematicHub>

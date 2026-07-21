@@ -49,8 +49,8 @@ export function JourneyBuilderPanel({ initialInput }: { initialInput: JourneyBui
 
   return (
     <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-      <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
-        <aside className="lux-frame h-fit p-5 lg:sticky lg:top-28">
+      <div className="journey-builder-grid grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+        <aside className="journey-control-panel lux-frame h-fit p-5 lg:sticky lg:top-28">
           <div className="flex items-center gap-3 text-gold-light">
             <Route size={24} />
             <h2 className="text-xl font-black text-warm">سازنده مسیر</h2>
@@ -95,10 +95,10 @@ export function JourneyBuilderPanel({ initialInput }: { initialInput: JourneyBui
           </ControlGroup>
         </aside>
 
-        <section className="lux-frame overflow-hidden p-5 sm:p-7">
+        <section className="journey-plan-panel lux-frame overflow-hidden p-5 sm:p-7">
           <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs font-black text-gold-light">
+              <div className="journey-plan-badge inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-4 py-2 text-xs font-black text-gold-light">
                 <Sparkles size={16} />
                 مسیر ساخته‌شده برای امروز
               </div>
@@ -111,7 +111,7 @@ export function JourneyBuilderPanel({ initialInput }: { initialInput: JourneyBui
               </div>
               <Link
                 href={plan.heroAction.href}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
+                className="journey-primary-link mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-black text-night transition hover:bg-gold-light"
               >
                 {plan.heroAction.label}
                 <ArrowLeft size={17} />
@@ -119,19 +119,19 @@ export function JourneyBuilderPanel({ initialInput }: { initialInput: JourneyBui
               <button
                 type="button"
                 onClick={saveActiveJourney}
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/22 bg-gold/10 px-5 py-3 text-sm font-black text-gold-light transition hover:bg-gold/15 sm:mr-3"
+                className="journey-save-button mt-6 inline-flex items-center gap-2 rounded-full border border-gold/22 bg-gold/10 px-5 py-3 text-sm font-black text-gold-light transition hover:bg-gold/15 sm:mr-3"
               >
                 <Save size={17} />
                 ذخیره در نورخانه
               </button>
-              <p className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-muted">
+              <p className="journey-save-state mt-3 inline-flex items-center gap-2 text-xs font-bold text-muted">
                 <Check size={14} className="text-gold-light" />
                 {saveState}
               </p>
             </div>
 
-            <div className="image-scene scene-sunrise min-h-[360px] rounded-[18px] border border-gold/16">
-              <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-gold/16 bg-black/42 p-5 backdrop-blur">
+            <div className="journey-scene-card image-scene scene-sunrise min-h-[360px] rounded-[18px] border border-gold/16">
+              <div className="journey-message-card absolute inset-x-6 bottom-6 rounded-3xl border border-gold/16 bg-black/42 p-5 backdrop-blur">
                 <div className="flex items-center gap-2 text-gold-light">
                   <Flame size={18} />
                   <p className="text-sm font-black">پیام مسیر</p>
@@ -143,7 +143,7 @@ export function JourneyBuilderPanel({ initialInput }: { initialInput: JourneyBui
 
           <div className="mt-7 grid gap-4">
             {plan.steps.map((step) => (
-              <article key={`${step.id}-${step.href}`} className="rounded-3xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/35">
+              <article key={`${step.id}-${step.href}`} className="journey-step-card rounded-3xl border border-gold/10 bg-night/55 p-5 transition hover:border-gold/35">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
@@ -155,7 +155,7 @@ export function JourneyBuilderPanel({ initialInput }: { initialInput: JourneyBui
                     <p className="mt-2 text-sm leading-8 text-muted">{step.description}</p>
                     <p className="mt-3 rounded-2xl border border-gold/10 bg-black/25 px-4 py-3 text-sm font-bold leading-7 text-warm">{step.task}</p>
                   </div>
-                  <Link href={step.href} className="inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-xs font-black text-gold-light transition hover:bg-gold/10">
+                  <Link href={step.href} className="journey-step-link inline-flex items-center gap-2 rounded-full border border-gold/20 px-4 py-2 text-xs font-black text-gold-light transition hover:bg-gold/10">
                     ورود
                     <ArrowLeft size={15} />
                   </Link>
@@ -164,14 +164,14 @@ export function JourneyBuilderPanel({ initialInput }: { initialInput: JourneyBui
             ))}
           </div>
 
-          <div className="mt-7 rounded-3xl border border-gold/10 bg-royal/35 p-5">
+          <div className="journey-unlocks-panel mt-7 rounded-3xl border border-gold/10 bg-royal/35 p-5">
             <div className="flex items-center gap-2 text-gold-light">
               <Compass size={18} />
               <h3 className="font-black text-warm">قفل‌های بعدی</h3>
             </div>
             <div className="mt-4 grid gap-2 md:grid-cols-3">
               {plan.nextUnlocks.map((unlock) => (
-                <p key={unlock} className="rounded-2xl border border-gold/10 bg-night/55 p-4 text-sm font-bold leading-7 text-muted">
+                <p key={unlock} className="journey-unlock-card rounded-2xl border border-gold/10 bg-night/55 p-4 text-sm font-bold leading-7 text-muted">
                   {unlock}
                 </p>
               ))}
@@ -188,14 +188,14 @@ function ControlGroup({ title, children }: { title: string; children: ReactNode 
   return (
     <div className="mt-6">
       <p className="text-xs font-black text-gold-light">{title}</p>
-      <div className="mt-3 grid gap-2">{children}</div>
+      <div className="journey-control-options mt-3 grid gap-2">{children}</div>
     </div>
   );
 }
 
 function MiniStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-gold/10 bg-royal/45 p-4">
+    <div className="journey-mini-stat rounded-2xl border border-gold/10 bg-royal/45 p-4">
       <p className="text-xs font-bold text-muted">{label}</p>
       <p className="mt-2 text-sm font-black leading-7 text-gold-light">{value}</p>
     </div>
@@ -204,6 +204,6 @@ function MiniStat({ label, value }: { label: string; value: string }) {
 
 function buttonClass(active: boolean) {
   return active
-    ? "flex items-center justify-between gap-3 rounded-2xl border border-gold/50 bg-gold/15 px-4 py-3 text-right text-sm font-black text-warm"
-    : "flex items-center justify-between gap-3 rounded-2xl border border-gold/10 bg-night/55 px-4 py-3 text-right text-sm font-bold text-muted transition hover:border-gold/35 hover:text-warm";
+    ? "journey-option-button journey-option-active flex items-center justify-between gap-3 rounded-2xl border border-gold/50 bg-gold/15 px-4 py-3 text-right text-sm font-black text-warm"
+    : "journey-option-button flex items-center justify-between gap-3 rounded-2xl border border-gold/10 bg-night/55 px-4 py-3 text-right text-sm font-bold text-muted transition hover:border-gold/35 hover:text-warm";
 }

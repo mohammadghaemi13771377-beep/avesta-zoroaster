@@ -5223,6 +5223,186 @@ html[data-ambient="bright"] .study-plan-step-toggle:hover {
   box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 28px rgba(214, 168, 79, 0.13);
 }
 
+.journey-builder-page,
+.journey-control-panel,
+.journey-plan-panel,
+.journey-plan-badge,
+.journey-primary-link,
+.journey-save-button,
+.journey-save-state,
+.journey-scene-card,
+.journey-message-card,
+.journey-step-card,
+.journey-step-link,
+.journey-unlocks-panel,
+.journey-unlock-card,
+.journey-mini-stat,
+.journey-option-button {
+  position: relative;
+  isolation: isolate;
+}
+
+.journey-builder-page::before {
+  content: "";
+  position: absolute;
+  inset: -5rem -2rem auto;
+  z-index: -1;
+  height: 24rem;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 78% 4%, rgba(242, 213, 138, 0.18), transparent 17rem),
+    radial-gradient(circle at 16% 24%, rgba(76, 144, 186, 0.13), transparent 18rem),
+    linear-gradient(180deg, rgba(255, 248, 234, 0.04), transparent);
+  filter: blur(3px);
+}
+
+.journey-control-panel,
+.journey-plan-panel,
+.journey-option-button,
+.journey-save-state,
+.journey-scene-card,
+.journey-message-card,
+.journey-step-card,
+.journey-unlocks-panel,
+.journey-unlock-card,
+.journey-mini-stat {
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.journey-control-panel::before,
+.journey-plan-panel::before,
+.journey-option-button::before,
+.journey-save-state::before,
+.journey-scene-card::before,
+.journey-message-card::before,
+.journey-step-card::before,
+.journey-unlocks-panel::before,
+.journey-unlock-card::before,
+.journey-mini-stat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(242, 213, 138, 0.15), transparent 12rem),
+    radial-gradient(circle at 90% 10%, rgba(76, 144, 186, 0.11), transparent 13rem),
+    linear-gradient(135deg, rgba(255, 248, 234, 0.08), transparent 46%);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.journey-control-panel > *,
+.journey-plan-panel > *,
+.journey-option-button > *,
+.journey-save-state > *,
+.journey-scene-card > *,
+.journey-message-card > *,
+.journey-step-card > *,
+.journey-unlocks-panel > *,
+.journey-unlock-card > *,
+.journey-mini-stat > * {
+  position: relative;
+  z-index: 1;
+}
+
+.journey-control-panel::after,
+.journey-plan-panel::after,
+.journey-unlocks-panel::after {
+  content: "";
+  position: absolute;
+  inset-inline: 9%;
+  bottom: 0;
+  z-index: 1;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(242, 213, 138, 0.72), transparent);
+  filter: drop-shadow(0 0 16px rgba(242, 213, 138, 0.3));
+}
+
+.journey-control-panel,
+.journey-plan-panel,
+.journey-option-button,
+.journey-primary-link,
+.journey-save-button,
+.journey-step-card,
+.journey-step-link,
+.journey-unlock-card {
+  transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease, background-color 250ms ease, color 250ms ease;
+}
+
+.journey-control-panel:hover,
+.journey-control-panel:focus-within,
+.journey-plan-panel:hover,
+.journey-plan-panel:focus-within,
+.journey-option-button:hover,
+.journey-option-button:focus-visible,
+.journey-primary-link:hover,
+.journey-primary-link:focus-visible,
+.journey-save-button:hover,
+.journey-save-button:focus-visible,
+.journey-step-card:hover,
+.journey-step-card:focus-within,
+.journey-step-link:hover,
+.journey-step-link:focus-visible,
+.journey-unlock-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(242, 213, 138, 0.34);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 0 30px rgba(214, 168, 79, 0.12);
+}
+
+.journey-control-panel:hover::before,
+.journey-control-panel:focus-within::before,
+.journey-plan-panel:hover::before,
+.journey-plan-panel:focus-within::before,
+.journey-option-button:hover::before,
+.journey-save-state:hover::before,
+.journey-scene-card:hover::before,
+.journey-message-card:hover::before,
+.journey-step-card:hover::before,
+.journey-step-card:focus-within::before,
+.journey-unlocks-panel:hover::before,
+.journey-unlock-card:hover::before,
+.journey-mini-stat:hover::before {
+  opacity: 1;
+}
+
+.journey-option-active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 234, 0.12),
+    0 0 24px rgba(214, 168, 79, 0.14);
+}
+
+.journey-scene-card {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 234, 0.12),
+    0 30px 76px rgba(0, 0, 0, 0.25),
+    0 0 34px rgba(214, 168, 79, 0.1);
+}
+
+html[data-ambient="bright"] .journey-control-panel,
+html[data-ambient="bright"] .journey-plan-panel,
+html[data-ambient="bright"] .journey-step-card,
+html[data-ambient="bright"] .journey-unlocks-panel,
+html[data-ambient="bright"] .journey-unlock-card,
+html[data-ambient="bright"] .journey-mini-stat {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.5), transparent 14rem),
+    linear-gradient(145deg, rgba(255, 253, 247, 0.94), rgba(255, 248, 234, 0.72));
+}
+
+html[data-ambient="bright"] .journey-control-panel:hover,
+html[data-ambient="bright"] .journey-plan-panel:hover,
+html[data-ambient="bright"] .journey-option-button:hover,
+html[data-ambient="bright"] .journey-primary-link:hover,
+html[data-ambient="bright"] .journey-save-button:hover,
+html[data-ambient="bright"] .journey-step-card:hover,
+html[data-ambient="bright"] .journey-unlock-card:hover {
+  box-shadow: 0 22px 58px rgba(126, 91, 34, 0.14), 0 0 28px rgba(214, 168, 79, 0.13);
+}
+
 .onboarding-page {
   position: relative;
 }
@@ -6377,6 +6557,14 @@ html[data-ambient="bright"] .source-trust-panel::before {
   .study-plan-next-link,
   .study-plan-step-card,
   .study-plan-step-toggle,
+  .journey-control-panel,
+  .journey-plan-panel,
+  .journey-option-button,
+  .journey-primary-link,
+  .journey-save-button,
+  .journey-step-card,
+  .journey-step-link,
+  .journey-unlock-card,
   .onboarding-control-panel,
   .onboarding-recommendation-panel,
   .onboarding-option-button,
@@ -6468,6 +6656,14 @@ html[data-ambient="bright"] .source-trust-panel::before {
   .study-plan-next-link:hover,
   .study-plan-step-card:hover,
   .study-plan-step-toggle:hover,
+  .journey-control-panel:hover,
+  .journey-plan-panel:hover,
+  .journey-option-button:hover,
+  .journey-primary-link:hover,
+  .journey-save-button:hover,
+  .journey-step-card:hover,
+  .journey-step-link:hover,
+  .journey-unlock-card:hover,
   .onboarding-control-panel:hover,
   .onboarding-recommendation-panel:hover,
   .onboarding-option-button:hover,
