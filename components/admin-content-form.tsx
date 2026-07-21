@@ -1,7 +1,7 @@
 "use client";
 
-import { Braces, Eye, Save, Sparkles, Upload } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Braces, Download, Eye, FileDown, Save, Sparkles, Trash2, Upload } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
 import { getAdminContentModels, type AdminContentModel } from "@/lib/admin-content-models";
 
@@ -14,10 +14,23 @@ type SupportedResource =
   | "glossaryTerm"
   | "libraryItem";
 
+type LocalDraft = {
+  id: string;
+  title: string;
+  modelId: string;
+  locale: string;
+  publicationStatus: string;
+  updatedAt: string;
+  values: Record<string, string>;
+};
+
+const draftStorageKey = "avesta-admin-content-drafts-v1";
+
 const resourceMap: Partial<Record<string, SupportedResource>> = {
   article: "article",
   "avesta-section": "avestaSection",
   "avesta-chapter": "avestaChapter",
+  "avesta-chapter-guide": "avestaChapterGuide",
   "avesta-verse": "avestaVerse",
   "glossary-term": "glossaryTerm",
   "library-item": "libraryItem",
@@ -68,12 +81,17 @@ export function AdminContentForm() {
   const [locale, setLocale] = useState("FA");
   const [publicationStatus, setPublicationStatus] = useState("draft");
   const [values, setValues] = useState<Record<string, string>>(() => buildInitialValues(models[0]));
+  const [drafts, setDrafts] = useState<LocalDraft[]>([]);
   const [status, setStatus] = useState("پیش‌نویس آماده است. مدل محتوا را انتخاب کنید و payload را بسازید.");
 
   const selectedModel = models.find((model) => model.id === modelId) ?? models[0];
   const isSaveSupported = supportedModelIds.has(selectedModel.id);
 
   const payload = useMemo(() => buildPayload(selectedModel, values, locale, publicationStatus), [locale, publicationStatus, selectedModel, values]);
+
+  useEffect(() => {
+    setDrafts(readLocalDrafts());
+  }, []);
 
   function handleModelChange(nextId: string) {
     const nextModel = models.find((model) => model.id === nextId) ?? models[0];
@@ -84,6 +102,48 @@ export function AdminContentForm() {
 
   function updateValue(name: string, value: string) {
     setValues((current) => ({ ...current, [name]: value }));
+  }
+
+  function saveLocalDraft() {
+    const title = String(payload.title ?? selectedModel.title);
+    const nextDraft: LocalDraft = {
+      id: `${modelId}:${String(payload.slug ?? slugify(title))}`,
+      title,
+      modelId,
+      locale,
+      publicationStatus,
+      updatedAt: new Date().toISOString(),
+      values,
+    };
+    const nextDrafts = [nextDraft, ...drafts.filter((draft) => draft.id !== nextDraft.id)].slice(0, 30);
+    window.localStorage.setItem(draftStorageKey, JSON.stringify(nextDrafts));
+    setDrafts(nextDrafts);
+    setStatus("پیش‌نویس در مرورگر ذخیره شد. این ذخیره موقت است و بعداً به دیتابیس منتقل می‌شود.");
+  }
+
+  function loadLocalDraft(draft: LocalDraft) {
+    setModelId(draft.modelId);
+    setLocale(draft.locale);
+    setPublicationStatus(draft.publicationStatus);
+    setValues(draft.values);
+    setStatus(`پیش‌نویس «${draft.title}» بازیابی شد.`);
+  }
+
+  function deleteLocalDraft(id: string) {
+    const nextDrafts = drafts.filter((draft) => draft.id !== id);
+    window.localStorage.setItem(draftStorageKey, JSON.stringify(nextDrafts));
+    setDrafts(nextDrafts);
+    setStatus("پیش‌نویس محلی حذف شد.");
+  }
+
+  function downloadPayload() {
+    downloadJson(payload, `avesta-${String(payload.modelId ?? "content")}-${String(payload.slug ?? "draft")}.json`);
+    setStatus("فایل JSON همین محتوا آماده دانلود شد.");
+  }
+
+  function downloadAllDrafts() {
+    downloadJson(drafts, `avesta-admin-content-drafts-${new Date().toISOString().slice(0, 10)}.json`);
+    setStatus("خروجی JSON همه پیش‌نویس‌های محلی آماده شد.");
   }
 
   async function handleSave() {
@@ -217,28 +277,99 @@ export function AdminContentForm() {
             </button>
             <button
               type="button"
+              onClick={saveLocalDraft}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/25 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10"
+            >
+              <FileDown size={18} />
+              ذخیره پیش‌نویس محلی
+            </button>
+            <button
+              type="button"
+              onClick={downloadPayload}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/25 px-5 py-3 font-bold text-gold-light transition hover:bg-gold/10"
+            >
+              <Download size={18} />
+              دانلود JSON
+            </button>
+            <button
+              type="button"
               onClick={handleSave}
               className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 font-black text-night transition hover:bg-gold-light"
             >
               <Save size={18} />
-              ذخیره / اعتبارسنجی
+              ذخیره / اعتبارسنجی API
             </button>
           </div>
           <p className="text-sm leading-7 text-muted">{status}</p>
         </div>
       </div>
 
-      <div className="rounded-[18px] border border-gold/15 bg-royal/45 p-6">
-        <div className="flex items-center gap-2 text-gold-light">
-          <Eye size={20} />
-          <h2 className="text-2xl font-black text-warm">Payload آماده اتصال</h2>
+      <div className="grid gap-6">
+        <div className="rounded-[18px] border border-gold/15 bg-royal/45 p-6">
+          <div className="flex items-center gap-2 text-gold-light">
+            <Eye size={20} />
+            <h2 className="text-2xl font-black text-warm">Payload آماده اتصال</h2>
+          </div>
+          <pre
+            className="mt-5 max-h-[520px] overflow-auto rounded-2xl border border-gold/10 bg-night/80 p-4 text-left text-xs leading-6 text-gold-light"
+            dir="ltr"
+          >
+            {JSON.stringify(payload, null, 2)}
+          </pre>
         </div>
-        <pre
-          className="mt-5 max-h-[680px] overflow-auto rounded-2xl border border-gold/10 bg-night/80 p-4 text-left text-xs leading-6 text-gold-light"
-          dir="ltr"
-        >
-          {JSON.stringify(payload, null, 2)}
-        </pre>
+
+        <div className="rounded-[18px] border border-gold/15 bg-night/65 p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="text-2xl font-black text-warm">پیش‌نویس‌های محلی</h2>
+              <p className="mt-2 text-sm leading-7 text-muted">تا قبل از اتصال دیتابیس، draftها در مرورگر همین دستگاه نگهداری می‌شوند.</p>
+            </div>
+            <button
+              type="button"
+              onClick={downloadAllDrafts}
+              disabled={drafts.length === 0}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/25 px-4 py-2 text-sm font-bold text-gold-light transition hover:bg-gold/10 disabled:opacity-40"
+            >
+              <Download size={16} />
+              خروجی همه
+            </button>
+          </div>
+          <div className="mt-4 grid gap-3">
+            {drafts.length === 0 ? (
+              <p className="rounded-2xl border border-gold/10 bg-royal/45 p-4 text-sm leading-7 text-muted">هنوز پیش‌نویس محلی ذخیره نشده است.</p>
+            ) : (
+              drafts.map((draft) => (
+                <div key={draft.id} className="rounded-2xl border border-gold/10 bg-royal/45 p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="font-black text-warm">{draft.title}</p>
+                      <p className="mt-1 text-xs font-bold text-muted">
+                        {draft.modelId} | {draft.locale} | {draft.publicationStatus} | {new Date(draft.updatedAt).toLocaleString("fa-IR")}
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => loadLocalDraft(draft)}
+                        className="rounded-full border border-gold/20 px-3 py-2 text-xs font-black text-gold-light transition hover:bg-gold/10"
+                      >
+                        بازیابی
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => deleteLocalDraft(draft.id)}
+                        className="rounded-full border border-red-300/20 px-3 py-2 text-xs font-black text-red-100 transition hover:bg-red-300/10"
+                        aria-label="حذف پیش‌نویس"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -292,6 +423,29 @@ function buildPayload(model: AdminContentModel, values: Record<string, string>, 
   };
 }
 
+function readLocalDrafts(): LocalDraft[] {
+  if (typeof window === "undefined") {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(draftStorageKey) ?? "[]");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function downloadJson(value: unknown, filename: string) {
+  const blob = new Blob([JSON.stringify(value, null, 2)], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  URL.revokeObjectURL(url);
+}
+
 function splitTags(value?: string) {
   if (!value) {
     return [];
@@ -313,5 +467,5 @@ function slugify(value: string) {
     .trim()
     .toLowerCase()
     .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9آ-ی-]/g, "");
+    .replace(/[^\p{L}\p{N}-]+/gu, "");
 }
