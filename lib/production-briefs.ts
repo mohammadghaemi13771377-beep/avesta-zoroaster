@@ -66,6 +66,47 @@ export function getProductionBriefSummary(briefs: ProductionBrief[] = getProduct
   };
 }
 
+export function buildProductionBriefMarkdown(briefs: ProductionBrief[] = getProductionBriefs()) {
+  const generatedAt = new Date().toISOString();
+
+  return [
+    "# AVESTA-ZOROASTER Production Briefs",
+    "",
+    `Generated: ${generatedAt}`,
+    "",
+    "این خروجی برای تحویل به تیم محتوا، پژوهش، رسانه، طراحی و مهندسی آماده شده است.",
+    "",
+    ...briefs.flatMap((brief, index) => [
+      `## ${index + 1}. ${brief.title}`,
+      "",
+      `- ID: ${brief.id}`,
+      `- Queue Item: ${brief.queueItemId}`,
+      `- Realm: ${brief.realmTitle}`,
+      `- Asset Type: ${inventoryAssetLabels[brief.assetType]}`,
+      brief.recommendedPath ? `- Recommended Path: ${brief.recommendedPath}` : undefined,
+      "",
+      "### Objective",
+      brief.objective,
+      "",
+      "### Output Format",
+      brief.outputFormat,
+      "",
+      "### Style Guide",
+      brief.styleGuide,
+      "",
+      "### Acceptance Criteria",
+      ...brief.acceptanceCriteria.map((item) => `- ${item}`),
+      brief.prompt ? "" : undefined,
+      brief.prompt ? "### AI Prompt" : undefined,
+      brief.prompt,
+      brief.negativePrompt ? "" : undefined,
+      brief.negativePrompt ? "### Negative Prompt" : undefined,
+      brief.negativePrompt,
+      "",
+    ].filter((line): line is string => typeof line === "string")),
+  ].join("\n");
+}
+
 function buildObjective(item: ProductionQueueItem) {
   if (item.assetType === "image") {
     return `تولید تصویر اختصاصی برای ${item.realmTitle} با هدف تقویت حس موزه دیجیتال و هویت سینمایی سایت.`;

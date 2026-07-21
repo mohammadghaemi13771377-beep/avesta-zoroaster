@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ClipboardList, FileText, ImagePlus, Mic2, ShieldCheck, Sparkles, Wrench } from "lucide-react";
+import { ArrowLeft, ClipboardList, Download, FileText, ImagePlus, Mic2, ShieldCheck, Sparkles, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { InventoryAssetType } from "@/lib/content-inventory";
 import { inventoryAssetLabels } from "@/lib/content-inventory";
@@ -39,6 +39,38 @@ export function ProductionBriefBoard({ briefs }: ProductionBriefBoardProps) {
           <Metric label="تصویر" value={String(summary.image)} />
           <Metric label="صوت" value={String(summary.audio)} />
           <Metric label="Prompt" value={String(summary.withPrompt)} />
+        </div>
+      </div>
+
+      <div className="mt-6 grid gap-3 rounded-3xl border border-gold/10 bg-royal/35 p-4 md:grid-cols-[1fr_auto] md:items-center">
+        <div>
+          <p className="text-xs font-black uppercase text-gold-light">Team Handoff</p>
+          <h3 className="mt-2 text-xl font-black text-warm">خروجی آماده برای تیم محتوا، تصویر و رسانه</h3>
+          <p className="mt-2 text-sm leading-7 text-muted">
+            همه briefهای تولید را می‌توانید به شکل Markdown یا JSON تحویل تیم‌ها بدهید تا مسیر تولید دارایی‌ها، متن‌ها و
+            فایل‌های رسانه‌ای یکپارچه بماند.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href="/api/admin/production/briefs?format=markdown&download=1"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gold px-4 py-3 text-sm font-black text-black transition hover:bg-gold-light"
+          >
+            <Download size={16} />
+            دانلود Markdown
+          </Link>
+          <Link
+            href="/api/admin/production/briefs?format=markdown"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-gold/20 px-4 py-3 text-sm font-black text-gold-light transition hover:border-gold/50"
+          >
+            مشاهده Markdown
+          </Link>
+          <Link
+            href="/api/admin/production/briefs"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-gold/20 px-4 py-3 text-sm font-black text-gold-light transition hover:border-gold/50"
+          >
+            JSON API
+          </Link>
         </div>
       </div>
 
