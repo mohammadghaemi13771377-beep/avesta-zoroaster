@@ -62,6 +62,8 @@ export type AdminContentPayload = {
   source?: string;
   category?: string;
   tags?: string[];
+  publicationStatus?: "draft" | "review" | "published" | string;
+  modelId?: string;
   fields?: AdminContentFields;
 };
 
